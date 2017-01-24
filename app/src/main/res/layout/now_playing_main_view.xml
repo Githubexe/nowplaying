@@ -112,41 +112,40 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:background="#FFFFFF">
+        android:layout_alignParentBottom="true">
 
-        <Button android:text="Game 1"
+        <ImageButton android:text="Game 1"
             android:id="@+id/Game1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
             android:layout_alignParentBottom="true">
-        </Button>
+        </ImageButton>
 
-        <Button android:text="Game 2"
+        <ImageButton android:text="Game 2"
             android:id="@+id/Game2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
             android:layout_toRightOf="@id/Game1"
             android:layout_alignParentBottom="true">
-        </Button>
+        </ImageButton>
 
-        <Button android:text="Game 3"
+        <ImageButton android:text="Game 3"
             android:id="@+id/Game3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
             android:layout_toRightOf="@id/Game2"
             android:layout_alignParentBottom="true">
-        </Button>
+        </ImageButton>
 
-        <Button android:text="Game 4"
+        <ImageButton android:text="Game 4"
             android:id="@+id/Game4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
             android:layout_toRightOf="@id/Game3"
             android:layout_alignParentBottom="true">
-        </Button>
+        </ImageButton>
     </LinearLayout>
 
 
