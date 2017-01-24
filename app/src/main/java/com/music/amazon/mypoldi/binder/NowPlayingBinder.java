@@ -23,15 +23,17 @@ public final class NowPlayingBinder {
         view.homeTeamLogoImageView.setImageDrawable(resources.getDrawable(model.iconHomeTeamLogoResId));
         view.visitingTeamLogoImageView.setImageDrawable(resources.getDrawable(model.iconVisitingTeamLogoResId));
 
-//        view.homeTeamNameTextView.setText(model.homeTeamName);
-//
-//        view.homeTeamLogoImageView.setImageDrawable(resources.getDrawable(model.iconHomeTeamLogoResId));
-//
-//        view.visitingTeamNameTextView.setText(model.visitingTeamName);
-//
-//        view.visitingTeamLogoImageView.setImageDrawable(resources.getDrawable(model.iconVisitingTeamLogoResId));
-//
-//        view.scoreTextView.setText(model.score);
+        view.homeTeamNameTextView.setText(model.homeTeamName);
+
+        view.homeTeamLogoImageView.setImageDrawable(resources.getDrawable(model.iconHomeTeamLogoResId));
+
+        view.visitingTeamNameTextView.setText(model.visitingTeamName);
+
+        view.visitingTeamLogoImageView.setImageDrawable(resources.getDrawable(model.iconVisitingTeamLogoResId));
+
+        view.scoreTextView.setText(model.score);
+
+        view.timeTextView.setText(model.time);
 
     }
 }

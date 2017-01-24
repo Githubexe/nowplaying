@@ -15,7 +15,9 @@ public final class NowPlayingModel {
 
     public final int iconVisitingTeamLogoResId;
 
-    public  String score;
+    public String score;
+
+    public String time;
 
     public static final Builder builder(final String uuid,
                                         final int backgroundResId,
@@ -48,6 +50,8 @@ public final class NowPlayingModel {
 
         private String score;
 
+        private String time;
+
         private Builder(final String uuid,
                         final int backgroundResId,
                         final String homeTeamName,
@@ -67,6 +71,11 @@ public final class NowPlayingModel {
             return this;
         }
 
+        public Builder withTime(String time) {
+            this.time = time;
+            return this;
+        }
+
         public NowPlayingModel build() {
             return new NowPlayingModel(uuid,
                     backgroundResId,
@@ -74,7 +83,8 @@ public final class NowPlayingModel {
                     iconHomeTeamLogoResId,
                     visitingTeamName,
                     iconVisitingTeamLogoResId,
-                    score);
+                    score,
+                    time);
         }
     }
 
@@ -84,7 +94,8 @@ public final class NowPlayingModel {
                             final int iconHomeTeamLogoResId,
                             final String visitingTeamName,
                             final int iconVisitingTeamLogoResId,
-                            final String score) {
+                            final String score,
+                            final String time) {
         //super(uuid);
         this.backgroundResId = backgroundResId;
         this.homeTeamName = homeTeamName;
@@ -92,6 +103,7 @@ public final class NowPlayingModel {
         this.visitingTeamName = visitingTeamName;
         this.iconVisitingTeamLogoResId = iconVisitingTeamLogoResId;
         this.score = score;
+        this.time = time;
     }
 }
 

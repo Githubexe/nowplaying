@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import com.music.amazon.mypoldi.R;
 
+import org.w3c.dom.Text;
+
 /**
  * Created by yoyosu on 1/16/17.
  */
@@ -25,6 +27,8 @@ public final class NowPlayingMainView extends RelativeLayout {
     public ImageView visitingTeamLogoImageView;
 
     public TextView scoreTextView;
+
+    public TextView timeTextView;
 
     /**
      *  TBD:
@@ -52,8 +56,11 @@ public final class NowPlayingMainView extends RelativeLayout {
     private void init() {
         inflate(getContext(), R.layout.now_playing_main_view, this);
         backgroundImageView = (ImageView)findViewById(R.id.now_playing_background_image);
+        homeTeamNameTextView = (TextView)findViewById(R.id.now_playing_host_team_text);
         homeTeamLogoImageView = (ImageView)findViewById(R.id.now_playing_host_team_image);
         visitingTeamLogoImageView = (ImageView)findViewById(R.id.now_playing_visiting_team_image);
-
+        visitingTeamNameTextView = (TextView)findViewById(R.id.now_playing_visiting_team_text);
+        scoreTextView = (TextView)findViewById(R.id.now_playing_score);
+        timeTextView = (TextView)findViewById(R.id.now_playing_time);
     }
 }

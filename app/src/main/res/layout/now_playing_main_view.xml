@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:keepScreenOn="true">
 
+    <!-- Background -->
     <ImageView
         android:id="@+id/now_playing_background_image"
         android:layout_width="match_parent"
@@ -12,6 +13,7 @@
         android:scaleType="centerCrop"
         android:focusable="false"/>
 
+    <!-- Header of Now Playing -->
     <RelativeLayout
         android:id="@+id/now_playing_header"
         android:layout_width="wrap_content"
@@ -30,6 +32,7 @@
             android:text="Now Playing Sub-header"/>
     </RelativeLayout>
 
+    <!-- Host Team -->
     <RelativeLayout
         android:id="@+id/now_playing_host_team"
         android:layout_width="wrap_content"
@@ -43,16 +46,16 @@
             android:layout_height="wrap_content"/>
 
         <TextView
-            android:id = "@+id/now_playing_host_team_name"
+            android:id = "@+id/now_playing_host_team_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_below="@id/now_playing_host_team_image"
             android:layout_alignRight="@id/now_playing_host_team_image"
-            android:text="Host Team"
             android:textSize="16dp"/>
     </RelativeLayout>
 
+    <!-- Time line (score/time/events) -->
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -71,7 +74,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="2 - 3"
+                android:textStyle="bold"
                 android:textSize="60dp"/>
 
             <TextView
@@ -80,12 +83,13 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_below = "@id/now_playing_score"
-                android:text="51 : 22"
                 android:textSize="20dp"/>
+
+
         </RelativeLayout>
     </FrameLayout>
 
-
+    <!-- Visiting Team -->
     <RelativeLayout
         android:id="@+id/now_playing_visiting_team"
         android:layout_width="wrap_content"
@@ -99,13 +103,12 @@
             android:layout_height="wrap_content"/>
 
         <TextView
-            android:id = "@+id/now_playing_visiting_team_name"
+            android:id = "@+id/now_playing_visiting_team_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_below="@id/now_playing_visiting_team_image"
             android:layout_alignLeft="@id/now_playing_visiting_team_image"
-            android:text="Visiting Team"
             android:textSize="16dp"/>
     </RelativeLayout>
 
