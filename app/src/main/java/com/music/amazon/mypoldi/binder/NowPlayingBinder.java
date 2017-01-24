@@ -15,7 +15,7 @@ public final class NowPlayingBinder {
         return new NowPlayingMainView(context);
     }
 
-    public void bind (final NowPlayingMainView view,
+    public void bind(final NowPlayingMainView view,
                       final NowPlayingModel model){
 
         final Resources resources = view.getResources();

@@ -18,6 +18,7 @@
         android:id="@+id/now_playing_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
         <TextView
             android:id = "@+id/header_text"
             android:layout_width="wrap_content"
@@ -47,11 +48,13 @@
 
         <TextView
             android:id = "@+id/now_playing_host_team_text"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
+            android:maxLines="2"
             android:layout_marginTop="10dp"
             android:layout_below="@id/now_playing_host_team_image"
             android:layout_alignRight="@id/now_playing_host_team_image"
+            android:gravity="right"
             android:textSize="16dp"/>
     </RelativeLayout>
 
@@ -104,8 +107,10 @@
 
         <TextView
             android:id = "@+id/now_playing_visiting_team_text"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
+            android:gravity="left"
+            android:maxLines="2"
             android:layout_marginTop="10dp"
             android:layout_below="@id/now_playing_visiting_team_image"
             android:layout_alignLeft="@id/now_playing_visiting_team_image"
