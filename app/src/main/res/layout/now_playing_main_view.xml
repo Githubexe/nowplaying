@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true">
+
+    <ImageView
+        android:id="@+id/now_playing_background_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:scaleType="centerCrop"
+        android:focusable="false"/>
+
+    <RelativeLayout
+        android:id="@+id/now_playing_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id = "@+id/header_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Now Playing Header"/>
+
+        <TextView
+            android:id = "@+id/subheader_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/header_text"
+            android:text="Now Playing Sub-header"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/now_playing_host_team"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_alignParentLeft="true">
+
+        <ImageView
+            android:id="@+id/now_playing_host_team_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id = "@+id/now_playing_host_team_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/now_playing_host_team_image"
+            android:layout_alignRight="@id/now_playing_host_team_image"
+            android:text="Host Team"
+            android:textSize="16dp"/>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/now_playing_host_team"
+        android:layout_toLeftOf="@+id/now_playing_visiting_team"
+        android:layout_alignTop="@id/now_playing_host_team">
+
+        <RelativeLayout
+            android:id="@+id/now_playing_timeline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id = "@+id/now_playing_score"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="2 - 3"
+                android:textSize="60dp"/>
+
+            <TextView
+                android:id = "@+id/now_playing_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_below = "@id/now_playing_score"
+                android:text="51 : 22"
+                android:textSize="20dp"/>
+        </RelativeLayout>
+    </FrameLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/now_playing_visiting_team"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_alignParentRight="true">
+
+        <ImageView
+            android:id="@+id/now_playing_visiting_team_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id = "@+id/now_playing_visiting_team_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/now_playing_visiting_team_image"
+            android:layout_alignLeft="@id/now_playing_visiting_team_image"
+            android:text="Visiting Team"
+            android:textSize="16dp"/>
+    </RelativeLayout>
+
+
+</RelativeLayout>
