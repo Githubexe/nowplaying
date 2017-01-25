@@ -20,15 +20,11 @@ public final class NowPlayingMainBinder {
 
         final Resources resources = view.getResources();
         view.backgroundImageView.setImageDrawable(resources.getDrawable(model.backgroundResId));
-        view.homeTeamLogoImageView.setImageDrawable(resources.getDrawable(model.iconHomeTeamLogoResId));
-        view.visitingTeamLogoImageView.setImageDrawable(resources.getDrawable(model.iconVisitingTeamLogoResId));
 
+        view.homeTeamLogoImageView.setImageDrawable(resources.getDrawable(model.iconHomeTeamLogoResId));
         view.homeTeamNameTextView.setText(model.homeTeamName);
 
-        view.homeTeamLogoImageView.setImageDrawable(resources.getDrawable(model.iconHomeTeamLogoResId));
-
-        view.visitingTeamNameTextView.setText(model.visitingTeamName);
-
         view.visitingTeamLogoImageView.setImageDrawable(resources.getDrawable(model.iconVisitingTeamLogoResId));
+        view.visitingTeamNameTextView.setText(model.visitingTeamName);
     }
 }
