@@ -3,7 +3,7 @@ package com.music.amazon.mypoldi.binder;
 import android.content.Context;
 import android.content.res.Resources;
 
-import com.music.amazon.mypoldi.model.NowPlayingModel;
+import com.music.amazon.mypoldi.model.NowPlayingMainModel;
 import com.music.amazon.mypoldi.view.NowPlayingMainView;
 
 /**
@@ -16,7 +16,7 @@ public final class NowPlayingBinder {
     }
 
     public void bind(final NowPlayingMainView view,
-                      final NowPlayingModel model){
+                      final NowPlayingMainModel model){
 
         final Resources resources = view.getResources();
         view.backgroundImageView.setImageDrawable(resources.getDrawable(model.backgroundResId));

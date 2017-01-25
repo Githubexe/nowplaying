@@ -2,10 +2,9 @@ package com.music.amazon.mypoldi;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
 
 import com.music.amazon.mypoldi.binder.NowPlayingBinder;
-import com.music.amazon.mypoldi.model.NowPlayingModel;
+import com.music.amazon.mypoldi.model.NowPlayingMainModel;
 import com.music.amazon.mypoldi.view.NowPlayingMainView;
 
 /**
@@ -17,15 +16,15 @@ public final class NowPlayingActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.now_playing_activity);
 
-        NowPlayingModel model = createNowPlayingModel();
+        NowPlayingMainModel model = createNowPlayingMainModel();
 
         NowPlayingMainView view = (NowPlayingMainView)findViewById(R.id.now_playing_main_view);
         new NowPlayingBinder().bind(view, model);
 
     }
 
-    private NowPlayingModel createNowPlayingModel() {
-        return NowPlayingModel.builder(
+    private NowPlayingMainModel createNowPlayingMainModel() {
+        return NowPlayingMainModel.builder(
                 "test-uuid",
                 R.drawable.blurred,
                 "HOME TEAM",

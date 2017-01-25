@@ -3,7 +3,7 @@ package com.music.amazon.mypoldi.model;
 /**
  * Created by yoyosu on 1/16/17.
  */
-public final class NowPlayingModel {
+public final class NowPlayingMainModel {
 
     public final int backgroundResId;
 
@@ -76,8 +76,8 @@ public final class NowPlayingModel {
             return this;
         }
 
-        public NowPlayingModel build() {
-            return new NowPlayingModel(uuid,
+        public NowPlayingMainModel build() {
+            return new NowPlayingMainModel(uuid,
                     backgroundResId,
                     homeTeamName,
                     iconHomeTeamLogoResId,
@@ -88,14 +88,14 @@ public final class NowPlayingModel {
         }
     }
 
-    private NowPlayingModel(final String uuid,
-                            final int backgroundResId,
-                            final String homeTeamName,
-                            final int iconHomeTeamLogoResId,
-                            final String visitingTeamName,
-                            final int iconVisitingTeamLogoResId,
-                            final String score,
-                            final String time) {
+    private NowPlayingMainModel(final String uuid,
+                                final int backgroundResId,
+                                final String homeTeamName,
+                                final int iconHomeTeamLogoResId,
+                                final String visitingTeamName,
+                                final int iconVisitingTeamLogoResId,
+                                final String score,
+                                final String time) {
         //super(uuid);
         this.backgroundResId = backgroundResId;
         this.homeTeamName = homeTeamName;
