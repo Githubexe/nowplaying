@@ -48,14 +48,14 @@
 
         <TextView
             android:id = "@+id/now_playing_host_team_text"
-            android:layout_width="70dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:maxLines="2"
             android:layout_marginTop="10dp"
             android:layout_below="@id/now_playing_host_team_image"
             android:layout_alignRight="@id/now_playing_host_team_image"
             android:gravity="right"
-            android:textSize="16dp"/>
+            android:textSize="30dp"/>
     </RelativeLayout>
 
     <!-- Time line (score/time/events) -->
@@ -70,7 +70,7 @@
             android:id="@+id/now_playing_timeline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:layout_centerInParent="true">
 
             <TextView
                 android:id = "@+id/now_playing_score"
@@ -88,6 +88,13 @@
                 android:layout_below = "@id/now_playing_score"
                 android:textSize="20dp"/>
 
+            <include
+                layout="@layout/row"
+                android:id="@+id/includedLayout"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/now_playing_time"
+                android:layout_centerInParent="true"/>
 
         </RelativeLayout>
     </FrameLayout>
@@ -107,14 +114,14 @@
 
         <TextView
             android:id = "@+id/now_playing_visiting_team_text"
-            android:layout_width="70dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:gravity="left"
             android:maxLines="2"
             android:layout_marginTop="10dp"
             android:layout_below="@id/now_playing_visiting_team_image"
             android:layout_alignLeft="@id/now_playing_visiting_team_image"
-            android:textSize="16dp"/>
+            android:textSize="30dp"/>
     </RelativeLayout>
 
 
