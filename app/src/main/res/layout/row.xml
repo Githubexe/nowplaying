@@ -25,23 +25,44 @@
                 android:text="left player adfasgfasdfdsfds">
             </TextView>
 
-            <View
+            <ImageView
                 android:id="@+id/leftCard"
                 android:layout_width="7dp"
                 android:layout_height="7dp"
                 android:layout_toRightOf="@id/leftText"
                 android:gravity="left"
                 android:layout_alignTop="@id/leftText"
-                android:background="@drawable/marker" />
+                android:src="@drawable/yellow_card_small" />
         </RelativeLayout>
 
-        <View
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:id="@+id/timeline_bar"
-            android:layout_width="5dp"
-            android:layout_height="30dp"
-            android:background="@android:color/white" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"           >
+
+            <View
+                android:layout_marginLeft="20dp"
+                android:id="@+id/left_marker"
+                android:layout_width="10dp"
+                android:layout_height="15dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/marker"/>
+
+            <View
+                android:id="@+id/timeline_bar"
+                android:layout_width="5dp"
+                android:layout_height="30dp"
+                android:layout_toRightOf="@id/left_marker"
+                android:background="@android:color/white" />
+
+            <View
+                android:layout_marginRight="30dp"
+                android:id="@+id/right_marker"
+                android:layout_width="10dp"
+                android:layout_height="15dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/timeline_bar"
+                android:background="@drawable/marker"/>
+        </RelativeLayout>
 
 
         <RelativeLayout
@@ -58,14 +79,14 @@
                 android:text="right player sdfsdfdsdsdsfd.....">
             </TextView>
 
-            <View
-                android:id="@+id/righCard"
+            <ImageView
+                android:id="@+id/rightCard"
                 android:layout_width="7dp"
                 android:layout_height="7dp"
                 android:layout_toRightOf="@id/rightText"
                 android:gravity="left"
                 android:layout_alignTop="@id/rightText"
-                android:background="@drawable/marker" />
+                android:src="@drawable/yellow_card_small" />
         </RelativeLayout>
 
     </LinearLayout>

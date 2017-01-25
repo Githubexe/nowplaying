@@ -33,6 +33,6 @@ public final class NowPlayingActivity extends Activity {
                 "VISITING TEAM",
                 R.drawable.visiting).
                 withScore("3 - 1").
-                withTime("55 : 22").build();
+                withTime("58 : 22").build();
     }
 }
