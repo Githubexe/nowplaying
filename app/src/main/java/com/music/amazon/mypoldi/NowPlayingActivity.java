@@ -27,11 +27,11 @@ public final class NowPlayingActivity extends Activity {
         return NowPlayingMainModel.builder(
                 "test-uuid",
                 R.drawable.blurred,
-                "HOME TEAM",
+                "LEFT",
                 R.drawable.host,
-                "VISITING TEAM",
+                "RIGHT",
                 R.drawable.visiting).
-                withScore("2 - 1").
-                withTime("58 : 22").build();
+                withScore("2 - 3").
+                withTime("56 : 22").build();
     }
 }

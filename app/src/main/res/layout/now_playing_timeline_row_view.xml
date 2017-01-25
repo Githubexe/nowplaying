@@ -22,7 +22,7 @@
                 android:gravity="left"
                 android:singleLine="true"
                 android:layout_marginRight="10dp"
-                android:text="left player adfasgfasdfdsfds">
+                android:text="left player">
             </TextView>
 
             <ImageView
@@ -76,7 +76,7 @@
                 android:gravity="left"
                 android:singleLine="true"
                 android:layout_marginRight="10dp"
-                android:text="right player sdfsdfdsdsdsfd.....">
+                android:text="right player">
             </TextView>
 
             <ImageView
