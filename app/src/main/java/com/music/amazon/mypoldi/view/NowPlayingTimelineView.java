@@ -12,11 +12,16 @@ import com.music.amazon.mypoldi.R;
  * Created by yoyosu on 1/24/17.
  */
 public final class NowPlayingTimelineView extends RelativeLayout {
-    public ImageView leftCard;
+
+    public TextView scoreTextView;
+
+    public TextView timeTextView;
+
+    public ImageView leftImage;
 
     public TextView leftText;
 
-    public ImageView rightCard;
+    public ImageView rightImage;
 
     public TextView rightText;
 
@@ -36,10 +41,15 @@ public final class NowPlayingTimelineView extends RelativeLayout {
     }
 
     private void init() {
-        inflate(getContext(), R.layout.now_playing_timeline_row_view, this);
-        leftCard = (ImageView)findViewById(R.id.leftCard);
+        inflate(getContext(), R.layout.now_playing_timeline_view, this);
+        scoreTextView = (TextView)findViewById(R.id.now_playing_score_text);
+        timeTextView = (TextView)findViewById(R.id.now_playing_time_text);
+
+        leftImage = (ImageView)findViewById(R.id.leftCard);
         leftText = (TextView)findViewById(R.id.leftText);
-        rightCard = (ImageView)findViewById(R.id.rightCard);
+        rightImage = (ImageView)findViewById(R.id.rightCard);
         rightText = (TextView) findViewById(R.id.rightText);
     }
+
+
 }

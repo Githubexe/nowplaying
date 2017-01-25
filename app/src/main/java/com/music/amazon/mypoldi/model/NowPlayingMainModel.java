@@ -15,10 +15,6 @@ public final class NowPlayingMainModel {
 
     public final int iconVisitingTeamLogoResId;
 
-    public String score;
-
-    public String time;
-
     public static final Builder builder(final String uuid,
                                         final int backgroundResId,
                                         final String homeTeamName,
@@ -48,10 +44,6 @@ public final class NowPlayingMainModel {
 
         private final int iconVisitingTeamLogoResId;
 
-        private String score;
-
-        private String time;
-
         private Builder(final String uuid,
                         final int backgroundResId,
                         final String homeTeamName,
@@ -66,25 +58,13 @@ public final class NowPlayingMainModel {
             this.iconVisitingTeamLogoResId = iconVisitingTeamLogoResId;
         }
 
-        public Builder withScore(String score) {
-            this.score = score;
-            return this;
-        }
-
-        public Builder withTime(String time) {
-            this.time = time;
-            return this;
-        }
-
         public NowPlayingMainModel build() {
             return new NowPlayingMainModel(uuid,
                     backgroundResId,
                     homeTeamName,
                     iconHomeTeamLogoResId,
                     visitingTeamName,
-                    iconVisitingTeamLogoResId,
-                    score,
-                    time);
+                    iconVisitingTeamLogoResId);
         }
     }
 
@@ -93,17 +73,13 @@ public final class NowPlayingMainModel {
                                 final String homeTeamName,
                                 final int iconHomeTeamLogoResId,
                                 final String visitingTeamName,
-                                final int iconVisitingTeamLogoResId,
-                                final String score,
-                                final String time) {
+                                final int iconVisitingTeamLogoResId) {
         //super(uuid);
         this.backgroundResId = backgroundResId;
         this.homeTeamName = homeTeamName;
         this.iconHomeTeamLogoResId = iconHomeTeamLogoResId;
         this.visitingTeamName = visitingTeamName;
         this.iconVisitingTeamLogoResId = iconVisitingTeamLogoResId;
-        this.score = score;
-        this.time = time;
     }
 }
 

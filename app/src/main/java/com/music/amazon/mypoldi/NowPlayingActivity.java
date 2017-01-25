@@ -3,8 +3,10 @@ package com.music.amazon.mypoldi;
 import android.app.Activity;
 import android.os.Bundle;
 
-import com.music.amazon.mypoldi.binder.NowPlayingBinder;
+import com.music.amazon.mypoldi.binder.NowPlayingMainBinder;
+import com.music.amazon.mypoldi.binder.NowPlayingTimelineBinder;
 import com.music.amazon.mypoldi.model.NowPlayingMainModel;
+import com.music.amazon.mypoldi.model.NowPlayingTimelineModel;
 import com.music.amazon.mypoldi.view.NowPlayingMainView;
 
 /**
@@ -17,10 +19,11 @@ public final class NowPlayingActivity extends Activity {
         setContentView(R.layout.now_playing_activity);
 
         NowPlayingMainModel model = createNowPlayingMainModel();
-
         NowPlayingMainView view = (NowPlayingMainView)findViewById(R.id.now_playing_main_view);
-        new NowPlayingBinder().bind(view, model);
+        new NowPlayingMainBinder().bind(view, model);
 
+        NowPlayingTimelineModel timelineModelmodel = createNowPlayingTimelineModel();
+        new NowPlayingTimelineBinder().bind(view.nowPlayingTimelineView, timelineModelmodel);
     }
 
     private NowPlayingMainModel createNowPlayingMainModel() {
@@ -30,7 +33,12 @@ public final class NowPlayingActivity extends Activity {
                 "LEFT",
                 R.drawable.host,
                 "RIGHT",
-                R.drawable.visiting).
+                R.drawable.visiting).build();
+    }
+
+    private NowPlayingTimelineModel createNowPlayingTimelineModel() {
+        return NowPlayingTimelineModel.builder(
+                "test-uuid").
                 withScore("2 - 3").
                 withTime("56 : 22").build();
     }

@@ -4,7 +4,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id = "@+id/now_playing_score"
+        android:id = "@+id/now_playing_score_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -12,11 +12,11 @@
         android:textSize="60dp"/>
 
     <TextView
-        android:id = "@+id/now_playing_time"
+        android:id = "@+id/now_playing_time_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_below = "@id/now_playing_score"
+        android:layout_below = "@id/now_playing_score_text"
         android:textSize="20dp"/>
 
     <include
@@ -24,6 +24,6 @@
         android:id="@+id/includedLayout"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/now_playing_time"
+        android:layout_below="@id/now_playing_time_text"
         android:layout_centerInParent="true"/>
 </RelativeLayout>

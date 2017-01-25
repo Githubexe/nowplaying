@@ -59,6 +59,7 @@
             android:textSize="30dp"/>
     </RelativeLayout>
 
+
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -66,13 +67,12 @@
         android:layout_toLeftOf="@+id/now_playing_visiting_team"
         android:layout_alignTop="@id/now_playing_host_team">
 
-        <include
-            android:id="@+id/included_now_playing_timeline_view"
-            layout="@layout/now_playing_timeline_view"
+        <com.music.amazon.mypoldi.view.NowPlayingTimelineView
+            android:id="@+id/now_playing_timeline_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_centerInParent="true"/>
-
+            android:layout_centerInParent="true">
+        </com.music.amazon.mypoldi.view.NowPlayingTimelineView>
     </FrameLayout>
 
 

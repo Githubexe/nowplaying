@@ -3,13 +3,10 @@ package com.music.amazon.mypoldi.view;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.music.amazon.mypoldi.R;
-
-import org.w3c.dom.Text;
 
 /**
  * Created by yoyosu on 1/16/17.
@@ -26,9 +23,7 @@ public final class NowPlayingMainView extends RelativeLayout {
 
     public ImageView visitingTeamLogoImageView;
 
-    public TextView scoreTextView;
-
-    public TextView timeTextView;
+    public NowPlayingTimelineView nowPlayingTimelineView;
 
     /**
      *  TBD:
@@ -41,7 +36,6 @@ public final class NowPlayingMainView extends RelativeLayout {
 
     public NowPlayingMainView(Context context) {
         this(context, null);
-
     }
 
     public NowPlayingMainView(Context context, AttributeSet attributeSet) {
@@ -60,7 +54,6 @@ public final class NowPlayingMainView extends RelativeLayout {
         homeTeamLogoImageView = (ImageView)findViewById(R.id.now_playing_host_team_image);
         visitingTeamLogoImageView = (ImageView)findViewById(R.id.now_playing_visiting_team_image);
         visitingTeamNameTextView = (TextView)findViewById(R.id.now_playing_visiting_team_text);
-        scoreTextView = (TextView)findViewById(R.id.now_playing_score);
-        timeTextView = (TextView)findViewById(R.id.now_playing_time);
+        nowPlayingTimelineView = (NowPlayingTimelineView)findViewById(R.id.now_playing_timeline_view);
     }
 }
