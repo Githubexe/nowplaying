@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerInParent="true">
+
+    <TextView
+        android:id = "@+id/now_playing_score"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="60dp"/>
+
+    <TextView
+        android:id = "@+id/now_playing_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below = "@id/now_playing_score"
+        android:textSize="20dp"/>
+
+    <include
+        layout="@layout/now_playing_timeline_row_view"
+        android:id="@+id/includedLayout"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/now_playing_time"
+        android:layout_centerInParent="true"/>
+</RelativeLayout>

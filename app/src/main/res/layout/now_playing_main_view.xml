@@ -38,13 +38,14 @@
         android:id="@+id/now_playing_host_team"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="182px"
         android:layout_centerInParent="true"
         android:layout_alignParentLeft="true">
 
         <ImageView
             android:id="@+id/now_playing_host_team_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_width="355px"
+            android:layout_height="588px"/>
 
         <TextView
             android:id = "@+id/now_playing_host_team_text"
@@ -89,7 +90,7 @@
                 android:textSize="20dp"/>
 
             <include
-                layout="@layout/row"
+                layout="@layout/now_playing_timeline_row_view"
                 android:id="@+id/includedLayout"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
@@ -105,12 +106,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:layout_alignTop="@id/now_playing_host_team"
         android:layout_alignParentRight="true">
 
         <ImageView
             android:id="@+id/now_playing_visiting_team_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_width="355px"
+            android:layout_height="582px"/>
 
         <TextView
             android:id = "@+id/now_playing_visiting_team_text"

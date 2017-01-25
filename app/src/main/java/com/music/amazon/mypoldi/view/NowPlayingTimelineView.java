@@ -36,7 +36,7 @@ public final class NowPlayingTimelineView extends RelativeLayout {
     }
 
     private void init() {
-        inflate(getContext(), R.layout.row, this);
+        inflate(getContext(), R.layout.now_playing_timeline_row_view, this);
         leftCard = (ImageView)findViewById(R.id.leftCard);
         leftText = (TextView)findViewById(R.id.leftText);
         rightCard = (ImageView)findViewById(R.id.rightCard);
