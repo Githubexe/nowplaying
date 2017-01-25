@@ -103,43 +103,13 @@
     </RelativeLayout>
 
 
-    <LinearLayout
+    <!-- Foot view -->
+    <include
+        android:id="@+id/included_now_playing_foot_view"
+        layout="@layout/now_playing_foot_view"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true">
-
-        <ImageButton android:text="Game 1"
-            android:id="@+id/Game1"
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentBottom="true">
-        </ImageButton>
-
-        <ImageButton android:text="Game 2"
-            android:id="@+id/Game2"
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
-            android:layout_toRightOf="@id/Game1"
-            android:layout_alignParentBottom="true">
-        </ImageButton>
-
-        <ImageButton android:text="Game 3"
-            android:id="@+id/Game3"
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
-            android:layout_toRightOf="@id/Game2"
-            android:layout_alignParentBottom="true">
-        </ImageButton>
-
-        <ImageButton android:text="Game 4"
-            android:id="@+id/Game4"
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
-            android:layout_toRightOf="@id/Game3"
-            android:layout_alignParentBottom="true">
-        </ImageButton>
-    </LinearLayout>
-
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>
