@@ -5,9 +5,13 @@ import android.os.Bundle;
 
 import com.music.amazon.mypoldi.binder.NowPlayingMainBinder;
 import com.music.amazon.mypoldi.binder.NowPlayingTimelineBinder;
+import com.music.amazon.mypoldi.model.GameEvent;
 import com.music.amazon.mypoldi.model.NowPlayingMainModel;
 import com.music.amazon.mypoldi.model.NowPlayingTimelineModel;
 import com.music.amazon.mypoldi.view.NowPlayingMainView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by yoyosu on 1/17/17.
@@ -37,9 +41,19 @@ public final class NowPlayingActivity extends Activity {
     }
 
     private NowPlayingTimelineModel createNowPlayingTimelineModel() {
+        final List<GameEvent> events = new ArrayList<GameEvent>();
+        events.add(GameEvent.builder("test-event-uuid").
+                withLeftEventDescritpion("left event AAA")
+                .withRightEventDescritpion("right event AAA").build());
+
+        events.add(GameEvent.builder("test-event-uuid").
+                withLeftEventDescritpion("left event BBB")
+                .withRightEventDescritpion("right event BBB").build());
+
         return NowPlayingTimelineModel.builder(
                 "test-uuid").
                 withScore("1 - 2").
-                withTime("46 : 12").build();
+                withTime("42 : 13").
+                withEvents(events).build();
     }
 }

@@ -19,7 +19,6 @@ public final class NowPlayingTimelineView extends RelativeLayout {
 
     public TextView timeTextView;
 
-
     public NowPlayingTimelineView(Context context) {
         this(context, null);
     }

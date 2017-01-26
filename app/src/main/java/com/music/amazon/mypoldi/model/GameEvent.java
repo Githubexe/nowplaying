@@ -3,7 +3,7 @@ package com.music.amazon.mypoldi.model;
 /**
  * Created by yoyosu on 1/25/17.
  */
-public final class GameEventModel {
+public final class GameEvent {
 
     public String leftEventTime;
 
@@ -46,6 +46,11 @@ public final class GameEventModel {
             return this;
         }
 
+        public Builder withLeftEventDescritpion(String eventDescritpion) {
+            this.leftEventDescription = eventDescritpion;
+            return this;
+        }
+
         public Builder withLeftEventIconResId(int eventIconResId) {
             this.leftEventIconResId = eventIconResId;
             return this;
@@ -56,17 +61,42 @@ public final class GameEventModel {
             return this;
         }
 
+        public Builder withRightEventDescritpion(String eventDescritpion) {
+            this.rightEventDescription = eventDescritpion;
+            return this;
+        }
+
         public Builder withRightEventIconResId(int eventIconResId) {
             this.rightEventIconResId = eventIconResId;
             return this;
         }
 
-        public GameEventModel build() {
-            return new GameEventModel(uuid);
+        public GameEvent build() {
+            return new GameEvent(uuid,
+                    leftEventTime,
+                    leftEventDescription,
+                    leftEventIconResId,
+                    rightEventTime,
+                    rightEventDescription,
+                    rightEventIconResId
+            );
+
         }
     }
 
-    private GameEventModel(final String uuid) {
+    private GameEvent(final String uuid,
+                      final String leftEventTime,
+                      final String leftEventDescription,
+                      final int leftEventIconResId,
+                      final String rightEventTime,
+                      final String rightEventDescription,
+                      final int rightEventIconResId) {
         //super(uuid);
+        this.leftEventTime = leftEventTime;
+        this.leftEventDescription = leftEventDescription;
+        this.leftEventIconResId = leftEventIconResId;
+        this.rightEventTime = rightEventTime;
+        this.rightEventDescription = rightEventDescription;
+        this.rightEventIconResId = rightEventIconResId;
     }
 }

@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.music.amazon.mypoldi.model.GameEvent;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,9 +23,9 @@ public class GameEventAdapter extends
 
     private List<GameEvent> list = new ArrayList<>();
 
-    public GameEventAdapter(Context context) {
+    public GameEventAdapter(Context context, List<GameEvent> list) {
         this.context = context;
-        init(list);
+        this.list = list;
     }
 
     // Provide a direct reference to each of the views within a data item
@@ -90,20 +92,5 @@ public class GameEventAdapter extends
     @Override
     public int getItemCount() {
         return list.size();
-    }
-
-    private void init(final List<GameEvent> list) {
-        list.add(new GameEvent("left event A", "right event A"));
-        list.add(new GameEvent("left event B", "right event B"));
-    }
-
-    public class GameEvent {
-        public String leftEventDescription;
-        public String rightEventDescription;
-
-        public GameEvent(final String leftEventDescription, final String rightEventDescription) {
-            this.leftEventDescription = leftEventDescription;
-            this.rightEventDescription = rightEventDescription;
-        }
     }
 }
