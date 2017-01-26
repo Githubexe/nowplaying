@@ -30,16 +30,16 @@ public final class NowPlayingActivity extends Activity {
         return NowPlayingMainModel.builder(
                 "test-uuid",
                 R.drawable.blurred,
-                "LEFT",
+                "Host Team",
                 R.drawable.host,
-                "RIGHT",
+                "Visiting Team",
                 R.drawable.visiting).build();
     }
 
     private NowPlayingTimelineModel createNowPlayingTimelineModel() {
         return NowPlayingTimelineModel.builder(
                 "test-uuid").
-                withScore("2 - 3").
-                withTime("56 : 22").build();
+                withScore("1 - 2").
+                withTime("46 : 12").build();
     }
 }
