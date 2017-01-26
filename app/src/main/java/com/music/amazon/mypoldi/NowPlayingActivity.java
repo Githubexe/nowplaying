@@ -43,17 +43,17 @@ public final class NowPlayingActivity extends Activity {
     private NowPlayingTimelineModel createNowPlayingTimelineModel() {
         final List<GameEvent> events = new ArrayList<GameEvent>();
         events.add(GameEvent.builder("test-event-uuid").
-                withLeftEventDescritpion("left event AAA")
-                .withRightEventDescritpion("right event AAA").build());
+                withLeftEventDescritpion("left event AAAAAAAAAA")
+                .withRightEventDescritpion("right event AAAAAAAAA").build());
 
         events.add(GameEvent.builder("test-event-uuid").
-                withLeftEventDescritpion("left event BBB")
-                .withRightEventDescritpion("right event BBB").build());
+                withLeftEventDescritpion("left event BBBBBBBBBB")
+                .withRightEventDescritpion("right event BBBBBBBBB").build());
 
         return NowPlayingTimelineModel.builder(
                 "test-uuid").
                 withScore("1 - 2").
-                withTime("42 : 13").
+                withTime("32 : 13").
                 withEvents(events).build();
     }
 }

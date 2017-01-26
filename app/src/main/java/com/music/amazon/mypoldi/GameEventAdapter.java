@@ -28,8 +28,6 @@ public class GameEventAdapter extends
         this.list = list;
     }
 
-    // Provide a direct reference to each of the views within a data item
-    // Used to cache the views within the item layout for fast access
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView leftEventTimeTextView;
@@ -44,11 +42,7 @@ public class GameEventAdapter extends
 
         public ImageView rightEventImageView;
 
-        // We also create a constructor that accepts the entire item row
-        // and does the view lookups to find each subview
         public ViewHolder(View itemView) {
-            // Stores the itemView in a public final member variable that can be used
-            // to access the context from any ViewHolder instance.
             super(itemView);
 
             leftEventDescriptionTextView = (TextView) itemView.findViewById(R.id.leftEventDescriptionText);
@@ -64,22 +58,16 @@ public class GameEventAdapter extends
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        // Inflate the custom layout
         View contactView = inflater.inflate(R.layout.now_playing_game_event_row_view, parent, false);
 
-        // Return a new holder instance
         ViewHolder viewHolder = new ViewHolder(contactView);
         return viewHolder;
     }
 
-
-    // Involves populating data into the item through holder
     @Override
     public void onBindViewHolder(GameEventAdapter.ViewHolder viewHolder, int position) {
-        // Get the data model based on position
         GameEvent gameEvent = list.get(position);
 
-        // Set item views based on your views and data model
         final TextView leftEventDescriptionTextView = viewHolder.leftEventDescriptionTextView;
         leftEventDescriptionTextView.setText(gameEvent.leftEventDescription);
 
@@ -88,7 +76,6 @@ public class GameEventAdapter extends
 
     }
 
-    // Returns the total count of items in the list
     @Override
     public int getItemCount() {
         return list.size();
