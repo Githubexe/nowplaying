@@ -1,8 +1,10 @@
 package com.music.amazon.mypoldi.view;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -38,5 +40,4 @@ public final class NowPlayingTimelineView extends RelativeLayout {
         timeTextView = (TextView)findViewById(R.id.now_playing_time_text);
         gameEventRecyclerView = (RecyclerView) findViewById(R.id.game_event_recycler_view);
     }
-
 }

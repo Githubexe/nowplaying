@@ -27,7 +27,7 @@ public final class NowPlayingActivity extends Activity {
         new NowPlayingMainBinder().bind(view, model);
 
         NowPlayingTimelineModel timelineModelmodel = createNowPlayingTimelineModel();
-        new NowPlayingTimelineBinder().bind(view.nowPlayingTimelineView, timelineModelmodel);
+        new NowPlayingTimelineBinder(this).bind(view.nowPlayingTimelineView, timelineModelmodel);
     }
 
     private NowPlayingMainModel createNowPlayingMainModel() {
@@ -44,20 +44,22 @@ public final class NowPlayingActivity extends Activity {
         final List<GameEvent> events = new ArrayList<GameEvent>();
         events.add(GameEvent.builder("test-event-uuid")
                 .withLeftEventDescritpion("Host team event AAAAAAAAAA")
-                .withLeftEventIconResId(R.drawable.yellow_card)
-                .withLeftMarkerIconResId(R.drawable.green_marker)
                 .withRightEventDescritpion("Visiting team event AAAAAAAAA")
                 .withRightEventIconResId(R.drawable.yellow_card)
-                .withRightMarkerIconResId(R.drawable.green_marker)
                 .build());
 
         events.add(GameEvent.builder("test-event-uuid")
                 .withLeftEventDescritpion("A event BBBBBBBBBB")
                 .withLeftEventIconResId(R.drawable.yellow_card)
-                .withLeftMarkerIconResId(R.drawable.green_marker)
                 .withRightEventDescritpion("B event BBBBBBBBB")
-                .withRightEventIconResId(R.drawable.yellow_card)
                 .withRightMarkerIconResId(R.drawable.green_marker)
+                .build());
+
+        events.add(GameEvent.builder("test-event-uuid")
+                .withLeftEventDescritpion("C event BBBBBBBBBB")
+                .withLeftMarkerIconResId(R.drawable.green_marker)
+                .withRightEventDescritpion("D event BBBBBBBBB")
+                .withRightEventIconResId(R.drawable.yellow_card)
                 .build());
 
         return NowPlayingTimelineModel.builder(
