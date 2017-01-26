@@ -34,10 +34,10 @@
         android:layout_height="wrap_content"           >
 
         <ImageView
-            android:layout_marginLeft="20dp"
             android:id="@+id/leftMarkerImage"
             android:layout_width="10dp"
             android:layout_height="15dp"
+            android:layout_marginLeft="30dp"
             android:layout_centerVertical="true" />
 
         <View
@@ -48,10 +48,10 @@
             android:background="@android:color/white" />
 
         <ImageView
-            android:layout_marginRight="30dp"
             android:id="@+id/rightMarkerImage"
             android:layout_width="10dp"
             android:layout_height="15dp"
+            android:layout_marginRight="30dp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/timeline_bar"/>
     </RelativeLayout>
