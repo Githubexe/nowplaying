@@ -26,8 +26,7 @@
             android:layout_height="7dp"
             android:layout_toRightOf="@id/leftEventDescriptionText"
             android:gravity="left"
-            android:layout_alignTop="@id/leftEventDescriptionText"
-            android:src="@drawable/yellow_card_small" />
+            android:layout_alignTop="@id/leftEventDescriptionText" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -80,8 +79,7 @@
             android:layout_height="7dp"
             android:layout_toRightOf="@id/rightEventDescriptionText"
             android:gravity="left"
-            android:layout_alignTop="@id/rightEventDescriptionText"
-            android:src="@drawable/yellow_card_small" />
+            android:layout_alignTop="@id/rightEventDescriptionText"/>
     </RelativeLayout>
 
 </LinearLayout>

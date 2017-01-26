@@ -32,8 +32,8 @@ public final class NowPlayingActivity extends Activity {
 
     private NowPlayingMainModel createNowPlayingMainModel() {
         return NowPlayingMainModel.builder(
-                "test-uuid",
-                R.drawable.blurred,
+                "test-main-uuid",
+                R.drawable.now_playing_background,
                 "Host Team",
                 R.drawable.host,
                 "Visiting Team",
@@ -42,13 +42,17 @@ public final class NowPlayingActivity extends Activity {
 
     private NowPlayingTimelineModel createNowPlayingTimelineModel() {
         final List<GameEvent> events = new ArrayList<GameEvent>();
-        events.add(GameEvent.builder("test-event-uuid").
-                withLeftEventDescritpion("left event AAAAAAAAAA")
-                .withRightEventDescritpion("right event AAAAAAAAA").build());
+        events.add(GameEvent.builder("test-event-uuid")
+                .withLeftEventDescritpion("Host team event AAAAAAAAAA")
+                .withLeftEventIconResId(R.drawable.yellow_card)
+                .withRightEventDescritpion("Visiting team event AAAAAAAAA")
+                .withRightEventIconResId(R.drawable.yellow_card).build());
 
-        events.add(GameEvent.builder("test-event-uuid").
-                withLeftEventDescritpion("left event BBBBBBBBBB")
-                .withRightEventDescritpion("right event BBBBBBBBB").build());
+        events.add(GameEvent.builder("test-event-uuid")
+                .withLeftEventDescritpion("A event BBBBBBBBBB")
+                .withLeftEventIconResId(R.drawable.yellow_card)
+                .withRightEventDescritpion("B event BBBBBBBBB")
+                .withRightEventIconResId(R.drawable.yellow_card).build());
 
         return NowPlayingTimelineModel.builder(
                 "test-uuid").

@@ -71,9 +71,14 @@ public class GameEventAdapter extends
         final TextView leftEventDescriptionTextView = viewHolder.leftEventDescriptionTextView;
         leftEventDescriptionTextView.setText(gameEvent.leftEventDescription);
 
+        final ImageView leftEventImageView = viewHolder.leftEventImageView;
+        leftEventImageView.setImageResource(gameEvent.leftEventIconResId);
+
         final TextView rightEventDescriptionTextView = viewHolder.rightEventDescriptionTextView;
         rightEventDescriptionTextView.setText(gameEvent.rightEventDescription);
 
+        final ImageView rightEventImageView = viewHolder.rightEventImageView;
+        rightEventImageView.setImageResource(gameEvent.rightEventIconResId);
     }
 
     @Override
