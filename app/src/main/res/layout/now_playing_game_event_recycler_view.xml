@@ -3,9 +3,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+    <TextView
+        android:id="@+id/now_playing_score_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="60dp"
+        android:text = "score"/>
+
+    <TextView
+        android:id="@+id/now_playing_time_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below = "@id/now_playing_score_text"
+        android:textSize="20dp"
+        android:text="time"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/game_event_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/now_playing_time_text"/>
 
 </RelativeLayout>
