@@ -45,14 +45,20 @@ public final class NowPlayingActivity extends Activity {
         events.add(GameEvent.builder("test-event-uuid")
                 .withLeftEventDescritpion("Host team event AAAAAAAAAA")
                 .withLeftEventIconResId(R.drawable.yellow_card)
+                .withLeftMarkerIconResId(R.drawable.green_marker)
                 .withRightEventDescritpion("Visiting team event AAAAAAAAA")
-                .withRightEventIconResId(R.drawable.yellow_card).build());
+                .withRightEventIconResId(R.drawable.yellow_card)
+                .withRightMarkerIconResId(R.drawable.green_marker)
+                .build());
 
         events.add(GameEvent.builder("test-event-uuid")
                 .withLeftEventDescritpion("A event BBBBBBBBBB")
                 .withLeftEventIconResId(R.drawable.yellow_card)
+                .withLeftMarkerIconResId(R.drawable.green_marker)
                 .withRightEventDescritpion("B event BBBBBBBBB")
-                .withRightEventIconResId(R.drawable.yellow_card).build());
+                .withRightEventIconResId(R.drawable.yellow_card)
+                .withRightMarkerIconResId(R.drawable.green_marker)
+                .build());
 
         return NowPlayingTimelineModel.builder(
                 "test-uuid").

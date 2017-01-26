@@ -11,11 +11,15 @@ public final class GameEvent {
 
     public int leftEventIconResId;
 
+    public int leftMarkerIconResId;
+
     public String rightEventTime;
 
     public String rightEventDescription;
 
     public int rightEventIconResId;
+
+    public int rightMarkerIconResId;
 
     public static final Builder builder(final String uuid) {
         return new Builder(uuid);
@@ -31,11 +35,15 @@ public final class GameEvent {
 
         private int leftEventIconResId;
 
+        private int leftMarkerIconResId;
+
         private String rightEventTime;
 
         private String rightEventDescription;
 
         private int rightEventIconResId;
+
+        private int righttMarkerIconResId;
 
         private Builder(final String uuid) {
             this.uuid = uuid;
@@ -56,6 +64,11 @@ public final class GameEvent {
             return this;
         }
 
+        public Builder withLeftMarkerIconResId(int markerIconResId) {
+            this.leftMarkerIconResId = markerIconResId;
+            return this;
+        }
+
         public Builder withRightEventTime(String eventTime) {
             this.rightEventTime = eventTime;
             return this;
@@ -71,14 +84,21 @@ public final class GameEvent {
             return this;
         }
 
+        public Builder withRightMarkerIconResId(int markerIconResId) {
+            this.righttMarkerIconResId = markerIconResId;
+            return this;
+        }
+
         public GameEvent build() {
             return new GameEvent(uuid,
                     leftEventTime,
                     leftEventDescription,
                     leftEventIconResId,
+                    leftMarkerIconResId,
                     rightEventTime,
                     rightEventDescription,
-                    rightEventIconResId
+                    rightEventIconResId,
+                    righttMarkerIconResId
             );
 
         }
@@ -88,15 +108,19 @@ public final class GameEvent {
                       final String leftEventTime,
                       final String leftEventDescription,
                       final int leftEventIconResId,
+                      final int leftMarkerIconResId,
                       final String rightEventTime,
                       final String rightEventDescription,
-                      final int rightEventIconResId) {
+                      final int rightEventIconResId,
+                      final int rightMarkerIconResId) {
         //super(uuid);
         this.leftEventTime = leftEventTime;
         this.leftEventDescription = leftEventDescription;
         this.leftEventIconResId = leftEventIconResId;
+        this.leftMarkerIconResId = leftMarkerIconResId;
         this.rightEventTime = rightEventTime;
         this.rightEventDescription = rightEventDescription;
         this.rightEventIconResId = rightEventIconResId;
+        this.rightMarkerIconResId = rightMarkerIconResId;
     }
 }

@@ -33,29 +33,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"           >
 
-        <View
+        <ImageView
             android:layout_marginLeft="20dp"
-            android:id="@+id/left_marker"
+            android:id="@+id/leftMarkerImage"
             android:layout_width="10dp"
             android:layout_height="15dp"
-            android:layout_centerVertical="true"
-            android:background="@drawable/marker"/>
+            android:layout_centerVertical="true" />
 
         <View
             android:id="@+id/timeline_bar"
             android:layout_width="5dp"
             android:layout_height="30dp"
-            android:layout_toRightOf="@id/left_marker"
+            android:layout_toRightOf="@id/leftMarkerImage"
             android:background="@android:color/white" />
 
-        <View
+        <ImageView
             android:layout_marginRight="30dp"
-            android:id="@+id/right_marker"
+            android:id="@+id/rightMarkerImage"
             android:layout_width="10dp"
             android:layout_height="15dp"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/timeline_bar"
-            android:background="@drawable/marker"/>
+            android:layout_toRightOf="@id/timeline_bar"/>
     </RelativeLayout>
 
 
