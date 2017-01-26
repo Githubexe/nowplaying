@@ -9,7 +9,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textStyle="bold"
-        android:textSize="60dp"/>
+        android:textSize="60dp"
+        android:text = "score"/>
 
     <TextView
         android:id = "@+id/now_playing_time_text"
@@ -17,13 +18,16 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_below = "@id/now_playing_score_text"
-        android:textSize="20dp"/>
+        android:textSize="20dp"
+        android:text="time"/>
 
-    <include
-        layout="@layout/now_playing_timeline_row_view"
-        android:id="@+id/includedLayout"
+    <ListView
+        android:id="@+id/now_playing_game_list"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/now_playing_time_text"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true">
+
+    </ListView>
+
 </RelativeLayout>
