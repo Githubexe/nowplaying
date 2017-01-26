@@ -63,7 +63,7 @@ public class GameEventAdapter extends
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout
-        View contactView = inflater.inflate(R.layout.now_playing_game_event_row, parent, false);
+        View contactView = inflater.inflate(R.layout.now_playing_game_event_row_view, parent, false);
 
         // Return a new holder instance
         ViewHolder viewHolder = new ViewHolder(contactView);
