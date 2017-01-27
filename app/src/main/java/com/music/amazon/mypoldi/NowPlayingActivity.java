@@ -52,7 +52,7 @@ public final class NowPlayingActivity extends Activity {
                 .withLeftEventDescritpion("A event BBBBBBBBBB")
                 .withLeftEventIconResId(R.drawable.yellow_card)
                 .withRightEventTime("32'")
-                .withRightEventDescritpion("B event BBBBBBBBB")
+                .withRightEventDescritpion("B event sfdsafdsfdsfdsfds")
                 .withRightMarkerIconResId(R.drawable.green_marker)
                 .build());
 
