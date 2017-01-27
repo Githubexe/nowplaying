@@ -64,10 +64,8 @@ public class GameEventAdapter extends
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        View contactView = inflater.inflate(R.layout.now_playing_game_event_row_view, parent, false);
-
-        ViewHolder viewHolder = new ViewHolder(contactView);
-        return viewHolder;
+        final View eventView = inflater.inflate(R.layout.now_playing_game_event_row_view, parent, false);
+        return new ViewHolder(eventView);
     }
 
     @Override
