@@ -51,11 +51,13 @@ public final class NowPlayingActivity extends Activity {
         events.add(GameEvent.builder("test-event-uuid")
                 .withLeftEventDescritpion("A event BBBBBBBBBB")
                 .withLeftEventIconResId(R.drawable.yellow_card)
+                .withRightEventTime("32'")
                 .withRightEventDescritpion("B event BBBBBBBBB")
                 .withRightMarkerIconResId(R.drawable.green_marker)
                 .build());
 
         events.add(GameEvent.builder("test-event-uuid")
+                .withLeftEventTime("48'")
                 .withLeftEventDescritpion("C event BBBBBBBBBB")
                 .withLeftMarkerIconResId(R.drawable.green_marker)
                 .withRightEventDescritpion("D event BBBBBBBBB")

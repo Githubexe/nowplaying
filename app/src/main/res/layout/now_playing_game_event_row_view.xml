@@ -2,32 +2,40 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="40dp"
     android:gravity="center"
     android:orientation="horizontal">
 
-    <RelativeLayout
-        android:layout_width="118dp"
-        android:layout_height="wrap_content">
+    <FrameLayout
+        android:id="@+id/leftEvent"
+        android:layout_width="100dp"
+        android:layout_height="100dp">
+        <TextView
+            android:id="@+id/leftEventTimeText"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center|left"
+            android:gravity="center"
+            android:textSize="35dp"
+            android:textColor="#ff9e9e9e"/>
 
         <TextView
             android:id="@+id/leftEventDescriptionText"
+            android:paddingLeft="20dp"
             android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:singleLine="true"
-            android:layout_marginRight="10dp"
-            android:text="left player">
-        </TextView>
+            android:layout_height="20dp"
+            android:layout_gravity="center|right"
+            android:gravity="left"/>
 
         <ImageView
             android:id="@+id/leftEventImage"
             android:layout_width="7dp"
             android:layout_height="7dp"
+            android:layout_gravity="center|right"
             android:layout_toRightOf="@id/leftEventDescriptionText"
-            android:gravity="left"
+            android:gravity="right"
             android:layout_alignTop="@id/leftEventDescriptionText" />
-    </RelativeLayout>
+    </FrameLayout>
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -56,28 +64,35 @@
             android:layout_toRightOf="@id/timeline_bar"/>
     </RelativeLayout>
 
-
-    <RelativeLayout
-        android:layout_width="118dp"
-        android:layout_height="wrap_content">
+    <FrameLayout
+        android:id="@+id/rightEvent"
+        android:layout_width="100dp"
+        android:layout_height="100dp">
+        <TextView
+            android:id="@+id/rightEventTimeText"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center|right"
+            android:gravity="center"
+            android:textSize="35dp"
+            android:textColor="#ff9e9e9e"/>
 
         <TextView
             android:id="@+id/rightEventDescriptionText"
+            android:paddingLeft="20dp"
             android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:singleLine="true"
-            android:layout_marginRight="10dp"
-            android:text="right player">
-        </TextView>
+            android:layout_height="20dp"
+            android:layout_gravity="center|left"
+            android:gravity="left"/>
 
         <ImageView
             android:id="@+id/rightEventImage"
             android:layout_width="7dp"
             android:layout_height="7dp"
+            android:layout_gravity="center|left"
             android:layout_toRightOf="@id/rightEventDescriptionText"
             android:gravity="left"
-            android:layout_alignTop="@id/rightEventDescriptionText"/>
-    </RelativeLayout>
+            android:layout_alignTop="@id/rightEventDescriptionText" />
+    </FrameLayout>
 
 </LinearLayout>

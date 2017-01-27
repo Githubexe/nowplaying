@@ -49,10 +49,12 @@ public class GameEventAdapter extends
         public ViewHolder(View itemView) {
             super(itemView);
 
+            leftEventTimeTextView = (TextView) itemView.findViewById(R.id.leftEventTimeText);
             leftEventDescriptionTextView = (TextView) itemView.findViewById(R.id.leftEventDescriptionText);
             leftEventImageView = (ImageView) itemView.findViewById(R.id.leftEventImage);
             leftMarkerImageView = (ImageView) itemView.findViewById(R.id.leftMarkerImage);
 
+            rightEventTimeTextView = (TextView) itemView.findViewById(R.id.rightEventTimeText);
             rightEventDescriptionTextView = (TextView) itemView.findViewById(R.id.rightEventDescriptionText);
             rightEventImageView = (ImageView) itemView.findViewById(R.id.rightEventImage);
             rightMarkerImageView = (ImageView) itemView.findViewById(R.id.rightMarkerImage);
@@ -72,6 +74,9 @@ public class GameEventAdapter extends
     public void onBindViewHolder(GameEventAdapter.ViewHolder viewHolder, int position) {
         GameEvent gameEvent = list.get(position);
 
+        final TextView leftEventTimeTextView = viewHolder.leftEventTimeTextView;
+        leftEventTimeTextView.setText(gameEvent.leftEventTime);
+
         final TextView leftEventDescriptionTextView = viewHolder.leftEventDescriptionTextView;
         leftEventDescriptionTextView.setText(gameEvent.leftEventDescription);
 
@@ -80,6 +85,9 @@ public class GameEventAdapter extends
 
         final ImageView leftMarkerImageView = viewHolder.leftMarkerImageView;
         leftMarkerImageView.setImageResource(gameEvent.leftMarkerIconResId);
+
+        final TextView rightEventTimeTextView = viewHolder.rightEventTimeTextView;
+        rightEventTimeTextView.setText(gameEvent.rightEventTime);
 
         final TextView rightEventDescriptionTextView = viewHolder.rightEventDescriptionTextView;
         rightEventDescriptionTextView.setText(gameEvent.rightEventDescription);
