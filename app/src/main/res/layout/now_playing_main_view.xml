@@ -61,8 +61,9 @@
 
 
     <FrameLayout
+        android:id="@+id/NowPlayingTimelineView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="380dp"
         android:layout_toRightOf="@id/now_playing_host_team"
         android:layout_toLeftOf="@+id/now_playing_visiting_team"
         android:layout_alignTop="@id/now_playing_host_team">
