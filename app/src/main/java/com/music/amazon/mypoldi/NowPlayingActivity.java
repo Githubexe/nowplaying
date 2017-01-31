@@ -75,7 +75,8 @@ public final class NowPlayingActivity extends Activity {
                 "test-uuid").
                 withHostTeamScore("1").
                 withVisitingTeamScore("2").
-                withTime("69 : 13").
+                withLeftTimeStamp("69").
+                withRightTimeStamp("22").
                 withEvents(events).build();
     }
 

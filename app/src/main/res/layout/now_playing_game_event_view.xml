@@ -7,21 +7,22 @@
         android:id="@+id/now_playing_score"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginBottom="10dp"
         android:gravity="center">
+
         <TextView
             android:id="@+id/now_playing_host_team_score_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textStyle="bold"
-            android:textSize="60dp"
-            android:text="4"/>
+            android:textSize="60dp"/>
 
         <TextView
             android:id="@+id/now_playing_score_separator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:gravity="center"
             android:layout_toRightOf="@id/now_playing_host_team_score_text"
             android:textStyle="bold"
@@ -35,26 +36,51 @@
             android:gravity="center"
             android:layout_toRightOf="@id/now_playing_score_separator"
             android:textStyle="bold"
-            android:textSize="60dp"
-            android:text = "2"/>
+            android:textSize="60dp"/>
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/now_playing_time_text"
+
+    <RelativeLayout
+        android:id="@+id/now_playing_time"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_below = "@id/now_playing_score"
-        android:textSize="20dp"
-        android:text="time"/>
+        android:layout_height="60dp"
+        android:layout_below="@id/now_playing_score"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/now_playing_left_time_stamp_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="25dp"/>
+
+        <TextView
+            android:id="@+id/now_playing_time_stamp_separator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:layout_toRightOf="@id/now_playing_left_time_stamp_text"
+            android:textSize="25dp"
+            android:text = ":"/>
+
+        <TextView
+            android:id="@+id/now_playing_right_time_stamp_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_toRightOf="@id/now_playing_time_stamp_separator"
+            android:textSize="25dp"/>
+    </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/game_event_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         android:scrollbars="vertical"
         android:fadeScrollbars="true"
         android:focusable="true"
-        android:layout_below="@id/now_playing_time_text"/>
+        android:layout_below="@id/now_playing_time"/>
 
 </RelativeLayout>

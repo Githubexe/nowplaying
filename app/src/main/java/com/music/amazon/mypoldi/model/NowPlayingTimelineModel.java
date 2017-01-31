@@ -11,7 +11,9 @@ public final class NowPlayingTimelineModel {
 
     public String visitingTeamScore;
 
-    public String time;
+    public String leftTimeStamp;
+
+    public String rightTimeStamp;
 
     public List<GameEvent> events = new ArrayList<GameEvent>();
 
@@ -27,7 +29,9 @@ public final class NowPlayingTimelineModel {
 
         private String visitingTeamScore;
 
-        private String time;
+        private String leftTimeStamp;
+
+        private String rightTimeStamp;
 
         private List<GameEvent> events = new ArrayList<GameEvent>();
 
@@ -45,8 +49,13 @@ public final class NowPlayingTimelineModel {
             return this;
         }
 
-        public Builder withTime(String time) {
-            this.time = time;
+        public Builder withLeftTimeStamp(String timeStamp) {
+            this.leftTimeStamp = timeStamp;
+            return this;
+        }
+
+        public Builder withRightTimeStamp(String timeStamp) {
+            this.rightTimeStamp = timeStamp;
             return this;
         }
 
@@ -59,7 +68,8 @@ public final class NowPlayingTimelineModel {
             return new NowPlayingTimelineModel(uuid,
                     hostTeamScore,
                     visitingTeamScore,
-                    time,
+                    leftTimeStamp,
+                    rightTimeStamp,
                     events);
         }
     }
@@ -67,12 +77,14 @@ public final class NowPlayingTimelineModel {
     private NowPlayingTimelineModel(final String uuid,
                                     final String hostTeamScore,
                                     final String visitingTeamScore,
-                                    final String time,
+                                    final String leftTimeStamp,
+                                    final String rightTimeStamp,
                                     final List<GameEvent> events) {
         //super(uuid);
         this.hostTeamScore = hostTeamScore;
         this.visitingTeamScore = visitingTeamScore;
-        this.time = time;
+        this.leftTimeStamp = leftTimeStamp;
+        this.rightTimeStamp = rightTimeStamp;
         this.events = events;
     }
 }

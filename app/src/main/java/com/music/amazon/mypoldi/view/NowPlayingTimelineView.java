@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.music.amazon.mypoldi.R;
 
+import org.w3c.dom.Text;
+
 /**
  * Created by yoyosu on 1/24/17.
  */
@@ -21,7 +23,9 @@ public final class NowPlayingTimelineView extends RelativeLayout {
 
     public TextView visitingTeamScoreTextView;
 
-    public TextView timeTextView;
+    public TextView leftTimeStampTextView;
+
+    public TextView rightTimeStampTextView;
 
     public NowPlayingTimelineView(Context context) {
         this(context, null);
@@ -40,7 +44,8 @@ public final class NowPlayingTimelineView extends RelativeLayout {
         inflate(getContext(), R.layout.now_playing_game_event_view, this);
         hostTeamScoreTextView = (TextView)findViewById(R.id.now_playing_host_team_score_text);
         visitingTeamScoreTextView = (TextView)findViewById(R.id.now_playing_visiting_team_score_text);
-        timeTextView = (TextView)findViewById(R.id.now_playing_time_text);
+        leftTimeStampTextView = (TextView)findViewById(R.id.now_playing_left_time_stamp_text);
+        rightTimeStampTextView = (TextView)findViewById(R.id.now_playing_right_time_stamp_text);
         gameEventRecyclerView = (RecyclerView) findViewById(R.id.game_event_recycler_view);
     }
 }
