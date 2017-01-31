@@ -40,7 +40,7 @@ public class NowPlayingTimelineBinder {
         view.minutesTextView.setText(model.minutes);
         view.secondsTextView.setText(model.seconds);
 
-        GameEventAdapter adapter = new GameEventAdapter(model.events);
+        final GameEventAdapter adapter = new GameEventAdapter(model.events);
         view.gameEventRecyclerView.setAdapter(adapter);
 
         view.gameEventRecyclerView.setLayoutManager(layoutManager);

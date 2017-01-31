@@ -93,9 +93,23 @@ public final class NowPlayingActivity extends Activity {
                                 final long seconds = (current - start) / 1000 % 60;
                                 final long minutes = (current - start) / 1000 / 60;
                                 events.add(GameEvent.builder("test-event-uuid")
-                                        .withLeftEventDescritpion("Host: " + minutes)
-                                        .withRightEventDescritpion("Visiting: " + seconds)
+                                        .withLeftEventDescritpion("Left: " + minutes + seconds)
+                                        .withRightEventDescritpion("Right: " + seconds)
                                         .build());
+
+                                events.add(GameEvent.builder("test-event-uuid")
+                                        .withLeftEventTime(minutes + seconds + "\"")
+                                        .withLeftEventDescritpion("L2 event "  + minutes + seconds)
+                                        .withLeftEventIconResId(R.drawable.yellow_card)
+                                        .withLeftMarkerIconResId(R.drawable.yellow_marker)
+                                        .withRightEventDescritpion("R2 event " + seconds)
+                                        .build());
+
+                                events.add(GameEvent.builder("test-event-uuid")
+                                        .withLeftEventDescritpion("L3: " + minutes + seconds)
+                                        .withRightEventDescritpion("L4: " + seconds)
+                                        .build());
+
                                 NowPlayingTimelineModel timelineModelmodel =
                                         createNowPlayingTimelineModel(Long.toString(minutes),Long.toString(seconds), events);
                                 new NowPlayingTimelineBinder(context).bind(nowPlayingTimelineView, timelineModelmodel);
@@ -112,29 +126,29 @@ public final class NowPlayingActivity extends Activity {
                                                                   final String seconds,
                                                                   final List<GameEvent> events) {
 //        events.add(GameEvent.builder("test-event-uuid")
-//                .withLeftEventDescritpion("Host team event ")
-//                .withRightEventDescritpion("Visiting team event ")
+//                .withLeftEventDescritpion("Host ")
+//                .withRightEventDescritpion("Visiting")
 //                .build());
 //
 //        events.add(GameEvent.builder("test-event-uuid")
-//                .withLeftEventDescritpion("A team event ")
-//                .withRightEventDescritpion("B team event ")
+//                .withLeftEventDescritpion("L1 event ")
+//                .withRightEventDescritpion("R1 event ")
 //                .build());
 //
 //        events.add(GameEvent.builder("test-event-uuid")
 //                .withLeftEventTime("32'")
-//                .withLeftEventDescritpion("A event ")
+//                .withLeftEventDescritpion("L2 event ")
 //                .withLeftEventIconResId(R.drawable.yellow_card)
 //                .withLeftMarkerIconResId(R.drawable.yellow_marker)
-//                .withRightEventDescritpion("B event ")
+//                .withRightEventDescritpion("R2 event ")
 //                .build());
 //
 //        events.add(GameEvent.builder("test-event-uuid")
 //                .withLeftEventTime("48'")
-//                .withLeftEventDescritpion("C event ")
+//                .withLeftEventDescritpion("L3 event ")
 //                .withLeftMarkerIconResId(R.drawable.yellow_marker)
 //                .withRightEventTime("52'")
-//                .withRightEventDescritpion("D event ")
+//                .withRightEventDescritpion("R3 event ")
 //                .withRightEventIconResId(R.drawable.yellow_card)
 //                .build());
         return NowPlayingTimelineModel.builder(
