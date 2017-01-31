@@ -25,6 +25,9 @@
         android:id="@+id/game_event_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:fadeScrollbars="true"
+        android:focusable="true"
         android:layout_below="@id/now_playing_time_text"/>
 
 </RelativeLayout>

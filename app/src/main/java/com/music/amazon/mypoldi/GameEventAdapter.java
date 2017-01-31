@@ -19,12 +19,9 @@ import java.util.List;
 public class GameEventAdapter extends
         RecyclerView.Adapter<GameEventAdapter.ViewHolder> {
 
-    private Context context;
-
     private List<GameEvent> list = new ArrayList<>();
 
-    public GameEventAdapter(Context context, List<GameEvent> list) {
-        this.context = context;
+    public GameEventAdapter(List<GameEvent> list) {
         this.list = list;
     }
 
@@ -63,10 +60,8 @@ public class GameEventAdapter extends
 
     @Override
     public GameEventAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
-        LayoutInflater inflater = LayoutInflater.from(context);
-
-        final View eventView = inflater.inflate(R.layout.now_playing_game_event_row_view, parent, false);
+        final View eventView = LayoutInflater.from( parent.getContext()).
+                inflate(R.layout.now_playing_game_event_row_view, parent, false);
         return new ViewHolder(eventView);
     }
 
