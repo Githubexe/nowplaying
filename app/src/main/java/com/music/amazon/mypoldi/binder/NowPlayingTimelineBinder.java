@@ -46,26 +46,5 @@ public class NowPlayingTimelineBinder {
         view.gameEventRecyclerView.setLayoutManager(layoutManager);
 
         view.gameEventRecyclerView.scrollToPosition(adapter.getItemCount() - 1);
-
-        //comment this for now since it causes auto expanding when the recycler view scrolls
-        //view.gameEventRecyclerView.addItemDecoration(verticalSpaceItemDecoration);
-    }
-
-    class VerticalSpaceItemDecoration extends RecyclerView.ItemDecoration {
-        private final int verticalSpaceHeight;
-
-        public VerticalSpaceItemDecoration(int verticalSpaceHeight) {
-            this.verticalSpaceHeight = verticalSpaceHeight;
-        }
-
-        @Override
-        public void getItemOffsets(Rect outRect, View view, RecyclerView parent,
-                                   RecyclerView.State state) {
-            super.getItemOffsets(outRect, view, parent, state);
-            if (parent.getChildAdapterPosition(view) == 0) {
-                return;
-            }
-            outRect.bottom = verticalSpaceHeight;
-        }
     }
 }
