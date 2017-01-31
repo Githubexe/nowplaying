@@ -17,7 +17,9 @@ public final class NowPlayingTimelineView extends RelativeLayout {
 
     public RecyclerView gameEventRecyclerView;
 
-    public TextView scoreTextView;
+    public TextView hostTeamScoreTextView;
+
+    public TextView visitingTeamScoreTextView;
 
     public TextView timeTextView;
 
@@ -36,7 +38,8 @@ public final class NowPlayingTimelineView extends RelativeLayout {
 
     private void init() {
         inflate(getContext(), R.layout.now_playing_game_event_view, this);
-        scoreTextView = (TextView)findViewById(R.id.now_playing_score_text);
+        hostTeamScoreTextView = (TextView)findViewById(R.id.now_playing_host_team_score_text);
+        visitingTeamScoreTextView = (TextView)findViewById(R.id.now_playing_visiting_team_score_text);
         timeTextView = (TextView)findViewById(R.id.now_playing_time_text);
         gameEventRecyclerView = (RecyclerView) findViewById(R.id.game_event_recycler_view);
     }

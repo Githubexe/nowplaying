@@ -4,13 +4,17 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
 import android.util.TypedValue;
 import android.view.View;
 
 import com.music.amazon.mypoldi.GameEventAdapter;
 import com.music.amazon.mypoldi.R;
+import com.music.amazon.mypoldi.ScrollingLinearLayoutManager;
 import com.music.amazon.mypoldi.model.NowPlayingTimelineModel;
 import com.music.amazon.mypoldi.view.NowPlayingTimelineView;
+
+import java.util.Calendar;
 
 /**
  * Created by yoyosu on 1/25/17.
@@ -28,15 +32,23 @@ public class NowPlayingTimelineBinder {
 
     public void bind(final NowPlayingTimelineView view,
                      final NowPlayingTimelineModel model){
-        view.scoreTextView.setText(model.score);
+        view.hostTeamScoreTextView.setText(model.hostTeamScore);
+        view.visitingTeamScoreTextView.setText(model.visitingTeamScore);
 
         view.timeTextView.setText(model.time);
 
-        GameEventAdapter adapter = new GameEventAdapter(context, model.events);
+        GameEventAdapter adapter = new GameEventAdapter(model.events);
         view.gameEventRecyclerView.setAdapter(adapter);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         view.gameEventRecyclerView.setLayoutManager(layoutManager);
 
+//        final ScrollingLinearLayoutManager scrollingLinearLayoutManager =
+//                new ScrollingLinearLayoutManager(context, LinearLayoutManager.VERTICAL, false, 1000);
+
+        view.gameEventRecyclerView.setLayoutManager(layoutManager);
+
+
+        layoutManager.scrollToPositionWithOffset(6, 200);
         VerticalSpaceItemDecoration verticalSpaceItemDecoration = new VerticalSpaceItemDecoration(
                 context.getResources().getInteger(R.integer.now_playing_timeline_event_vertical_space));
         view.gameEventRecyclerView.addItemDecoration(verticalSpaceItemDecoration);

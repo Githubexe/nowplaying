@@ -3,21 +3,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/now_playing_score_text"
+    <RelativeLayout
+        android:id="@+id/now_playing_score"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textSize="60dp"
-        android:text = "score"/>
+        android:layout_height="60dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/now_playing_host_team_score_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="60dp"
+            android:text="4"/>
+
+        <TextView
+            android:id="@+id/now_playing_score_separator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_toRightOf="@id/now_playing_host_team_score_text"
+            android:textStyle="bold"
+            android:textSize="60dp"
+            android:text = "-"/>
+
+        <TextView
+            android:id="@+id/now_playing_visiting_team_score_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_toRightOf="@id/now_playing_score_separator"
+            android:textStyle="bold"
+            android:textSize="60dp"
+            android:text = "2"/>
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/now_playing_time_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_below = "@id/now_playing_score_text"
+        android:layout_below = "@id/now_playing_score"
         android:textSize="20dp"
         android:text="time"/>
 

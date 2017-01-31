@@ -7,7 +7,9 @@ import java.util.List;
  * Created by yoyosu on 1/25/17.
  */
 public final class NowPlayingTimelineModel {
-    public String score;
+    public String hostTeamScore;
+
+    public String visitingTeamScore;
 
     public String time;
 
@@ -21,7 +23,9 @@ public final class NowPlayingTimelineModel {
 
         private final String uuid;
 
-        private String score;
+        private String hostTeamScore;
+
+        private String visitingTeamScore;
 
         private String time;
 
@@ -31,8 +35,13 @@ public final class NowPlayingTimelineModel {
             this.uuid = uuid;
         }
 
-        public Builder withScore(String score) {
-            this.score = score;
+        public Builder withHostTeamScore(final String hostTeamScore) {
+            this.hostTeamScore = hostTeamScore;
+            return this;
+        }
+
+        public Builder withVisitingTeamScore(final String visitingTeamScore) {
+            this.visitingTeamScore = visitingTeamScore;
             return this;
         }
 
@@ -48,18 +57,21 @@ public final class NowPlayingTimelineModel {
 
         public NowPlayingTimelineModel build() {
             return new NowPlayingTimelineModel(uuid,
-                    score,
+                    hostTeamScore,
+                    visitingTeamScore,
                     time,
                     events);
         }
     }
 
     private NowPlayingTimelineModel(final String uuid,
-                                final String score,
-                                final String time,
-                                final List<GameEvent> events) {
+                                    final String hostTeamScore,
+                                    final String visitingTeamScore,
+                                    final String time,
+                                    final List<GameEvent> events) {
         //super(uuid);
-        this.score = score;
+        this.hostTeamScore = hostTeamScore;
+        this.visitingTeamScore = visitingTeamScore;
         this.time = time;
         this.events = events;
     }

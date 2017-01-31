@@ -42,7 +42,7 @@ public final class NowPlayingActivity extends Activity {
 
     private NowPlayingTimelineModel createNowPlayingTimelineModel() {
         final List<GameEvent> events = new ArrayList<GameEvent>();
-        //for (int i = 0; i < 250; i++) {
+        for (int i = 0; i < 250; i++) {
             events.add(GameEvent.builder("test-event-uuid")
                     .withLeftEventDescritpion("Host team event ")
                     .withRightEventDescritpion("Visiting team event ")
@@ -64,7 +64,7 @@ public final class NowPlayingActivity extends Activity {
                     .withRightEventDescritpion("D event ")
                     .withRightEventIconResId(R.drawable.yellow_card)
                     .build());
-        //}
+        }
 
         events.add(GameEvent.builder("test-event-uuid")
                 .withLeftEventDescritpion("LEFT END")
@@ -73,7 +73,8 @@ public final class NowPlayingActivity extends Activity {
 
         return NowPlayingTimelineModel.builder(
                 "test-uuid").
-                withScore("1 - 2").
+                withHostTeamScore("1").
+                withVisitingTeamScore("2").
                 withTime("69 : 13").
                 withEvents(events).build();
     }
