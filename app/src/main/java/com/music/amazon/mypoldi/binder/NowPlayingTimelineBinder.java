@@ -4,17 +4,12 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.format.DateFormat;
-import android.util.TypedValue;
 import android.view.View;
 
 import com.music.amazon.mypoldi.GameEventAdapter;
 import com.music.amazon.mypoldi.R;
-import com.music.amazon.mypoldi.ScrollingLinearLayoutManager;
 import com.music.amazon.mypoldi.model.NowPlayingTimelineModel;
 import com.music.amazon.mypoldi.view.NowPlayingTimelineView;
-
-import java.util.Calendar;
 
 /**
  * Created by yoyosu on 1/25/17.
@@ -35,8 +30,8 @@ public class NowPlayingTimelineBinder {
         view.hostTeamScoreTextView.setText(model.hostTeamScore);
         view.visitingTeamScoreTextView.setText(model.visitingTeamScore);
 
-        view.leftTimeStampTextView.setText(model.leftTimeStamp);
-        view.rightTimeStampTextView.setText(model.rightTimeStamp);
+        view.minutesTextView.setText(model.minutes);
+        view.secondsTextView.setText(model.seconds);
 
         GameEventAdapter adapter = new GameEventAdapter(model.events);
         view.gameEventRecyclerView.setAdapter(adapter);

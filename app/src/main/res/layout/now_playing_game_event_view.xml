@@ -48,7 +48,7 @@
         android:gravity="center">
 
         <TextView
-            android:id="@+id/now_playing_left_time_stamp_text"
+            android:id="@+id/now_playing_minutes_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -61,12 +61,12 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:gravity="center"
-            android:layout_toRightOf="@id/now_playing_left_time_stamp_text"
+            android:layout_toRightOf="@id/now_playing_minutes_text"
             android:textSize="25dp"
             android:text = ":"/>
 
         <TextView
-            android:id="@+id/now_playing_right_time_stamp_text"
+            android:id="@+id/now_playing_seconds_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"

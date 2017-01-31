@@ -11,9 +11,9 @@ public final class NowPlayingTimelineModel {
 
     public String visitingTeamScore;
 
-    public String leftTimeStamp;
+    public String minutes;
 
-    public String rightTimeStamp;
+    public String seconds;
 
     public List<GameEvent> events = new ArrayList<GameEvent>();
 
@@ -29,9 +29,9 @@ public final class NowPlayingTimelineModel {
 
         private String visitingTeamScore;
 
-        private String leftTimeStamp;
+        private String minutes;
 
-        private String rightTimeStamp;
+        private String seconds;
 
         private List<GameEvent> events = new ArrayList<GameEvent>();
 
@@ -49,13 +49,13 @@ public final class NowPlayingTimelineModel {
             return this;
         }
 
-        public Builder withLeftTimeStamp(String timeStamp) {
-            this.leftTimeStamp = timeStamp;
+        public Builder withMinutes(String minutes) {
+            this.minutes = minutes;
             return this;
         }
 
-        public Builder withRightTimeStamp(String timeStamp) {
-            this.rightTimeStamp = timeStamp;
+        public Builder withSeconds(String seconds) {
+            this.seconds = seconds;
             return this;
         }
 
@@ -68,8 +68,8 @@ public final class NowPlayingTimelineModel {
             return new NowPlayingTimelineModel(uuid,
                     hostTeamScore,
                     visitingTeamScore,
-                    leftTimeStamp,
-                    rightTimeStamp,
+                    minutes,
+                    seconds,
                     events);
         }
     }
@@ -77,14 +77,14 @@ public final class NowPlayingTimelineModel {
     private NowPlayingTimelineModel(final String uuid,
                                     final String hostTeamScore,
                                     final String visitingTeamScore,
-                                    final String leftTimeStamp,
-                                    final String rightTimeStamp,
+                                    final String minutes,
+                                    final String seconds,
                                     final List<GameEvent> events) {
         //super(uuid);
         this.hostTeamScore = hostTeamScore;
         this.visitingTeamScore = visitingTeamScore;
-        this.leftTimeStamp = leftTimeStamp;
-        this.rightTimeStamp = rightTimeStamp;
+        this.minutes = minutes;
+        this.seconds = seconds;
         this.events = events;
     }
 }

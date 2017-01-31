@@ -23,9 +23,9 @@ public final class NowPlayingTimelineView extends RelativeLayout {
 
     public TextView visitingTeamScoreTextView;
 
-    public TextView leftTimeStampTextView;
+    public TextView minutesTextView;
 
-    public TextView rightTimeStampTextView;
+    public TextView secondsTextView;
 
     public NowPlayingTimelineView(Context context) {
         this(context, null);
@@ -44,8 +44,8 @@ public final class NowPlayingTimelineView extends RelativeLayout {
         inflate(getContext(), R.layout.now_playing_game_event_view, this);
         hostTeamScoreTextView = (TextView)findViewById(R.id.now_playing_host_team_score_text);
         visitingTeamScoreTextView = (TextView)findViewById(R.id.now_playing_visiting_team_score_text);
-        leftTimeStampTextView = (TextView)findViewById(R.id.now_playing_left_time_stamp_text);
-        rightTimeStampTextView = (TextView)findViewById(R.id.now_playing_right_time_stamp_text);
+        minutesTextView = (TextView)findViewById(R.id.now_playing_minutes_text);
+        secondsTextView = (TextView)findViewById(R.id.now_playing_seconds_text);
         gameEventRecyclerView = (RecyclerView) findViewById(R.id.game_event_recycler_view);
     }
 }
