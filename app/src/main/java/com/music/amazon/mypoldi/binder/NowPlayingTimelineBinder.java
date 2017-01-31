@@ -19,13 +19,9 @@ public class NowPlayingTimelineBinder {
 
     private final LinearLayoutManager layoutManager;
 
-    private final VerticalSpaceItemDecoration verticalSpaceItemDecoration;
-
     public NowPlayingTimelineBinder(Context context) {
         this.context = context;
         layoutManager  = new LinearLayoutManager(context);
-        verticalSpaceItemDecoration = new VerticalSpaceItemDecoration(context.getResources().
-                getInteger(R.integer.now_playing_timeline_event_vertical_space));
     }
 
     public NowPlayingTimelineView createView() {
