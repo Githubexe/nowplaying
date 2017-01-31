@@ -42,32 +42,40 @@ public final class NowPlayingActivity extends Activity {
 
     private NowPlayingTimelineModel createNowPlayingTimelineModel() {
         final List<GameEvent> events = new ArrayList<GameEvent>();
-        events.add(GameEvent.builder("test-event-uuid")
-                .withLeftEventDescritpion("Host team event AAAAAAAAAA")
-                .withRightEventDescritpion("Visiting team event AAAAAAAAA")
-                .withRightEventIconResId(R.drawable.yellow_card)
-                .build());
+        //for (int i = 0; i < 250; i++) {
+            events.add(GameEvent.builder("test-event-uuid")
+                    .withLeftEventDescritpion("Host team event ")
+                    .withRightEventDescritpion("Visiting team event ")
+                    .build());
+
+            events.add(GameEvent.builder("test-event-uuid")
+                    .withLeftEventTime("32'")
+                    .withLeftEventDescritpion("A event ")
+                    .withLeftEventIconResId(R.drawable.yellow_card)
+                    .withLeftMarkerIconResId(R.drawable.yellow_marker)
+                    .withRightEventDescritpion("B event ")
+                    .build());
+
+            events.add(GameEvent.builder("test-event-uuid")
+                    .withLeftEventTime("48'")
+                    .withLeftEventDescritpion("C event ")
+                    .withLeftMarkerIconResId(R.drawable.yellow_marker)
+                    .withRightEventTime("52'")
+                    .withRightEventDescritpion("D event ")
+                    .withRightEventIconResId(R.drawable.yellow_card)
+                    .build());
+        //}
 
         events.add(GameEvent.builder("test-event-uuid")
-                .withLeftEventDescritpion("A event BBBBBBBBBB")
-                .withLeftEventIconResId(R.drawable.yellow_card)
-                .withRightEventTime("32'")
-                .withRightEventDescritpion("B event sfdsafdsfdsfdsfds")
-                .withRightMarkerIconResId(R.drawable.green_marker)
-                .build());
-
-        events.add(GameEvent.builder("test-event-uuid")
-                .withLeftEventTime("48'")
-                .withLeftEventDescritpion("C event BBBBBBBBBB")
-                .withLeftMarkerIconResId(R.drawable.green_marker)
-                .withRightEventDescritpion("D event BBBBBBBBB")
-                .withRightEventIconResId(R.drawable.yellow_card)
+                .withLeftEventDescritpion("LEFT END")
+                .withRightEventDescritpion("RIGHT END")
                 .build());
 
         return NowPlayingTimelineModel.builder(
                 "test-uuid").
                 withScore("1 - 2").
-                withTime("32 : 13").
+                withTime("69 : 13").
                 withEvents(events).build();
     }
+
 }
