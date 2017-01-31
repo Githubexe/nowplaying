@@ -46,23 +46,58 @@ public final class NowPlayingActivity extends Activity {
                 R.drawable.visiting).build();
     }
 
+    //DEMO data only!!!
     private void updateTimeline(final Context context,
                                 final NowPlayingTimelineView nowPlayingTimelineView) {
        new Thread() {
             @Override
             public void run() {
                 try {
+                    final List<GameEvent> events = new ArrayList<GameEvent>();
+//                    for (int i = 0; i < 250; i++) {
+//                        events.add(GameEvent.builder("test-event-uuid")
+//                                .withLeftEventDescritpion("Host team event ")
+//                                .withRightEventDescritpion("Visiting team event ")
+//                                .build());
+//
+//                        events.add(GameEvent.builder("test-event-uuid")
+//                                .withLeftEventDescritpion("A team event ")
+//                                .withRightEventDescritpion("B team event ")
+//                                .build());
+//
+//                        events.add(GameEvent.builder("test-event-uuid")
+//                                .withLeftEventTime("32'")
+//                                .withLeftEventDescritpion("A event ")
+//                                .withLeftEventIconResId(R.drawable.yellow_card)
+//                                .withLeftMarkerIconResId(R.drawable.yellow_marker)
+//                                .withRightEventDescritpion("B event ")
+//                                .build());
+//
+//                        events.add(GameEvent.builder("test-event-uuid")
+//                                .withLeftEventTime("48'")
+//                                .withLeftEventDescritpion("C event ")
+//                                .withLeftMarkerIconResId(R.drawable.yellow_marker)
+//                                .withRightEventTime("52'")
+//                                .withRightEventDescritpion("D event ")
+//                                .withRightEventIconResId(R.drawable.yellow_card)
+//                                .build());
+//                    }
+
                     final long start = System.currentTimeMillis();
                     while (!isInterrupted()) {
                         Thread.sleep(1000);
-                        final long current = System.currentTimeMillis();
-                        final long seconds = (current - start) / 1000 % 60;
-                        final long minutes = (current - start) / 1000 / 60;
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                final long current = System.currentTimeMillis();
+                                final long seconds = (current - start) / 1000 % 60;
+                                final long minutes = (current - start) / 1000 / 60;
+                                events.add(GameEvent.builder("test-event-uuid")
+                                        .withLeftEventDescritpion("Host: " + minutes)
+                                        .withRightEventDescritpion("Visiting: " + seconds)
+                                        .build());
                                 NowPlayingTimelineModel timelineModelmodel =
-                                        createNowPlayingTimelineModel(Long.toString(minutes),Long.toString(seconds));
+                                        createNowPlayingTimelineModel(Long.toString(minutes),Long.toString(seconds), events);
                                 new NowPlayingTimelineBinder(context).bind(nowPlayingTimelineView, timelineModelmodel);
                             }
                         });
@@ -73,37 +108,35 @@ public final class NowPlayingActivity extends Activity {
         }.start();
     }
 
-    private NowPlayingTimelineModel createNowPlayingTimelineModel(String minutes, String seconds) {
-        final List<GameEvent> events = new ArrayList<GameEvent>();
-        //for (int i = 0; i < 250; i++) {
-            events.add(GameEvent.builder("test-event-uuid")
-                    .withLeftEventDescritpion("Host team event ")
-                    .withRightEventDescritpion("Visiting team event ")
-                    .build());
-
-            events.add(GameEvent.builder("test-event-uuid")
-                    .withLeftEventTime("32'")
-                    .withLeftEventDescritpion("A event ")
-                    .withLeftEventIconResId(R.drawable.yellow_card)
-                    .withLeftMarkerIconResId(R.drawable.yellow_marker)
-                    .withRightEventDescritpion("B event ")
-                    .build());
-
-            events.add(GameEvent.builder("test-event-uuid")
-                    .withLeftEventTime("48'")
-                    .withLeftEventDescritpion("C event ")
-                    .withLeftMarkerIconResId(R.drawable.yellow_marker)
-                    .withRightEventTime("52'")
-                    .withRightEventDescritpion("D event ")
-                    .withRightEventIconResId(R.drawable.yellow_card)
-                    .build());
-        //}
-
+    private NowPlayingTimelineModel createNowPlayingTimelineModel(final String minutes,
+                                                                  final String seconds,
+                                                                  final List<GameEvent> events) {
 //        events.add(GameEvent.builder("test-event-uuid")
-//                .withLeftEventDescritpion("LEFT END")
-//                .withRightEventDescritpion("RIGHT END")
+//                .withLeftEventDescritpion("Host team event ")
+//                .withRightEventDescritpion("Visiting team event ")
 //                .build());
-
+//
+//        events.add(GameEvent.builder("test-event-uuid")
+//                .withLeftEventDescritpion("A team event ")
+//                .withRightEventDescritpion("B team event ")
+//                .build());
+//
+//        events.add(GameEvent.builder("test-event-uuid")
+//                .withLeftEventTime("32'")
+//                .withLeftEventDescritpion("A event ")
+//                .withLeftEventIconResId(R.drawable.yellow_card)
+//                .withLeftMarkerIconResId(R.drawable.yellow_marker)
+//                .withRightEventDescritpion("B event ")
+//                .build());
+//
+//        events.add(GameEvent.builder("test-event-uuid")
+//                .withLeftEventTime("48'")
+//                .withLeftEventDescritpion("C event ")
+//                .withLeftMarkerIconResId(R.drawable.yellow_marker)
+//                .withRightEventTime("52'")
+//                .withRightEventDescritpion("D event ")
+//                .withRightEventIconResId(R.drawable.yellow_card)
+//                .build());
         return NowPlayingTimelineModel.builder(
                 "test-uuid").
                 withHostTeamScore("1").

@@ -25,15 +25,6 @@ public final class NowPlayingMainView extends RelativeLayout {
 
     public NowPlayingTimelineView nowPlayingTimelineView;
 
-    /**
-     *  TBD:
-     *  TimeOfMatchView  including game segment when appropriate
-     *                   - Pre-game, Halftime (HT), Full Time (FT), Injury Time, Penalty Kicks (PK) and Post-game
-     *
-     *  ChannelChangeView User should be able to switch to concurrent Live matches, or Conference,
-     *                    from within Now Playing Live screen - without having to navigate back out to EPG.
-     */
-
     public NowPlayingMainView(Context context) {
         this(context, null);
     }

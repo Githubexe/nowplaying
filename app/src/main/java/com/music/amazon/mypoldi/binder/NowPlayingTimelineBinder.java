@@ -17,8 +17,15 @@ import com.music.amazon.mypoldi.view.NowPlayingTimelineView;
 public class NowPlayingTimelineBinder {
     private Context context;
 
+    private final LinearLayoutManager layoutManager;
+
+    private final VerticalSpaceItemDecoration verticalSpaceItemDecoration;
+
     public NowPlayingTimelineBinder(Context context) {
         this.context = context;
+        layoutManager  = new LinearLayoutManager(context);
+        verticalSpaceItemDecoration = new VerticalSpaceItemDecoration(context.getResources().
+                getInteger(R.integer.now_playing_timeline_event_vertical_space));
     }
 
     public NowPlayingTimelineView createView() {
@@ -35,19 +42,13 @@ public class NowPlayingTimelineBinder {
 
         GameEventAdapter adapter = new GameEventAdapter(model.events);
         view.gameEventRecyclerView.setAdapter(adapter);
-        final LinearLayoutManager layoutManager = new LinearLayoutManager(context);
-        view.gameEventRecyclerView.setLayoutManager(layoutManager);
-
-//        final ScrollingLinearLayoutManager scrollingLinearLayoutManager =
-//                new ScrollingLinearLayoutManager(context, LinearLayoutManager.VERTICAL, false, 1000);
 
         view.gameEventRecyclerView.setLayoutManager(layoutManager);
 
+        view.gameEventRecyclerView.scrollToPosition(adapter.getItemCount() - 1);
 
-       // layoutManager.scrollToPositionWithOffset(6, 200);
-        VerticalSpaceItemDecoration verticalSpaceItemDecoration = new VerticalSpaceItemDecoration(
-                context.getResources().getInteger(R.integer.now_playing_timeline_event_vertical_space));
-        view.gameEventRecyclerView.addItemDecoration(verticalSpaceItemDecoration);
+        //comment this for now since it causes auto expanding when the recycler view scrolls
+        //view.gameEventRecyclerView.addItemDecoration(verticalSpaceItemDecoration);
     }
 
     class VerticalSpaceItemDecoration extends RecyclerView.ItemDecoration {
@@ -60,6 +61,10 @@ public class NowPlayingTimelineBinder {
         @Override
         public void getItemOffsets(Rect outRect, View view, RecyclerView parent,
                                    RecyclerView.State state) {
+            super.getItemOffsets(outRect, view, parent, state);
+            if (parent.getChildAdapterPosition(view) == 0) {
+                return;
+            }
             outRect.bottom = verticalSpaceHeight;
         }
     }

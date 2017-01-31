@@ -2,14 +2,14 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="40dp"
+    android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="horizontal">
 
     <RelativeLayout
         android:id="@+id/leftEventText"
         android:layout_width="150dp"
-        android:layout_height="match_parent">
+        android:layout_height="50dp">
 
         <TextView
             android:id="@+id/leftEventTimeText"
@@ -72,7 +72,7 @@
     <RelativeLayout
         android:id="@+id/rightEventText"
         android:layout_width="150dp"
-        android:layout_height="match_parent">
+        android:layout_height="50dp">
 
         <ImageView
             android:id="@+id/rightEventImage"

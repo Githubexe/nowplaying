@@ -3,5 +3,5 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <integer name="now_playing_timeline_event_vertical_space">10</integer>
+    <integer name="now_playing_timeline_event_vertical_space">2</integer>
 </resources>
