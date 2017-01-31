@@ -44,7 +44,7 @@ public class NowPlayingTimelineBinder {
         view.gameEventRecyclerView.setLayoutManager(layoutManager);
 
 
-        layoutManager.scrollToPositionWithOffset(6, 200);
+       // layoutManager.scrollToPositionWithOffset(6, 200);
         VerticalSpaceItemDecoration verticalSpaceItemDecoration = new VerticalSpaceItemDecoration(
                 context.getResources().getInteger(R.integer.now_playing_timeline_event_vertical_space));
         view.gameEventRecyclerView.addItemDecoration(verticalSpaceItemDecoration);
