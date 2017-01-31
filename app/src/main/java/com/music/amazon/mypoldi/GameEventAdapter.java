@@ -74,6 +74,7 @@ public class GameEventAdapter extends
 
         final TextView leftEventDescriptionTextView = viewHolder.leftEventDescriptionTextView;
         leftEventDescriptionTextView.setText(gameEvent.leftEventDescription);
+        leftEventDescriptionTextView.bringToFront();
 
         final ImageView leftEventImageView = viewHolder.leftEventImageView;
         leftEventImageView.setImageResource(gameEvent.leftEventIconResId);
@@ -86,6 +87,7 @@ public class GameEventAdapter extends
 
         final TextView rightEventDescriptionTextView = viewHolder.rightEventDescriptionTextView;
         rightEventDescriptionTextView.setText(gameEvent.rightEventDescription);
+        rightEventDescriptionTextView.bringToFront();
 
         final ImageView rightEventImageView = viewHolder.rightEventImageView;
         rightEventImageView.setImageResource(gameEvent.rightEventIconResId);
