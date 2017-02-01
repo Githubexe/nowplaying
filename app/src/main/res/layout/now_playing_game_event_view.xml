@@ -7,7 +7,7 @@
         android:id="@+id/now_playing_score"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:gravity="center">
+        android:gravity="center_horizontal">
 
         <TextView
             android:id="@+id/now_playing_host_team_score_text"
@@ -45,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_below="@id/now_playing_score"
-        android:gravity="center">
+        android:gravity="center_horizontal">
 
         <TextView
             android:id="@+id/now_playing_minutes_text"

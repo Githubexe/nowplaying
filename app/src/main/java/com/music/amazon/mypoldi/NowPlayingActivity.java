@@ -93,26 +93,35 @@ public final class NowPlayingActivity extends Activity {
                                 final long seconds = (current - start) / 1000 % 60;
                                 final long minutes = (current - start) / 1000 / 60;
                                 events.add(GameEvent.builder("test-event-uuid")
-                                        .withLeftEventDescritpion("Left: " + minutes + seconds)
-                                        .withRightEventDescritpion("Right: " + seconds)
+                                        .withLeftEventDescritpion("Left: " + minutes*60 + seconds)
+                                        .withRightEventDescritpion("Right: " + minutes*60 + seconds)
                                         .build());
 
                                 events.add(GameEvent.builder("test-event-uuid")
                                         .withLeftEventTime(minutes + seconds + "\"")
-                                        .withLeftEventDescritpion("L2 event "  + minutes + seconds)
+                                        .withLeftEventDescritpion("L2 event "  + minutes*60 + seconds)
                                         .withLeftEventIconResId(R.drawable.yellow_card)
                                         .withLeftMarkerIconResId(R.drawable.yellow_marker)
-                                        .withRightEventDescritpion("R2 event " + seconds)
+                                        .withRightEventDescritpion("R2 event " + minutes*60 + seconds)
                                         .build());
 
                                 events.add(GameEvent.builder("test-event-uuid")
-                                        .withLeftEventDescritpion("L3: " + minutes + seconds)
-                                        .withRightEventDescritpion("L4: " + seconds)
+                                        .withLeftEventDescritpion("L3: " + minutes*60 + seconds)
+                                        .withRightEventDescritpion("L4: " + minutes*60 + seconds)
+                                        .build());
+
+                                events.add(GameEvent.builder("test-event-uuid")
+                                        .withLeftEventDescritpion("L5 event "  + minutes*60 + seconds)
+                                        .withRightEventTime(minutes + seconds + "\"")
+                                        .withRightEventIconResId(R.drawable.yellow_card)
+                                        .withRightMarkerIconResId(R.drawable.yellow_marker)
+                                        .withRightEventDescritpion("R6 event " + minutes*60 + seconds)
                                         .build());
 
                                 NowPlayingTimelineModel timelineModelmodel =
                                         createNowPlayingTimelineModel(Long.toString(minutes),Long.toString(seconds), events);
                                 new NowPlayingTimelineBinder(context).bind(nowPlayingTimelineView, timelineModelmodel);
+                               // nowPlayingTimelineView.gameEventRecyclerView.scrollToPosition(nowPlayingTimelineView.gameEventRecyclerView.getAdapter().getItemCount() - 1);
                             }
                         });
                     }
