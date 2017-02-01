@@ -26,8 +26,7 @@
             android:gravity="center"
             android:layout_toRightOf="@id/now_playing_host_team_score_text"
             android:textStyle="bold"
-            android:textSize="60dp"
-            android:text = "-"/>
+            android:textSize="60dp"/>
 
         <TextView
             android:id="@+id/now_playing_visiting_team_score_text"
@@ -62,8 +61,7 @@
             android:layout_marginRight="5dp"
             android:gravity="center"
             android:layout_toRightOf="@id/now_playing_minutes_text"
-            android:textSize="25dp"
-            android:text = ":"/>
+            android:textSize="25dp"/>
 
         <TextView
             android:id="@+id/now_playing_seconds_text"

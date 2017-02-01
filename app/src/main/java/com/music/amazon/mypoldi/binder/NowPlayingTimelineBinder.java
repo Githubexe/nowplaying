@@ -32,9 +32,11 @@ public class NowPlayingTimelineBinder {
                      final NowPlayingTimelineModel model){
         view.hostTeamScoreTextView.setText(model.hostTeamScore);
         view.visitingTeamScoreTextView.setText(model.visitingTeamScore);
+        view.scoreSeparator.setText("-");
 
         view.minutesTextView.setText(model.minutes);
         view.secondsTextView.setText(model.seconds);
+        view.timeStampSeparator.setText(":");
 
         final GameEventAdapter adapter = new GameEventAdapter(model.events);
         view.gameEventRecyclerView.setAdapter(adapter);
