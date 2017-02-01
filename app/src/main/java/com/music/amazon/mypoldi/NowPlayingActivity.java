@@ -124,34 +124,8 @@ public final class NowPlayingActivity extends Activity {
                                 final long current = System.currentTimeMillis();
                                 final long seconds = (current - start) / 1000 % 60;
                                 final long minutes = (current - start) / 1000 / 60;
-                                events.add(GameEvent.builder("test-event-uuid")
-                                        .withLeftEventDescritpion("Left: " + minutes*60 + seconds)
-                                        .withRightEventDescritpion("Right: " + minutes*60 + seconds)
-                                        .build());
-
-                                events.add(GameEvent.builder("test-event-uuid")
-                                        .withLeftEventTime(minutes + seconds + "\"")
-                                        .withLeftEventDescritpion("L2 event "  + minutes*60 + seconds)
-                                        .withLeftEventIconResId(R.drawable.yellow_card)
-                                        .withLeftMarkerIconResId(R.drawable.yellow_marker)
-                                        .withRightEventDescritpion("R2 event " + minutes*60 + seconds)
-                                        .build());
-
-                                events.add(GameEvent.builder("test-event-uuid")
-                                        .withLeftEventDescritpion("L3: " + minutes*60 + seconds)
-                                        .withRightEventDescritpion("L4: " + minutes*60 + seconds)
-                                        .build());
-
-                                events.add(GameEvent.builder("test-event-uuid")
-                                        .withLeftEventDescritpion("L5 event "  + minutes*60 + seconds)
-                                        .withRightEventTime(minutes + seconds + "\"")
-                                        .withRightEventIconResId(R.drawable.yellow_card)
-                                        .withRightMarkerIconResId(R.drawable.yellow_marker)
-                                        .withRightEventDescritpion("R6 event " + minutes*60 + seconds)
-                                        .build());
-
                                 NowPlayingTimelineModel timelineModelmodel =
-                                        createNowPlayingTimelineModel(Long.toString(minutes),Long.toString(seconds), events);
+                                        createNowPlayingTimelineModel(minutes, seconds, events);
                                 new NowPlayingTimelineBinder(context).bind(nowPlayingTimelineView, timelineModelmodel);
                             }
                         });
@@ -162,41 +136,33 @@ public final class NowPlayingActivity extends Activity {
         }.start();
     }
 
-    private NowPlayingTimelineModel createNowPlayingTimelineModel(final String minutes,
-                                                                  final String seconds,
+    private NowPlayingTimelineModel createNowPlayingTimelineModel(final long minutes,
+                                                                  final long seconds,
                                                                   final List<GameEvent> events) {
-//        events.add(GameEvent.builder("test-event-uuid")
-//                .withLeftEventDescritpion("Host ")
-//                .withRightEventDescritpion("Visiting")
-//                .build());
-//
-//        events.add(GameEvent.builder("test-event-uuid")
-//                .withLeftEventDescritpion("L1 event ")
-//                .withRightEventDescritpion("R1 event ")
-//                .build());
-//
-//        events.add(GameEvent.builder("test-event-uuid")
-//                .withLeftEventTime("32'")
-//                .withLeftEventDescritpion("L2 event ")
-//                .withLeftEventIconResId(R.drawable.yellow_card)
-//                .withLeftMarkerIconResId(R.drawable.yellow_marker)
-//                .withRightEventDescritpion("R2 event ")
-//                .build());
-//
-//        events.add(GameEvent.builder("test-event-uuid")
-//                .withLeftEventTime("48'")
-//                .withLeftEventDescritpion("L3 event ")
-//                .withLeftMarkerIconResId(R.drawable.yellow_marker)
-//                .withRightEventTime("52'")
-//                .withRightEventDescritpion("R3 event ")
-//                .withRightEventIconResId(R.drawable.yellow_card)
-//                .build());
+        final GameEvent.Builder builder = GameEvent.builder("demo-only");
+
+        builder.withLeftEventDescritpion("Left: " + minutes*60 + seconds)
+                .withRightEventDescritpion("Right: " + minutes*60 + seconds)
+                .build();
+
+        if (seconds % 5 == 0 || seconds % 13 ==0) {
+            builder.withLeftEventTime(minutes + seconds + "\"")
+                    .withLeftEventIconResId(R.drawable.yellow_card)
+                    .withLeftMarkerIconResId(R.drawable.yellow_marker);
+        } else if (seconds % 7 == 0 || seconds % 11 == 0) {
+            builder.withRightEventTime(minutes + seconds + "\"")
+                    .withRightEventIconResId(R.drawable.yellow_card)
+                    .withRightMarkerIconResId(R.drawable.yellow_marker);
+        }
+
+        events.add(builder.build());
+
         return NowPlayingTimelineModel.builder(
                 "test-uuid").
                 withHostTeamScore("1").
                 withVisitingTeamScore("2").
-                withMinutes(minutes).
-                withSeconds(seconds).
+                withMinutes(Long.toString(minutes)).
+                withSeconds(Long.toString(seconds)).
                 withEvents(events).build();
     }
 
