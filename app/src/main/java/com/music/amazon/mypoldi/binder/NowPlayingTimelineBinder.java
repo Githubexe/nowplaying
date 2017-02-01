@@ -38,9 +38,9 @@ public class NowPlayingTimelineBinder {
 
         final GameEventAdapter adapter = new GameEventAdapter(model.events);
         view.gameEventRecyclerView.setAdapter(adapter);
+        layoutManager.setStackFromEnd(true);
 
         view.gameEventRecyclerView.setLayoutManager(layoutManager);
-
         view.gameEventRecyclerView.scrollToPosition(adapter.getItemCount() - 1);
 
     }

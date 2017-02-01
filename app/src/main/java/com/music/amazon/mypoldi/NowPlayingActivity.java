@@ -54,33 +54,65 @@ public final class NowPlayingActivity extends Activity {
             public void run() {
                 try {
                     final List<GameEvent> events = new ArrayList<GameEvent>();
-//                    for (int i = 0; i < 250; i++) {
+//                    for (int i = 0; i < 1000; i++) {
 //                        events.add(GameEvent.builder("test-event-uuid")
-//                                .withLeftEventDescritpion("Host team event ")
-//                                .withRightEventDescritpion("Visiting team event ")
+//                                .withLeftEventDescritpion("left event # " + i)
+//                                .withRightEventDescritpion("right event # " + i)
 //                                .build());
 //
-//                        events.add(GameEvent.builder("test-event-uuid")
-//                                .withLeftEventDescritpion("A team event ")
-//                                .withRightEventDescritpion("B team event ")
-//                                .build());
-//
-//                        events.add(GameEvent.builder("test-event-uuid")
-//                                .withLeftEventTime("32'")
-//                                .withLeftEventDescritpion("A event ")
-//                                .withLeftEventIconResId(R.drawable.yellow_card)
-//                                .withLeftMarkerIconResId(R.drawable.yellow_marker)
-//                                .withRightEventDescritpion("B event ")
-//                                .build());
-//
-//                        events.add(GameEvent.builder("test-event-uuid")
-//                                .withLeftEventTime("48'")
-//                                .withLeftEventDescritpion("C event ")
-//                                .withLeftMarkerIconResId(R.drawable.yellow_marker)
-//                                .withRightEventTime("52'")
-//                                .withRightEventDescritpion("D event ")
-//                                .withRightEventIconResId(R.drawable.yellow_card)
-//                                .build());
+////                        events.add(GameEvent.builder("test-event-uuid")
+////                                .withLeftEventDescritpion("A team event ")
+////                                .withRightEventDescritpion("B team event ")
+////                                .build());
+////
+////                        events.add(GameEvent.builder("test-event-uuid")
+////                                .withLeftEventTime("32'")
+////                                .withLeftEventDescritpion("A event ")
+////                                .withLeftEventIconResId(R.drawable.yellow_card)
+////                                .withLeftMarkerIconResId(R.drawable.yellow_marker)
+////                                .withRightEventDescritpion("B event ")
+////                                .build());
+////
+////                        events.add(GameEvent.builder("test-event-uuid")
+////                                .withLeftEventTime("48'")
+////                                .withLeftEventDescritpion("C event ")
+////                                .withLeftMarkerIconResId(R.drawable.yellow_marker)
+////                                .withRightEventTime("52'")
+////                                .withRightEventDescritpion("D event ")
+////                                .withRightEventIconResId(R.drawable.yellow_card)
+////                                .build());
+////                    events.add(GameEvent.builder("test-event-uuid")
+////                            .withLeftEventTime("34'")
+////                            .withLeftEventDescritpion("E event ")
+////                            .withLeftMarkerIconResId(R.drawable.yellow_marker)
+////                            .withRightEventTime("22'")
+////                            .withRightEventDescritpion("F event ")
+////                            .withRightEventIconResId(R.drawable.yellow_card)
+////                            .build());
+////                    events.add(GameEvent.builder("test-event-uuid")
+////                            .withLeftEventTime("18'")
+////                            .withLeftEventDescritpion("G event ")
+////                            .withLeftMarkerIconResId(R.drawable.yellow_marker)
+////                            .withRightEventTime("32'")
+////                            .withRightEventDescritpion("H event ")
+////                            .withRightEventIconResId(R.drawable.yellow_card)
+////                            .build());
+////
+////                    events.add(GameEvent.builder("test-event-uuid")
+////                            .withLeftEventTime("18'")
+////                            .withLeftEventDescritpion("G event ")
+////                            .withLeftMarkerIconResId(R.drawable.yellow_marker)
+////                            .withRightEventTime("32'")
+////                            .withRightEventDescritpion("H event ")
+////                            .withRightEventIconResId(R.drawable.yellow_card)
+////                            .build());
+////
+////                    events.add(GameEvent.builder("test-event-uuid")
+////                            .withLeftEventTime("64'")
+////                            .withLeftEventDescritpion("I event ")
+////                            .withRightEventTime("22'")
+////                            .withRightEventDescritpion("J event ")
+////                            .build());
 //                    }
 
                     final long start = System.currentTimeMillis();
@@ -121,7 +153,6 @@ public final class NowPlayingActivity extends Activity {
                                 NowPlayingTimelineModel timelineModelmodel =
                                         createNowPlayingTimelineModel(Long.toString(minutes),Long.toString(seconds), events);
                                 new NowPlayingTimelineBinder(context).bind(nowPlayingTimelineView, timelineModelmodel);
-                               // nowPlayingTimelineView.gameEventRecyclerView.scrollToPosition(nowPlayingTimelineView.gameEventRecyclerView.getAdapter().getItemCount() - 1);
                             }
                         });
                     }
