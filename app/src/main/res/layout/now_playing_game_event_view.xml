@@ -7,6 +7,7 @@
         android:id="@+id/now_playing_score"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center_horizontal">
 
         <TextView
@@ -42,7 +43,7 @@
     <RelativeLayout
         android:id="@+id/now_playing_time"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_below="@id/now_playing_score"
         android:gravity="center_horizontal">
 
