@@ -23,7 +23,7 @@
         <activity
             android:name=".NowPlayingActivity"/>
 
-        <activity android:name="view_flipper_activity" />
+        <activity android:name=".NowPlayingViewFlipperActivity" />
 
     </application>
 

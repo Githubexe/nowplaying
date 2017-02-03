@@ -9,14 +9,14 @@ import android.widget.ViewFlipper;
 /**
  * Created by yoyosu on 2/2/17.
  */
-public class view_flipper_activity extends Activity {
+public class NowPlayingViewFlipperActivity extends Activity {
     private ViewFlipper viewFlipper;
     private float lastX;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.view_flipper_main);
+        setContentView(R.layout.now_playing_view_flipper);
         viewFlipper = (ViewFlipper) findViewById(R.id.view_flipper);
     }
 
@@ -32,11 +32,12 @@ public class view_flipper_activity extends Activity {
                     viewFlipper.showPrevious();
                 }
             } else if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {
-                if (viewFlipper.getDisplayedChild() < 3)
+                if (viewFlipper.getDisplayedChild() < 2) {
                     viewFlipper.setInAnimation(this, R.anim.in_from_right);
-                viewFlipper.setOutAnimation(this, R.anim.out_to_left);
-                // Show the next Screen
-                viewFlipper.showNext();
+                    viewFlipper.setOutAnimation(this, R.anim.out_to_left);
+                    // Show the next Screen
+                    viewFlipper.showNext();
+                }
             }
         }
         return super.onKeyDown(keyCode, event);
