@@ -7,12 +7,12 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ViewFlipper;
 
-import com.music.amazon.mypoldi.binder.NowPlayingMainBinder;
+import com.music.amazon.mypoldi.binder.NowPlayingBackgroundBinder;
 import com.music.amazon.mypoldi.binder.NowPlayingTimelineBinder;
-import com.music.amazon.mypoldi.model.GameEvent;
-import com.music.amazon.mypoldi.model.NowPlayingMainModel;
+import com.music.amazon.mypoldi.model.LiveGameEvent;
+import com.music.amazon.mypoldi.model.NowPlayingBackgroundModel;
 import com.music.amazon.mypoldi.model.NowPlayingTimelineModel;
-import com.music.amazon.mypoldi.view.NowPlayingMainView;
+import com.music.amazon.mypoldi.view.NowPlayingBackgroundView;
 import com.music.amazon.mypoldi.view.NowPlayingTimelineView;
 
 import java.util.ArrayList;
@@ -36,7 +36,7 @@ public class NowPlayingViewFlipperActivity extends Activity {
         setContentView(R.layout.now_playing_view_flipper_activity);
         viewFlipper = (ViewFlipper) findViewById(R.id.now_playing_view_flipper);
         for (int i = 0; i < NUM_OF_LIVE_GAMES; i++) {
-            final NowPlayingMainView view = new NowPlayingMainView(this);
+            final NowPlayingBackgroundView view = new NowPlayingBackgroundView(this);
             final int viewId = View.generateViewId();
             viewLayoutIds.add(i, viewId);
             view.setId(viewId);
@@ -80,16 +80,16 @@ public class NowPlayingViewFlipperActivity extends Activity {
     private void updateData() {
         final int childId = viewFlipper.getDisplayedChild();
         final int viewLayoutId = viewLayoutIds.get(childId);
-        NowPlayingMainModel model = createNowPlayingMainModel(childId);
-        NowPlayingMainView view = (NowPlayingMainView) (viewFlipper.findViewById(viewLayoutId));
-        new NowPlayingMainBinder().bind(view, model);
+        NowPlayingBackgroundModel model = createNowPlayingMainModel(childId);
+        NowPlayingBackgroundView view = (NowPlayingBackgroundView) (viewFlipper.findViewById(viewLayoutId));
+        new NowPlayingBackgroundBinder().bind(view, model);
        // updateTimeline(this, view.nowPlayingTimelineView);
     }
 
     private NowPlayingTimelineModel createNowPlayingTimelineModel(final long minutes,
                                                                   final long seconds,
-                                                                  final List<GameEvent> events) {
-        final GameEvent.Builder builder = GameEvent.builder("demo-only");
+                                                                  final List<LiveGameEvent> events) {
+        final LiveGameEvent.Builder builder = LiveGameEvent.builder("demo-only");
         builder.withLeftEventDescritpion("Left: " + minutes*60 + seconds)
                 .withRightEventDescritpion("Right: " + minutes*60 + seconds)
                 .build();
@@ -122,7 +122,7 @@ public class NowPlayingViewFlipperActivity extends Activity {
             @Override
             public void run() {
                 try {
-                    final List<GameEvent> events = new ArrayList<GameEvent>();
+                    final List<LiveGameEvent> events = new ArrayList<LiveGameEvent>();
                     final long start = System.currentTimeMillis();
                     while (!isInterrupted()) {
                         Thread.sleep(1000);
@@ -144,8 +144,8 @@ public class NowPlayingViewFlipperActivity extends Activity {
         }.start();
     }
 
-    private NowPlayingMainModel createNowPlayingMainModel(int childId) {
-        return NowPlayingMainModel.builder(
+    private NowPlayingBackgroundModel createNowPlayingMainModel(int childId) {
+        return NowPlayingBackgroundModel.builder(
                 "test-main-uuid",
                 R.drawable.now_playing_background,
                 "Host Team #" + childId,

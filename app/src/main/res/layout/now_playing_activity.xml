@@ -3,10 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.music.amazon.mypoldi.view.NowPlayingMainView
+    <com.music.amazon.mypoldi.view.NowPlayingBackgroundView
         android:id= "@+id/now_playing_main_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-    </com.music.amazon.mypoldi.view.NowPlayingMainView>
+    </com.music.amazon.mypoldi.view.NowPlayingBackgroundView>
 </LinearLayout>

@@ -6,8 +6,8 @@
     <ViewFlipper
         android:id="@+id/now_playing_view_flipper"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="match_parent"
+        android:flipInterval="5000">
     </ViewFlipper>
 
 </LinearLayout>

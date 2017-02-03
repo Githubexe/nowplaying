@@ -6,10 +6,10 @@
 //import android.text.format.DateFormat;
 //import android.widget.TextView;
 //
-//import com.music.amazon.mypoldi.binder.NowPlayingMainBinder;
+//import com.music.amazon.mypoldi.binder.NowPlayingBackgroundBinder;
 //import com.music.amazon.mypoldi.binder.NowPlayingTimelineBinder;
-//import com.music.amazon.mypoldi.model.GameEvent;
-//import com.music.amazon.mypoldi.model.NowPlayingMainModel;
+//import com.music.amazon.mypoldi.model.LiveGameEvent;
+//import com.music.amazon.mypoldi.model.NowPlayingBackgroundModel;
 //import com.music.amazon.mypoldi.model.NowPlayingTimelineModel;
 //import com.music.amazon.mypoldi.view.NowPlayingMainView;
 //import com.music.amazon.mypoldi.view.NowPlayingTimelineView;
@@ -29,15 +29,15 @@
 //        super.onCreate(savedInstanceState);
 //        setContentView(R.layout.now_playing_activity);
 //
-//        NowPlayingMainModel model = createNowPlayingMainModel();
-//        NowPlayingMainView view = (NowPlayingMainView)findViewById(R.id.now_playing_main_view);
-//        new NowPlayingMainBinder().bind(view, model);
+//        NowPlayingBackgroundModel model = createNowPlayingMainModel();
+//        NowPlayingMainView view = (NowPlayingMainView)findViewById(R.id.now_playing_background_view);
+//        new NowPlayingBackgroundBinder().bind(view, model);
 //
 //        updateTimeline(this, view.nowPlayingTimelineView);
 //    }
 //
-//    private NowPlayingMainModel createNowPlayingMainModel() {
-//        return NowPlayingMainModel.builder(
+//    private NowPlayingBackgroundModel createNowPlayingMainModel() {
+//        return NowPlayingBackgroundModel.builder(
 //                "test-main-uuid",
 //                R.drawable.now_playing_background,
 //                "Host Team",
@@ -53,7 +53,7 @@
 //            @Override
 //            public void run() {
 //                try {
-//                    final List<GameEvent> events = new ArrayList<GameEvent>();
+//                    final List<LiveGameEvent> events = new ArrayList<LiveGameEvent>();
 //                    final long start = System.currentTimeMillis();
 //                    while (!isInterrupted()) {
 //                        Thread.sleep(1000);
@@ -77,8 +77,8 @@
 //
 //    private NowPlayingTimelineModel createNowPlayingTimelineModel(final long minutes,
 //                                                                  final long seconds,
-//                                                                  final List<GameEvent> events) {
-//        final GameEvent.Builder builder = GameEvent.builder("demo-only");
+//                                                                  final List<LiveGameEvent> events) {
+//        final LiveGameEvent.Builder builder = LiveGameEvent.builder("demo-only");
 //
 //        builder.withLeftEventDescritpion("Left: " + minutes*60 + seconds)
 //                .withRightEventDescritpion("Right: " + minutes*60 + seconds)

@@ -1,13 +1,9 @@
 package com.music.amazon.mypoldi.binder;
 
 import android.content.Context;
-import android.graphics.Rect;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
-import com.music.amazon.mypoldi.GameEventAdapter;
-import com.music.amazon.mypoldi.R;
+import com.music.amazon.mypoldi.LiveGameEventAdapter;
 import com.music.amazon.mypoldi.model.NowPlayingTimelineModel;
 import com.music.amazon.mypoldi.view.NowPlayingTimelineView;
 
@@ -38,7 +34,7 @@ public class NowPlayingTimelineBinder {
         view.secondsTextView.setText(model.seconds);
         view.timeStampSeparator.setText(":");
 
-        final GameEventAdapter adapter = new GameEventAdapter(model.events);
+        final LiveGameEventAdapter adapter = new LiveGameEventAdapter(model.events);
         view.gameEventRecyclerView.setAdapter(adapter);
         layoutManager.setStackFromEnd(true);
 
