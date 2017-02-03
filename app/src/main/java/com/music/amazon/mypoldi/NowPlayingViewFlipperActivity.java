@@ -38,6 +38,6 @@ public class NowPlayingViewFlipperActivity extends Activity {
             }
         }
         event.startTracking();
-        return true;
+        return super.onKeyDown(keyCode, event);
     }
 }
