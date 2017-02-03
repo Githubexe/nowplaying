@@ -28,16 +28,19 @@ public class NowPlayingViewFlipperActivity extends Activity {
                     viewFlipper.setInAnimation(this, R.anim.in_from_left);
                     viewFlipper.setOutAnimation(this, R.anim.out_to_right);
                     viewFlipper.showPrevious();
+                    event.startTracking();
+                    return true;
                 }
             } else if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {
                 if (viewFlipper.getDisplayedChild() < 2) {
                     viewFlipper.setInAnimation(this, R.anim.in_from_right);
                     viewFlipper.setOutAnimation(this, R.anim.out_to_left);
                     viewFlipper.showNext();
+                    event.startTracking();
+                    return true;
                 }
             }
         }
-        event.startTracking();
         return super.onKeyDown(keyCode, event);
     }
 }
