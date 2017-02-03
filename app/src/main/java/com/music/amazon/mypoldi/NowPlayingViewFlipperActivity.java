@@ -22,61 +22,22 @@ public class NowPlayingViewFlipperActivity extends Activity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
             if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {
                 if (viewFlipper.getDisplayedChild() > 0) {
                     viewFlipper.setInAnimation(this, R.anim.in_from_left);
                     viewFlipper.setOutAnimation(this, R.anim.out_to_right);
-                    // Show The Previous Screen
                     viewFlipper.showPrevious();
                 }
             } else if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {
                 if (viewFlipper.getDisplayedChild() < 2) {
                     viewFlipper.setInAnimation(this, R.anim.in_from_right);
                     viewFlipper.setOutAnimation(this, R.anim.out_to_left);
-                    // Show the next Screen
                     viewFlipper.showNext();
                 }
             }
         }
-        return super.onKeyDown(keyCode, event);
-    }
-
-    public boolean onTouchEvent(MotionEvent touchevent) {
-        switch (touchevent.getAction()) {
-
-            case MotionEvent.ACTION_DOWN: {
-                lastX = touchevent.getX();
-                break;
-            }
-            case MotionEvent.ACTION_UP: {
-                float currentX = touchevent.getX();
-
-                if (lastX < currentX) {
-
-                    if (viewFlipper.getDisplayedChild() == 0)
-                        break;
-
-                    viewFlipper.setInAnimation(this, R.anim.in_from_left);
-                    viewFlipper.setOutAnimation(this, R.anim.out_to_right);
-                    // Show The Previous Screen
-                    viewFlipper.showPrevious();
-                }
-
-                // if right to left swipe on screen
-                if (lastX > currentX) {
-                    if (viewFlipper.getDisplayedChild() == 3)
-                        break;
-
-                    viewFlipper.setInAnimation(this, R.anim.in_from_right);
-                    viewFlipper.setOutAnimation(this, R.anim.out_to_left);
-                    // Show the next Screen
-                    viewFlipper.showNext();
-                }
-                break;
-            }
-        }
-        return false;
+        event.startTracking();
+        return true;
     }
 }
