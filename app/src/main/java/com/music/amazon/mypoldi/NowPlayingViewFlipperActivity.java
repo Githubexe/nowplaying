@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.View;
 import android.widget.ViewFlipper;
 
 import com.music.amazon.mypoldi.binder.NowPlayingMainBinder;
@@ -21,14 +22,26 @@ import java.util.List;
  * Created by yoyosu on 2/2/17.
  */
 public class NowPlayingViewFlipperActivity extends Activity {
+
+    //FIXME: get it from service
+    private final int NUM_OF_LIVE_GAMES = 3;
+
     private ViewFlipper viewFlipper;
-    private float lastX;
+
+    private List<Integer> viewLayoutIds = new ArrayList<Integer>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.now_playing_view_flipper);
+        setContentView(R.layout.now_playing_view_flipper_activity);
         viewFlipper = (ViewFlipper) findViewById(R.id.now_playing_view_flipper);
+        for (int i = 0; i < NUM_OF_LIVE_GAMES; i++) {
+            final NowPlayingMainView view = new NowPlayingMainView(this);
+            final int viewId = View.generateViewId();
+            viewLayoutIds.add(i, viewId);
+            view.setId(viewId);
+            viewFlipper.addView(view);
+        }
 
         updateData();
     }
@@ -37,7 +50,7 @@ public class NowPlayingViewFlipperActivity extends Activity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
             if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {
-                if (viewFlipper.getDisplayedChild() > 0) {
+                if (viewFlipper.getDisplayedChild() >= 0) {
                     viewFlipper.setInAnimation(this, R.anim.in_from_left);
                     viewFlipper.setOutAnimation(this, R.anim.out_to_right);
                     viewFlipper.showPrevious();
@@ -46,39 +59,31 @@ public class NowPlayingViewFlipperActivity extends Activity {
                     return true;
                 }
             } else if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {
-                if (viewFlipper.getDisplayedChild() < 2) {
+                if (viewFlipper.getDisplayedChild() < NUM_OF_LIVE_GAMES - 1) {
                     viewFlipper.setInAnimation(this, R.anim.in_from_right);
                     viewFlipper.setOutAnimation(this, R.anim.out_to_left);
                     viewFlipper.showNext();
                     updateData();
                     event.startTracking();
                     return true;
+                } else  if (viewFlipper.getDisplayedChild() == NUM_OF_LIVE_GAMES - 1) {
+                    viewFlipper.setDisplayedChild(0); //back to the first item
+                    updateData();
+                    event.startTracking();
+                    return true;
                 }
             }
         }
-        return super.onKeyDown(keyCode, event);
+        return false;
     }
-
-    private int getLayoutId(int child) {
-        switch (child) {
-            case 0:
-                return R.id.now_playing_main_view_1;
-            case 1:
-                return R.id.now_playing_main_view_2;
-            case 2:
-                return R.id.now_playing_main_view_3;
-
-        }
-        return R.id.now_playing_main_view_1;
-    }
-
 
     private void updateData() {
-        final int viewLayoutId = getLayoutId(viewFlipper.getDisplayedChild());
-        NowPlayingMainModel model = createNowPlayingMainModel();
+        final int childId = viewFlipper.getDisplayedChild();
+        final int viewLayoutId = viewLayoutIds.get(childId);
+        NowPlayingMainModel model = createNowPlayingMainModel(childId);
         NowPlayingMainView view = (NowPlayingMainView) (viewFlipper.findViewById(viewLayoutId));
         new NowPlayingMainBinder().bind(view, model);
-        updateTimeline(this, view.nowPlayingTimelineView);
+       // updateTimeline(this, view.nowPlayingTimelineView);
     }
 
     private NowPlayingTimelineModel createNowPlayingTimelineModel(final long minutes,
@@ -139,13 +144,13 @@ public class NowPlayingViewFlipperActivity extends Activity {
         }.start();
     }
 
-    private NowPlayingMainModel createNowPlayingMainModel() {
+    private NowPlayingMainModel createNowPlayingMainModel(int childId) {
         return NowPlayingMainModel.builder(
                 "test-main-uuid",
                 R.drawable.now_playing_background,
-                "Host Team",
+                "Host Team #" + childId,
                 R.drawable.host,
-                "Visiting Team",
+                "Visiting Team #" + childId,
                 R.drawable.visiting).build();
     }
 }
