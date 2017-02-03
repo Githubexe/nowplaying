@@ -3,7 +3,7 @@ package com.music.amazon.mypoldi.binder;
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 
-import com.music.amazon.mypoldi.LiveGameEventAdapter;
+import com.music.amazon.mypoldi.adapter.LiveGameEventAdapter;
 import com.music.amazon.mypoldi.model.NowPlayingTimelineModel;
 import com.music.amazon.mypoldi.view.NowPlayingTimelineView;
 

@@ -35,14 +35,7 @@ public class NowPlayingViewFlipperActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.now_playing_view_flipper_activity);
         viewFlipper = (ViewFlipper) findViewById(R.id.now_playing_view_flipper);
-        for (int i = 0; i < NUM_OF_LIVE_GAMES; i++) {
-            final NowPlayingBackgroundView view = new NowPlayingBackgroundView(this);
-            final int viewId = View.generateViewId();
-            viewLayoutIds.add(i, viewId);
-            view.setId(viewId);
-            viewFlipper.addView(view);
-        }
-
+        addNextView(0);
         updateData();
     }
 
@@ -60,6 +53,7 @@ public class NowPlayingViewFlipperActivity extends Activity {
                 }
             } else if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {
                 if (viewFlipper.getDisplayedChild() < NUM_OF_LIVE_GAMES - 1) {
+                    addNextView(viewFlipper.getDisplayedChild() + 1);
                     viewFlipper.setInAnimation(this, R.anim.in_from_right);
                     viewFlipper.setOutAnimation(this, R.anim.out_to_left);
                     viewFlipper.showNext();
@@ -77,13 +71,21 @@ public class NowPlayingViewFlipperActivity extends Activity {
         return false;
     }
 
+    private void addNextView(int index) {
+        final NowPlayingBackgroundView view = new NowPlayingBackgroundView(this);
+        final int viewId = View.generateViewId();
+        viewLayoutIds.add(index, viewId);
+        view.setId(viewId);
+        viewFlipper.addView(view);
+    }
+
     private void updateData() {
         final int childId = viewFlipper.getDisplayedChild();
         final int viewLayoutId = viewLayoutIds.get(childId);
         NowPlayingBackgroundModel model = createNowPlayingMainModel(childId);
         NowPlayingBackgroundView view = (NowPlayingBackgroundView) (viewFlipper.findViewById(viewLayoutId));
         new NowPlayingBackgroundBinder().bind(view, model);
-       // updateTimeline(this, view.nowPlayingTimelineView);
+        updateTimeline(this, view.nowPlayingTimelineView);
     }
 
     private NowPlayingTimelineModel createNowPlayingTimelineModel(final long minutes,
@@ -125,7 +127,7 @@ public class NowPlayingViewFlipperActivity extends Activity {
                     final List<LiveGameEvent> events = new ArrayList<LiveGameEvent>();
                     final long start = System.currentTimeMillis();
                     while (!isInterrupted()) {
-                        Thread.sleep(1000);
+                        Thread.sleep(2000);
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
