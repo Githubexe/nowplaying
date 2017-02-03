@@ -5,28 +5,33 @@
 
 
     <ViewFlipper
-        android:id="@+id/view_flipper"
+        android:id="@+id/now_playing_view_flipper"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
 
         <!--  The child Views/Layout to flip -->
 
-        <!--  Layout 1for 1st Screen -->
-        <include
-            layout="@layout/now_playing_main_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+        <!--  Layout 1 for 1st Screen -->
+        <com.music.amazon.mypoldi.view.NowPlayingMainView
+            android:id = "@+id/now_playing_main_view_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </com.music.amazon.mypoldi.view.NowPlayingMainView>
 
-        <include
-            layout="@layout/now_playing_main_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+        <!--  Layout 2 for 2nd Screen -->
+        <com.music.amazon.mypoldi.view.NowPlayingMainView
+            android:id = "@+id/now_playing_main_view_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </com.music.amazon.mypoldi.view.NowPlayingMainView>
 
-        <include
-            layout="@layout/now_playing_main_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+        <!--  Layout 3 for 3rd Screen -->
+        <com.music.amazon.mypoldi.view.NowPlayingMainView
+            android:id = "@+id/now_playing_main_view_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </com.music.amazon.mypoldi.view.NowPlayingMainView>
 
 
         <!--<LinearLayout-->
