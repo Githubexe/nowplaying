@@ -68,7 +68,7 @@ public class NowPlayingViewFlipperActivity extends Activity {
                 }
             }
         }
-        return false;
+        return super.onKeyDown(keyCode,event);
     }
 
     private void addNextView(int index) {
