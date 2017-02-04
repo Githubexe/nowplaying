@@ -20,9 +20,6 @@
             </intent-filter>
         </activity>
 
-        <!--<activity-->
-            <!--android:name=".NowPlayingActivity"/>-->
-
         <activity android:name=".NowPlayingViewFlipperActivity" />
 
     </application>

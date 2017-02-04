@@ -68,15 +68,10 @@ public class NowPlayingViewFlipperActivity extends Activity {
                 if (viewFlipper.getChildCount() < NUM_OF_LIVE_GAMES) {
                     addNextView(viewFlipper.getDisplayedChild() + 1);
                 }
-                if (viewFlipper.getDisplayedChild() < NUM_OF_LIVE_GAMES - 1) {
+                if (viewFlipper.getDisplayedChild() <= NUM_OF_LIVE_GAMES - 1) {
                     viewFlipper.setInAnimation(this, R.anim.in_from_right);
                     viewFlipper.setOutAnimation(this, R.anim.out_to_left);
                     viewFlipper.showNext();
-                    updateData();
-                    event.startTracking();
-                    return true;
-                } else  if (viewFlipper.getDisplayedChild() == NUM_OF_LIVE_GAMES - 1) {
-                    viewFlipper.setDisplayedChild(0); //back to the first item
                     updateData();
                     event.startTracking();
                     return true;
