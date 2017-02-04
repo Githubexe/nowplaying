@@ -52,8 +52,10 @@ public class NowPlayingViewFlipperActivity extends Activity {
                     return true;
                 }
             } else if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {
-                if (viewFlipper.getDisplayedChild() < NUM_OF_LIVE_GAMES - 1) {
+                if (viewFlipper.getChildCount() < NUM_OF_LIVE_GAMES) {
                     addNextView(viewFlipper.getDisplayedChild() + 1);
+                }
+                if (viewFlipper.getDisplayedChild() < NUM_OF_LIVE_GAMES - 1) {
                     viewFlipper.setInAnimation(this, R.anim.in_from_right);
                     viewFlipper.setOutAnimation(this, R.anim.out_to_left);
                     viewFlipper.showNext();
@@ -124,19 +126,20 @@ public class NowPlayingViewFlipperActivity extends Activity {
             @Override
             public void run() {
                 try {
+                    final NowPlayingTimelineBinder nowPlayingTimelineBinder = new NowPlayingTimelineBinder(context);
                     final List<LiveGameEvent> events = new ArrayList<LiveGameEvent>();
                     final long start = System.currentTimeMillis();
                     while (!isInterrupted()) {
                         Thread.sleep(2000);
+                        final long current = System.currentTimeMillis();
+                        final long seconds = (current - start) / 1000 % 60;
+                        final long minutes = (current - start) / 1000 / 60;
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                final long current = System.currentTimeMillis();
-                                final long seconds = (current - start) / 1000 % 60;
-                                final long minutes = (current - start) / 1000 / 60;
                                 NowPlayingTimelineModel timelineModelmodel =
                                         createNowPlayingTimelineModel(minutes, seconds, events);
-                                new NowPlayingTimelineBinder(context).bind(nowPlayingTimelineView, timelineModelmodel);
+                                nowPlayingTimelineBinder.bind(nowPlayingTimelineView, timelineModelmodel);
                             }
                         });
                     }
