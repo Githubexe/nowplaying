@@ -30,6 +30,8 @@ public class NowPlayingViewFlipperActivity extends Activity {
 
     private List<Integer> viewLayoutIds = new ArrayList<Integer>();
 
+    private Thread timelineUpdateThread;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +42,19 @@ public class NowPlayingViewFlipperActivity extends Activity {
     }
 
     @Override
+    protected void onDestroy() {
+        if (timelineUpdateThread != null) {
+            timelineUpdateThread.interrupt();
+        }
+        super.onDestroy();
+    }
+
+    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            if (timelineUpdateThread != null) {
+                timelineUpdateThread.interrupt();
+            }
             if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {
                 if (viewFlipper.getDisplayedChild() >= 0) {
                     viewFlipper.setInAnimation(this, R.anim.in_from_left);
@@ -122,7 +135,7 @@ public class NowPlayingViewFlipperActivity extends Activity {
     //DEMO data only!!!
     private void updateTimeline(final Context context,
                                 final NowPlayingTimelineView nowPlayingTimelineView) {
-        new Thread() {
+        timelineUpdateThread = new Thread() {
             @Override
             public void run() {
                 try {
@@ -130,7 +143,6 @@ public class NowPlayingViewFlipperActivity extends Activity {
                     final List<LiveGameEvent> events = new ArrayList<LiveGameEvent>();
                     final long start = System.currentTimeMillis();
                     while (!isInterrupted()) {
-                        Thread.sleep(2000);
                         final long current = System.currentTimeMillis();
                         final long seconds = (current - start) / 1000 % 60;
                         final long minutes = (current - start) / 1000 / 60;
@@ -142,11 +154,13 @@ public class NowPlayingViewFlipperActivity extends Activity {
                                 nowPlayingTimelineBinder.bind(nowPlayingTimelineView, timelineModelmodel);
                             }
                         });
+                        Thread.sleep(1000);
                     }
                 } catch (InterruptedException e) {
                 }
             }
-        }.start();
+        };
+        timelineUpdateThread.start();
     }
 
     private NowPlayingBackgroundModel createNowPlayingMainModel(int childId) {
