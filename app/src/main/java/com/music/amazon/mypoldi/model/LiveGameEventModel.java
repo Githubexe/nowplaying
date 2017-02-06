@@ -3,7 +3,7 @@ package com.music.amazon.mypoldi.model;
 /**
  * A pojo for game event
  */
-public final class LiveGameEvent {
+public final class LiveGameEventModel {
 
     public String leftEventTime;
 
@@ -89,8 +89,8 @@ public final class LiveGameEvent {
             return this;
         }
 
-        public LiveGameEvent build() {
-            return new LiveGameEvent(uuid,
+        public LiveGameEventModel build() {
+            return new LiveGameEventModel(uuid,
                     leftEventTime,
                     leftEventDescription,
                     leftEventIconResId,
@@ -104,15 +104,15 @@ public final class LiveGameEvent {
         }
     }
 
-    private LiveGameEvent(final String uuid,
-                          final String leftEventTime,
-                          final String leftEventDescription,
-                          final int leftEventIconResId,
-                          final int leftMarkerIconResId,
-                          final String rightEventTime,
-                          final String rightEventDescription,
-                          final int rightEventIconResId,
-                          final int rightMarkerIconResId) {
+    private LiveGameEventModel(final String uuid,
+                               final String leftEventTime,
+                               final String leftEventDescription,
+                               final int leftEventIconResId,
+                               final int leftMarkerIconResId,
+                               final String rightEventTime,
+                               final String rightEventDescription,
+                               final int rightEventIconResId,
+                               final int rightMarkerIconResId) {
         //super(uuid);
         this.leftEventTime = leftEventTime;
         this.leftEventDescription = leftEventDescription;

@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.music.amazon.mypoldi.R;
-import com.music.amazon.mypoldi.model.LiveGameEvent;
+import com.music.amazon.mypoldi.model.LiveGameEventModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +19,12 @@ import java.util.List;
 public class LiveGameEventAdapter extends
         RecyclerView.Adapter<LiveGameEventAdapter.ViewHolder> {
 
-    private List<LiveGameEvent> list = new ArrayList<>();
+    private final List<LiveGameEventModel> list;
 
-    public LiveGameEventAdapter(List<LiveGameEvent> list) {
-        this.list = list;
+    public LiveGameEventAdapter(List<LiveGameEventModel> list) {
+        this.list = list == null ?
+                new ArrayList<LiveGameEventModel>() :
+                list;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -67,33 +69,33 @@ public class LiveGameEventAdapter extends
 
     @Override
     public void onBindViewHolder(LiveGameEventAdapter.ViewHolder viewHolder, int position) {
-        LiveGameEvent liveGameEvent = list.get(position);
+        LiveGameEventModel liveGameEventModel = list.get(position);
 
         final TextView leftEventTimeTextView = viewHolder.leftEventTimeTextView;
-        leftEventTimeTextView.setText(liveGameEvent.leftEventTime);
+        leftEventTimeTextView.setText(liveGameEventModel.leftEventTime);
 
         final TextView leftEventDescriptionTextView = viewHolder.leftEventDescriptionTextView;
-        leftEventDescriptionTextView.setText(liveGameEvent.leftEventDescription);
+        leftEventDescriptionTextView.setText(liveGameEventModel.leftEventDescription);
         leftEventDescriptionTextView.bringToFront();
 
         final ImageView leftEventImageView = viewHolder.leftEventImageView;
-        leftEventImageView.setImageResource(liveGameEvent.leftEventIconResId);
+        leftEventImageView.setImageResource(liveGameEventModel.leftEventIconResId);
 
         final ImageView leftMarkerImageView = viewHolder.leftMarkerImageView;
-        leftMarkerImageView.setImageResource(liveGameEvent.leftMarkerIconResId);
+        leftMarkerImageView.setImageResource(liveGameEventModel.leftMarkerIconResId);
 
         final TextView rightEventTimeTextView = viewHolder.rightEventTimeTextView;
-        rightEventTimeTextView.setText(liveGameEvent.rightEventTime);
+        rightEventTimeTextView.setText(liveGameEventModel.rightEventTime);
 
         final TextView rightEventDescriptionTextView = viewHolder.rightEventDescriptionTextView;
-        rightEventDescriptionTextView.setText(liveGameEvent.rightEventDescription);
+        rightEventDescriptionTextView.setText(liveGameEventModel.rightEventDescription);
         rightEventDescriptionTextView.bringToFront();
 
         final ImageView rightEventImageView = viewHolder.rightEventImageView;
-        rightEventImageView.setImageResource(liveGameEvent.rightEventIconResId);
+        rightEventImageView.setImageResource(liveGameEventModel.rightEventIconResId);
 
         final ImageView rightMarkerImageView = viewHolder.rightMarkerImageView;
-        rightMarkerImageView.setImageResource(liveGameEvent.rightMarkerIconResId);
+        rightMarkerImageView.setImageResource(liveGameEventModel.rightMarkerIconResId);
     }
 
     @Override
