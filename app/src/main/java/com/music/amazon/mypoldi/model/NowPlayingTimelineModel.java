@@ -11,6 +11,8 @@ public final class NowPlayingTimelineModel {
 
     public String visitingTeamScore;
 
+    public String kickoffTime;
+
     public String minutes;
 
     public String seconds;
@@ -29,6 +31,8 @@ public final class NowPlayingTimelineModel {
 
         private String visitingTeamScore;
 
+        private String kickoffTime;
+
         private String minutes;
 
         private String seconds;
@@ -46,6 +50,11 @@ public final class NowPlayingTimelineModel {
 
         public Builder withVisitingTeamScore(final String visitingTeamScore) {
             this.visitingTeamScore = visitingTeamScore;
+            return this;
+        }
+
+        public Builder withKickoffTime(String kickoffTime) {
+            this.kickoffTime = kickoffTime;
             return this;
         }
 
@@ -68,6 +77,7 @@ public final class NowPlayingTimelineModel {
             return new NowPlayingTimelineModel(uuid,
                     hostTeamScore,
                     visitingTeamScore,
+                    kickoffTime,
                     minutes,
                     seconds,
                     events);
@@ -77,12 +87,14 @@ public final class NowPlayingTimelineModel {
     private NowPlayingTimelineModel(final String uuid,
                                     final String hostTeamScore,
                                     final String visitingTeamScore,
+                                    final String kickoffTime,
                                     final String minutes,
                                     final String seconds,
                                     final List<LiveGameEventModel> events) {
         //super(uuid);
         this.hostTeamScore = hostTeamScore;
         this.visitingTeamScore = visitingTeamScore;
+        this.kickoffTime = kickoffTime;
         this.minutes = minutes;
         this.seconds = seconds;
         this.events = events;

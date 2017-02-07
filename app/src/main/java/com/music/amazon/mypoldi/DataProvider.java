@@ -11,12 +11,13 @@ import java.util.List;
  */
 public final class DataProvider {
 
-    public static NowPlayingTimelineModel createNowPlayingTimelineModel(final long start, final List<LiveGameEventModel> events) {
+    public static NowPlayingTimelineModel createNowPlayingTimelineModel(final long kickoffTime,
+                                                                        final List<LiveGameEventModel> events) {
         final LiveGameEventModel.Builder builder = LiveGameEventModel.builder("demo-only");
 
         final long current = System.currentTimeMillis();
-        final long seconds = (current - start) / 1000 % 60;
-        final long minutes = (current - start) / 1000 / 60;
+        final long seconds = (current - kickoffTime) / 1000 % 60;
+        final long minutes = (current - kickoffTime) / 1000 / 60;
 
         builder.withLeftEventDescritpion("Left: " + minutes*60 + seconds)
                 .withRightEventDescritpion("Right: " + minutes*60 + seconds)
