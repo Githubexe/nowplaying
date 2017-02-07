@@ -52,9 +52,6 @@ public class NowPlayingViewFlipperActivity extends Activity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
-            if (timelineUpdateThread != null) {
-                timelineUpdateThread.interrupt();
-            }
             if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {
                 if (viewFlipper.getDisplayedChild() >= 0) {
                     viewFlipper.setInAnimation(this, R.anim.now_playing_view_flipper_in_from_left);
@@ -90,45 +87,23 @@ public class NowPlayingViewFlipperActivity extends Activity {
     }
 
     private void updateData() {
+        if (timelineUpdateThread != null) {
+            timelineUpdateThread.interrupt();
+        }
+        final NowPlayingBackgroundView backgroundView = updateBackgroundView();
+        updateTimelineView(this, backgroundView.nowPlayingTimelineView);
+    }
+
+    private NowPlayingBackgroundView updateBackgroundView() {
         final int childId = viewFlipper.getDisplayedChild();
         final int viewLayoutId = viewLayoutIds.get(childId);
-        NowPlayingBackgroundModel model = createNowPlayingMainModel(childId);
+        NowPlayingBackgroundModel model = DataProvider.createNowPlayingMainModel(childId);
         NowPlayingBackgroundView view = (NowPlayingBackgroundView) (viewFlipper.findViewById(viewLayoutId));
         new NowPlayingBackgroundBinder().bind(view, model);
-        updateTimeline(this, view.nowPlayingTimelineView);
+        return view;
     }
 
-    private NowPlayingTimelineModel createNowPlayingTimelineModel(final long minutes,
-                                                                  final long seconds,
-                                                                  final List<LiveGameEventModel> events) {
-        final LiveGameEventModel.Builder builder = LiveGameEventModel.builder("demo-only");
-        builder.withLeftEventDescritpion("Left: " + minutes*60 + seconds)
-                .withRightEventDescritpion("Right: " + minutes*60 + seconds)
-                .build();
-
-        if (seconds % 5 == 0 || seconds % 13 ==0) {
-            builder.withLeftEventTime(minutes + seconds + "\"")
-                    .withLeftEventIconResId(R.drawable.yellow_card)
-                    .withLeftMarkerIconResId(R.drawable.yellow_marker);
-        } else if (seconds % 7 == 0 || seconds % 11 == 0) {
-            builder.withRightEventTime(minutes + seconds + "\"")
-                    .withRightEventIconResId(R.drawable.yellow_card)
-                    .withRightMarkerIconResId(R.drawable.yellow_marker);
-        }
-
-        events.add(builder.build());
-
-        return NowPlayingTimelineModel.builder(
-                "test-uuid").
-                withHostTeamScore("1").
-                withVisitingTeamScore("2").
-                withMinutes(Long.toString(minutes)).
-                withSeconds(Long.toString(seconds)).
-                withEvents(events).build();
-    }
-
-    //DEMO data only!!!
-    private void updateTimeline(final Context context,
+    private void updateTimelineView(final Context context,
                                 final NowPlayingTimelineView nowPlayingTimelineView) {
         timelineUpdateThread = new Thread() {
             @Override
@@ -138,14 +113,11 @@ public class NowPlayingViewFlipperActivity extends Activity {
                     final List<LiveGameEventModel> events = new ArrayList<LiveGameEventModel>();
                     final long start = System.currentTimeMillis();
                     while (!isInterrupted()) {
-                        final long current = System.currentTimeMillis();
-                        final long seconds = (current - start) / 1000 % 60;
-                        final long minutes = (current - start) / 1000 / 60;
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 NowPlayingTimelineModel timelineModelmodel =
-                                        createNowPlayingTimelineModel(minutes, seconds, events);
+                                        DataProvider.createNowPlayingTimelineModel(start, events);
                                 nowPlayingTimelineBinder.bind(nowPlayingTimelineView, timelineModelmodel);
                             }
                         });
@@ -156,15 +128,5 @@ public class NowPlayingViewFlipperActivity extends Activity {
             }
         };
         timelineUpdateThread.start();
-    }
-
-    private NowPlayingBackgroundModel createNowPlayingMainModel(int childId) {
-        return NowPlayingBackgroundModel.builder(
-                "test-main-uuid",
-                R.drawable.now_playing_background,
-                "Host Team #" + childId,
-                R.drawable.host,
-                "Visiting Team #" + childId,
-                R.drawable.visiting).build();
     }
 }
