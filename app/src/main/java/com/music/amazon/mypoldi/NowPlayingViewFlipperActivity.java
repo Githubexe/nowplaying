@@ -9,7 +9,7 @@ import android.widget.ViewFlipper;
 
 import com.music.amazon.mypoldi.binder.NowPlayingBackgroundBinder;
 import com.music.amazon.mypoldi.binder.NowPlayingTimelineBinder;
-import com.music.amazon.mypoldi.model.LiveGameEvent;
+import com.music.amazon.mypoldi.model.LiveGameEventModel;
 import com.music.amazon.mypoldi.model.NowPlayingBackgroundModel;
 import com.music.amazon.mypoldi.model.NowPlayingTimelineModel;
 import com.music.amazon.mypoldi.view.NowPlayingBackgroundView;
@@ -100,8 +100,8 @@ public class NowPlayingViewFlipperActivity extends Activity {
 
     private NowPlayingTimelineModel createNowPlayingTimelineModel(final long minutes,
                                                                   final long seconds,
-                                                                  final List<LiveGameEvent> events) {
-        final LiveGameEvent.Builder builder = LiveGameEvent.builder("demo-only");
+                                                                  final List<LiveGameEventModel> events) {
+        final LiveGameEventModel.Builder builder = LiveGameEventModel.builder("demo-only");
         builder.withLeftEventDescritpion("Left: " + minutes*60 + seconds)
                 .withRightEventDescritpion("Right: " + minutes*60 + seconds)
                 .build();
@@ -135,7 +135,7 @@ public class NowPlayingViewFlipperActivity extends Activity {
             public void run() {
                 try {
                     final NowPlayingTimelineBinder nowPlayingTimelineBinder = new NowPlayingTimelineBinder(context);
-                    final List<LiveGameEvent> events = new ArrayList<LiveGameEvent>();
+                    final List<LiveGameEventModel> events = new ArrayList<LiveGameEventModel>();
                     final long start = System.currentTimeMillis();
                     while (!isInterrupted()) {
                         final long current = System.currentTimeMillis();
