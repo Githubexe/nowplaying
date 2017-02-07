@@ -57,8 +57,8 @@ public class NowPlayingViewFlipperActivity extends Activity {
             }
             if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {
                 if (viewFlipper.getDisplayedChild() >= 0) {
-                    viewFlipper.setInAnimation(this, R.anim.in_from_left);
-                    viewFlipper.setOutAnimation(this, R.anim.out_to_right);
+                    viewFlipper.setInAnimation(this, R.anim.now_playing_view_flipper_in_from_left);
+                    viewFlipper.setOutAnimation(this, R.anim.now_playing_view_flipper_out_to_right);
                     viewFlipper.showPrevious();
                     updateData();
                     event.startTracking();
@@ -69,8 +69,8 @@ public class NowPlayingViewFlipperActivity extends Activity {
                     addNextView(viewFlipper.getDisplayedChild() + 1);
                 }
                 if (viewFlipper.getDisplayedChild() <= NUM_OF_LIVE_GAMES - 1) {
-                    viewFlipper.setInAnimation(this, R.anim.in_from_right);
-                    viewFlipper.setOutAnimation(this, R.anim.out_to_left);
+                    viewFlipper.setInAnimation(this, R.anim.now_playing_view_flipper_in_from_right);
+                    viewFlipper.setOutAnimation(this, R.anim.now_playing_view_flipper_out_to_left);
                     viewFlipper.showNext();
                     updateData();
                     event.startTracking();
