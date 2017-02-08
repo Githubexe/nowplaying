@@ -3,29 +3,29 @@ package com.music.amazon.mypoldi.binder;
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 
-import com.music.amazon.mypoldi.adapter.MatchLiveEventAdapter;
-import com.music.amazon.mypoldi.model.NowPlayingMatchLiveEventModel;
-import com.music.amazon.mypoldi.view.NowPlayingMatchLiveEventView;
+import com.music.amazon.mypoldi.adapter.MatchEventAdapter;
+import com.music.amazon.mypoldi.model.NowPlayingMatchDetailsModel;
+import com.music.amazon.mypoldi.view.NowPlayingMatchDetailsView;
 
 /**
  * Created by yoyosu on 1/25/17.
  */
-public class NowPlayingMatchLiveEventBinder {
+public class NowPlayingMatchDetailsBinder {
     private Context context;
 
     private final LinearLayoutManager layoutManager;
 
-    public NowPlayingMatchLiveEventBinder(Context context) {
+    public NowPlayingMatchDetailsBinder(Context context) {
         this.context = context;
         layoutManager  = new LinearLayoutManager(context);
     }
 
-    public NowPlayingMatchLiveEventView createView() {
-        return new NowPlayingMatchLiveEventView(context);
+    public NowPlayingMatchDetailsView createView() {
+        return new NowPlayingMatchDetailsView(context);
     }
 
-    public void bind(final NowPlayingMatchLiveEventView view,
-                     final NowPlayingMatchLiveEventModel model){
+    public void bind(final NowPlayingMatchDetailsView view,
+                     final NowPlayingMatchDetailsModel model){
         view.hostTeamScoreTextView.setText(model.hostTeamScore);
         view.visitingTeamScoreTextView.setText(model.visitingTeamScore);
         view.scoreSeparator.setText("-");
@@ -34,7 +34,7 @@ public class NowPlayingMatchLiveEventBinder {
         view.secondsTextView.setText(Integer.toString(model.seconds));
         view.timeStampSeparator.setText(":");
 
-        final MatchLiveEventAdapter adapter = new MatchLiveEventAdapter(model.events);
+        final MatchEventAdapter adapter = new MatchEventAdapter(model.events);
         view.gameEventRecyclerView.setAdapter(adapter);
         layoutManager.setStackFromEnd(true);
 

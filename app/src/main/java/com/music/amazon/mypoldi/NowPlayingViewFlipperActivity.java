@@ -7,10 +7,10 @@ import android.view.View;
 import android.widget.ViewFlipper;
 
 import com.music.amazon.mypoldi.binder.NowPlayingMatchBinder;
-import com.music.amazon.mypoldi.binder.NowPlayingMatchLiveEventBinder;
-import com.music.amazon.mypoldi.model.LiveGameEventModel;
+import com.music.amazon.mypoldi.binder.NowPlayingMatchDetailsBinder;
+import com.music.amazon.mypoldi.model.MatchEventModel;
 import com.music.amazon.mypoldi.model.NowPlayingMatchModel;
-import com.music.amazon.mypoldi.model.NowPlayingMatchLiveEventModel;
+import com.music.amazon.mypoldi.model.NowPlayingMatchDetailsModel;
 import com.music.amazon.mypoldi.view.NowPlayingMatchView;
 
 import java.util.ArrayList;
@@ -107,24 +107,24 @@ public class NowPlayingViewFlipperActivity extends Activity {
             @Override
             public void run() {
                 try {
-                    final NowPlayingMatchLiveEventBinder nowPlayingMatchLiveEventBinder =
-                            new NowPlayingMatchLiveEventBinder(NowPlayingViewFlipperActivity.this);
-                    final List<LiveGameEventModel> events = new ArrayList<LiveGameEventModel>();
-                    final NowPlayingMatchLiveEventModel timelineModelmodel =
+                    final NowPlayingMatchDetailsBinder nowPlayingMatchDetailsBinder =
+                            new NowPlayingMatchDetailsBinder(NowPlayingViewFlipperActivity.this);
+                    final List<MatchEventModel> events = new ArrayList<MatchEventModel>();
+                    final NowPlayingMatchDetailsModel timelineModelmodel =
                             DataProvider.createNowPlayingTimelineModel(events);
 
                     while (!isInterrupted()) {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                final LiveGameEventModel eventModel = DataProvider.createLiveGameEvent();
+                                final MatchEventModel eventModel = DataProvider.createLiveGameEvent();
                                 events.add(eventModel);
                                 final Calendar now = Calendar.getInstance();
                                 //DEMO ONLY
                                 timelineModelmodel.minutes = now.get(Calendar.MINUTE);
                                 timelineModelmodel.seconds = now.get(Calendar.SECOND);
-                                nowPlayingMatchLiveEventBinder.bind(
-                                        backgroundView.nowPlayingMatchLiveEventView,
+                                nowPlayingMatchDetailsBinder.bind(
+                                        backgroundView.nowPlayingMatchDetailsView,
                                         timelineModelmodel);
                             }
                         });

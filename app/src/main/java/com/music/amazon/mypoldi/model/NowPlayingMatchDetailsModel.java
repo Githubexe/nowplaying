@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by yoyosu on 1/25/17.
  */
-public final class NowPlayingMatchLiveEventModel {
+public final class NowPlayingMatchDetailsModel {
     public String hostTeamScore;
 
     public String visitingTeamScore;
@@ -15,7 +15,7 @@ public final class NowPlayingMatchLiveEventModel {
 
     public int seconds;
 
-    public List<LiveGameEventModel> events = new ArrayList<LiveGameEventModel>();
+    public List<MatchEventModel> events = new ArrayList<MatchEventModel>();
 
     public static final Builder builder(final String uuid) {
         return new Builder(uuid);
@@ -33,7 +33,7 @@ public final class NowPlayingMatchLiveEventModel {
 
         private int seconds;
 
-        private List<LiveGameEventModel> events = new ArrayList<LiveGameEventModel>();
+        private List<MatchEventModel> events = new ArrayList<MatchEventModel>();
 
         private Builder(final String uuid) {
             this.uuid = uuid;
@@ -59,13 +59,13 @@ public final class NowPlayingMatchLiveEventModel {
             return this;
         }
 
-        public Builder withEvents(List<LiveGameEventModel> events) {
+        public Builder withEvents(List<MatchEventModel> events) {
             this.events = events;
             return this;
         }
 
-        public NowPlayingMatchLiveEventModel build() {
-            return new NowPlayingMatchLiveEventModel(uuid,
+        public NowPlayingMatchDetailsModel build() {
+            return new NowPlayingMatchDetailsModel(uuid,
                     hostTeamScore,
                     visitingTeamScore,
                     minutes,
@@ -74,12 +74,12 @@ public final class NowPlayingMatchLiveEventModel {
         }
     }
 
-    private NowPlayingMatchLiveEventModel(final String uuid,
-                                          final String hostTeamScore,
-                                          final String visitingTeamScore,
-                                          final int minutes,
-                                          final int seconds,
-                                          final List<LiveGameEventModel> events) {
+    private NowPlayingMatchDetailsModel(final String uuid,
+                                        final String hostTeamScore,
+                                        final String visitingTeamScore,
+                                        final int minutes,
+                                        final int seconds,
+                                        final List<MatchEventModel> events) {
         //super(uuid);
         this.hostTeamScore = hostTeamScore;
         this.visitingTeamScore = visitingTeamScore;

@@ -11,7 +11,7 @@ import com.music.amazon.mypoldi.R;
 /**
  * Created by yoyosu on 1/24/17.
  */
-public final class NowPlayingMatchLiveEventView extends RelativeLayout {
+public final class NowPlayingMatchDetailsView extends RelativeLayout {
 
     public RecyclerView gameEventRecyclerView;
 
@@ -27,15 +27,15 @@ public final class NowPlayingMatchLiveEventView extends RelativeLayout {
 
     public TextView scoreSeparator;
 
-    public NowPlayingMatchLiveEventView(Context context) {
+    public NowPlayingMatchDetailsView(Context context) {
         this(context, null);
     }
 
-    public NowPlayingMatchLiveEventView(Context context, AttributeSet attributeSet) {
+    public NowPlayingMatchDetailsView(Context context, AttributeSet attributeSet) {
         this(context, attributeSet, 0);
     }
 
-    public NowPlayingMatchLiveEventView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public NowPlayingMatchDetailsView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
