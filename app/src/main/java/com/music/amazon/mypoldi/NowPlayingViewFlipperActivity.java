@@ -22,8 +22,6 @@ public class NowPlayingViewFlipperActivity extends Activity {
     //FIXME: get it from service
     private final int NUM_OF_LIVE_GAMES = 3;
 
-    private NowPlayingBackgroundBinder nowPlayingBackgroundBinder = new NowPlayingBackgroundBinder();
-
     private NowPlayingBackgroundView backgroundView;
 
     private ViewFlipper viewFlipper;
