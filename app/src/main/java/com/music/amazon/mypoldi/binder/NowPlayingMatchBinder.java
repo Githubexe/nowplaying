@@ -17,7 +17,6 @@ public final class NowPlayingMatchBinder {
 
     public void bind(final NowPlayingMatchView view,
                       final NowPlayingMatchModel model){
-
         final Resources resources = view.getResources();
         view.backgroundImageView.setImageDrawable(resources.getDrawable(model.backgroundResId));
 

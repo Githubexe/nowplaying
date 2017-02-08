@@ -40,6 +40,5 @@ public class NowPlayingMatchDetailsBinder {
 
         view.gameEventRecyclerView.setLayoutManager(layoutManager);
         view.gameEventRecyclerView.scrollToPosition(adapter.getItemCount() - 1);
-
     }
 }

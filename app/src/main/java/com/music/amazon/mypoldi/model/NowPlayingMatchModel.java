@@ -93,6 +93,3 @@ public final class NowPlayingMatchModel {
         this.kickoffTime = kickoffTime;
     }
 }
-
-
-
