@@ -30,8 +30,8 @@ public class NowPlayingTimelineBinder {
         view.visitingTeamScoreTextView.setText(model.visitingTeamScore);
         view.scoreSeparator.setText("-");
 
-        view.minutesTextView.setText(model.minutes);
-        view.secondsTextView.setText(model.seconds);
+        view.minutesTextView.setText(Integer.toString(model.minutes));
+        view.secondsTextView.setText(Integer.toString(model.seconds));
         view.timeStampSeparator.setText(":");
 
         final LiveGameEventAdapter adapter = new LiveGameEventAdapter(model.events);

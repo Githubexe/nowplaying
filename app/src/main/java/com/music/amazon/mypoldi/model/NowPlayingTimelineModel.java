@@ -11,11 +11,9 @@ public final class NowPlayingTimelineModel {
 
     public String visitingTeamScore;
 
-    public String kickoffTime;
+    public int minutes;
 
-    public String minutes;
-
-    public String seconds;
+    public int seconds;
 
     public List<LiveGameEventModel> events = new ArrayList<LiveGameEventModel>();
 
@@ -31,11 +29,9 @@ public final class NowPlayingTimelineModel {
 
         private String visitingTeamScore;
 
-        private String kickoffTime;
+        private int minutes;
 
-        private String minutes;
-
-        private String seconds;
+        private int seconds;
 
         private List<LiveGameEventModel> events = new ArrayList<LiveGameEventModel>();
 
@@ -53,17 +49,12 @@ public final class NowPlayingTimelineModel {
             return this;
         }
 
-        public Builder withKickoffTime(String kickoffTime) {
-            this.kickoffTime = kickoffTime;
-            return this;
-        }
-
-        public Builder withMinutes(String minutes) {
+        public Builder withMinutes(int minutes) {
             this.minutes = minutes;
             return this;
         }
 
-        public Builder withSeconds(String seconds) {
+        public Builder withSeconds(int seconds) {
             this.seconds = seconds;
             return this;
         }
@@ -77,7 +68,6 @@ public final class NowPlayingTimelineModel {
             return new NowPlayingTimelineModel(uuid,
                     hostTeamScore,
                     visitingTeamScore,
-                    kickoffTime,
                     minutes,
                     seconds,
                     events);
@@ -87,14 +77,12 @@ public final class NowPlayingTimelineModel {
     private NowPlayingTimelineModel(final String uuid,
                                     final String hostTeamScore,
                                     final String visitingTeamScore,
-                                    final String kickoffTime,
-                                    final String minutes,
-                                    final String seconds,
+                                    final int minutes,
+                                    final int seconds,
                                     final List<LiveGameEventModel> events) {
         //super(uuid);
         this.hostTeamScore = hostTeamScore;
         this.visitingTeamScore = visitingTeamScore;
-        this.kickoffTime = kickoffTime;
         this.minutes = minutes;
         this.seconds = seconds;
         this.events = events;

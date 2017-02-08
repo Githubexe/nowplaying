@@ -4,6 +4,7 @@ import com.music.amazon.mypoldi.model.LiveGameEventModel;
 import com.music.amazon.mypoldi.model.NowPlayingBackgroundModel;
 import com.music.amazon.mypoldi.model.NowPlayingTimelineModel;
 
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -11,47 +12,51 @@ import java.util.List;
  */
 public final class DataProvider {
 
-    public static NowPlayingTimelineModel createNowPlayingTimelineModel(final long kickoffTime,
-                                                                        final List<LiveGameEventModel> events) {
+    public static LiveGameEventModel createLiveGameEvent() {
         final LiveGameEventModel.Builder builder = LiveGameEventModel.builder("demo-only");
 
-        final long current = System.currentTimeMillis();
-        final long seconds = (current - kickoffTime) / 1000 % 60;
-        final long minutes = (current - kickoffTime) / 1000 / 60;
-
-        builder.withLeftEventDescritpion("Left: " + minutes*60 + seconds)
-                .withRightEventDescritpion("Right: " + minutes*60 + seconds)
+        final Calendar now = Calendar.getInstance();
+        int minute = now.get(Calendar.MINUTE);
+        int second = now.get(Calendar.SECOND);
+        builder.withLeftEventDescritpion("Left event: " + minute + "-" + second)
+                .withRightEventDescritpion("Righ event: " + minute  + "-" + second)
                 .build();
 
-        if (seconds % 5 == 0 || seconds % 13 ==0) {
-            builder.withLeftEventTime(minutes + seconds + "\"")
+        if (second % 5 == 0 || second % 13 ==0) {
+            builder.withLeftEventTime(minute + "\'" + second + "\"")
                     .withLeftEventIconResId(R.drawable.yellow_card)
                     .withLeftMarkerIconResId(R.drawable.yellow_marker);
-        } else if (seconds % 7 == 0 || seconds % 11 == 0) {
-            builder.withRightEventTime(minutes + seconds + "\"")
+        } else if (second % 7 == 0 || second % 11 == 0) {
+            builder.withRightEventTime(minute + "\'" + second + "\"")
                     .withRightEventIconResId(R.drawable.yellow_card)
                     .withRightMarkerIconResId(R.drawable.yellow_marker);
         }
 
-        events.add(builder.build());
+       return builder.build();
+    }
+
+    public static NowPlayingTimelineModel createNowPlayingTimelineModel(final List<LiveGameEventModel> events) {
+        LiveGameEventModel eventModel = createLiveGameEvent();
+        events.add(eventModel);
 
         return NowPlayingTimelineModel.builder(
                 "test-uuid").
                 withHostTeamScore("1").
                 withVisitingTeamScore("2").
-                withMinutes(Long.toString(minutes)).
-                withSeconds(Long.toString(seconds)).
+                withMinutes(0).
+                withSeconds(0).
                 withEvents(events).build();
     }
 
-    public static NowPlayingBackgroundModel createNowPlayingMainModel(int childId) {
+    public static NowPlayingBackgroundModel createNowPlayingBackgroundModel(int childId) {
         return NowPlayingBackgroundModel.builder(
                 "test-main-uuid",
                 R.drawable.now_playing_background,
                 "Host Team #" + childId,
                 R.drawable.host,
                 "Visiting Team #" + childId,
-                R.drawable.visiting).build();
+                R.drawable.visiting,
+                System.currentTimeMillis()).build();
     }
 
 }

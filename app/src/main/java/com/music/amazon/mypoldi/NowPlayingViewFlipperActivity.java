@@ -1,7 +1,6 @@
 package com.music.amazon.mypoldi;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -13,18 +12,19 @@ import com.music.amazon.mypoldi.model.LiveGameEventModel;
 import com.music.amazon.mypoldi.model.NowPlayingBackgroundModel;
 import com.music.amazon.mypoldi.model.NowPlayingTimelineModel;
 import com.music.amazon.mypoldi.view.NowPlayingBackgroundView;
-import com.music.amazon.mypoldi.view.NowPlayingTimelineView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
-/**
- * Created by yoyosu on 2/2/17.
- */
 public class NowPlayingViewFlipperActivity extends Activity {
 
     //FIXME: get it from service
     private final int NUM_OF_LIVE_GAMES = 3;
+
+    private NowPlayingBackgroundBinder nowPlayingBackgroundBinder = new NowPlayingBackgroundBinder();
+
+    private NowPlayingBackgroundView backgroundView;
 
     private ViewFlipper viewFlipper;
 
@@ -32,13 +32,15 @@ public class NowPlayingViewFlipperActivity extends Activity {
 
     private Thread timelineUpdateThread;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.now_playing_view_flipper_activity);
         viewFlipper = (ViewFlipper) findViewById(R.id.now_playing_view_flipper);
         addNextView(0);
-        updateData();
+        updateLayout();
     }
 
     @Override
@@ -57,7 +59,7 @@ public class NowPlayingViewFlipperActivity extends Activity {
                     viewFlipper.setInAnimation(this, R.anim.now_playing_view_flipper_in_from_left);
                     viewFlipper.setOutAnimation(this, R.anim.now_playing_view_flipper_out_to_right);
                     viewFlipper.showPrevious();
-                    updateData();
+                    updateLayout();
                     event.startTracking();
                     return true;
                 }
@@ -69,7 +71,7 @@ public class NowPlayingViewFlipperActivity extends Activity {
                     viewFlipper.setInAnimation(this, R.anim.now_playing_view_flipper_in_from_right);
                     viewFlipper.setOutAnimation(this, R.anim.now_playing_view_flipper_out_to_left);
                     viewFlipper.showNext();
-                    updateData();
+                    updateLayout();
                     event.startTracking();
                     return true;
                 }
@@ -86,39 +88,43 @@ public class NowPlayingViewFlipperActivity extends Activity {
         viewFlipper.addView(view);
     }
 
-    private void updateData() {
+    private void updateLayout() {
+        updateBackgroundView();
+        updateTimelineView();;
+    }
+
+    private void updateBackgroundView() {
+        final int childId = viewFlipper.getDisplayedChild();
+        final int viewLayoutId = viewLayoutIds.get(childId);
+        NowPlayingBackgroundModel model = DataProvider.createNowPlayingBackgroundModel(childId);
+        NowPlayingBackgroundView view = (NowPlayingBackgroundView) (viewFlipper.findViewById(viewLayoutId));
+        backgroundView = view;
+        new NowPlayingBackgroundBinder().bind(view, model);
+    }
+
+    private void updateTimelineView() {
         if (timelineUpdateThread != null) {
             timelineUpdateThread.interrupt();
         }
-        final NowPlayingBackgroundView backgroundView = updateBackgroundView();
-        updateTimelineView(this, backgroundView.nowPlayingTimelineView);
-    }
-
-    private NowPlayingBackgroundView updateBackgroundView() {
-        final int childId = viewFlipper.getDisplayedChild();
-        final int viewLayoutId = viewLayoutIds.get(childId);
-        NowPlayingBackgroundModel model = DataProvider.createNowPlayingMainModel(childId);
-        NowPlayingBackgroundView view = (NowPlayingBackgroundView) (viewFlipper.findViewById(viewLayoutId));
-        new NowPlayingBackgroundBinder().bind(view, model);
-        return view;
-    }
-
-    private void updateTimelineView(final Context context,
-                                final NowPlayingTimelineView nowPlayingTimelineView) {
         timelineUpdateThread = new Thread() {
             @Override
             public void run() {
                 try {
-                    final NowPlayingTimelineBinder nowPlayingTimelineBinder = new NowPlayingTimelineBinder(context);
+                    final NowPlayingTimelineBinder nowPlayingTimelineBinder = new NowPlayingTimelineBinder(NowPlayingViewFlipperActivity.this);
                     final List<LiveGameEventModel> events = new ArrayList<LiveGameEventModel>();
-                    final long start = System.currentTimeMillis();
+                    final NowPlayingTimelineModel timelineModelmodel =
+                            DataProvider.createNowPlayingTimelineModel(events);
+
                     while (!isInterrupted()) {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                NowPlayingTimelineModel timelineModelmodel =
-                                        DataProvider.createNowPlayingTimelineModel(start, events);
-                                nowPlayingTimelineBinder.bind(nowPlayingTimelineView, timelineModelmodel);
+                                final LiveGameEventModel eventModel = DataProvider.createLiveGameEvent();
+                                events.add(eventModel);
+                                final Calendar now = Calendar.getInstance();
+                                timelineModelmodel.minutes = now.get(Calendar.MINUTE);
+                                timelineModelmodel.seconds = now.get(Calendar.SECOND);
+                                nowPlayingTimelineBinder.bind(backgroundView.nowPlayingTimelineView, timelineModelmodel);
                             }
                         });
                         Thread.sleep(1000);

@@ -15,19 +15,23 @@ public final class NowPlayingBackgroundModel {
 
     public final int iconVisitingTeamLogoResId;
 
+    public final long kickoffTime;
+
     public static final Builder builder(final String uuid,
                                         final int backgroundResId,
                                         final String homeTeamName,
                                         final int iconHomeTeamLogoResId,
                                         final String visitingTeamName,
-                                        final int iconVisitingTeamLogoResId) {
+                                        final int iconVisitingTeamLogoResId,
+                                        final long kickoffTime) {
         return new Builder(
                 uuid,
                 backgroundResId,
                 homeTeamName,
                 iconHomeTeamLogoResId,
                 visitingTeamName,
-                iconVisitingTeamLogoResId);
+                iconVisitingTeamLogoResId,
+                kickoffTime);
     }
 
     public static final class Builder {
@@ -44,18 +48,22 @@ public final class NowPlayingBackgroundModel {
 
         private final int iconVisitingTeamLogoResId;
 
+        private final long kickoffTime;
+
         private Builder(final String uuid,
                         final int backgroundResId,
                         final String homeTeamName,
                         final int iconHomeTeamLogoResId,
                         final String visitingTeamName,
-                        final int iconVisitingTeamLogoResId) {
+                        final int iconVisitingTeamLogoResId,
+                        final long kickoffTime) {
             this.uuid = uuid;
             this.backgroundResId = backgroundResId;
             this.homeTeamName = homeTeamName;
             this.iconHomeTeamLogoResId = iconHomeTeamLogoResId;
             this.visitingTeamName = visitingTeamName;
             this.iconVisitingTeamLogoResId = iconVisitingTeamLogoResId;
+            this.kickoffTime = kickoffTime;
         }
 
         public NowPlayingBackgroundModel build() {
@@ -64,7 +72,8 @@ public final class NowPlayingBackgroundModel {
                     homeTeamName,
                     iconHomeTeamLogoResId,
                     visitingTeamName,
-                    iconVisitingTeamLogoResId);
+                    iconVisitingTeamLogoResId,
+                    kickoffTime);
         }
     }
 
@@ -73,13 +82,15 @@ public final class NowPlayingBackgroundModel {
                                       final String homeTeamName,
                                       final int iconHomeTeamLogoResId,
                                       final String visitingTeamName,
-                                      final int iconVisitingTeamLogoResId) {
+                                      final int iconVisitingTeamLogoResId,
+                                      final long kickoffTime) {
         //super(uuid);
         this.backgroundResId = backgroundResId;
         this.homeTeamName = homeTeamName;
         this.iconHomeTeamLogoResId = iconHomeTeamLogoResId;
         this.visitingTeamName = visitingTeamName;
         this.iconVisitingTeamLogoResId = iconVisitingTeamLogoResId;
+        this.kickoffTime = kickoffTime;
     }
 }
 
