@@ -94,7 +94,6 @@ public class NowPlayingViewFlipperActivity extends Activity {
     }
 
     private void updateBackgroundView() {
-
         final int childId = viewFlipper.getDisplayedChild();
         final int viewLayoutId = viewLayoutIds.get(childId);
         NowPlayingMatchModel model = DataProvider.createNowPlayingBackgroundModel(childId);
@@ -110,7 +109,7 @@ public class NowPlayingViewFlipperActivity extends Activity {
         scheduledFuture = scheduler.scheduleAtFixedRate(
                 new UpdateEventRunnable(),
                 2, //initial delay
-                1, //update every second
+                1, //interval
                 TimeUnit.SECONDS);
     }
 

@@ -1,9 +1,12 @@
 package com.music.amazon.mypoldi.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,9 +24,13 @@ import java.util.List;
 public class MatchEventAdapter extends
         RecyclerView.Adapter<MatchEventAdapter.ViewHolder> {
 
+    private Context context;
+
     private List<NowPlayingMatchDetailsEvent> list = new ArrayList<>();
 
-    public MatchEventAdapter(List<NowPlayingMatchDetailsEvent> list) {
+    public MatchEventAdapter(final List<NowPlayingMatchDetailsEvent> list,
+                             final Context context) {
+        this.context = context;
         this.list = list;
     }
 
@@ -96,10 +103,21 @@ public class MatchEventAdapter extends
 
         final ImageView rightMarkerImageView = viewHolder.rightMarkerImageView;
         rightMarkerImageView.setImageResource(nowPlayingMatchDetailsEvent.rightMarkerIconResId);
+
+        Animation animation = AnimationUtils.loadAnimation(context, R.anim.up_from_bottom);
+        viewHolder.itemView.startAnimation(animation);
     }
 
     @Override
     public int getItemCount() {
         return list.size();
     }
+
+    @Override
+    public void onViewDetachedFromWindow(ViewHolder holder) {
+        super.onViewDetachedFromWindow(holder);
+        holder.itemView.clearAnimation();
+    }
+
+
 }
