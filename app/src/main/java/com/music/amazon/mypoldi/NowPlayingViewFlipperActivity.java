@@ -19,7 +19,7 @@ import java.util.List;
 
 public class NowPlayingViewFlipperActivity extends Activity {
 
-    //FIXME: get it from service
+    //FIXME: get the number of concurrent live games from service
     private final int NUM_OF_LIVE_GAMES = 3;
 
     private NowPlayingMatchView backgroundView;
@@ -29,7 +29,6 @@ public class NowPlayingViewFlipperActivity extends Activity {
     private List<Integer> viewLayoutIds = new ArrayList<Integer>();
 
     private Thread timelineUpdateThread;
-
 
 
     @Override
@@ -108,7 +107,8 @@ public class NowPlayingViewFlipperActivity extends Activity {
             @Override
             public void run() {
                 try {
-                    final NowPlayingMatchLiveEventBinder nowPlayingMatchLiveEventBinder = new NowPlayingMatchLiveEventBinder(NowPlayingViewFlipperActivity.this);
+                    final NowPlayingMatchLiveEventBinder nowPlayingMatchLiveEventBinder =
+                            new NowPlayingMatchLiveEventBinder(NowPlayingViewFlipperActivity.this);
                     final List<LiveGameEventModel> events = new ArrayList<LiveGameEventModel>();
                     final NowPlayingMatchLiveEventModel timelineModelmodel =
                             DataProvider.createNowPlayingTimelineModel(events);
@@ -120,9 +120,12 @@ public class NowPlayingViewFlipperActivity extends Activity {
                                 final LiveGameEventModel eventModel = DataProvider.createLiveGameEvent();
                                 events.add(eventModel);
                                 final Calendar now = Calendar.getInstance();
+                                //DEMO ONLY
                                 timelineModelmodel.minutes = now.get(Calendar.MINUTE);
                                 timelineModelmodel.seconds = now.get(Calendar.SECOND);
-                                nowPlayingMatchLiveEventBinder.bind(backgroundView.nowPlayingMatchLiveEventView, timelineModelmodel);
+                                nowPlayingMatchLiveEventBinder.bind(
+                                        backgroundView.nowPlayingMatchLiveEventView,
+                                        timelineModelmodel);
                             }
                         });
                         Thread.sleep(1000);
