@@ -16,12 +16,12 @@ import java.util.List;
 /**
  * Created by yoyosu on 1/25/17.
  */
-public class LiveGameEventAdapter extends
-        RecyclerView.Adapter<LiveGameEventAdapter.ViewHolder> {
+public class MatchLiveEventAdapter extends
+        RecyclerView.Adapter<MatchLiveEventAdapter.ViewHolder> {
 
     private List<LiveGameEventModel> list = new ArrayList<>();
 
-    public LiveGameEventAdapter(List<LiveGameEventModel> list) {
+    public MatchLiveEventAdapter(List<LiveGameEventModel> list) {
         this.list = list;
     }
 
@@ -59,14 +59,14 @@ public class LiveGameEventAdapter extends
     }
 
     @Override
-    public LiveGameEventAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MatchLiveEventAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         final View eventView = LayoutInflater.from( parent.getContext()).
                 inflate(R.layout.now_playing_game_event_row_view, parent, false);
         return new ViewHolder(eventView);
     }
 
     @Override
-    public void onBindViewHolder(LiveGameEventAdapter.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(MatchLiveEventAdapter.ViewHolder viewHolder, int position) {
         LiveGameEventModel liveGameEventModel = list.get(position);
 
         final TextView leftEventTimeTextView = viewHolder.leftEventTimeTextView;

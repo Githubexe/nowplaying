@@ -6,12 +6,12 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ViewFlipper;
 
-import com.music.amazon.mypoldi.binder.NowPlayingBackgroundBinder;
-import com.music.amazon.mypoldi.binder.NowPlayingTimelineBinder;
+import com.music.amazon.mypoldi.binder.NowPlayingMatchBinder;
+import com.music.amazon.mypoldi.binder.NowPlayingMatchLiveEventBinder;
 import com.music.amazon.mypoldi.model.LiveGameEventModel;
-import com.music.amazon.mypoldi.model.NowPlayingBackgroundModel;
-import com.music.amazon.mypoldi.model.NowPlayingTimelineModel;
-import com.music.amazon.mypoldi.view.NowPlayingBackgroundView;
+import com.music.amazon.mypoldi.model.NowPlayingMatchModel;
+import com.music.amazon.mypoldi.model.NowPlayingMatchLiveEventModel;
+import com.music.amazon.mypoldi.view.NowPlayingMatchView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -22,7 +22,7 @@ public class NowPlayingViewFlipperActivity extends Activity {
     //FIXME: get it from service
     private final int NUM_OF_LIVE_GAMES = 3;
 
-    private NowPlayingBackgroundView backgroundView;
+    private NowPlayingMatchView backgroundView;
 
     private ViewFlipper viewFlipper;
 
@@ -79,7 +79,7 @@ public class NowPlayingViewFlipperActivity extends Activity {
     }
 
     private void addNextView(int index) {
-        final NowPlayingBackgroundView view = new NowPlayingBackgroundView(this);
+        final NowPlayingMatchView view = new NowPlayingMatchView(this);
         final int viewId = View.generateViewId();
         viewLayoutIds.add(index, viewId);
         view.setId(viewId);
@@ -94,10 +94,10 @@ public class NowPlayingViewFlipperActivity extends Activity {
     private void updateBackgroundView() {
         final int childId = viewFlipper.getDisplayedChild();
         final int viewLayoutId = viewLayoutIds.get(childId);
-        NowPlayingBackgroundModel model = DataProvider.createNowPlayingBackgroundModel(childId);
-        NowPlayingBackgroundView view = (NowPlayingBackgroundView) (viewFlipper.findViewById(viewLayoutId));
+        NowPlayingMatchModel model = DataProvider.createNowPlayingBackgroundModel(childId);
+        NowPlayingMatchView view = (NowPlayingMatchView) (viewFlipper.findViewById(viewLayoutId));
         backgroundView = view;
-        new NowPlayingBackgroundBinder().bind(view, model);
+        new NowPlayingMatchBinder().bind(view, model);
     }
 
     private void updateTimelineView() {
@@ -108,9 +108,9 @@ public class NowPlayingViewFlipperActivity extends Activity {
             @Override
             public void run() {
                 try {
-                    final NowPlayingTimelineBinder nowPlayingTimelineBinder = new NowPlayingTimelineBinder(NowPlayingViewFlipperActivity.this);
+                    final NowPlayingMatchLiveEventBinder nowPlayingMatchLiveEventBinder = new NowPlayingMatchLiveEventBinder(NowPlayingViewFlipperActivity.this);
                     final List<LiveGameEventModel> events = new ArrayList<LiveGameEventModel>();
-                    final NowPlayingTimelineModel timelineModelmodel =
+                    final NowPlayingMatchLiveEventModel timelineModelmodel =
                             DataProvider.createNowPlayingTimelineModel(events);
 
                     while (!isInterrupted()) {
@@ -122,7 +122,7 @@ public class NowPlayingViewFlipperActivity extends Activity {
                                 final Calendar now = Calendar.getInstance();
                                 timelineModelmodel.minutes = now.get(Calendar.MINUTE);
                                 timelineModelmodel.seconds = now.get(Calendar.SECOND);
-                                nowPlayingTimelineBinder.bind(backgroundView.nowPlayingTimelineView, timelineModelmodel);
+                                nowPlayingMatchLiveEventBinder.bind(backgroundView.nowPlayingMatchLiveEventView, timelineModelmodel);
                             }
                         });
                         Thread.sleep(1000);

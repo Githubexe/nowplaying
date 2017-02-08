@@ -3,20 +3,20 @@ package com.music.amazon.mypoldi.binder;
 import android.content.Context;
 import android.content.res.Resources;
 
-import com.music.amazon.mypoldi.model.NowPlayingBackgroundModel;
-import com.music.amazon.mypoldi.view.NowPlayingBackgroundView;
+import com.music.amazon.mypoldi.model.NowPlayingMatchModel;
+import com.music.amazon.mypoldi.view.NowPlayingMatchView;
 
 /**
  * Created by yoyosu on 1/16/17.
  */
-public final class NowPlayingBackgroundBinder {
+public final class NowPlayingMatchBinder {
 
-    public NowPlayingBackgroundView createView(Context context) {
-        return new NowPlayingBackgroundView(context);
+    public NowPlayingMatchView createView(Context context) {
+        return new NowPlayingMatchView(context);
     }
 
-    public void bind(final NowPlayingBackgroundView view,
-                      final NowPlayingBackgroundModel model){
+    public void bind(final NowPlayingMatchView view,
+                      final NowPlayingMatchModel model){
 
         final Resources resources = view.getResources();
         view.backgroundImageView.setImageDrawable(resources.getDrawable(model.backgroundResId));

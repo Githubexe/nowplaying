@@ -11,7 +11,7 @@ import com.music.amazon.mypoldi.R;
 /**
  * Created by yoyosu on 1/16/17.
  */
-public final class NowPlayingBackgroundView extends RelativeLayout {
+public final class NowPlayingMatchView extends RelativeLayout {
 
     public ImageView backgroundImageView;
 
@@ -23,17 +23,17 @@ public final class NowPlayingBackgroundView extends RelativeLayout {
 
     public ImageView visitingTeamLogoImageView;
 
-    public NowPlayingTimelineView nowPlayingTimelineView;
+    public NowPlayingMatchLiveEventView nowPlayingMatchLiveEventView;
 
-    public NowPlayingBackgroundView(Context context) {
+    public NowPlayingMatchView(Context context) {
         this(context, null);
     }
 
-    public NowPlayingBackgroundView(Context context, AttributeSet attributeSet) {
+    public NowPlayingMatchView(Context context, AttributeSet attributeSet) {
        this(context, attributeSet, 0);
     }
 
-    public NowPlayingBackgroundView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public NowPlayingMatchView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
@@ -45,6 +45,6 @@ public final class NowPlayingBackgroundView extends RelativeLayout {
         homeTeamLogoImageView = (ImageView)findViewById(R.id.now_playing_host_team_image);
         visitingTeamLogoImageView = (ImageView)findViewById(R.id.now_playing_visiting_team_image);
         visitingTeamNameTextView = (TextView)findViewById(R.id.now_playing_visiting_team_text);
-        nowPlayingTimelineView = (NowPlayingTimelineView)findViewById(R.id.now_playing_timeline_view);
+        nowPlayingMatchLiveEventView = (NowPlayingMatchLiveEventView)findViewById(R.id.now_playing_timeline_view);
     }
 }

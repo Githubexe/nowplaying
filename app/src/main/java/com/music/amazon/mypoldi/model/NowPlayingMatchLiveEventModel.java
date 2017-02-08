@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by yoyosu on 1/25/17.
  */
-public final class NowPlayingTimelineModel {
+public final class NowPlayingMatchLiveEventModel {
     public String hostTeamScore;
 
     public String visitingTeamScore;
@@ -64,8 +64,8 @@ public final class NowPlayingTimelineModel {
             return this;
         }
 
-        public NowPlayingTimelineModel build() {
-            return new NowPlayingTimelineModel(uuid,
+        public NowPlayingMatchLiveEventModel build() {
+            return new NowPlayingMatchLiveEventModel(uuid,
                     hostTeamScore,
                     visitingTeamScore,
                     minutes,
@@ -74,12 +74,12 @@ public final class NowPlayingTimelineModel {
         }
     }
 
-    private NowPlayingTimelineModel(final String uuid,
-                                    final String hostTeamScore,
-                                    final String visitingTeamScore,
-                                    final int minutes,
-                                    final int seconds,
-                                    final List<LiveGameEventModel> events) {
+    private NowPlayingMatchLiveEventModel(final String uuid,
+                                          final String hostTeamScore,
+                                          final String visitingTeamScore,
+                                          final int minutes,
+                                          final int seconds,
+                                          final List<LiveGameEventModel> events) {
         //super(uuid);
         this.hostTeamScore = hostTeamScore;
         this.visitingTeamScore = visitingTeamScore;

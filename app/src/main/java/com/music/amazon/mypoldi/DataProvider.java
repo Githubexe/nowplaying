@@ -1,8 +1,8 @@
 package com.music.amazon.mypoldi;
 
 import com.music.amazon.mypoldi.model.LiveGameEventModel;
-import com.music.amazon.mypoldi.model.NowPlayingBackgroundModel;
-import com.music.amazon.mypoldi.model.NowPlayingTimelineModel;
+import com.music.amazon.mypoldi.model.NowPlayingMatchModel;
+import com.music.amazon.mypoldi.model.NowPlayingMatchLiveEventModel;
 
 import java.util.Calendar;
 import java.util.List;
@@ -35,11 +35,11 @@ public final class DataProvider {
        return builder.build();
     }
 
-    public static NowPlayingTimelineModel createNowPlayingTimelineModel(final List<LiveGameEventModel> events) {
+    public static NowPlayingMatchLiveEventModel createNowPlayingTimelineModel(final List<LiveGameEventModel> events) {
         LiveGameEventModel eventModel = createLiveGameEvent();
         events.add(eventModel);
 
-        return NowPlayingTimelineModel.builder(
+        return NowPlayingMatchLiveEventModel.builder(
                 "test-uuid").
                 withHostTeamScore("1").
                 withVisitingTeamScore("2").
@@ -48,8 +48,8 @@ public final class DataProvider {
                 withEvents(events).build();
     }
 
-    public static NowPlayingBackgroundModel createNowPlayingBackgroundModel(int childId) {
-        return NowPlayingBackgroundModel.builder(
+    public static NowPlayingMatchModel createNowPlayingBackgroundModel(int childId) {
+        return NowPlayingMatchModel.builder(
                 "test-main-uuid",
                 R.drawable.now_playing_background,
                 "Host Team #" + childId,

@@ -68,12 +68,12 @@
         android:layout_toLeftOf="@+id/now_playing_visiting_team"
         android:layout_alignTop="@id/now_playing_host_team">
 
-        <com.music.amazon.mypoldi.view.NowPlayingTimelineView
+        <com.music.amazon.mypoldi.view.NowPlayingMatchLiveEventView
             android:id="@+id/now_playing_timeline_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true">
-        </com.music.amazon.mypoldi.view.NowPlayingTimelineView>
+        </com.music.amazon.mypoldi.view.NowPlayingMatchLiveEventView>
     </FrameLayout>
 
 

@@ -1,21 +1,17 @@
 package com.music.amazon.mypoldi.view;
 
 import android.content.Context;
-import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.music.amazon.mypoldi.R;
 
-import org.w3c.dom.Text;
-
 /**
  * Created by yoyosu on 1/24/17.
  */
-public final class NowPlayingTimelineView extends RelativeLayout {
+public final class NowPlayingMatchLiveEventView extends RelativeLayout {
 
     public RecyclerView gameEventRecyclerView;
 
@@ -31,15 +27,15 @@ public final class NowPlayingTimelineView extends RelativeLayout {
 
     public TextView scoreSeparator;
 
-    public NowPlayingTimelineView(Context context) {
+    public NowPlayingMatchLiveEventView(Context context) {
         this(context, null);
     }
 
-    public NowPlayingTimelineView(Context context, AttributeSet attributeSet) {
+    public NowPlayingMatchLiveEventView(Context context, AttributeSet attributeSet) {
         this(context, attributeSet, 0);
     }
 
-    public NowPlayingTimelineView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public NowPlayingMatchLiveEventView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }

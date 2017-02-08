@@ -16,7 +16,8 @@ public class MainActivity extends Activity {
         Button button = (Button)findViewById(R.id.button_start);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, NowPlayingViewFlipperActivity.class);
+                Intent intent = new Intent(MainActivity.this,
+                        NowPlayingViewFlipperActivity.class);
                 startActivity(intent);
             }
         });
