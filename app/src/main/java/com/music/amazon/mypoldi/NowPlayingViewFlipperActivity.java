@@ -8,7 +8,7 @@ import android.widget.ViewFlipper;
 
 import com.music.amazon.mypoldi.binder.NowPlayingMatchBinder;
 import com.music.amazon.mypoldi.binder.NowPlayingMatchDetailsBinder;
-import com.music.amazon.mypoldi.model.MatchEventModel;
+import com.music.amazon.mypoldi.model.NowPlayingMatchDetailsEvent;
 import com.music.amazon.mypoldi.model.NowPlayingMatchModel;
 import com.music.amazon.mypoldi.model.NowPlayingMatchDetailsModel;
 import com.music.amazon.mypoldi.view.NowPlayingMatchView;
@@ -108,7 +108,7 @@ public class NowPlayingViewFlipperActivity extends Activity {
                 try {
                     final NowPlayingMatchDetailsBinder nowPlayingMatchDetailsBinder =
                             new NowPlayingMatchDetailsBinder(NowPlayingViewFlipperActivity.this);
-                    final List<MatchEventModel> events = new ArrayList<MatchEventModel>();
+                    final List<NowPlayingMatchDetailsEvent> events = new ArrayList<NowPlayingMatchDetailsEvent>();
                     final NowPlayingMatchDetailsModel timelineModelmodel =
                             DataProvider.createNowPlayingTimelineModel(events);
 
@@ -116,7 +116,7 @@ public class NowPlayingViewFlipperActivity extends Activity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                final MatchEventModel eventModel = DataProvider.createLiveGameEvent();
+                                final NowPlayingMatchDetailsEvent eventModel = DataProvider.createLiveGameEvent();
                                 events.add(eventModel);
                                 final Calendar now = Calendar.getInstance();
                                 //DEMO ONLY

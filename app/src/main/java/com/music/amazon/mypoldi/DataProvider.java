@@ -1,6 +1,6 @@
 package com.music.amazon.mypoldi;
 
-import com.music.amazon.mypoldi.model.MatchEventModel;
+import com.music.amazon.mypoldi.model.NowPlayingMatchDetailsEvent;
 import com.music.amazon.mypoldi.model.NowPlayingMatchModel;
 import com.music.amazon.mypoldi.model.NowPlayingMatchDetailsModel;
 
@@ -12,8 +12,8 @@ import java.util.List;
  */
 public final class DataProvider {
 
-    public static MatchEventModel createLiveGameEvent() {
-        final MatchEventModel.Builder builder = MatchEventModel.builder("demo-only");
+    public static NowPlayingMatchDetailsEvent createLiveGameEvent() {
+        final NowPlayingMatchDetailsEvent.Builder builder = NowPlayingMatchDetailsEvent.builder();
 
         final Calendar now = Calendar.getInstance();
         int minute = now.get(Calendar.MINUTE);
@@ -35,8 +35,8 @@ public final class DataProvider {
        return builder.build();
     }
 
-    public static NowPlayingMatchDetailsModel createNowPlayingTimelineModel(final List<MatchEventModel> events) {
-        MatchEventModel eventModel = createLiveGameEvent();
+    public static NowPlayingMatchDetailsModel createNowPlayingTimelineModel(final List<NowPlayingMatchDetailsEvent> events) {
+        NowPlayingMatchDetailsEvent eventModel = createLiveGameEvent();
         events.add(eventModel);
 
         return NowPlayingMatchDetailsModel.builder(

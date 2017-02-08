@@ -15,7 +15,7 @@ public final class NowPlayingMatchDetailsModel {
 
     public int seconds;
 
-    public List<MatchEventModel> events = new ArrayList<MatchEventModel>();
+    public List<NowPlayingMatchDetailsEvent> events = new ArrayList<NowPlayingMatchDetailsEvent>();
 
     public static final Builder builder(final String uuid) {
         return new Builder(uuid);
@@ -33,7 +33,7 @@ public final class NowPlayingMatchDetailsModel {
 
         private int seconds;
 
-        private List<MatchEventModel> events = new ArrayList<MatchEventModel>();
+        private List<NowPlayingMatchDetailsEvent> events = new ArrayList<NowPlayingMatchDetailsEvent>();
 
         private Builder(final String uuid) {
             this.uuid = uuid;
@@ -59,7 +59,7 @@ public final class NowPlayingMatchDetailsModel {
             return this;
         }
 
-        public Builder withEvents(List<MatchEventModel> events) {
+        public Builder withEvents(List<NowPlayingMatchDetailsEvent> events) {
             this.events = events;
             return this;
         }
@@ -79,7 +79,7 @@ public final class NowPlayingMatchDetailsModel {
                                         final String visitingTeamScore,
                                         final int minutes,
                                         final int seconds,
-                                        final List<MatchEventModel> events) {
+                                        final List<NowPlayingMatchDetailsEvent> events) {
         //super(uuid);
         this.hostTeamScore = hostTeamScore;
         this.visitingTeamScore = visitingTeamScore;

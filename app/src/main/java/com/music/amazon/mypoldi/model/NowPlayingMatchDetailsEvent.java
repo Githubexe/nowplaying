@@ -3,7 +3,7 @@ package com.music.amazon.mypoldi.model;
 /**
  * A pojo for game event
  */
-public final class MatchEventModel {
+public final class NowPlayingMatchDetailsEvent {
 
     public String leftEventTime;
 
@@ -21,13 +21,11 @@ public final class MatchEventModel {
 
     public int rightMarkerIconResId;
 
-    public static final Builder builder(final String uuid) {
-        return new Builder(uuid);
+    public static final Builder builder() {
+        return new Builder();
     }
 
     public static final class Builder {
-
-        private final String uuid;
 
         private String leftEventTime;
 
@@ -44,10 +42,6 @@ public final class MatchEventModel {
         private int rightEventIconResId;
 
         private int righttMarkerIconResId;
-
-        private Builder(final String uuid) {
-            this.uuid = uuid;
-        }
 
         public Builder withLeftEventTime(String eventTime) {
             this.leftEventTime = eventTime;
@@ -89,8 +83,8 @@ public final class MatchEventModel {
             return this;
         }
 
-        public MatchEventModel build() {
-            return new MatchEventModel(uuid,
+        public NowPlayingMatchDetailsEvent build() {
+            return new NowPlayingMatchDetailsEvent(
                     leftEventTime,
                     leftEventDescription,
                     leftEventIconResId,
@@ -104,16 +98,14 @@ public final class MatchEventModel {
         }
     }
 
-    private MatchEventModel(final String uuid,
-                            final String leftEventTime,
-                            final String leftEventDescription,
-                            final int leftEventIconResId,
-                            final int leftMarkerIconResId,
-                            final String rightEventTime,
-                            final String rightEventDescription,
-                            final int rightEventIconResId,
-                            final int rightMarkerIconResId) {
-        //super(uuid);
+    private NowPlayingMatchDetailsEvent(final String leftEventTime,
+                                        final String leftEventDescription,
+                                        final int leftEventIconResId,
+                                        final int leftMarkerIconResId,
+                                        final String rightEventTime,
+                                        final String rightEventDescription,
+                                        final int rightEventIconResId,
+                                        final int rightMarkerIconResId) {
         this.leftEventTime = leftEventTime;
         this.leftEventDescription = leftEventDescription;
         this.leftEventIconResId = leftEventIconResId;

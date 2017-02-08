@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.music.amazon.mypoldi.R;
-import com.music.amazon.mypoldi.model.MatchEventModel;
+import com.music.amazon.mypoldi.model.NowPlayingMatchDetailsEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +21,9 @@ import java.util.List;
 public class MatchEventAdapter extends
         RecyclerView.Adapter<MatchEventAdapter.ViewHolder> {
 
-    private List<MatchEventModel> list = new ArrayList<>();
+    private List<NowPlayingMatchDetailsEvent> list = new ArrayList<>();
 
-    public MatchEventAdapter(List<MatchEventModel> list) {
+    public MatchEventAdapter(List<NowPlayingMatchDetailsEvent> list) {
         this.list = list;
     }
 
@@ -69,33 +69,33 @@ public class MatchEventAdapter extends
 
     @Override
     public void onBindViewHolder(MatchEventAdapter.ViewHolder viewHolder, int position) {
-        MatchEventModel matchEventModel = list.get(position);
+        NowPlayingMatchDetailsEvent nowPlayingMatchDetailsEvent = list.get(position);
 
         final TextView leftEventTimeTextView = viewHolder.leftEventTimeTextView;
-        leftEventTimeTextView.setText(matchEventModel.leftEventTime);
+        leftEventTimeTextView.setText(nowPlayingMatchDetailsEvent.leftEventTime);
 
         final TextView leftEventDescriptionTextView = viewHolder.leftEventDescriptionTextView;
-        leftEventDescriptionTextView.setText(matchEventModel.leftEventDescription);
+        leftEventDescriptionTextView.setText(nowPlayingMatchDetailsEvent.leftEventDescription);
         leftEventDescriptionTextView.bringToFront();
 
         final ImageView leftEventImageView = viewHolder.leftEventImageView;
-        leftEventImageView.setImageResource(matchEventModel.leftEventIconResId);
+        leftEventImageView.setImageResource(nowPlayingMatchDetailsEvent.leftEventIconResId);
 
         final ImageView leftMarkerImageView = viewHolder.leftMarkerImageView;
-        leftMarkerImageView.setImageResource(matchEventModel.leftMarkerIconResId);
+        leftMarkerImageView.setImageResource(nowPlayingMatchDetailsEvent.leftMarkerIconResId);
 
         final TextView rightEventTimeTextView = viewHolder.rightEventTimeTextView;
-        rightEventTimeTextView.setText(matchEventModel.rightEventTime);
+        rightEventTimeTextView.setText(nowPlayingMatchDetailsEvent.rightEventTime);
 
         final TextView rightEventDescriptionTextView = viewHolder.rightEventDescriptionTextView;
-        rightEventDescriptionTextView.setText(matchEventModel.rightEventDescription);
+        rightEventDescriptionTextView.setText(nowPlayingMatchDetailsEvent.rightEventDescription);
         rightEventDescriptionTextView.bringToFront();
 
         final ImageView rightEventImageView = viewHolder.rightEventImageView;
-        rightEventImageView.setImageResource(matchEventModel.rightEventIconResId);
+        rightEventImageView.setImageResource(nowPlayingMatchDetailsEvent.rightEventIconResId);
 
         final ImageView rightMarkerImageView = viewHolder.rightMarkerImageView;
-        rightMarkerImageView.setImageResource(matchEventModel.rightMarkerIconResId);
+        rightMarkerImageView.setImageResource(nowPlayingMatchDetailsEvent.rightMarkerIconResId);
     }
 
     @Override
