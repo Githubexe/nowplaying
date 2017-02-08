@@ -16,6 +16,10 @@ import com.music.amazon.mypoldi.view.NowPlayingMatchView;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 
 public class NowPlayingViewFlipperActivity extends Activity {
 
@@ -28,7 +32,9 @@ public class NowPlayingViewFlipperActivity extends Activity {
 
     private List<Integer> viewLayoutIds = new ArrayList<Integer>();
 
-    private Thread timelineUpdateThread;
+    final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+
+    ScheduledFuture<?> scheduledFuture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +47,7 @@ public class NowPlayingViewFlipperActivity extends Activity {
 
     @Override
     protected void onDestroy() {
-        if (timelineUpdateThread != null) {
-            timelineUpdateThread.interrupt();
-        }
+        scheduler.shutdown();
         super.onDestroy();
     }
 
@@ -90,6 +94,7 @@ public class NowPlayingViewFlipperActivity extends Activity {
     }
 
     private void updateBackgroundView() {
+
         final int childId = viewFlipper.getDisplayedChild();
         final int viewLayoutId = viewLayoutIds.get(childId);
         NowPlayingMatchModel model = DataProvider.createNowPlayingBackgroundModel(childId);
@@ -99,40 +104,42 @@ public class NowPlayingViewFlipperActivity extends Activity {
     }
 
     private void updateTimelineView() {
-        if (timelineUpdateThread != null) {
-            timelineUpdateThread.interrupt();
+        if (scheduledFuture != null) {
+            scheduledFuture.cancel(true);
         }
-        timelineUpdateThread = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    final NowPlayingMatchDetailsBinder nowPlayingMatchDetailsBinder =
-                            new NowPlayingMatchDetailsBinder(NowPlayingViewFlipperActivity.this);
-                    final List<NowPlayingMatchDetailsEvent> events = new ArrayList<NowPlayingMatchDetailsEvent>();
-                    final NowPlayingMatchDetailsModel timelineModelmodel =
-                            DataProvider.createNowPlayingTimelineModel(events);
+        scheduledFuture = scheduler.scheduleAtFixedRate(
+                new UpdateEventRunnable(),
+                2, //initial delay
+                1, //update every second
+                TimeUnit.SECONDS);
+    }
 
-                    while (!isInterrupted()) {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                final NowPlayingMatchDetailsEvent eventModel = DataProvider.createLiveGameEvent();
-                                events.add(eventModel);
-                                final Calendar now = Calendar.getInstance();
-                                //DEMO ONLY
-                                timelineModelmodel.minutes = now.get(Calendar.MINUTE);
-                                timelineModelmodel.seconds = now.get(Calendar.SECOND);
-                                nowPlayingMatchDetailsBinder.bind(
-                                        backgroundView.nowPlayingMatchDetailsView,
-                                        timelineModelmodel);
-                            }
-                        });
-                        Thread.sleep(1000);
-                    }
-                } catch (InterruptedException e) {
+    private class UpdateEventRunnable implements Runnable {
+        final NowPlayingMatchDetailsBinder nowPlayingMatchDetailsBinder =
+                new NowPlayingMatchDetailsBinder(NowPlayingViewFlipperActivity.this);
+
+        final List<NowPlayingMatchDetailsEvent> events = new ArrayList<NowPlayingMatchDetailsEvent>();
+
+        final NowPlayingMatchDetailsModel timelineModelmodel =
+                DataProvider.createNowPlayingTimelineModel(events);
+
+        @Override
+        public void run() {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    final NowPlayingMatchDetailsEvent eventModel = DataProvider.createLiveGameEvent();
+                    events.add(eventModel);
+                    //DEMO purpose only
+                    final Calendar now = Calendar.getInstance();
+                    timelineModelmodel.minutes = now.get(Calendar.MINUTE);
+                    timelineModelmodel.seconds = now.get(Calendar.SECOND);
+
+                    nowPlayingMatchDetailsBinder.bind(
+                            backgroundView.nowPlayingMatchDetailsView,
+                            timelineModelmodel);
                 }
-            }
-        };
-        timelineUpdateThread.start();
+            });
+        }
     }
 }

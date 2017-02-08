@@ -49,13 +49,16 @@ public final class DataProvider {
     }
 
     public static NowPlayingMatchModel createNowPlayingBackgroundModel(int childId) {
+        int hostDrawable = childId % 2 == 0 ? R.drawable.host : R.drawable.visiting;
+        int visitingDrawable = childId % 2 == 0 ?  R.drawable.visiting : R.drawable.host;
+
         return NowPlayingMatchModel.builder(
                 "test-main-uuid",
                 R.drawable.now_playing_background,
                 "Host Team #" + childId,
-                R.drawable.host,
+                hostDrawable,
                 "Visiting Team #" + childId,
-                R.drawable.visiting,
+                visitingDrawable,
                 System.currentTimeMillis()).build();
     }
 
