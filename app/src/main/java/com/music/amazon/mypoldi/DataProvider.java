@@ -1,7 +1,7 @@
 package com.music.amazon.mypoldi;
 
 import com.music.amazon.mypoldi.model.NowPlayingMatchDetailsEvent;
-import com.music.amazon.mypoldi.model.NowPlayingMatchModel;
+import com.music.amazon.mypoldi.model.LiveFeedBackgroundModel;
 import com.music.amazon.mypoldi.model.NowPlayingMatchDetailsModel;
 
 import java.util.Calendar;
@@ -48,8 +48,8 @@ public final class DataProvider {
                 withEvents(events).build();
     }
 
-    public static NowPlayingMatchModel createNowPlayingBackgroundModel(int childId) {
-        return NowPlayingMatchModel.builder(
+    public static LiveFeedBackgroundModel createNowPlayingBackgroundModel(int childId) {
+        return LiveFeedBackgroundModel.builder(
                 "test-main-uuid",
                 "https://amazon.music.poldi/background.png", //background
                 "Host Team #" + childId,

@@ -6,12 +6,12 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ViewFlipper;
 
-import com.music.amazon.mypoldi.binder.NowPlayingMatchBinder;
+import com.music.amazon.mypoldi.binder.LiveFeedBackgroundBinder;
 import com.music.amazon.mypoldi.binder.NowPlayingMatchDetailsBinder;
 import com.music.amazon.mypoldi.model.NowPlayingMatchDetailsEvent;
-import com.music.amazon.mypoldi.model.NowPlayingMatchModel;
+import com.music.amazon.mypoldi.model.LiveFeedBackgroundModel;
 import com.music.amazon.mypoldi.model.NowPlayingMatchDetailsModel;
-import com.music.amazon.mypoldi.view.NowPlayingMatchView;
+import com.music.amazon.mypoldi.view.LiveFeedBackgroundView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -26,7 +26,7 @@ public class NowPlayingViewFlipperActivity extends Activity {
     //FIXME: get the number of concurrent live games from service
     private final int NUM_OF_LIVE_GAMES = 3;
 
-    private NowPlayingMatchView backgroundView;
+    private LiveFeedBackgroundView backgroundView;
 
     private ViewFlipper viewFlipper;
 
@@ -81,7 +81,7 @@ public class NowPlayingViewFlipperActivity extends Activity {
     }
 
     private void addNextView(int index) {
-        final NowPlayingMatchView view = new NowPlayingMatchView(this);
+        final LiveFeedBackgroundView view = new LiveFeedBackgroundView(this);
         final int viewId = View.generateViewId();
         viewLayoutIds.add(index, viewId);
         view.setId(viewId);
@@ -103,10 +103,10 @@ public class NowPlayingViewFlipperActivity extends Activity {
     private void updateBackgroundView() {
         final int childId = viewFlipper.getDisplayedChild();
         final int viewLayoutId = viewLayoutIds.get(childId);
-        NowPlayingMatchModel model = DataProvider.createNowPlayingBackgroundModel(childId);
-        NowPlayingMatchView view = (NowPlayingMatchView) (viewFlipper.findViewById(viewLayoutId));
+        LiveFeedBackgroundModel model = DataProvider.createNowPlayingBackgroundModel(childId);
+        LiveFeedBackgroundView view = (LiveFeedBackgroundView) (viewFlipper.findViewById(viewLayoutId));
         backgroundView = view;
-        new NowPlayingMatchBinder().bind(view, model);
+        new LiveFeedBackgroundBinder().bind(view, model);
     }
 
     private class UpdateEventRunnable implements Runnable {
