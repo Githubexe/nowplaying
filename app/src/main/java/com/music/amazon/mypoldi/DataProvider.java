@@ -1,8 +1,8 @@
 package com.music.amazon.mypoldi;
 
-import com.music.amazon.mypoldi.model.NowPlayingMatchDetailsEvent;
+import com.music.amazon.mypoldi.model.LiveFeedItemModel;
 import com.music.amazon.mypoldi.model.LiveFeedBackgroundModel;
-import com.music.amazon.mypoldi.model.NowPlayingMatchDetailsModel;
+import com.music.amazon.mypoldi.model.LiveFeedModel;
 
 import java.util.Calendar;
 import java.util.List;
@@ -12,8 +12,8 @@ import java.util.List;
  */
 public final class DataProvider {
 
-    public static NowPlayingMatchDetailsEvent createLiveGameEvent() {
-        final NowPlayingMatchDetailsEvent.Builder builder = NowPlayingMatchDetailsEvent.builder();
+    public static LiveFeedItemModel createLiveGameEvent() {
+        final LiveFeedItemModel.Builder builder = LiveFeedItemModel.builder();
 
         final Calendar now = Calendar.getInstance();
         int minute = now.get(Calendar.MINUTE);
@@ -35,11 +35,11 @@ public final class DataProvider {
        return builder.build();
     }
 
-    public static NowPlayingMatchDetailsModel createNowPlayingTimelineModel(final List<NowPlayingMatchDetailsEvent> events) {
-        NowPlayingMatchDetailsEvent eventModel = createLiveGameEvent();
+    public static LiveFeedModel createNowPlayingTimelineModel(final List<LiveFeedItemModel> events) {
+        LiveFeedItemModel eventModel = createLiveGameEvent();
         events.add(eventModel);
 
-        return NowPlayingMatchDetailsModel.builder(
+        return LiveFeedModel.builder(
                 "test-uuid").
                 withHostTeamScore("1").
                 withVisitingTeamScore("2").

@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.music.amazon.mypoldi.R;
-import com.music.amazon.mypoldi.model.NowPlayingMatchDetailsEvent;
+import com.music.amazon.mypoldi.model.LiveFeedItemModel;
 import com.squareup.picasso.Picasso;
 
 import org.apache.commons.lang3.StringUtils;
@@ -24,15 +24,15 @@ import java.util.List;
  *
  * Can use UniversalBinder once it can take the dependency
  */
-public class MatchEventAdapter extends
-        RecyclerView.Adapter<MatchEventAdapter.ViewHolder> {
+public class LiveFeedItemAdapter extends
+        RecyclerView.Adapter<LiveFeedItemAdapter.ViewHolder> {
 
     private Context context;
 
-    private List<NowPlayingMatchDetailsEvent> list = new ArrayList<>();
+    private List<LiveFeedItemModel> list = new ArrayList<>();
 
-    public MatchEventAdapter(final List<NowPlayingMatchDetailsEvent> list,
-                             final Context context) {
+    public LiveFeedItemAdapter(final List<LiveFeedItemModel> list,
+                               final Context context) {
         this.context = context;
         this.list = list;
     }
@@ -71,33 +71,33 @@ public class MatchEventAdapter extends
     }
 
     @Override
-    public MatchEventAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public LiveFeedItemAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         final View eventView = LayoutInflater.from( parent.getContext()).
-                inflate(R.layout.now_playing_game_event_row_view, parent, false);
+                inflate(R.layout.live_feed_item_view, parent, false);
         return new ViewHolder(eventView);
     }
 
     @Override
-    public void onBindViewHolder(MatchEventAdapter.ViewHolder viewHolder, int position) {
-        NowPlayingMatchDetailsEvent nowPlayingMatchDetailsEvent = list.get(position);
+    public void onBindViewHolder(LiveFeedItemAdapter.ViewHolder viewHolder, int position) {
+        LiveFeedItemModel liveFeedItemModel = list.get(position);
 
         final TextView leftEventTimeTextView = viewHolder.leftEventTimeTextView;
-        leftEventTimeTextView.setText(nowPlayingMatchDetailsEvent.leftEventTime);
+        leftEventTimeTextView.setText(liveFeedItemModel.leftEventTime);
 
         final TextView leftEventDescriptionTextView = viewHolder.leftEventDescriptionTextView;
-        leftEventDescriptionTextView.setText(nowPlayingMatchDetailsEvent.leftEventDescription);
+        leftEventDescriptionTextView.setText(liveFeedItemModel.leftEventDescription);
         leftEventDescriptionTextView.bringToFront();
 
         final Picasso picasso = Picasso.with(context);
-        if (StringUtils.isEmpty(nowPlayingMatchDetailsEvent.leftEventIcon) == false) {
-            picasso.load(nowPlayingMatchDetailsEvent.leftEventIcon)
+        if (StringUtils.isEmpty(liveFeedItemModel.leftEventIcon) == false) {
+            picasso.load(liveFeedItemModel.leftEventIcon)
                     .placeholder(R.drawable.yellow_card)
                     .error(R.drawable.yellow_card)
                     .into(viewHolder.leftEventImageView);
         }
 
-        if (StringUtils.isEmpty(nowPlayingMatchDetailsEvent.leftMarkerImage) == false) {
-            picasso.load(nowPlayingMatchDetailsEvent.leftMarkerImage)
+        if (StringUtils.isEmpty(liveFeedItemModel.leftMarkerImage) == false) {
+            picasso.load(liveFeedItemModel.leftMarkerImage)
                     .placeholder(R.drawable.yellow_card)
                     .error(R.drawable.yellow_card)
                     .into(viewHolder.leftMarkerImageView);
@@ -105,28 +105,28 @@ public class MatchEventAdapter extends
         }
 
         final TextView rightEventTimeTextView = viewHolder.rightEventTimeTextView;
-        rightEventTimeTextView.setText(nowPlayingMatchDetailsEvent.rightEventTime);
+        rightEventTimeTextView.setText(liveFeedItemModel.rightEventTime);
 
         final TextView rightEventDescriptionTextView = viewHolder.rightEventDescriptionTextView;
-        rightEventDescriptionTextView.setText(nowPlayingMatchDetailsEvent.rightEventDescription);
+        rightEventDescriptionTextView.setText(liveFeedItemModel.rightEventDescription);
         rightEventDescriptionTextView.bringToFront();
 
-        if (StringUtils.isEmpty(nowPlayingMatchDetailsEvent.rightEventIcon) == false) {
-            picasso.load(nowPlayingMatchDetailsEvent.rightEventIcon)
+        if (StringUtils.isEmpty(liveFeedItemModel.rightEventIcon) == false) {
+            picasso.load(liveFeedItemModel.rightEventIcon)
                     .placeholder(R.drawable.yellow_card)
                     .error(R.drawable.yellow_card)
                     .into(viewHolder.rightEventImageView);
         }
 
-        if (StringUtils.isEmpty(nowPlayingMatchDetailsEvent.rightMarkerImage) == false) {
-            picasso.load(nowPlayingMatchDetailsEvent.rightMarkerImage)
+        if (StringUtils.isEmpty(liveFeedItemModel.rightMarkerImage) == false) {
+            picasso.load(liveFeedItemModel.rightMarkerImage)
                     .placeholder(R.drawable.yellow_card)
                     .error(R.drawable.yellow_card)
                     .into(viewHolder.rightMarkerImageView);
         }
 
         if (getItemCount() > 6) {
-            Animation animation = AnimationUtils.loadAnimation(context, R.anim.up_from_bottom);
+            Animation animation = AnimationUtils.loadAnimation(context, R.anim.live_feed_item_up_from_bottom);
             viewHolder.itemView.startAnimation(animation);
         }
     }

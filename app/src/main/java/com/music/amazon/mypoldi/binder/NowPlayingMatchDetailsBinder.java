@@ -7,9 +7,9 @@ import android.support.v7.widget.LinearSmoothScroller;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 
-import com.music.amazon.mypoldi.adapter.MatchEventAdapter;
-import com.music.amazon.mypoldi.model.NowPlayingMatchDetailsModel;
-import com.music.amazon.mypoldi.view.NowPlayingMatchDetailsView;
+import com.music.amazon.mypoldi.adapter.LiveFeedItemAdapter;
+import com.music.amazon.mypoldi.model.LiveFeedModel;
+import com.music.amazon.mypoldi.view.LiveFeedView;
 
 /**
  * Created by yoyosu on 1/25/17.
@@ -24,12 +24,12 @@ public class NowPlayingMatchDetailsBinder {
         layoutManager  = new MyCustomLayoutManager(context);
     }
 
-    public NowPlayingMatchDetailsView createView() {
-        return new NowPlayingMatchDetailsView(context);
+    public LiveFeedView createView() {
+        return new LiveFeedView(context);
     }
 
-    public void bind(final NowPlayingMatchDetailsView view,
-                     final NowPlayingMatchDetailsModel model){
+    public void bind(final LiveFeedView view,
+                     final LiveFeedModel model){
         view.hostTeamScoreTextView.setText(model.hostTeamScore);
         view.visitingTeamScoreTextView.setText(model.visitingTeamScore);
         view.scoreSeparator.setText("-");
@@ -38,7 +38,7 @@ public class NowPlayingMatchDetailsBinder {
         view.secondsTextView.setText(Integer.toString(model.seconds));
         view.timeStampSeparator.setText(":");
 
-        final MatchEventAdapter adapter = new MatchEventAdapter(model.events, context);
+        final LiveFeedItemAdapter adapter = new LiveFeedItemAdapter(model.events, context);
         view.gameEventRecyclerView.setAdapter(adapter);
         layoutManager.setStackFromEnd(true);
 

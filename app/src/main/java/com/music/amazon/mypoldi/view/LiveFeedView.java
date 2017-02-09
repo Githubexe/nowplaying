@@ -11,7 +11,7 @@ import com.music.amazon.mypoldi.R;
 /**
  * Created by yoyosu on 1/24/17.
  */
-public final class NowPlayingMatchDetailsView extends RelativeLayout {
+public final class LiveFeedView extends RelativeLayout {
 
     public RecyclerView gameEventRecyclerView;
 
@@ -27,21 +27,21 @@ public final class NowPlayingMatchDetailsView extends RelativeLayout {
 
     public TextView scoreSeparator;
 
-    public NowPlayingMatchDetailsView(Context context) {
+    public LiveFeedView(Context context) {
         this(context, null);
     }
 
-    public NowPlayingMatchDetailsView(Context context, AttributeSet attributeSet) {
+    public LiveFeedView(Context context, AttributeSet attributeSet) {
         this(context, attributeSet, 0);
     }
 
-    public NowPlayingMatchDetailsView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public LiveFeedView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
 
     private void init() {
-        inflate(getContext(), R.layout.now_playing_game_event_view, this);
+        inflate(getContext(), R.layout.live_feed_view, this);
         hostTeamScoreTextView = (TextView)findViewById(R.id.now_playing_host_team_score_text);
         visitingTeamScoreTextView = (TextView)findViewById(R.id.now_playing_visiting_team_score_text);
         scoreSeparator = (TextView)findViewById(R.id.now_playing_score_separator);

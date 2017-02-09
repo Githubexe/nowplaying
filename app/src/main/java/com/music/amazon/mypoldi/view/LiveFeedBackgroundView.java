@@ -23,7 +23,7 @@ public final class LiveFeedBackgroundView extends RelativeLayout {
 
     public ImageView visitingTeamLogoImageView;
 
-    public NowPlayingMatchDetailsView nowPlayingMatchDetailsView;
+    public LiveFeedView liveFeedView;
 
     public LiveFeedBackgroundView(Context context) {
         this(context, null);
@@ -45,6 +45,6 @@ public final class LiveFeedBackgroundView extends RelativeLayout {
         homeTeamLogoImageView = (ImageView)findViewById(R.id.now_playing_host_team_image);
         visitingTeamLogoImageView = (ImageView)findViewById(R.id.now_playing_visiting_team_image);
         visitingTeamNameTextView = (TextView)findViewById(R.id.now_playing_visiting_team_text);
-        nowPlayingMatchDetailsView = (NowPlayingMatchDetailsView)findViewById(R.id.now_playing_timeline_view);
+        liveFeedView = (LiveFeedView)findViewById(R.id.now_playing_timeline_view);
     }
 }

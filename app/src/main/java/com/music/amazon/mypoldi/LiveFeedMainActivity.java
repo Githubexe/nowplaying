@@ -8,9 +8,9 @@ import android.widget.ViewFlipper;
 
 import com.music.amazon.mypoldi.binder.LiveFeedBackgroundBinder;
 import com.music.amazon.mypoldi.binder.NowPlayingMatchDetailsBinder;
-import com.music.amazon.mypoldi.model.NowPlayingMatchDetailsEvent;
+import com.music.amazon.mypoldi.model.LiveFeedItemModel;
 import com.music.amazon.mypoldi.model.LiveFeedBackgroundModel;
-import com.music.amazon.mypoldi.model.NowPlayingMatchDetailsModel;
+import com.music.amazon.mypoldi.model.LiveFeedModel;
 import com.music.amazon.mypoldi.view.LiveFeedBackgroundView;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
-public class NowPlayingViewFlipperActivity extends Activity {
+public class LiveFeedMainActivity extends Activity {
 
     //FIXME: get the number of concurrent live games from service
     private final int NUM_OF_LIVE_GAMES = 3;
@@ -39,7 +39,7 @@ public class NowPlayingViewFlipperActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.now_playing_view_flipper_activity);
+        setContentView(R.layout.live_feed_main_activity);
         viewFlipper = (ViewFlipper) findViewById(R.id.now_playing_view_flipper);
         addNextView(0);
         updateLayout();
@@ -56,8 +56,8 @@ public class NowPlayingViewFlipperActivity extends Activity {
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
             if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {
                 if (viewFlipper.getDisplayedChild() >= 0) {
-                    viewFlipper.setInAnimation(this, R.anim.now_playing_view_flipper_in_from_left);
-                    viewFlipper.setOutAnimation(this, R.anim.now_playing_view_flipper_out_to_right);
+                    viewFlipper.setInAnimation(this, R.anim.live_feed_flipper_in_from_left);
+                    viewFlipper.setOutAnimation(this, R.anim.live_feed_flipper_out_to_right);
                     viewFlipper.showPrevious();
                     updateLayout();
                     event.startTracking();
@@ -68,8 +68,8 @@ public class NowPlayingViewFlipperActivity extends Activity {
                     addNextView(viewFlipper.getDisplayedChild() + 1);
                 }
                 if (viewFlipper.getDisplayedChild() <= NUM_OF_LIVE_GAMES - 1) {
-                    viewFlipper.setInAnimation(this, R.anim.now_playing_view_flipper_in_from_right);
-                    viewFlipper.setOutAnimation(this, R.anim.now_playing_view_flipper_out_to_left);
+                    viewFlipper.setInAnimation(this, R.anim.live_feed_flipper_in_from_right);
+                    viewFlipper.setOutAnimation(this, R.anim.live_feed_flipper_out_to_left);
                     viewFlipper.showNext();
                     updateLayout();
                     event.startTracking();
@@ -111,11 +111,11 @@ public class NowPlayingViewFlipperActivity extends Activity {
 
     private class UpdateEventRunnable implements Runnable {
         final NowPlayingMatchDetailsBinder nowPlayingMatchDetailsBinder =
-                new NowPlayingMatchDetailsBinder(NowPlayingViewFlipperActivity.this);
+                new NowPlayingMatchDetailsBinder(LiveFeedMainActivity.this);
 
-        final List<NowPlayingMatchDetailsEvent> events = new ArrayList<NowPlayingMatchDetailsEvent>();
+        final List<LiveFeedItemModel> events = new ArrayList<LiveFeedItemModel>();
 
-        final NowPlayingMatchDetailsModel timelineModelmodel =
+        final LiveFeedModel timelineModelmodel =
                 DataProvider.createNowPlayingTimelineModel(events);
 
         @Override
@@ -123,7 +123,7 @@ public class NowPlayingViewFlipperActivity extends Activity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    final NowPlayingMatchDetailsEvent eventModel = DataProvider.createLiveGameEvent();
+                    final LiveFeedItemModel eventModel = DataProvider.createLiveGameEvent();
                     events.add(eventModel);
                     //DEMO purpose only
                     final Calendar now = Calendar.getInstance();
@@ -131,7 +131,7 @@ public class NowPlayingViewFlipperActivity extends Activity {
                     timelineModelmodel.seconds = now.get(Calendar.SECOND);
 
                     nowPlayingMatchDetailsBinder.bind(
-                            backgroundView.nowPlayingMatchDetailsView,
+                            backgroundView.liveFeedView,
                             timelineModelmodel);
                 }
             });

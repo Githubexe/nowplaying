@@ -66,12 +66,12 @@
         android:layout_toLeftOf="@+id/now_playing_visiting_team"
         android:layout_alignTop="@id/now_playing_host_team">
 
-        <com.music.amazon.mypoldi.view.NowPlayingMatchDetailsView
+        <com.music.amazon.mypoldi.view.LiveFeedView
             android:id="@+id/now_playing_timeline_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true">
-        </com.music.amazon.mypoldi.view.NowPlayingMatchDetailsView>
+        </com.music.amazon.mypoldi.view.LiveFeedView>
     </FrameLayout>
 
 
@@ -105,7 +105,7 @@
     <!-- Foot view -->
     <include
         android:id="@+id/included_now_playing_foot_view"
-        layout="@layout/now_playing_foot_view"
+        layout="@layout/live_feed_foot_view"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"

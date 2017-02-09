@@ -20,19 +20,19 @@ public final class LiveFeedBackgroundBinder {
                       final LiveFeedBackgroundModel model){
         final Picasso picasso = Picasso.with(view.getContext());
         picasso.load(model.backgroundImage)
-                .placeholder(R.drawable.now_playing_background)
-                .error(R.drawable.now_playing_background)
+                .placeholder(R.drawable.live_feed_background)
+                .error(R.drawable.live_feed_background)
                 .into(view.backgroundImageView);
 
         picasso.load(model.homeLogo)
-                .placeholder(R.drawable.home_team_logo)
-                .error(R.drawable.home_team_logo)
+                .placeholder(R.drawable.home_logo)
+                .error(R.drawable.home_logo)
                 .into(view.homeTeamLogoImageView);
         view.homeTeamNameTextView.setText(model.homeName);
 
         picasso.load(model.awayLogo)
-                .placeholder(R.drawable.visiting_team_logo)
-                .error(R.drawable.visiting_team_logo)
+                .placeholder(R.drawable.away_logo)
+                .error(R.drawable.away_logo)
                 .into(view.visitingTeamLogoImageView);
         view.visitingTeamNameTextView.setText(model.awayName);
     }
