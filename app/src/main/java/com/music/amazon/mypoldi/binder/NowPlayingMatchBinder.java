@@ -1,7 +1,6 @@
 package com.music.amazon.mypoldi.binder;
 
 import android.content.Context;
-import android.content.res.Resources;
 
 import com.music.amazon.mypoldi.R;
 import com.music.amazon.mypoldi.model.NowPlayingMatchModel;
