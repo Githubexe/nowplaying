@@ -14,12 +14,12 @@ import com.music.amazon.mypoldi.view.LiveFeedView;
 /**
  * Created by yoyosu on 1/25/17.
  */
-public class NowPlayingMatchDetailsBinder {
+public class LiveFeedBinder {
     private Context context;
 
     private final LinearLayoutManager layoutManager;
 
-    public NowPlayingMatchDetailsBinder(Context context) {
+    public LiveFeedBinder(Context context) {
         this.context = context;
         layoutManager  = new MyCustomLayoutManager(context);
     }

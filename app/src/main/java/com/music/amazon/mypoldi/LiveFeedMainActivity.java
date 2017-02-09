@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ViewFlipper;
 
 import com.music.amazon.mypoldi.binder.LiveFeedBackgroundBinder;
-import com.music.amazon.mypoldi.binder.NowPlayingMatchDetailsBinder;
+import com.music.amazon.mypoldi.binder.LiveFeedBinder;
 import com.music.amazon.mypoldi.model.LiveFeedItemModel;
 import com.music.amazon.mypoldi.model.LiveFeedBackgroundModel;
 import com.music.amazon.mypoldi.model.LiveFeedModel;
@@ -110,8 +110,8 @@ public class LiveFeedMainActivity extends Activity {
     }
 
     private class UpdateEventRunnable implements Runnable {
-        final NowPlayingMatchDetailsBinder nowPlayingMatchDetailsBinder =
-                new NowPlayingMatchDetailsBinder(LiveFeedMainActivity.this);
+        final LiveFeedBinder liveFeedBinder =
+                new LiveFeedBinder(LiveFeedMainActivity.this);
 
         final List<LiveFeedItemModel> events = new ArrayList<LiveFeedItemModel>();
 
@@ -130,7 +130,7 @@ public class LiveFeedMainActivity extends Activity {
                     timelineModelmodel.minutes = now.get(Calendar.MINUTE);
                     timelineModelmodel.seconds = now.get(Calendar.SECOND);
 
-                    nowPlayingMatchDetailsBinder.bind(
+                    liveFeedBinder.bind(
                             backgroundView.liveFeedView,
                             timelineModelmodel);
                 }
