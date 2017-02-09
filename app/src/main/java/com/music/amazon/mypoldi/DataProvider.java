@@ -24,12 +24,12 @@ public final class DataProvider {
 
         if (second % 5 == 0 || second % 13 ==0) {
             builder.withLeftEventTime(minute + "\'" + second + "\"")
-                    .withLeftEventIconResId(R.drawable.yellow_card)
-                    .withLeftMarkerIconResId(R.drawable.yellow_marker);
+                    .withLeftEventIcon("https://amazon.music.poldi/yellow_card_icon.png")
+                    .withLeftMarkerImage("https://amazon.music.poldi/yellow_card_marker.png");
         } else if (second % 7 == 0 || second % 11 == 0) {
             builder.withRightEventTime(minute + "\'" + second + "\"")
-                    .withRightEventIconResId(R.drawable.yellow_card)
-                    .withRightMarkerIconResId(R.drawable.yellow_marker);
+                    .withRightEventIcon("https://amazon.music.poldi/yellow_card_icon.png")
+                    .withRightMarkerImage("https://amazon.music.poldi/yellow_card_marker.png");
         }
 
        return builder.build();

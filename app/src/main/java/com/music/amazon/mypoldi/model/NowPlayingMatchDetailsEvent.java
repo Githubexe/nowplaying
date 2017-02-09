@@ -9,17 +9,17 @@ public final class NowPlayingMatchDetailsEvent {
 
     public String leftEventDescription;
 
-    public int leftEventIconResId;
+    public String leftEventIcon;
 
-    public int leftMarkerIconResId;
+    public String leftMarkerImage;
 
     public String rightEventTime;
 
     public String rightEventDescription;
 
-    public int rightEventIconResId;
+    public String rightEventIcon;
 
-    public int rightMarkerIconResId;
+    public String rightMarkerImage;
 
     public static final Builder builder() {
         return new Builder();
@@ -31,17 +31,17 @@ public final class NowPlayingMatchDetailsEvent {
 
         private String leftEventDescription;
 
-        private int leftEventIconResId;
+        private String leftEventIcon;
 
-        private int leftMarkerIconResId;
+        private String leftMarkerImage;
 
         private String rightEventTime;
 
         private String rightEventDescription;
 
-        private int rightEventIconResId;
+        private String rightEventIcon;
 
-        private int righttMarkerIconResId;
+        private String righttMarkerImage;
 
         public Builder withLeftEventTime(String eventTime) {
             this.leftEventTime = eventTime;
@@ -53,13 +53,13 @@ public final class NowPlayingMatchDetailsEvent {
             return this;
         }
 
-        public Builder withLeftEventIconResId(int eventIconResId) {
-            this.leftEventIconResId = eventIconResId;
+        public Builder withLeftEventIcon(String eventIcon) {
+            this.leftEventIcon = eventIcon;
             return this;
         }
 
-        public Builder withLeftMarkerIconResId(int markerIconResId) {
-            this.leftMarkerIconResId = markerIconResId;
+        public Builder withLeftMarkerImage(String leftMarkerImage) {
+            this.leftMarkerImage = leftMarkerImage;
             return this;
         }
 
@@ -73,13 +73,13 @@ public final class NowPlayingMatchDetailsEvent {
             return this;
         }
 
-        public Builder withRightEventIconResId(int eventIconResId) {
-            this.rightEventIconResId = eventIconResId;
+        public Builder withRightEventIcon(String eventIcon) {
+            this.rightEventIcon = eventIcon;
             return this;
         }
 
-        public Builder withRightMarkerIconResId(int markerIconResId) {
-            this.righttMarkerIconResId = markerIconResId;
+        public Builder withRightMarkerImage(String markerImage) {
+            this.righttMarkerImage = markerImage;
             return this;
         }
 
@@ -87,12 +87,12 @@ public final class NowPlayingMatchDetailsEvent {
             return new NowPlayingMatchDetailsEvent(
                     leftEventTime,
                     leftEventDescription,
-                    leftEventIconResId,
-                    leftMarkerIconResId,
+                    leftEventIcon,
+                    leftMarkerImage,
                     rightEventTime,
                     rightEventDescription,
-                    rightEventIconResId,
-                    righttMarkerIconResId
+                    rightEventIcon,
+                    righttMarkerImage
             );
 
         }
@@ -100,19 +100,19 @@ public final class NowPlayingMatchDetailsEvent {
 
     private NowPlayingMatchDetailsEvent(final String leftEventTime,
                                         final String leftEventDescription,
-                                        final int leftEventIconResId,
-                                        final int leftMarkerIconResId,
+                                        final String leftEventIcon,
+                                        final String leftMarkerImage,
                                         final String rightEventTime,
                                         final String rightEventDescription,
-                                        final int rightEventIconResId,
-                                        final int rightMarkerIconResId) {
+                                        final String rightEventIcon,
+                                        final String righttMarkerImage) {
         this.leftEventTime = leftEventTime;
         this.leftEventDescription = leftEventDescription;
-        this.leftEventIconResId = leftEventIconResId;
-        this.leftMarkerIconResId = leftMarkerIconResId;
+        this.leftEventIcon = leftEventIcon;
+        this.leftMarkerImage = leftMarkerImage;
         this.rightEventTime = rightEventTime;
         this.rightEventDescription = rightEventDescription;
-        this.rightEventIconResId = rightEventIconResId;
-        this.rightMarkerIconResId = rightMarkerIconResId;
+        this.rightEventIcon = rightEventIcon;
+        this.rightMarkerImage = righttMarkerImage;
     }
 }

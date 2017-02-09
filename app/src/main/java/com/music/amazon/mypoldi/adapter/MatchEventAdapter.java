@@ -12,6 +12,9 @@ import android.widget.TextView;
 
 import com.music.amazon.mypoldi.R;
 import com.music.amazon.mypoldi.model.NowPlayingMatchDetailsEvent;
+import com.squareup.picasso.Picasso;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,11 +88,21 @@ public class MatchEventAdapter extends
         leftEventDescriptionTextView.setText(nowPlayingMatchDetailsEvent.leftEventDescription);
         leftEventDescriptionTextView.bringToFront();
 
-        final ImageView leftEventImageView = viewHolder.leftEventImageView;
-        leftEventImageView.setImageResource(nowPlayingMatchDetailsEvent.leftEventIconResId);
+        final Picasso picasso = Picasso.with(context);
+        if (StringUtils.isEmpty(nowPlayingMatchDetailsEvent.leftEventIcon) == false) {
+            picasso.load(nowPlayingMatchDetailsEvent.leftEventIcon)
+                    .placeholder(R.drawable.yellow_card)
+                    .error(R.drawable.yellow_card)
+                    .into(viewHolder.leftEventImageView);
+        }
 
-        final ImageView leftMarkerImageView = viewHolder.leftMarkerImageView;
-        leftMarkerImageView.setImageResource(nowPlayingMatchDetailsEvent.leftMarkerIconResId);
+        if (StringUtils.isEmpty(nowPlayingMatchDetailsEvent.leftMarkerImage) == false) {
+            picasso.load(nowPlayingMatchDetailsEvent.leftMarkerImage)
+                    .placeholder(R.drawable.yellow_card)
+                    .error(R.drawable.yellow_card)
+                    .into(viewHolder.leftMarkerImageView);
+
+        }
 
         final TextView rightEventTimeTextView = viewHolder.rightEventTimeTextView;
         rightEventTimeTextView.setText(nowPlayingMatchDetailsEvent.rightEventTime);
@@ -98,11 +111,19 @@ public class MatchEventAdapter extends
         rightEventDescriptionTextView.setText(nowPlayingMatchDetailsEvent.rightEventDescription);
         rightEventDescriptionTextView.bringToFront();
 
-        final ImageView rightEventImageView = viewHolder.rightEventImageView;
-        rightEventImageView.setImageResource(nowPlayingMatchDetailsEvent.rightEventIconResId);
+        if (StringUtils.isEmpty(nowPlayingMatchDetailsEvent.rightEventIcon) == false) {
+            picasso.load(nowPlayingMatchDetailsEvent.rightEventIcon)
+                    .placeholder(R.drawable.yellow_card)
+                    .error(R.drawable.yellow_card)
+                    .into(viewHolder.rightEventImageView);
+        }
 
-        final ImageView rightMarkerImageView = viewHolder.rightMarkerImageView;
-        rightMarkerImageView.setImageResource(nowPlayingMatchDetailsEvent.rightMarkerIconResId);
+        if (StringUtils.isEmpty(nowPlayingMatchDetailsEvent.rightMarkerImage) == false) {
+            picasso.load(nowPlayingMatchDetailsEvent.rightMarkerImage)
+                    .placeholder(R.drawable.yellow_card)
+                    .error(R.drawable.yellow_card)
+                    .into(viewHolder.rightMarkerImageView);
+        }
 
         if (getItemCount() > 6) {
             Animation animation = AnimationUtils.loadAnimation(context, R.anim.up_from_bottom);
