@@ -49,16 +49,13 @@ public final class DataProvider {
     }
 
     public static NowPlayingMatchModel createNowPlayingBackgroundModel(int childId) {
-        int hostDrawable = childId % 2 == 0 ? R.drawable.host : R.drawable.visiting;
-        int visitingDrawable = childId % 2 == 0 ?  R.drawable.visiting : R.drawable.host;
-
         return NowPlayingMatchModel.builder(
                 "test-main-uuid",
-                R.drawable.now_playing_background,
+                "https://amazon.music.poldi/background.png", //background
                 "Host Team #" + childId,
-                hostDrawable,
+                "https://amazon.music.poldi/hostteam.png", //host team logo url
                 "Visiting Team #" + childId,
-                visitingDrawable,
+                "https://amazon.music.poldi/visitingteam.png", //visiting team logo url
                 System.currentTimeMillis()).build();
     }
 

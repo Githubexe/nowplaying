@@ -5,32 +5,32 @@ package com.music.amazon.mypoldi.model;
  */
 public final class NowPlayingMatchModel {
 
-    public final int backgroundResId;
+    public final String backgroundImage;
 
     public final String homeTeamName;
 
-    public final int iconHomeTeamLogoResId;
+    public final String homeTeamLogo;
 
     public final String visitingTeamName;
 
-    public final int iconVisitingTeamLogoResId;
+    public final String visitingTeamLogo;
 
     public final long kickoffTime;
 
     public static final Builder builder(final String uuid,
-                                        final int backgroundResId,
+                                        final String backgroundImage,
                                         final String homeTeamName,
-                                        final int iconHomeTeamLogoResId,
+                                        final String homeTeamLogo,
                                         final String visitingTeamName,
-                                        final int iconVisitingTeamLogoResId,
+                                        final String visitingTeamLogo,
                                         final long kickoffTime) {
         return new Builder(
                 uuid,
-                backgroundResId,
+                backgroundImage,
                 homeTeamName,
-                iconHomeTeamLogoResId,
+                homeTeamLogo,
                 visitingTeamName,
-                iconVisitingTeamLogoResId,
+                visitingTeamLogo,
                 kickoffTime);
     }
 
@@ -38,58 +38,58 @@ public final class NowPlayingMatchModel {
 
         private final String uuid;
 
-        private final int backgroundResId;
+        private final String backgroundImage;
 
         private final String homeTeamName;
 
-        private final int iconHomeTeamLogoResId;
+        private final String homeTeamLogo;
 
         private final String visitingTeamName;
 
-        private final int iconVisitingTeamLogoResId;
+        private final String visitingTeamLogo;
 
         private final long kickoffTime;
 
         private Builder(final String uuid,
-                        final int backgroundResId,
+                        final String backgroundImage,
                         final String homeTeamName,
-                        final int iconHomeTeamLogoResId,
+                        final String homeTeamLogo,
                         final String visitingTeamName,
-                        final int iconVisitingTeamLogoResId,
+                        final String visitingTeamLogo,
                         final long kickoffTime) {
             this.uuid = uuid;
-            this.backgroundResId = backgroundResId;
+            this.backgroundImage = backgroundImage;
             this.homeTeamName = homeTeamName;
-            this.iconHomeTeamLogoResId = iconHomeTeamLogoResId;
+            this.homeTeamLogo = homeTeamLogo;
             this.visitingTeamName = visitingTeamName;
-            this.iconVisitingTeamLogoResId = iconVisitingTeamLogoResId;
+            this.visitingTeamLogo = visitingTeamLogo;
             this.kickoffTime = kickoffTime;
         }
 
         public NowPlayingMatchModel build() {
             return new NowPlayingMatchModel(uuid,
-                    backgroundResId,
+                    backgroundImage,
                     homeTeamName,
-                    iconHomeTeamLogoResId,
+                    homeTeamLogo,
                     visitingTeamName,
-                    iconVisitingTeamLogoResId,
+                    visitingTeamLogo,
                     kickoffTime);
         }
     }
 
     private NowPlayingMatchModel(final String uuid,
-                                 final int backgroundResId,
+                                 final String backgroundImage,
                                  final String homeTeamName,
-                                 final int iconHomeTeamLogoResId,
+                                 final String homeTeamLogo,
                                  final String visitingTeamName,
-                                 final int iconVisitingTeamLogoResId,
+                                 final String visitingTeamLogo,
                                  final long kickoffTime) {
         //super(uuid);
-        this.backgroundResId = backgroundResId;
+        this.backgroundImage = backgroundImage;
         this.homeTeamName = homeTeamName;
-        this.iconHomeTeamLogoResId = iconHomeTeamLogoResId;
+        this.homeTeamLogo = homeTeamLogo;
         this.visitingTeamName = visitingTeamName;
-        this.iconVisitingTeamLogoResId = iconVisitingTeamLogoResId;
+        this.visitingTeamLogo = visitingTeamLogo;
         this.kickoffTime = kickoffTime;
     }
 }
