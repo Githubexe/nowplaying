@@ -89,8 +89,15 @@ public class NowPlayingViewFlipperActivity extends Activity {
     }
 
     private void updateLayout() {
+        if (scheduledFuture != null) {
+            scheduledFuture.cancel(true);
+        }
         updateBackgroundView();
-        updateTimelineView();;
+        scheduledFuture = scheduler.scheduleAtFixedRate(
+                new UpdateEventRunnable(),
+                2, //initial delay
+                1, //interval
+                TimeUnit.SECONDS);
     }
 
     private void updateBackgroundView() {
@@ -100,17 +107,6 @@ public class NowPlayingViewFlipperActivity extends Activity {
         NowPlayingMatchView view = (NowPlayingMatchView) (viewFlipper.findViewById(viewLayoutId));
         backgroundView = view;
         new NowPlayingMatchBinder().bind(view, model);
-    }
-
-    private void updateTimelineView() {
-        if (scheduledFuture != null) {
-            scheduledFuture.cancel(true);
-        }
-        scheduledFuture = scheduler.scheduleAtFixedRate(
-                new UpdateEventRunnable(),
-                2, //initial delay
-                1, //interval
-                TimeUnit.SECONDS);
     }
 
     private class UpdateEventRunnable implements Runnable {
