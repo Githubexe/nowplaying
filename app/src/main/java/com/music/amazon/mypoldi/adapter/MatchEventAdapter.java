@@ -104,8 +104,10 @@ public class MatchEventAdapter extends
         final ImageView rightMarkerImageView = viewHolder.rightMarkerImageView;
         rightMarkerImageView.setImageResource(nowPlayingMatchDetailsEvent.rightMarkerIconResId);
 
-        Animation animation = AnimationUtils.loadAnimation(context, R.anim.up_from_bottom);
-        viewHolder.itemView.startAnimation(animation);
+        if (getItemCount() > 6) {
+            Animation animation = AnimationUtils.loadAnimation(context, R.anim.up_from_bottom);
+            viewHolder.itemView.startAnimation(animation);
+        }
     }
 
     @Override
