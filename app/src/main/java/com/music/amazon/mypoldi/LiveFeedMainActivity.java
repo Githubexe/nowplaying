@@ -40,7 +40,7 @@ public class LiveFeedMainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.live_feed_main_activity);
-        viewFlipper = (ViewFlipper) findViewById(R.id.now_playing_view_flipper);
+        viewFlipper = (ViewFlipper) findViewById(R.id.live_feed_flipper);
         addNextView(0);
         updateLayout();
     }

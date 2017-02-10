@@ -13,7 +13,7 @@ import com.music.amazon.mypoldi.R;
  */
 public final class LiveFeedView extends RelativeLayout {
 
-    public RecyclerView gameEventRecyclerView;
+    public RecyclerView liveFeedItemViewLayout;
 
     public TextView hostTeamScoreTextView;
 
@@ -42,12 +42,12 @@ public final class LiveFeedView extends RelativeLayout {
 
     private void init() {
         inflate(getContext(), R.layout.live_feed_view, this);
-        hostTeamScoreTextView = (TextView)findViewById(R.id.now_playing_host_team_score_text);
-        visitingTeamScoreTextView = (TextView)findViewById(R.id.now_playing_visiting_team_score_text);
-        scoreSeparator = (TextView)findViewById(R.id.now_playing_score_separator);
-        minutesTextView = (TextView)findViewById(R.id.now_playing_minutes_text);
-        secondsTextView = (TextView)findViewById(R.id.now_playing_seconds_text);
-        timeStampSeparator = (TextView)findViewById(R.id.now_playing_time_stamp_separator);
-        gameEventRecyclerView = (RecyclerView) findViewById(R.id.game_event_recycler_view);
+        hostTeamScoreTextView = (TextView)findViewById(R.id.host_score_text_view);
+        visitingTeamScoreTextView = (TextView)findViewById(R.id.away_score_text_view);
+        scoreSeparator = (TextView)findViewById(R.id.score_separator_text_view);
+        minutesTextView = (TextView)findViewById(R.id.minute_text_view);
+        secondsTextView = (TextView)findViewById(R.id.second_text_view);
+        timeStampSeparator = (TextView)findViewById(R.id.minute_second_separator_text_view);
+        liveFeedItemViewLayout = (RecyclerView) findViewById(R.id.live_feed_item_view);
     }
 }

@@ -45,11 +45,11 @@ public class LiveFeedBinder {
         }
 
         final LiveFeedItemAdapter adapter = new LiveFeedItemAdapter(model.events, context);
-        view.gameEventRecyclerView.setAdapter(adapter);
+        view.liveFeedItemViewLayout.setAdapter(adapter);
         layoutManager.setStackFromEnd(true);
 
-        view.gameEventRecyclerView.setLayoutManager(layoutManager);
-        view.gameEventRecyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
+        view.liveFeedItemViewLayout.setLayoutManager(layoutManager);
+        view.liveFeedItemViewLayout.smoothScrollToPosition(adapter.getItemCount() - 1);
     }
 
     private class MyCustomLayoutManager extends LinearLayoutManager {

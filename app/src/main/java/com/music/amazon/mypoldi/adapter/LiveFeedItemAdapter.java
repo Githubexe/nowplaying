@@ -58,15 +58,15 @@ public class LiveFeedItemAdapter extends
         public ViewHolder(View itemView) {
             super(itemView);
 
-            leftEventTimeTextView = (TextView) itemView.findViewById(R.id.leftEventTimeText);
-            leftEventDescriptionTextView = (TextView) itemView.findViewById(R.id.leftEventDescriptionText);
-            leftEventImageView = (ImageView) itemView.findViewById(R.id.leftEventImage);
-            leftMarkerImageView = (ImageView) itemView.findViewById(R.id.leftMarkerImage);
+            leftEventTimeTextView = (TextView) itemView.findViewById(R.id.left_time_text_view);
+            leftEventDescriptionTextView = (TextView) itemView.findViewById(R.id.left_description_text_view);
+            leftEventImageView = (ImageView) itemView.findViewById(R.id.left_small_image_view);
+            leftMarkerImageView = (ImageView) itemView.findViewById(R.id.left_large_image_view);
 
-            rightEventTimeTextView = (TextView) itemView.findViewById(R.id.rightEventTimeText);
-            rightEventDescriptionTextView = (TextView) itemView.findViewById(R.id.rightEventDescriptionText);
-            rightEventImageView = (ImageView) itemView.findViewById(R.id.rightEventImage);
-            rightMarkerImageView = (ImageView) itemView.findViewById(R.id.rightMarkerImage);
+            rightEventTimeTextView = (TextView) itemView.findViewById(R.id.right_time_text_view);
+            rightEventDescriptionTextView = (TextView) itemView.findViewById(R.id.right_description_text_view);
+            rightEventImageView = (ImageView) itemView.findViewById(R.id.right_event_image_view);
+            rightMarkerImageView = (ImageView) itemView.findViewById(R.id.right_large_image_view);
         }
     }
 

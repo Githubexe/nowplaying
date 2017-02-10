@@ -7,12 +7,12 @@
     android:orientation="horizontal">
 
     <RelativeLayout
-        android:id="@+id/leftEventText"
+        android:id="@+id/leftLiveFeedItemLayout"
         android:layout_width="150dp"
         android:layout_height="50dp">
 
         <TextView
-            android:id="@+id/leftEventTimeText"
+            android:id="@+id/left_time_text_view"
             android:layout_alignParentTop="true"
             android:layout_width="60dp"
             android:layout_height="60dp"
@@ -23,18 +23,18 @@
             android:textSize="33dp"/>
 
         <TextView
-            android:id="@+id/leftEventDescriptionText"
+            android:id="@+id/left_description_text_view"
             android:layout_alignParentTop="true"
             android:layout_width="100dp"
             android:layout_height="60dp"
-            android:layout_toRightOf="@id/leftEventTimeText"
+            android:layout_toRightOf="@id/left_time_text_view"
             android:layout_marginLeft="-50dp"
             android:layout_gravity="left"
             android:gravity="center"/>
 
         <ImageView
-            android:id="@+id/leftEventImage"
-            android:layout_toRightOf="@id/leftEventDescriptionText"
+            android:id="@+id/left_small_image_view"
+            android:layout_toRightOf="@id/left_description_text_view"
             android:layout_alignParentTop="true"
             android:layout_height="wrap_content"
             android:layout_width="10dp"
@@ -47,43 +47,43 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/leftMarkerImage"
+            android:id="@+id/left_large_image_view"
             android:layout_width="10dp"
             android:layout_height="15dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="20dp"
             android:layout_centerVertical="true" />
 
         <View
-            android:id="@+id/timeline_bar"
+            android:id="@+id/timeline_bar_view"
             android:layout_width="5dp"
             android:layout_height="30dp"
-            android:layout_toRightOf="@id/leftMarkerImage"
+            android:layout_toRightOf="@id/left_large_image_view"
             android:background="@android:color/white" />
 
         <ImageView
-            android:id="@+id/rightMarkerImage"
+            android:id="@+id/right_large_image_view"
             android:layout_width="10dp"
             android:layout_height="15dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="20dp"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/timeline_bar"/>
+            android:layout_toRightOf="@id/timeline_bar_view"/>
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/rightEventText"
+        android:id="@+id/right_live_feed_item_layout"
         android:layout_width="150dp"
         android:layout_height="50dp">
 
         <ImageView
-            android:id="@+id/rightEventImage"
+            android:id="@+id/right_event_image_view"
             android:layout_alignParentTop="true"
             android:layout_height="wrap_content"
             android:layout_width="10dp"
             android:layout_gravity="left"/>
 
         <TextView
-            android:id="@+id/rightEventDescriptionText"
-            android:layout_toRightOf="@id/rightEventImage"
+            android:id="@+id/right_description_text_view"
+            android:layout_toRightOf="@id/right_event_image_view"
             android:layout_alignParentTop="true"
             android:layout_width="100dp"
             android:layout_height="60dp"
@@ -92,8 +92,8 @@
             android:gravity="center"/>
 
         <TextView
-            android:id="@+id/rightEventTimeText"
-            android:layout_toRightOf="@id/rightEventDescriptionText"
+            android:id="@+id/right_time_text_view"
+            android:layout_toRightOf="@id/right_description_text_view"
             android:layout_alignParentTop="true"
             android:layout_width="60dp"
             android:layout_height="60dp"

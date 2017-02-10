@@ -3,34 +3,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageButton android:text="Game 1"
-        android:id="@+id/Game1"
+    <ImageButton
+        android:text="Game 1"
+        android:id="@+id/game1_image_button"
         android:layout_width="80dp"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true">
     </ImageButton>
 
-    <ImageButton android:text="Game 2"
-        android:id="@+id/Game2"
+    <ImageButton
+        android:text="Game 2"
+        android:id="@+id/game2_image_button"
         android:layout_width="80dp"
         android:layout_height="match_parent"
-        android:layout_toRightOf="@id/Game1"
+        android:layout_toRightOf="@id/game1_image_button"
         android:layout_alignParentBottom="true">
     </ImageButton>
 
-    <ImageButton android:text="Game 3"
-        android:id="@+id/Game3"
+    <ImageButton
+        android:text="Game 3"
+        android:id="@+id/game3_image_button"
         android:layout_width="80dp"
         android:layout_height="match_parent"
-        android:layout_toRightOf="@id/Game2"
+        android:layout_toRightOf="@id/game2_image_button"
         android:layout_alignParentBottom="true">
     </ImageButton>
 
-    <ImageButton android:text="Game 4"
-        android:id="@+id/Game4"
+    <ImageButton
+        android:text="Game 4"
+        android:id="@+id/game4_image_button"
         android:layout_width="80dp"
         android:layout_height="match_parent"
-        android:layout_toRightOf="@id/Game3"
+        android:layout_toRightOf="@id/game3_image_button"
         android:layout_alignParentBottom="true">
     </ImageButton>
 

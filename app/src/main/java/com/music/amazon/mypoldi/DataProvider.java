@@ -32,10 +32,10 @@ public final class DataProvider {
 
         final long current = System.currentTimeMillis();
         if (current % 7 == 0 || current % 13 == 0 || current % 17 == 0 || current % 23 == 0) {
-            builder.withDescritpion("Home event: " + minute + "-" + second);
+            builder.withDescritpion("Home - " + second);
             return builder.buildHomeEvent();
         } else {
-            builder.withDescritpion("Away event: " + minute + "-" + second);
+            builder.withDescritpion("Away - " + second);
             return builder.buildAwayEvent();
         }
     }

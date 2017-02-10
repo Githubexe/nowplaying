@@ -40,11 +40,11 @@ public final class LiveFeedBackgroundView extends RelativeLayout {
 
     private void init() {
         inflate(getContext(), R.layout.live_feed_background_view, this);
-        backgroundImageView = (ImageView)findViewById(R.id.now_playing_background_image);
-        homeTeamNameTextView = (TextView)findViewById(R.id.now_playing_host_team_text);
-        homeTeamLogoImageView = (ImageView)findViewById(R.id.now_playing_host_team_image);
-        visitingTeamLogoImageView = (ImageView)findViewById(R.id.now_playing_visiting_team_image);
-        visitingTeamNameTextView = (TextView)findViewById(R.id.now_playing_visiting_team_text);
-        liveFeedView = (LiveFeedView)findViewById(R.id.now_playing_timeline_view);
+        backgroundImageView = (ImageView)findViewById(R.id.live_feed_background_image);
+        homeTeamNameTextView = (TextView)findViewById(R.id.host_text_view);
+        homeTeamLogoImageView = (ImageView)findViewById(R.id.host_image_view);
+        visitingTeamLogoImageView = (ImageView)findViewById(R.id.away_image_view);
+        visitingTeamNameTextView = (TextView)findViewById(R.id.away_text_view);
+        liveFeedView = (LiveFeedView)findViewById(R.id.live_feed_view);
     }
 }
