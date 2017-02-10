@@ -127,9 +127,8 @@ public class LiveFeedMainActivity extends Activity {
                     events.add(eventModel);
                     //DEMO purpose only
                     final Calendar now = Calendar.getInstance();
-                    timelineModelmodel.minutes = now.get(Calendar.MINUTE);
-                    timelineModelmodel.seconds = now.get(Calendar.SECOND);
-
+                    timelineModelmodel.elapsedTime = now.get(Calendar.MINUTE) +
+                            " : " + now.get(Calendar.SECOND);
                     liveFeedBinder.bind(
                             backgroundView.liveFeedView,
                             timelineModelmodel);

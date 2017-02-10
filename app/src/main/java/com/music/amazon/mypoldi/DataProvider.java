@@ -46,11 +46,10 @@ public final class DataProvider {
 
         return LiveFeedModel.builder(
                 "test-uuid").
-                withHostTeamScore("1").
-                withVisitingTeamScore("2").
-                withMinutes(0).
-                withSeconds(0).
-                withEvents(events).build();
+                withTime("53 : 29").
+                withScore(3, 2).
+                withEvents(events).
+                build();
     }
 
     public static LiveFeedBackgroundModel createNowPlayingBackgroundModel(int childId) {

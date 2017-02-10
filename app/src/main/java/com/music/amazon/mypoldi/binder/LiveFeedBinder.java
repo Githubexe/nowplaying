@@ -30,13 +30,19 @@ public class LiveFeedBinder {
 
     public void bind(final LiveFeedView view,
                      final LiveFeedModel model){
-        view.hostTeamScoreTextView.setText(model.hostTeamScore);
-        view.visitingTeamScoreTextView.setText(model.visitingTeamScore);
+        view.hostTeamScoreTextView.setText(Integer.toString(model.hostScore));
+        view.visitingTeamScoreTextView.setText(Integer.toString(model.awayScore));
         view.scoreSeparator.setText("-");
 
-        view.minutesTextView.setText(Integer.toString(model.minutes));
-        view.secondsTextView.setText(Integer.toString(model.seconds));
-        view.timeStampSeparator.setText(":");
+        //Assume the time is in the format of "minutes : seconds"
+        final String[] time = model.elapsedTime.split(":");
+        if (time.length >= 1) {
+            view.minutesTextView.setText(time[0].trim());
+        }
+        if (time.length == 2) {
+            view.timeStampSeparator.setText(":");
+            view.secondsTextView.setText(time[1].trim());
+        }
 
         final LiveFeedItemAdapter adapter = new LiveFeedItemAdapter(model.events, context);
         view.gameEventRecyclerView.setAdapter(adapter);

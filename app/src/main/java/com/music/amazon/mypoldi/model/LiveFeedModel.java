@@ -7,13 +7,11 @@ import java.util.List;
  * Created by yoyosu on 1/25/17.
  */
 public final class LiveFeedModel {
-    public String hostTeamScore;
+    public int hostScore;
 
-    public String visitingTeamScore;
+    public int awayScore;
 
-    public int minutes;
-
-    public int seconds;
+    public String elapsedTime;
 
     public List<LiveFeedItemModel> events = new ArrayList<LiveFeedItemModel>();
 
@@ -25,13 +23,11 @@ public final class LiveFeedModel {
 
         private final String uuid;
 
-        private String hostTeamScore;
+        private int homeScore;
 
-        private String visitingTeamScore;
+        private int awayScore;
 
-        private int minutes;
-
-        private int seconds;
+        private String elapsedTime;
 
         private List<LiveFeedItemModel> events = new ArrayList<LiveFeedItemModel>();
 
@@ -39,23 +35,15 @@ public final class LiveFeedModel {
             this.uuid = uuid;
         }
 
-        public Builder withHostTeamScore(final String hostTeamScore) {
-            this.hostTeamScore = hostTeamScore;
+        public Builder withScore(final int homeScore,
+                                  final int awayScore) {
+            this.homeScore = homeScore;
+            this.awayScore = awayScore;
             return this;
         }
 
-        public Builder withVisitingTeamScore(final String visitingTeamScore) {
-            this.visitingTeamScore = visitingTeamScore;
-            return this;
-        }
-
-        public Builder withMinutes(int minutes) {
-            this.minutes = minutes;
-            return this;
-        }
-
-        public Builder withSeconds(int seconds) {
-            this.seconds = seconds;
+        public Builder withTime(final String elapsedTime) {
+            this.elapsedTime = elapsedTime;
             return this;
         }
 
@@ -66,25 +54,22 @@ public final class LiveFeedModel {
 
         public LiveFeedModel build() {
             return new LiveFeedModel(uuid,
-                    hostTeamScore,
-                    visitingTeamScore,
-                    minutes,
-                    seconds,
+                    homeScore,
+                    awayScore,
+                    elapsedTime,
                     events);
         }
     }
 
     private LiveFeedModel(final String uuid,
-                          final String hostTeamScore,
-                          final String visitingTeamScore,
-                          final int minutes,
-                          final int seconds,
+                          final int hostScore,
+                          final int awayScore,
+                          final String elapsedTime,
                           final List<LiveFeedItemModel> events) {
         //super(uuid);
-        this.hostTeamScore = hostTeamScore;
-        this.visitingTeamScore = visitingTeamScore;
-        this.minutes = minutes;
-        this.seconds = seconds;
+        this.hostScore = hostScore;
+        this.awayScore = awayScore;
+        this.elapsedTime = elapsedTime;
         this.events = events;
     }
 }
