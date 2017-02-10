@@ -35,7 +35,7 @@ public final class DataProvider {
             builder.withDescritpion("Home event: " + minute + "-" + second);
             return builder.buildHomeEvent();
         } else {
-            builder.withDescritpion("Away event: " + minute + "-" + second);
+            builder.withDescritpion("Away event: " + minute` + "-" + second);
             return builder.buildAwayEvent();
         }
     }
