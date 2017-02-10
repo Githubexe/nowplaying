@@ -80,49 +80,52 @@ public class LiveFeedItemAdapter extends
     @Override
     public void onBindViewHolder(LiveFeedItemAdapter.ViewHolder viewHolder, int position) {
         LiveFeedItemModel liveFeedItemModel = list.get(position);
-
-        final TextView leftEventTimeTextView = viewHolder.leftEventTimeTextView;
-        leftEventTimeTextView.setText(liveFeedItemModel.leftEventTime);
-
-        final TextView leftEventDescriptionTextView = viewHolder.leftEventDescriptionTextView;
-        leftEventDescriptionTextView.setText(liveFeedItemModel.leftEventDescription);
-        leftEventDescriptionTextView.bringToFront();
-
         final Picasso picasso = Picasso.with(context);
-        if (StringUtils.isEmpty(liveFeedItemModel.leftEventIcon) == false) {
-            picasso.load(liveFeedItemModel.leftEventIcon)
-                    .placeholder(R.drawable.yellow_card)
-                    .error(R.drawable.yellow_card)
-                    .into(viewHolder.leftEventImageView);
-        }
 
-        if (StringUtils.isEmpty(liveFeedItemModel.leftMarkerImage) == false) {
-            picasso.load(liveFeedItemModel.leftMarkerImage)
-                    .placeholder(R.drawable.yellow_card)
-                    .error(R.drawable.yellow_card)
-                    .into(viewHolder.leftMarkerImageView);
+        if (liveFeedItemModel.isHome) {
+            final TextView leftEventTimeTextView = viewHolder.leftEventTimeTextView;
+            leftEventTimeTextView.setText(liveFeedItemModel.time);
 
-        }
+            final TextView leftEventDescriptionTextView = viewHolder.leftEventDescriptionTextView;
+            leftEventDescriptionTextView.setText(liveFeedItemModel.description);
+            leftEventDescriptionTextView.bringToFront();
 
-        final TextView rightEventTimeTextView = viewHolder.rightEventTimeTextView;
-        rightEventTimeTextView.setText(liveFeedItemModel.rightEventTime);
 
-        final TextView rightEventDescriptionTextView = viewHolder.rightEventDescriptionTextView;
-        rightEventDescriptionTextView.setText(liveFeedItemModel.rightEventDescription);
-        rightEventDescriptionTextView.bringToFront();
+            if (StringUtils.isEmpty(liveFeedItemModel.smallImage) == false) {
+                picasso.load(liveFeedItemModel.smallImage)
+                        .placeholder(R.drawable.yellow_card)
+                        .error(R.drawable.yellow_card)
+                        .into(viewHolder.leftEventImageView);
+            }
 
-        if (StringUtils.isEmpty(liveFeedItemModel.rightEventIcon) == false) {
-            picasso.load(liveFeedItemModel.rightEventIcon)
-                    .placeholder(R.drawable.yellow_card)
-                    .error(R.drawable.yellow_card)
-                    .into(viewHolder.rightEventImageView);
-        }
+            if (StringUtils.isEmpty(liveFeedItemModel.largeImage) == false) {
+                picasso.load(liveFeedItemModel.largeImage)
+                        .placeholder(R.drawable.yellow_card)
+                        .error(R.drawable.yellow_card)
+                        .into(viewHolder.leftMarkerImageView);
 
-        if (StringUtils.isEmpty(liveFeedItemModel.rightMarkerImage) == false) {
-            picasso.load(liveFeedItemModel.rightMarkerImage)
-                    .placeholder(R.drawable.yellow_card)
-                    .error(R.drawable.yellow_card)
-                    .into(viewHolder.rightMarkerImageView);
+            }
+        } else {
+            final TextView rightEventTimeTextView = viewHolder.rightEventTimeTextView;
+            rightEventTimeTextView.setText(liveFeedItemModel.time);
+
+            final TextView rightEventDescriptionTextView = viewHolder.rightEventDescriptionTextView;
+            rightEventDescriptionTextView.setText(liveFeedItemModel.description);
+            rightEventDescriptionTextView.bringToFront();
+
+            if (StringUtils.isEmpty(liveFeedItemModel.smallImage) == false) {
+                picasso.load(liveFeedItemModel.smallImage)
+                        .placeholder(R.drawable.yellow_card)
+                        .error(R.drawable.yellow_card)
+                        .into(viewHolder.rightEventImageView);
+            }
+
+            if (StringUtils.isEmpty(liveFeedItemModel.largeImage) == false) {
+                picasso.load(liveFeedItemModel.largeImage)
+                        .placeholder(R.drawable.yellow_card)
+                        .error(R.drawable.yellow_card)
+                        .into(viewHolder.rightMarkerImageView);
+            }
         }
 
         if (getItemCount() > 6) {

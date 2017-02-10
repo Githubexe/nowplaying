@@ -5,21 +5,15 @@ package com.music.amazon.mypoldi.model;
  */
 public final class LiveFeedItemModel {
 
-    public String leftEventTime;
+    public String time;
 
-    public String leftEventDescription;
+    public String description;
 
-    public String leftEventIcon;
+    public String smallImage;
 
-    public String leftMarkerImage;
+    public String largeImage;
 
-    public String rightEventTime;
-
-    public String rightEventDescription;
-
-    public String rightEventIcon;
-
-    public String rightMarkerImage;
+    public boolean isHome;
 
     public static final Builder builder() {
         return new Builder();
@@ -27,92 +21,67 @@ public final class LiveFeedItemModel {
 
     public static final class Builder {
 
-        private String leftEventTime;
+        private String time;
 
-        private String leftEventDescription;
+        private String description;
 
-        private String leftEventIcon;
+        private String smallImage;
 
-        private String leftMarkerImage;
+        private String largeImage;
 
-        private String rightEventTime;
+        private boolean isHome;
 
-        private String rightEventDescription;
-
-        private String rightEventIcon;
-
-        private String righttMarkerImage;
-
-        public Builder withLeftEventTime(String eventTime) {
-            this.leftEventTime = eventTime;
+        public Builder withTime(String time) {
+            this.time = time;
             return this;
         }
 
-        public Builder withLeftEventDescritpion(String eventDescritpion) {
-            this.leftEventDescription = eventDescritpion;
+        public Builder withDescritpion(String description) {
+            this.description = description;
             return this;
         }
 
-        public Builder withLeftEventIcon(String eventIcon) {
-            this.leftEventIcon = eventIcon;
+        public Builder withSmallImage(String smallImage) {
+            this.smallImage = smallImage;
             return this;
         }
 
-        public Builder withLeftMarkerImage(String leftMarkerImage) {
-            this.leftMarkerImage = leftMarkerImage;
+        public Builder withLargeImage(String largeImage) {
+            this.largeImage = largeImage;
             return this;
         }
 
-        public Builder withRightEventTime(String eventTime) {
-            this.rightEventTime = eventTime;
-            return this;
-        }
-
-        public Builder withRightEventDescritpion(String eventDescritpion) {
-            this.rightEventDescription = eventDescritpion;
-            return this;
-        }
-
-        public Builder withRightEventIcon(String eventIcon) {
-            this.rightEventIcon = eventIcon;
-            return this;
-        }
-
-        public Builder withRightMarkerImage(String markerImage) {
-            this.righttMarkerImage = markerImage;
-            return this;
-        }
-
-        public LiveFeedItemModel build() {
+        public LiveFeedItemModel buildHomeEvent() {
             return new LiveFeedItemModel(
-                    leftEventTime,
-                    leftEventDescription,
-                    leftEventIcon,
-                    leftMarkerImage,
-                    rightEventTime,
-                    rightEventDescription,
-                    rightEventIcon,
-                    righttMarkerImage
+                    time,
+                    description,
+                    smallImage,
+                    largeImage,
+                    true
             );
+        }
 
+        public LiveFeedItemModel buildAwayEvent() {
+            return new LiveFeedItemModel(
+                    time,
+                    description,
+                    smallImage,
+                    largeImage,
+                    false
+            );
         }
     }
 
-    private LiveFeedItemModel(final String leftEventTime,
-                              final String leftEventDescription,
-                              final String leftEventIcon,
-                              final String leftMarkerImage,
-                              final String rightEventTime,
-                              final String rightEventDescription,
-                              final String rightEventIcon,
-                              final String righttMarkerImage) {
-        this.leftEventTime = leftEventTime;
-        this.leftEventDescription = leftEventDescription;
-        this.leftEventIcon = leftEventIcon;
-        this.leftMarkerImage = leftMarkerImage;
-        this.rightEventTime = rightEventTime;
-        this.rightEventDescription = rightEventDescription;
-        this.rightEventIcon = rightEventIcon;
-        this.rightMarkerImage = righttMarkerImage;
+    private LiveFeedItemModel(final String time,
+                              final String description,
+                              final String smallImage,
+                              final String largeImage,
+                              final boolean isHome) {
+
+        this.time = time;
+        this.description = description;
+        this.smallImage = smallImage;
+        this.largeImage = largeImage;
+        this.isHome = isHome;
     }
 }

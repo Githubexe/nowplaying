@@ -18,21 +18,26 @@ public final class DataProvider {
         final Calendar now = Calendar.getInstance();
         int minute = now.get(Calendar.MINUTE);
         int second = now.get(Calendar.SECOND);
-        builder.withLeftEventDescritpion("Left event: " + minute + "-" + second)
-                .withRightEventDescritpion("Righ event: " + minute  + "-" + second)
-                .build();
 
         if (second % 5 == 0 || second % 13 ==0) {
-            builder.withLeftEventTime(minute + "\'" + second + "\"")
-                    .withLeftEventIcon("https://amazon.music.poldi/yellow_card_icon.png")
-                    .withLeftMarkerImage("https://amazon.music.poldi/yellow_card_marker.png");
+            builder.withTime(minute + "\'" + second + "\"")
+                   .withSmallImage("https://amazon.music.poldi/yellow_card_icon.png")
+                   .withLargeImage("https://amazon.music.poldi/yellow_card_marker.png");
+
         } else if (second % 7 == 0 || second % 11 == 0) {
-            builder.withRightEventTime(minute + "\'" + second + "\"")
-                    .withRightEventIcon("https://amazon.music.poldi/yellow_card_icon.png")
-                    .withRightMarkerImage("https://amazon.music.poldi/yellow_card_marker.png");
+            builder.withTime(minute + "\'" + second + "\"")
+                   .withSmallImage("https://amazon.music.poldi/yellow_card_icon.png")
+                   .withLargeImage("https://amazon.music.poldi/yellow_card_marker.png");
         }
 
-       return builder.build();
+        final long current = System.currentTimeMillis();
+        if (current % 7 == 0 || current % 13 == 0 || current % 17 == 0 || current % 23 == 0) {
+            builder.withDescritpion("Home event: " + minute + "-" + second);
+            return builder.buildHomeEvent();
+        } else {
+            builder.withDescritpion("Away event: " + minute + "-" + second);
+            return builder.buildAwayEvent();
+        }
     }
 
     public static LiveFeedModel createNowPlayingTimelineModel(final List<LiveFeedItemModel> events) {
