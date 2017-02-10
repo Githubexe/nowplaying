@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/away_team_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:layout_alignTop="@id/host_team_layout"
+    android:layout_alignParentRight="true">
+
+    <ImageView
+        android:id="@+id/away_image_view"
+        android:layout_width="355px"
+        android:layout_height="582px"/>
+
+    <TextView
+        android:id="@+id/away_text_view"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:maxLines="2"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/away_image_view"
+        android:layout_alignLeft="@id/away_image_view"
+        android:textSize="30dp"/>
+</RelativeLayout>

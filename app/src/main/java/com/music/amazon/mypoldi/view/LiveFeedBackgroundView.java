@@ -39,7 +39,7 @@ public final class LiveFeedBackgroundView extends RelativeLayout {
     }
 
     private void init() {
-        inflate(getContext(), R.layout.live_feed_background_view, this);
+        inflate(getContext(), R.layout.live_feed_background, this);
         backgroundImageView = (ImageView)findViewById(R.id.live_feed_background_image);
         homeTeamNameTextView = (TextView)findViewById(R.id.host_text_view);
         homeTeamLogoImageView = (ImageView)findViewById(R.id.host_image_view);
