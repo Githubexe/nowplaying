@@ -29,8 +29,6 @@ public final class LiveFeedItemModel {
 
         private String largeImage;
 
-        private boolean isHome;
-
         public Builder withTime(String time) {
             this.time = time;
             return this;
