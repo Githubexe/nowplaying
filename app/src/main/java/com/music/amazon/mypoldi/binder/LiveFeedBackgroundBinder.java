@@ -27,13 +27,13 @@ public final class LiveFeedBackgroundBinder {
         picasso.load(model.homeLogo)
                 .placeholder(R.drawable.home_logo)
                 .error(R.drawable.home_logo)
-                .into(view.homeTeamLogoImageView);
-        view.homeTeamNameTextView.setText(model.homeName);
+                .into(view.hostImageView);
+        view.hostTextView.setText(model.homeName);
 
         picasso.load(model.awayLogo)
                 .placeholder(R.drawable.away_logo)
                 .error(R.drawable.away_logo)
-                .into(view.visitingTeamLogoImageView);
-        view.visitingTeamNameTextView.setText(model.awayName);
+                .into(view.awayImageView);
+        view.awayTextView.setText(model.awayName);
     }
 }

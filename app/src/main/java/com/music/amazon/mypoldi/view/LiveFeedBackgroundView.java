@@ -15,15 +15,13 @@ public final class LiveFeedBackgroundView extends RelativeLayout {
 
     public ImageView backgroundImageView;
 
-    public TextView homeTeamNameTextView;
+    public TextView hostTextView;
 
-    public ImageView homeTeamLogoImageView;
+    public ImageView hostImageView;
 
-    public TextView visitingTeamNameTextView;
+    public TextView awayTextView;
 
-    public ImageView visitingTeamLogoImageView;
-
-    public LiveFeedView liveFeedView;
+    public ImageView awayImageView;
 
     public LiveFeedBackgroundView(Context context) {
         this(context, null);
@@ -41,10 +39,9 @@ public final class LiveFeedBackgroundView extends RelativeLayout {
     private void init() {
         inflate(getContext(), R.layout.live_feed_background, this);
         backgroundImageView = (ImageView)findViewById(R.id.live_feed_background_image);
-        homeTeamNameTextView = (TextView)findViewById(R.id.host_text_view);
-        homeTeamLogoImageView = (ImageView)findViewById(R.id.host_image_view);
-        visitingTeamLogoImageView = (ImageView)findViewById(R.id.away_image_view);
-        visitingTeamNameTextView = (TextView)findViewById(R.id.away_text_view);
-        liveFeedView = (LiveFeedView)findViewById(R.id.live_feed_view);
+        hostTextView = (TextView)findViewById(R.id.host_text_view);
+        hostImageView = (ImageView)findViewById(R.id.host_image_view);
+        awayImageView = (ImageView)findViewById(R.id.away_image_view);
+        awayTextView = (TextView)findViewById(R.id.away_text_view);
     }
 }

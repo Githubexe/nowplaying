@@ -1,4 +1,4 @@
-package com.music.amazon.mypoldi.adapter;
+package com.music.amazon.mypoldi.binder;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -24,15 +24,15 @@ import java.util.List;
  *
  * Can use UniversalBinder once it can take the dependency
  */
-public class LiveFeedItemAdapter extends
-        RecyclerView.Adapter<LiveFeedItemAdapter.ViewHolder> {
+public class LiveFeedItemBinder extends
+        RecyclerView.Adapter<LiveFeedItemBinder.ViewHolder> {
 
     private Context context;
 
     private List<LiveFeedItemModel> list = new ArrayList<>();
 
-    public LiveFeedItemAdapter(final List<LiveFeedItemModel> list,
-                               final Context context) {
+    public LiveFeedItemBinder(final List<LiveFeedItemModel> list,
+                              final Context context) {
         this.context = context;
         this.list = list;
     }
@@ -71,14 +71,14 @@ public class LiveFeedItemAdapter extends
     }
 
     @Override
-    public LiveFeedItemAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public LiveFeedItemBinder.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         final View eventView = LayoutInflater.from( parent.getContext()).
                 inflate(R.layout.live_feed_item_view, parent, false);
         return new ViewHolder(eventView);
     }
 
     @Override
-    public void onBindViewHolder(LiveFeedItemAdapter.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(LiveFeedItemBinder.ViewHolder viewHolder, int position) {
         LiveFeedItemModel liveFeedItemModel = list.get(position);
         final Picasso picasso = Picasso.with(context);
 

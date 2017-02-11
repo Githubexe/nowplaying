@@ -7,7 +7,6 @@ import android.support.v7.widget.LinearSmoothScroller;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 
-import com.music.amazon.mypoldi.adapter.LiveFeedItemAdapter;
 import com.music.amazon.mypoldi.model.LiveFeedModel;
 import com.music.amazon.mypoldi.view.LiveFeedView;
 
@@ -44,7 +43,7 @@ public class LiveFeedBinder {
             view.secondsTextView.setText(time[1].trim());
         }
 
-        final LiveFeedItemAdapter adapter = new LiveFeedItemAdapter(model.events, context);
+        final LiveFeedItemBinder adapter = new LiveFeedItemBinder(model.events, context);
         view.liveFeedItemViewLayout.setAdapter(adapter);
         layoutManager.setStackFromEnd(true);
 
