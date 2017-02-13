@@ -23,6 +23,8 @@ public final class LiveFeedBackgroundView extends RelativeLayout {
 
     public ImageView awayImageView;
 
+    public LiveFeedView liveFeedView;
+
     public LiveFeedBackgroundView(Context context) {
         this(context, null);
     }
@@ -43,5 +45,7 @@ public final class LiveFeedBackgroundView extends RelativeLayout {
         hostImageView = (ImageView)findViewById(R.id.host_image_view);
         awayImageView = (ImageView)findViewById(R.id.away_image_view);
         awayTextView = (TextView)findViewById(R.id.away_text_view);
+        liveFeedView = (LiveFeedView)findViewById(R.id.live_feed_view);
+
     }
 }
