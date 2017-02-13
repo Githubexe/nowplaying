@@ -24,15 +24,15 @@ import java.util.List;
  *
  * Can use UniversalBinder once it can take the dependency
  */
-public class LiveFeedItemBinder extends
-        RecyclerView.Adapter<LiveFeedItemBinder.ViewHolder> {
+public class LiveFeedItemAdapter extends
+        RecyclerView.Adapter<LiveFeedItemAdapter.ViewHolder> {
 
     private Context context;
 
     private List<LiveFeedItemModel> list = new ArrayList<>();
 
-    public LiveFeedItemBinder(final List<LiveFeedItemModel> list,
-                              final Context context) {
+    public LiveFeedItemAdapter(final List<LiveFeedItemModel> list,
+                               final Context context) {
         this.context = context;
         this.list = list;
     }
@@ -71,14 +71,14 @@ public class LiveFeedItemBinder extends
     }
 
     @Override
-    public LiveFeedItemBinder.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public LiveFeedItemAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         final View eventView = LayoutInflater.from( parent.getContext()).
                 inflate(R.layout.live_feed_item_view, parent, false);
         return new ViewHolder(eventView);
     }
 
     @Override
-    public void onBindViewHolder(LiveFeedItemBinder.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(LiveFeedItemAdapter.ViewHolder viewHolder, int position) {
         LiveFeedItemModel liveFeedItemModel = list.get(position);
         final Picasso picasso = Picasso.with(context);
 

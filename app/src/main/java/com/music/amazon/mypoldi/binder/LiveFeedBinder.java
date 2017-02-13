@@ -43,7 +43,7 @@ public class LiveFeedBinder {
             view.secondsTextView.setText(time[1].trim());
         }
 
-        final LiveFeedItemBinder adapter = new LiveFeedItemBinder(model.events, context);
+        final LiveFeedItemAdapter adapter = new LiveFeedItemAdapter(model.events, context);
         view.liveFeedItemViewLayout.setAdapter(adapter);
         layoutManager.setStackFromEnd(true);
 
