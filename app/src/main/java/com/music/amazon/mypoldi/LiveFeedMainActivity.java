@@ -12,6 +12,7 @@ import com.music.amazon.mypoldi.model.LiveFeedItemModel;
 import com.music.amazon.mypoldi.model.LiveFeedBackgroundModel;
 import com.music.amazon.mypoldi.model.LiveFeedModel;
 import com.music.amazon.mypoldi.view.LiveFeedBackgroundView;
+import com.music.amazon.mypoldi.view.LiveFeedView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -28,6 +29,10 @@ public class LiveFeedMainActivity extends Activity {
 
     private LiveFeedBackgroundView backgroundView;
 
+    private LiveFeedBackgroundBinder liveFeedBackgroundBinder;
+
+    private LiveFeedView liveFeedView;
+
     private ViewFlipper viewFlipper;
 
     private List<Integer> viewLayoutIds = new ArrayList<Integer>();
@@ -41,6 +46,7 @@ public class LiveFeedMainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.live_feed_main_activity);
         viewFlipper = (ViewFlipper) findViewById(R.id.live_feed_flipper);
+        liveFeedBackgroundBinder = new LiveFeedBackgroundBinder();
         addNextView(0);
         updateLayout();
     }
@@ -104,9 +110,9 @@ public class LiveFeedMainActivity extends Activity {
         final int childId = viewFlipper.getDisplayedChild();
         final int viewLayoutId = viewLayoutIds.get(childId);
         LiveFeedBackgroundModel model = DataProvider.createNowPlayingBackgroundModel(childId);
-        LiveFeedBackgroundView view = (LiveFeedBackgroundView) (viewFlipper.findViewById(viewLayoutId));
-        backgroundView = view;
-        new LiveFeedBackgroundBinder().bind(view, model);
+        backgroundView = (LiveFeedBackgroundView) (viewFlipper.findViewById(viewLayoutId));
+        liveFeedView = (LiveFeedView) (viewFlipper.findViewById(R.id.live_feed_view));
+        liveFeedBackgroundBinder.bind(backgroundView, model);
     }
 
     private class UpdateEventRunnable implements Runnable {
@@ -115,7 +121,7 @@ public class LiveFeedMainActivity extends Activity {
 
         final List<LiveFeedItemModel> events = new ArrayList<LiveFeedItemModel>();
 
-        final LiveFeedModel timelineModelmodel =
+        final LiveFeedModel liveFeedModel =
                 DataProvider.createNowPlayingTimelineModel(events);
 
         @Override
@@ -127,11 +133,13 @@ public class LiveFeedMainActivity extends Activity {
                     events.add(eventModel);
                     //DEMO purpose only
                     final Calendar now = Calendar.getInstance();
-                    timelineModelmodel.elapsedTime = now.get(Calendar.MINUTE) +
+                    liveFeedModel.elapsedTime = now.get(Calendar.MINUTE) +
                             " : " + now.get(Calendar.SECOND);
+
+                            viewFlipper.findViewById(R.id.live_feed_view);
                     liveFeedBinder.bind(
-                            backgroundView.liveFeedView,
-                            timelineModelmodel);
+                            liveFeedView,
+                            liveFeedModel);
                 }
             });
         }
