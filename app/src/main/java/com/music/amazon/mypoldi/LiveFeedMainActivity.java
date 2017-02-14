@@ -157,8 +157,9 @@ public class LiveFeedMainActivity extends Activity {
                             liveFeedView,
                             liveFeedModel);
 
-                    liveFeedItemAdapter.addItems(events);
-
+                    liveFeedItemAdapter = new LiveFeedItemAdapter(LiveFeedMainActivity.this,
+                            events);
+                    liveFeedView.liveFeedItemViewLayout.setAdapter(liveFeedItemAdapter);
                     liveFeedView.liveFeedItemViewLayout.smoothScrollToPosition(liveFeedItemAdapter.getItemCount() - 1);
                 }
             });
