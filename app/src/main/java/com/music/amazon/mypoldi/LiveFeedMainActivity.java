@@ -119,12 +119,14 @@ public class LiveFeedMainActivity extends Activity {
         liveFeedView = (LiveFeedView) (backgroundView.findViewById(R.id.live_feed_view));
         liveFeedBackgroundBinder.bind(backgroundView, model);
 
-        liveFeedItemAdapter = new LiveFeedItemAdapter(LiveFeedMainActivity.this,
-                new ArrayList<LiveFeedItemModel>());
-        liveFeedView.liveFeedItemViewLayout.setAdapter(liveFeedItemAdapter);
         final LinearLayoutManager linearLayoutManager = new CustomLinearLayoutManager(this);
         linearLayoutManager.setStackFromEnd(true);
         liveFeedView.liveFeedItemViewLayout.setLayoutManager(linearLayoutManager);
+
+        liveFeedItemAdapter = new LiveFeedItemAdapter(LiveFeedMainActivity.this,
+                new ArrayList<LiveFeedItemModel>());
+        liveFeedView.liveFeedItemViewLayout.setAdapter(liveFeedItemAdapter);
+
     }
 
     private class UpdateEventRunnable implements Runnable {
