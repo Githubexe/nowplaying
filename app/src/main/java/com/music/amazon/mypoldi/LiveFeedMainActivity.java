@@ -111,7 +111,7 @@ public class LiveFeedMainActivity extends Activity {
         final int viewLayoutId = viewLayoutIds.get(childId);
         LiveFeedBackgroundModel model = DataProvider.createNowPlayingBackgroundModel(childId);
         backgroundView = (LiveFeedBackgroundView) (viewFlipper.findViewById(viewLayoutId));
-        liveFeedView = (LiveFeedView) (viewFlipper.findViewById(R.id.live_feed_view));
+        liveFeedView = (LiveFeedView) (backgroundView.findViewById(R.id.live_feed_view));
         liveFeedBackgroundBinder.bind(backgroundView, model);
     }
 
