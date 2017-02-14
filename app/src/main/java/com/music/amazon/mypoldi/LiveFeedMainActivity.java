@@ -1,17 +1,13 @@
 package com.music.amazon.mypoldi;
 
 import android.app.Activity;
-import android.content.Context;
-import android.graphics.PointF;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.LinearSmoothScroller;
-import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ViewFlipper;
 
+import com.music.amazon.mypoldi.binder.CustomLinearLayoutManager;
 import com.music.amazon.mypoldi.binder.LiveFeedBackgroundBinder;
 import com.music.amazon.mypoldi.binder.LiveFeedBinder;
 import com.music.amazon.mypoldi.binder.LiveFeedItemAdapter;
