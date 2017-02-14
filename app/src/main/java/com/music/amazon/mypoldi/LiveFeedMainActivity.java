@@ -2,12 +2,10 @@ package com.music.amazon.mypoldi;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ViewFlipper;
 
-import com.music.amazon.mypoldi.binder.CustomLinearLayoutManager;
 import com.music.amazon.mypoldi.binder.LiveFeedBackgroundBinder;
 import com.music.amazon.mypoldi.binder.LiveFeedBinder;
 import com.music.amazon.mypoldi.binder.LiveFeedItemAdapter;
@@ -119,9 +117,6 @@ public class LiveFeedMainActivity extends Activity {
         liveFeedView = (LiveFeedView) (backgroundView.findViewById(R.id.live_feed_view));
         liveFeedBackgroundBinder.bind(backgroundView, model);
 
-        final LinearLayoutManager linearLayoutManager = new CustomLinearLayoutManager(this);
-        linearLayoutManager.setStackFromEnd(true);
-        liveFeedView.liveFeedItemViewLayout.setLayoutManager(linearLayoutManager);
 
         liveFeedItemAdapter = new LiveFeedItemAdapter(LiveFeedMainActivity.this,
                 new ArrayList<LiveFeedItemModel>());

@@ -1,17 +1,23 @@
 package com.music.amazon.mypoldi.view;
 
 import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.music.amazon.mypoldi.R;
+import com.music.amazon.mypoldi.binder.CustomLinearLayoutManager;
+import com.music.amazon.mypoldi.model.LiveFeedItemModel;
+import com.squareup.picasso.Picasso;
+
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Created by yoyosu on 2/13/17.
  */
-public final class LiveFeedItemView extends RelativeLayout {
+public final class LiveFeedItemView extends RecyclerView {
     public TextView leftTimeTextView;
 
     public TextView leftDescriptionTextView;
@@ -38,10 +44,13 @@ public final class LiveFeedItemView extends RelativeLayout {
 
     public LiveFeedItemView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
+        final LinearLayoutManager linearLayoutManager = new CustomLinearLayoutManager(getContext());
+        linearLayoutManager.setStackFromEnd(true);
+        setLayoutManager(linearLayoutManager);
     }
 
-    private void init() {
+    private void inflate() {
+        inflate(getContext(), R.layout.live_feed_item_view, this);
         leftTimeTextView = (TextView)findViewById(R.id.left_time_text_view);
         leftDescriptionTextView = (TextView)findViewById(R.id.left_description_text_view);
         leftSmallImageView = (ImageView)findViewById(R.id.left_small_image_view);
@@ -53,5 +62,49 @@ public final class LiveFeedItemView extends RelativeLayout {
         rightLargeImageView = (ImageView)findViewById(R.id.right_large_image_view);
     }
 
+
+    public void bind(LiveFeedItemModel liveFeedItemModel) {
+        final Picasso picasso = Picasso.with(getContext());
+
+        if (liveFeedItemModel.isHome) {
+            leftTimeTextView.setText(liveFeedItemModel.time);
+            leftDescriptionTextView.setText(liveFeedItemModel.description);
+            leftDescriptionTextView.bringToFront();
+            if (StringUtils.isEmpty(liveFeedItemModel.smallImage) == false) {
+                picasso.load(liveFeedItemModel.smallImage)
+                        .placeholder(R.drawable.yellow_card)
+                        .error(R.drawable.yellow_card)
+                        .into(leftSmallImageView);
+            }
+
+            if (StringUtils.isEmpty(liveFeedItemModel.largeImage) == false) {
+                picasso.load(liveFeedItemModel.largeImage)
+                        .placeholder(R.drawable.yellow_card)
+                        .error(R.drawable.yellow_card)
+                        .into(leftLargeImageView);
+
+            }
+        } else {
+            rightTimeTextView.setText(liveFeedItemModel.time);
+            rightDescriptionTextView.setText(liveFeedItemModel.description);
+            rightDescriptionTextView.bringToFront();
+
+            if (StringUtils.isEmpty(liveFeedItemModel.smallImage) == false) {
+                picasso.load(liveFeedItemModel.smallImage)
+                        .placeholder(R.drawable.yellow_card)
+                        .error(R.drawable.yellow_card)
+                        .into(rightSmallImageView);
+            }
+
+            if (StringUtils.isEmpty(liveFeedItemModel.largeImage) == false) {
+                picasso.load(liveFeedItemModel.largeImage)
+                        .placeholder(R.drawable.yellow_card)
+                        .error(R.drawable.yellow_card)
+                        .into(rightLargeImageView);
+            }
+        }
+
+        //smoothScrollToPosition(getAdapter().getItemCount() - 1);
+    }
 
 }
