@@ -1,6 +1,8 @@
 package com.music.amazon.mypoldi.binder;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,8 +33,9 @@ public class LiveFeedItemAdapter extends
 
     private List<LiveFeedItemModel> list = new ArrayList<>();
 
-    public LiveFeedItemAdapter(final List<LiveFeedItemModel> list,
-                               final Context context) {
+    private final Handler handler = new Handler(Looper.getMainLooper());
+
+    public LiveFeedItemAdapter(final Context context, final List<LiveFeedItemModel> list) {
         this.context = context;
         this.list = list;
     }
@@ -67,6 +70,18 @@ public class LiveFeedItemAdapter extends
             rightEventDescriptionTextView = (TextView) itemView.findViewById(R.id.right_description_text_view);
             rightEventImageView = (ImageView) itemView.findViewById(R.id.right_event_image_view);
             rightMarkerImageView = (ImageView) itemView.findViewById(R.id.right_large_image_view);
+        }
+    }
+
+    public void addItems(final List<LiveFeedItemModel> items) {
+        if (items != null && items.size() > 0) {
+            this.list.addAll(items);
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    notifyDataSetChanged();
+                }
+            });
         }
     }
 

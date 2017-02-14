@@ -1,13 +1,20 @@
 package com.music.amazon.mypoldi;
 
 import android.app.Activity;
+import android.content.Context;
+import android.graphics.PointF;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSmoothScroller;
+import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ViewFlipper;
 
 import com.music.amazon.mypoldi.binder.LiveFeedBackgroundBinder;
 import com.music.amazon.mypoldi.binder.LiveFeedBinder;
+import com.music.amazon.mypoldi.binder.LiveFeedItemAdapter;
 import com.music.amazon.mypoldi.model.LiveFeedItemModel;
 import com.music.amazon.mypoldi.model.LiveFeedBackgroundModel;
 import com.music.amazon.mypoldi.model.LiveFeedModel;
@@ -36,6 +43,8 @@ public class LiveFeedMainActivity extends Activity {
     private ViewFlipper viewFlipper;
 
     private List<Integer> viewLayoutIds = new ArrayList<Integer>();
+
+    private LiveFeedItemAdapter liveFeedItemAdapter;
 
     final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
@@ -113,6 +122,13 @@ public class LiveFeedMainActivity extends Activity {
         backgroundView = (LiveFeedBackgroundView) (viewFlipper.findViewById(viewLayoutId));
         liveFeedView = (LiveFeedView) (backgroundView.findViewById(R.id.live_feed_view));
         liveFeedBackgroundBinder.bind(backgroundView, model);
+
+        liveFeedItemAdapter = new LiveFeedItemAdapter(LiveFeedMainActivity.this,
+                new ArrayList<LiveFeedItemModel>());
+        liveFeedView.liveFeedItemViewLayout.setAdapter(liveFeedItemAdapter);
+        final LinearLayoutManager linearLayoutManager = new MyCustomLayoutManager(this);
+        linearLayoutManager.setStackFromEnd(true);
+        liveFeedView.liveFeedItemViewLayout.setLayoutManager(linearLayoutManager);
     }
 
     private class UpdateEventRunnable implements Runnable {
@@ -140,8 +156,46 @@ public class LiveFeedMainActivity extends Activity {
                     liveFeedBinder.bind(
                             liveFeedView,
                             liveFeedModel);
+
+                    liveFeedItemAdapter.addItems(events);
+
+                    //liveFeedView.liveFeedItemViewLayout.smoothScrollToPosition(adapter.getItemCount() - 1);
                 }
             });
+        }
+    }
+
+
+    private class MyCustomLayoutManager extends LinearLayoutManager {
+        private static final float MILLISECONDS_PER_INCH = 100f;
+
+        private Context context;
+
+        public MyCustomLayoutManager(Context context) {
+            super(context);
+            this.context = context;
+        }
+
+        @Override
+        public void smoothScrollToPosition(RecyclerView recyclerView,
+                                           RecyclerView.State state, final int position) {
+            LinearSmoothScroller smoothScroller =
+                    new LinearSmoothScroller(context) {
+                        @Override
+                        public PointF computeScrollVectorForPosition(int targetPosition) {
+                            return MyCustomLayoutManager.this
+                                    .computeScrollVectorForPosition(targetPosition);
+                        }
+
+                        //This returns the milliseconds it takes to scroll one pixel.
+                        @Override
+                        protected float calculateSpeedPerPixel(DisplayMetrics displayMetrics) {
+                            return MILLISECONDS_PER_INCH/displayMetrics.densityDpi;
+                        }
+                    };
+
+            smoothScroller.setTargetPosition(position);
+            startSmoothScroll(smoothScroller);
         }
     }
 }
