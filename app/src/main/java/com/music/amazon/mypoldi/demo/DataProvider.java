@@ -1,4 +1,4 @@
-package com.music.amazon.mypoldi;
+package com.music.amazon.mypoldi.demo;
 
 import com.music.amazon.mypoldi.model.LiveFeedItemModel;
 import com.music.amazon.mypoldi.model.LiveFeedBackgroundModel;
@@ -13,32 +13,35 @@ import java.util.List;
  */
 public final class DataProvider {
 
+    static int counter = 0;
     public static LiveFeedItemModel createLiveFeedItemModel() {
         final LiveFeedItemModel.Builder builder = LiveFeedItemModel.builder();
+
+        counter++;
 
         final Calendar now = Calendar.getInstance();
         int minute = now.get(Calendar.MINUTE);
         int second = now.get(Calendar.SECOND);
 
-        if (second % 5 == 0 || second % 13 ==0) {
-            builder.withTime(minute + "\'" + second + "\"")
-                   .withSmallImage("https://amazon.music.poldi/yellow_card_icon.png")
-                   .withLargeImage("https://amazon.music.poldi/yellow_card_marker.png");
-
-        } else if (second % 7 == 0 || second % 11 == 0) {
-            builder.withTime(minute + "\'" + second + "\"")
-                   .withSmallImage("https://amazon.music.poldi/yellow_card_icon.png")
-                   .withLargeImage("https://amazon.music.poldi/yellow_card_marker.png");
-        }
+//        if (second % 5 == 0 || second % 11 == 0 || second % 13 ==0) {
+//            builder.withTime(minute + "\'" + second + "\"")
+//                   .withSmallImage("https://amazon.music.poldi/yellow_card_icon.png")
+//                   .withLargeImage("https://amazon.music.poldi/yellow_card_marker.png");
+//        }
 
         final long current = System.currentTimeMillis();
-        if (current % 7 == 0 || current % 13 == 0 || current % 17 == 0 || current % 23 == 0) {
-            builder.withDescritpion("Home - " + second);
+//        if (current % 7 == 0 || current % 13 == 0 || current % 17 == 0 || current % 23 == 0) {
+//            builder.withDescritpion("Home Feed: " + (counter++) );
+//            return builder.buildHomeEvent();
+//        } else {
+        if (counter % 2 == 0) {
+            builder.withDescritpion("Home Feed: " + counter );
             return builder.buildHomeEvent();
         } else {
-            builder.withDescritpion("Away - " + second);
+            builder.withDescritpion("Away Feed: " + counter);
             return builder.buildAwayEvent();
         }
+        //}
     }
 
     public static LiveFeedModel createLiveFeedModel() {

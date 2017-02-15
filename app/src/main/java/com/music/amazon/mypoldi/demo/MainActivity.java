@@ -1,4 +1,4 @@
-package com.music.amazon.mypoldi;
+package com.music.amazon.mypoldi.demo;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,11 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 
-import com.music.amazon.mypoldi.binder.CustomLinearLayoutManager;
-import com.music.amazon.mypoldi.dmtv.UniversalAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.music.amazon.mypoldi.R;
 
 public class MainActivity extends Activity {
 
