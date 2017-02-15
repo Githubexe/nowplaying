@@ -13,7 +13,7 @@ import com.music.amazon.mypoldi.R;
  */
 public final class LiveFeedView extends RelativeLayout {
 
-    public RecyclerView liveFeedItemViewLayout;
+    public RecyclerView liveFeedItemView;
 
     public TextView hostTeamScoreTextView;
 
@@ -48,6 +48,6 @@ public final class LiveFeedView extends RelativeLayout {
         minutesTextView = (TextView)findViewById(R.id.minute_text_view);
         secondsTextView = (TextView)findViewById(R.id.second_text_view);
         timeStampSeparator = (TextView)findViewById(R.id.minute_second_separator_text_view);
-        liveFeedItemViewLayout = (RecyclerView) findViewById(R.id.live_feed_item_view);
+        liveFeedItemView = (RecyclerView) findViewById(R.id.live_feed_item_view);
     }
 }

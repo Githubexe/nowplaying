@@ -4,11 +4,13 @@ import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.music.amazon.mypoldi.R;
-import com.music.amazon.mypoldi.binder.CustomLinearLayoutManager;
 import com.music.amazon.mypoldi.model.LiveFeedItemModel;
 import com.squareup.picasso.Picasso;
 
@@ -17,7 +19,7 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * Created by yoyosu on 2/13/17.
  */
-public final class LiveFeedItemView extends RecyclerView {
+public final class LiveFeedItemView extends LinearLayout {
     public TextView leftTimeTextView;
 
     public TextView leftDescriptionTextView;
@@ -44,9 +46,7 @@ public final class LiveFeedItemView extends RecyclerView {
 
     public LiveFeedItemView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        final LinearLayoutManager linearLayoutManager = new CustomLinearLayoutManager(getContext());
-        linearLayoutManager.setStackFromEnd(true);
-        setLayoutManager(linearLayoutManager);
+        inflate();
     }
 
     private void inflate() {
@@ -61,7 +61,6 @@ public final class LiveFeedItemView extends RecyclerView {
         rightSmallImageView = (ImageView)findViewById(R.id.right_event_image_view);
         rightLargeImageView = (ImageView)findViewById(R.id.right_large_image_view);
     }
-
 
     public void bind(LiveFeedItemModel liveFeedItemModel) {
         final Picasso picasso = Picasso.with(getContext());
@@ -104,6 +103,12 @@ public final class LiveFeedItemView extends RecyclerView {
             }
         }
 
+//        final int size = getAdapter().getItemCount();
+//        if (size  > 6) {
+//            Animation animation = AnimationUtils.loadAnimation(getContext(),
+//                    R.anim.live_feed_item_up_from_bottom);
+//            startAnimation(animation);
+//        }
         //smoothScrollToPosition(getAdapter().getItemCount() - 1);
     }
 

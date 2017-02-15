@@ -6,9 +6,12 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ViewFlipper;
 
+import com.music.amazon.mypoldi.binder.CustomLinearLayoutManager;
 import com.music.amazon.mypoldi.binder.LiveFeedBackgroundBinder;
 import com.music.amazon.mypoldi.binder.LiveFeedBinder;
 import com.music.amazon.mypoldi.binder.LiveFeedItemAdapter;
+import com.music.amazon.mypoldi.binder.LiveFeedItemBinder;
+import com.music.amazon.mypoldi.dmtv.UniversalAdapter;
 import com.music.amazon.mypoldi.model.LiveFeedItemModel;
 import com.music.amazon.mypoldi.model.LiveFeedBackgroundModel;
 import com.music.amazon.mypoldi.model.LiveFeedModel;
@@ -39,6 +42,7 @@ public class LiveFeedMainActivity extends Activity {
     private List<Integer> viewLayoutIds = new ArrayList<Integer>();
 
     private LiveFeedItemAdapter liveFeedItemAdapter;
+    private UniversalAdapter universalAdapter;
 
     final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
@@ -117,10 +121,12 @@ public class LiveFeedMainActivity extends Activity {
         liveFeedView = (LiveFeedView) (backgroundView.findViewById(R.id.live_feed_view));
         liveFeedBackgroundBinder.bind(backgroundView, model);
 
-
-        liveFeedItemAdapter = new LiveFeedItemAdapter(LiveFeedMainActivity.this,
-                new ArrayList<LiveFeedItemModel>());
-        liveFeedView.liveFeedItemViewLayout.setAdapter(liveFeedItemAdapter);
+//        liveFeedItemAdapter = new LiveFeedItemAdapter(LiveFeedMainActivity.this,
+//                new ArrayList<LiveFeedItemModel>());
+//        liveFeedView.liveFeedItemView.setAdapter(liveFeedItemAdapter);
+        universalAdapter = new UniversalAdapter(new LiveFeedItemBinder());
+        liveFeedView.liveFeedItemView.setAdapter(universalAdapter);
+        liveFeedView.liveFeedItemView.setLayoutManager(new CustomLinearLayoutManager(this));
 
     }
 
@@ -135,25 +141,29 @@ public class LiveFeedMainActivity extends Activity {
 
         @Override
         public void run() {
+
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     final LiveFeedItemModel eventModel = DataProvider.createLiveGameEvent();
                     events.add(eventModel);
+                    final List<LiveFeedItemModel> newItems = new ArrayList<LiveFeedItemModel>();
+                    newItems.add(eventModel);
+
                     //DEMO purpose only
                     final Calendar now = Calendar.getInstance();
                     liveFeedModel.elapsedTime = now.get(Calendar.MINUTE) +
                             " : " + now.get(Calendar.SECOND);
-
-                            viewFlipper.findViewById(R.id.live_feed_view);
                     liveFeedBinder.bind(
                             liveFeedView,
                             liveFeedModel);
 
-                    liveFeedItemAdapter = new LiveFeedItemAdapter(LiveFeedMainActivity.this,
-                            events);
-                    liveFeedView.liveFeedItemViewLayout.setAdapter(liveFeedItemAdapter);
-                    liveFeedView.liveFeedItemViewLayout.smoothScrollToPosition(liveFeedItemAdapter.getItemCount() - 1);
+//                    liveFeedItemAdapter = new LiveFeedItemAdapter(LiveFeedMainActivity.this,
+//                            events);
+//                    liveFeedView.liveFeedItemView.setAdapter(liveFeedItemAdapter);
+//                    liveFeedView.liveFeedItemView.smoothScrollToPosition(liveFeedItemAdapter.getItemCount() - 1);
+                    universalAdapter.addItems(newItems);
+
                 }
             });
         }

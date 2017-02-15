@@ -28,6 +28,7 @@ import java.util.List;
  */
 public class LiveFeedItemAdapter extends
         RecyclerView.Adapter<LiveFeedItemAdapter.ViewHolder> {
+    private final int MAX_ROW = 6;
 
     private Context context;
 
@@ -105,7 +106,6 @@ public class LiveFeedItemAdapter extends
             leftEventDescriptionTextView.setText(liveFeedItemModel.description);
             leftEventDescriptionTextView.bringToFront();
 
-
             if (StringUtils.isEmpty(liveFeedItemModel.smallImage) == false) {
                 picasso.load(liveFeedItemModel.smallImage)
                         .placeholder(R.drawable.yellow_card)
@@ -143,7 +143,7 @@ public class LiveFeedItemAdapter extends
             }
         }
 
-        if (getItemCount() > 6) {
+        if (getItemCount() >= MAX_ROW) {
             Animation animation = AnimationUtils.loadAnimation(context, R.anim.live_feed_item_up_from_bottom);
             viewHolder.itemView.startAnimation(animation);
         }
