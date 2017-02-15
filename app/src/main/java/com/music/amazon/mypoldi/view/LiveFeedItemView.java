@@ -1,11 +1,7 @@
 package com.music.amazon.mypoldi.view;
 
 import android.content.Context;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -102,14 +98,6 @@ public final class LiveFeedItemView extends LinearLayout {
                         .into(rightLargeImageView);
             }
         }
-
-//        final int size = getAdapter().getItemCount();
-//        if (size  > 6) {
-//            Animation animation = AnimationUtils.loadAnimation(getContext(),
-//                    R.anim.live_feed_item_up_from_bottom);
-//            startAnimation(animation);
-//        }
-        //smoothScrollToPosition(getAdapter().getItemCount() - 1);
     }
 
 }
