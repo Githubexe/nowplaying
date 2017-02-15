@@ -123,8 +123,8 @@ public class LiveFeedMainActivity extends Activity {
         liveFeedView = (LiveFeedView) (backgroundView.findViewById(R.id.live_feed_view));
         liveFeedBackgroundBinder.bind(backgroundView, model);
         universalAdapter = new UniversalAdapter(new LiveFeedItemBinder());
-        liveFeedItemAdapter = new LiveFeedItemAdapter(this, new ArrayList<LiveFeedItemModel>());
-        liveFeedView.liveFeedItemView.setAdapter(liveFeedItemAdapter);
+       // liveFeedItemAdapter = new LiveFeedItemAdapter(this, new ArrayList<LiveFeedItemModel>());
+        liveFeedView.liveFeedItemView.setAdapter(universalAdapter);
         liveFeedView.liveFeedItemView.setLayoutManager(new CustomLinearLayoutManager(this));
     }
 
@@ -134,33 +134,38 @@ public class LiveFeedMainActivity extends Activity {
         final LiveFeedBinder liveFeedBinder =
                 new LiveFeedBinder(LiveFeedMainActivity.this);
 
+        final List<LiveFeedItemModel> events = new ArrayList<LiveFeedItemModel>();
+
         final LiveFeedModel liveFeedModel =
-                DataProvider.createLiveFeedModel();
+                DataProvider.createLiveFeedModel(events);
+
         @Override
         public void run() {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    List<LiveFeedItemModel> added = new ArrayList<LiveFeedItemModel>();
                     final LiveFeedItemModel eventModel = DataProvider.createLiveFeedItemModel();
-                    final List<LiveFeedItemModel> newItems = new ArrayList<>();
-                    newItems.add(eventModel);
-
+                    events.add(eventModel);
+                    added.add(eventModel);
+                    //DEMO purpose only
                     final Calendar now = Calendar.getInstance();
                     liveFeedModel.elapsedTime = now.get(Calendar.MINUTE) +
                             " : " + now.get(Calendar.SECOND);
+
+                    viewFlipper.findViewById(R.id.live_feed_view);
                     liveFeedBinder.bind(
                             liveFeedView,
                             liveFeedModel);
-                   // universalAdapter.addItems(newItems);
-                    liveFeedItemAdapter.addItems(newItems);
-                    final int pos = liveFeedItemAdapter.getItemCount() - 1;
 
-                   //liveFeedView.liveFeedItemView.smoothScrollToPosition(pos);
-
+                    universalAdapter.addItems(added);
+                    liveFeedView.liveFeedItemView.smoothScrollToPosition(universalAdapter.getItemCount() - 1);
                 }
             });
         }
     }
+
+
 
 
 
