@@ -2,6 +2,7 @@ package com.music.amazon.mypoldi.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -77,17 +78,21 @@ public final class LiveFeedItemView extends LinearLayout {
                     .placeholder(R.drawable.yellow_card)
                     .error(R.drawable.yellow_card)
                     .into(leftSmallImageView);
+            leftSmallImageView.setVisibility(View.VISIBLE);
         }
         if (StringUtils.isEmpty(liveFeedItemModel.largeImage) == false) {
             picasso.load(liveFeedItemModel.largeImage)
                     .placeholder(R.drawable.yellow_card)
                     .error(R.drawable.yellow_card)
                     .into(leftLargeImageView);
+            leftLargeImageView.setVisibility(View.VISIBLE);
         }
         rightTimeTextView.setText(null);
         rightDescriptionTextView.setText(null);
         rightSmallImageView.setImageDrawable(null);
+        rightSmallImageView.setVisibility(View.INVISIBLE);
         rightLargeImageView.setImageDrawable(null);
+        rightLargeImageView.setVisibility(View.INVISIBLE);
     }
 
     private void bindAwayView(final LiveFeedItemModel liveFeedItemModel) {
@@ -101,6 +106,7 @@ public final class LiveFeedItemView extends LinearLayout {
                     .placeholder(R.drawable.yellow_card)
                     .error(R.drawable.yellow_card)
                     .into(rightSmallImageView);
+            rightSmallImageView.setVisibility(View.VISIBLE);
         }
 
         if (StringUtils.isEmpty(liveFeedItemModel.largeImage) == false) {
@@ -108,11 +114,14 @@ public final class LiveFeedItemView extends LinearLayout {
                     .placeholder(R.drawable.yellow_card)
                     .error(R.drawable.yellow_card)
                     .into(rightLargeImageView);
+            rightLargeImageView.setVisibility(View.VISIBLE);
         }
         leftTimeTextView.setText(null);
         leftDescriptionTextView.setText(null);
         leftSmallImageView.setImageDrawable(null);
+        leftSmallImageView.setVisibility(View.INVISIBLE);
         leftLargeImageView.setImageDrawable(null);
+        leftLargeImageView.setVisibility(View.INVISIBLE);
     }
 
 }

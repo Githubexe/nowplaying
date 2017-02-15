@@ -21,11 +21,11 @@ public final class DataProvider {
         int minute = Calendar.getInstance().get(Calendar.MINUTE);
         if (counter % 7 == 0 || counter % 13 == 0 || counter % 17 == 0) {
             builder.withDescritpion("Home - " + counter);
-//            if (counter % 7 == 0 || counter % 17 == 0) {
-//                builder.withTime(minute + "\'")
-//                        .withSmallImage("https://amazon.music.poldi/yellow_card_icon.png")
-//                        .withLargeImage("https://amazon.music.poldi/yellow_card_marker.png");
-//            }
+            if (counter % 7 == 0 || counter % 17 == 0) {
+                builder.withTime(minute + "\'")
+                        .withSmallImage("https://amazon.music.poldi/yellow_card_icon.png")
+                        .withLargeImage("https://amazon.music.poldi/yellow_card_marker.png");
+            }
             return builder.buildHomeEvent();
         } else {
             builder.withDescritpion("Away - " + counter);
