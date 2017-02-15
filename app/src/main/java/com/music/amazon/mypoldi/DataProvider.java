@@ -4,6 +4,7 @@ import com.music.amazon.mypoldi.model.LiveFeedItemModel;
 import com.music.amazon.mypoldi.model.LiveFeedBackgroundModel;
 import com.music.amazon.mypoldi.model.LiveFeedModel;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  */
 public final class DataProvider {
 
-    public static LiveFeedItemModel createLiveGameEvent() {
+    public static LiveFeedItemModel createLiveFeedItemModel() {
         final LiveFeedItemModel.Builder builder = LiveFeedItemModel.builder();
 
         final Calendar now = Calendar.getInstance();
@@ -40,10 +41,10 @@ public final class DataProvider {
         }
     }
 
-    public static LiveFeedModel createNowPlayingTimelineModel(final List<LiveFeedItemModel> events) {
-        LiveFeedItemModel eventModel = createLiveGameEvent();
+    public static LiveFeedModel createLiveFeedModel() {
+        final List<LiveFeedItemModel> events = new ArrayList<>();
+        LiveFeedItemModel eventModel = createLiveFeedItemModel();
         events.add(eventModel);
-
         return LiveFeedModel.builder(
                 "test-uuid").
                 withTime("53 : 29").
@@ -52,7 +53,7 @@ public final class DataProvider {
                 build();
     }
 
-    public static LiveFeedBackgroundModel createNowPlayingBackgroundModel(int childId) {
+    public static LiveFeedBackgroundModel createLiveFeedBackgroundModel(int childId) {
         return LiveFeedBackgroundModel.builder(
                 "test-main-uuid",
                 "https://amazon.music.poldi/background.png", //background

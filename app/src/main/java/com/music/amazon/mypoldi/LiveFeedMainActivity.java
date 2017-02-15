@@ -114,37 +114,32 @@ public class LiveFeedMainActivity extends Activity {
     private void updateBackgroundView() {
         final int childId = viewFlipper.getDisplayedChild();
         final int viewLayoutId = viewLayoutIds.get(childId);
-        LiveFeedBackgroundModel model = DataProvider.createNowPlayingBackgroundModel(childId);
+        LiveFeedBackgroundModel model = DataProvider.createLiveFeedBackgroundModel(childId);
         backgroundView = (LiveFeedBackgroundView) (viewFlipper.findViewById(viewLayoutId));
         liveFeedView = (LiveFeedView) (backgroundView.findViewById(R.id.live_feed_view));
         liveFeedBackgroundBinder.bind(backgroundView, model);
         universalAdapter = new UniversalAdapter(new LiveFeedItemBinder());
         liveFeedView.liveFeedItemView.setAdapter(universalAdapter);
         liveFeedView.liveFeedItemView.setLayoutManager(new CustomLinearLayoutManager(this));
-
     }
 
+
+    //DEMO purpose only, will be replaced by LiveFeedSubscriber logics
     private class UpdateEventRunnable implements Runnable {
         final LiveFeedBinder liveFeedBinder =
                 new LiveFeedBinder(LiveFeedMainActivity.this);
 
-        final List<LiveFeedItemModel> events = new ArrayList<LiveFeedItemModel>();
-
         final LiveFeedModel liveFeedModel =
-                DataProvider.createNowPlayingTimelineModel(events);
-
+                DataProvider.createLiveFeedModel();
         @Override
         public void run() {
-
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    final LiveFeedItemModel eventModel = DataProvider.createLiveGameEvent();
-                    events.add(eventModel);
-                    final List<LiveFeedItemModel> newItems = new ArrayList<LiveFeedItemModel>();
+                    final LiveFeedItemModel eventModel = DataProvider.createLiveFeedItemModel();
+                    final List<LiveFeedItemModel> newItems = new ArrayList<>();
                     newItems.add(eventModel);
 
-                    //DEMO purpose only
                     final Calendar now = Calendar.getInstance();
                     liveFeedModel.elapsedTime = now.get(Calendar.MINUTE) +
                             " : " + now.get(Calendar.SECOND);
@@ -153,7 +148,7 @@ public class LiveFeedMainActivity extends Activity {
                             liveFeedModel);
                     universalAdapter.addItems(newItems);
 
-                    liveFeedView.liveFeedItemView.smoothScrollToPosition(events.size() - 1);
+                    liveFeedView.liveFeedItemView.smoothScrollToPosition(universalAdapter.getItemCount() - 1);
 
                 }
             });
