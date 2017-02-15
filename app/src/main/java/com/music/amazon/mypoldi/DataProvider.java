@@ -56,9 +56,9 @@ public final class DataProvider {
         return LiveFeedBackgroundModel.builder(
                 "test-main-uuid",
                 "https://amazon.music.poldi/background.png", //background
-                "Host Team #" + childId,
+                "FC BAYERN MÜNCHEN",
                 "https://amazon.music.poldi/hostteam.png", //host team logo url
-                "Visiting Team #" + childId,
+                "BORUSSIA DORTMUND",
                 "https://amazon.music.poldi/visitingteam.png", //visiting team logo url
                 System.currentTimeMillis()).build();
     }

@@ -9,7 +9,6 @@ import android.widget.ViewFlipper;
 import com.music.amazon.mypoldi.binder.CustomLinearLayoutManager;
 import com.music.amazon.mypoldi.binder.LiveFeedBackgroundBinder;
 import com.music.amazon.mypoldi.binder.LiveFeedBinder;
-import com.music.amazon.mypoldi.binder.LiveFeedItemAdapter;
 import com.music.amazon.mypoldi.binder.LiveFeedItemBinder;
 import com.music.amazon.mypoldi.dmtv.UniversalAdapter;
 import com.music.amazon.mypoldi.model.LiveFeedItemModel;
@@ -41,7 +40,6 @@ public class LiveFeedMainActivity extends Activity {
 
     private List<Integer> viewLayoutIds = new ArrayList<Integer>();
 
-    private LiveFeedItemAdapter liveFeedItemAdapter;
     private UniversalAdapter universalAdapter;
 
     final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
@@ -153,12 +151,9 @@ public class LiveFeedMainActivity extends Activity {
                     liveFeedBinder.bind(
                             liveFeedView,
                             liveFeedModel);
-
-//                    liveFeedItemAdapter = new LiveFeedItemAdapter(LiveFeedMainActivity.this,
-//                            events);
-//                    liveFeedView.liveFeedItemView.setAdapter(liveFeedItemAdapter);
-//                    liveFeedView.liveFeedItemView.smoothScrollToPosition(liveFeedItemAdapter.getItemCount() - 1);
                     universalAdapter.addItems(newItems);
+
+                    liveFeedView.liveFeedItemView.smoothScrollToPosition(events.size() - 1);
 
                 }
             });
