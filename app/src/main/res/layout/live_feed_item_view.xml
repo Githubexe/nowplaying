@@ -6,6 +6,9 @@
     android:gravity="center"
     android:orientation="horizontal">
 
+
+
+
     <RelativeLayout
         android:id="@+id/leftLiveFeedItemLayout"
         android:layout_width="150dp"

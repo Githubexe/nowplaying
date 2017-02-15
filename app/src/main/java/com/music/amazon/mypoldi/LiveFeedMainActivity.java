@@ -120,10 +120,6 @@ public class LiveFeedMainActivity extends Activity {
         backgroundView = (LiveFeedBackgroundView) (viewFlipper.findViewById(viewLayoutId));
         liveFeedView = (LiveFeedView) (backgroundView.findViewById(R.id.live_feed_view));
         liveFeedBackgroundBinder.bind(backgroundView, model);
-
-//        liveFeedItemAdapter = new LiveFeedItemAdapter(LiveFeedMainActivity.this,
-//                new ArrayList<LiveFeedItemModel>());
-//        liveFeedView.liveFeedItemView.setAdapter(liveFeedItemAdapter);
         universalAdapter = new UniversalAdapter(new LiveFeedItemBinder());
         liveFeedView.liveFeedItemView.setAdapter(universalAdapter);
         liveFeedView.liveFeedItemView.setLayoutManager(new CustomLinearLayoutManager(this));
