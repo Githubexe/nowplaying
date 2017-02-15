@@ -58,46 +58,61 @@ public final class LiveFeedItemView extends LinearLayout {
         rightLargeImageView = (ImageView)findViewById(R.id.right_large_image_view);
     }
 
-    public void bind(LiveFeedItemModel liveFeedItemModel) {
-        final Picasso picasso = Picasso.with(getContext());
-
+    public void bind(final LiveFeedItemModel liveFeedItemModel) {
         if (liveFeedItemModel.isHome) {
-            leftTimeTextView.setText(liveFeedItemModel.time);
-            leftDescriptionTextView.setText(liveFeedItemModel.description);
-            leftDescriptionTextView.bringToFront();
-            if (StringUtils.isEmpty(liveFeedItemModel.smallImage) == false) {
-                picasso.load(liveFeedItemModel.smallImage)
-                        .placeholder(R.drawable.yellow_card)
-                        .error(R.drawable.yellow_card)
-                        .into(leftSmallImageView);
-            }
-
-            if (StringUtils.isEmpty(liveFeedItemModel.largeImage) == false) {
-                picasso.load(liveFeedItemModel.largeImage)
-                        .placeholder(R.drawable.yellow_card)
-                        .error(R.drawable.yellow_card)
-                        .into(leftLargeImageView);
-
-            }
+            bindHomeView(liveFeedItemModel);
         } else {
-            rightTimeTextView.setText(liveFeedItemModel.time);
-            rightDescriptionTextView.setText(liveFeedItemModel.description);
-            rightDescriptionTextView.bringToFront();
-
-            if (StringUtils.isEmpty(liveFeedItemModel.smallImage) == false) {
-                picasso.load(liveFeedItemModel.smallImage)
-                        .placeholder(R.drawable.yellow_card)
-                        .error(R.drawable.yellow_card)
-                        .into(rightSmallImageView);
-            }
-
-            if (StringUtils.isEmpty(liveFeedItemModel.largeImage) == false) {
-                picasso.load(liveFeedItemModel.largeImage)
-                        .placeholder(R.drawable.yellow_card)
-                        .error(R.drawable.yellow_card)
-                        .into(rightLargeImageView);
-            }
+            bindAwayView(liveFeedItemModel);
         }
+    }
+
+    private void bindHomeView(final LiveFeedItemModel liveFeedItemModel) {
+        leftTimeTextView.setText(liveFeedItemModel.time);
+        leftDescriptionTextView.setText(liveFeedItemModel.description);
+        leftDescriptionTextView.bringToFront();
+
+        final Picasso picasso = Picasso.with(getContext());
+        if (StringUtils.isEmpty(liveFeedItemModel.smallImage) == false) {
+            picasso.load(liveFeedItemModel.smallImage)
+                    .placeholder(R.drawable.yellow_card)
+                    .error(R.drawable.yellow_card)
+                    .into(leftSmallImageView);
+        }
+        if (StringUtils.isEmpty(liveFeedItemModel.largeImage) == false) {
+            picasso.load(liveFeedItemModel.largeImage)
+                    .placeholder(R.drawable.yellow_card)
+                    .error(R.drawable.yellow_card)
+                    .into(leftLargeImageView);
+        }
+        rightTimeTextView.setText(null);
+        rightDescriptionTextView.setText(null);
+        rightSmallImageView.setImageDrawable(null);
+        rightLargeImageView.setImageDrawable(null);
+    }
+
+    private void bindAwayView(final LiveFeedItemModel liveFeedItemModel) {
+        rightTimeTextView.setText(liveFeedItemModel.time);
+        rightDescriptionTextView.setText(liveFeedItemModel.description);
+        rightDescriptionTextView.bringToFront();
+
+        final Picasso picasso = Picasso.with(getContext());
+        if (StringUtils.isEmpty(liveFeedItemModel.smallImage) == false) {
+            picasso.load(liveFeedItemModel.smallImage)
+                    .placeholder(R.drawable.yellow_card)
+                    .error(R.drawable.yellow_card)
+                    .into(rightSmallImageView);
+        }
+
+        if (StringUtils.isEmpty(liveFeedItemModel.largeImage) == false) {
+            picasso.load(liveFeedItemModel.largeImage)
+                    .placeholder(R.drawable.yellow_card)
+                    .error(R.drawable.yellow_card)
+                    .into(rightLargeImageView);
+        }
+        leftTimeTextView.setText(null);
+        leftDescriptionTextView.setText(null);
+        leftSmallImageView.setImageDrawable(null);
+        leftLargeImageView.setImageDrawable(null);
     }
 
 }

@@ -12,30 +12,28 @@ import java.util.List;
  */
 public final class DataProvider {
 
+    private static int counter;
+
     public static LiveFeedItemModel createLiveFeedItemModel() {
         final LiveFeedItemModel.Builder builder = LiveFeedItemModel.builder();
+        counter++;
 
-        final Calendar now = Calendar.getInstance();
-        int minute = now.get(Calendar.MINUTE);
-        int second = now.get(Calendar.SECOND);
-
-        if (second % 5 == 0 || second % 13 ==0) {
-            builder.withTime(minute + "\'" + second + "\"")
-                    .withSmallImage("https://amazon.music.poldi/yellow_card_icon.png")
-                    .withLargeImage("https://amazon.music.poldi/yellow_card_marker.png");
-
-        } else if (second % 7 == 0 || second % 11 == 0) {
-            builder.withTime(minute + "\'" + second + "\"")
-                    .withSmallImage("https://amazon.music.poldi/yellow_card_icon.png")
-                    .withLargeImage("https://amazon.music.poldi/yellow_card_marker.png");
-        }
-
-        final long current = System.currentTimeMillis();
-        if (current % 7 == 0 || current % 13 == 0 || current % 17 == 0 || current % 23 == 0) {
-            builder.withDescritpion("Home - " + second);
+        int minute = Calendar.getInstance().get(Calendar.MINUTE);
+        if (counter % 7 == 0 || counter % 13 == 0 || counter % 17 == 0) {
+            builder.withDescritpion("Home - " + counter);
+//            if (counter % 7 == 0 || counter % 17 == 0) {
+//                builder.withTime(minute + "\'")
+//                        .withSmallImage("https://amazon.music.poldi/yellow_card_icon.png")
+//                        .withLargeImage("https://amazon.music.poldi/yellow_card_marker.png");
+//            }
             return builder.buildHomeEvent();
         } else {
-            builder.withDescritpion("Away - " + second);
+            builder.withDescritpion("Away - " + counter);
+//            if (counter % 6 == 0 || counter % 11 == 0) {
+//                builder.withTime(minute + "\'")
+//                        .withSmallImage("https://amazon.music.poldi/yellow_card_icon.png")
+//                        .withLargeImage("https://amazon.music.poldi/yellow_card_marker.png");
+//            }
             return builder.buildAwayEvent();
         }
     }

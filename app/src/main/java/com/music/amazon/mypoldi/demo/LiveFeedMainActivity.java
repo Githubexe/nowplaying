@@ -111,7 +111,7 @@ public class LiveFeedMainActivity extends Activity {
         scheduledFuture = scheduler.scheduleAtFixedRate(
                 new UpdateEventRunnable(),
                 2, //initial delay
-                2, //interval
+                1, //interval
                 TimeUnit.SECONDS);
     }
 
