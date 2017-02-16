@@ -6,8 +6,7 @@
     <RelativeLayout
         android:id="@+id/score_layout"
         android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal">
 
         <TextView
@@ -16,7 +15,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textStyle="bold"
-            android:textSize="60dp"/>
+            android:textSize="99sp"/>
 
         <TextView
             android:id="@+id/score_separator_text_view"
@@ -27,7 +26,7 @@
             android:gravity="center"
             android:layout_toRightOf="@id/host_score_text_view"
             android:textStyle="bold"
-            android:textSize="60dp"/>
+            android:textSize="99sp"/>
 
         <TextView
             android:id="@+id/away_score_text_view"
@@ -36,7 +35,7 @@
             android:gravity="center"
             android:layout_toRightOf="@id/score_separator_text_view"
             android:textStyle="bold"
-            android:textSize="60dp"/>
+            android:textSize="99sp"/>
     </RelativeLayout>
 
 
@@ -52,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="25dp"/>
+            android:textSize="29sp"/>
 
         <TextView
             android:id="@+id/minute_second_separator_text_view"
@@ -62,7 +61,7 @@
             android:layout_marginRight="5dp"
             android:gravity="center"
             android:layout_toRightOf="@id/minute_text_view"
-            android:textSize="25dp"/>
+            android:textSize="29sp"/>
 
         <TextView
             android:id="@+id/second_text_view"
@@ -70,7 +69,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_toRightOf="@id/minute_second_separator_text_view"
-            android:textSize="25dp"/>
+            android:textSize="29sp"/>
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView

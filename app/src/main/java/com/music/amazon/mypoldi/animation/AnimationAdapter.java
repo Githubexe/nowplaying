@@ -41,11 +41,9 @@ public class AnimationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         adapter.onBindViewHolder(holder, position);
-        if (getItemCount() > 6) {
-            Animation animation = AnimationUtils.loadAnimation(holder.itemView.getContext(),
-                    R.anim.live_feed_item_up_from_bottom);
-            holder.itemView.startAnimation(animation);
-        }
+        Animation animation = AnimationUtils.loadAnimation(holder.itemView.getContext(),
+                R.anim.live_feed_item_up_from_bottom);
+        holder.itemView.startAnimation(animation);
     }
 
 
