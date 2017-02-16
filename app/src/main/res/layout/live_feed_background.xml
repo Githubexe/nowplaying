@@ -26,7 +26,7 @@
     <FrameLayout
         android:id="@+id/live_feed_layout"
         android:layout_width="wrap_content"
-        android:layout_height="400dp"
+        android:layout_height="380dp"
         android:layout_toRightOf="@id/host_team_layout"
         android:layout_toLeftOf="@+id/away_team_layout"
         android:layout_alignTop="@id/host_team_layout">
