@@ -2,7 +2,6 @@ package com.music.amazon.mypoldi.demo;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ViewFlipper;
@@ -11,7 +10,6 @@ import com.music.amazon.mypoldi.R;
 import com.music.amazon.mypoldi.binder.CustomLinearLayoutManager;
 import com.music.amazon.mypoldi.binder.LiveFeedBackgroundBinder;
 import com.music.amazon.mypoldi.binder.LiveFeedBinder;
-import com.music.amazon.mypoldi.binder.LiveFeedItemAdapter;
 import com.music.amazon.mypoldi.binder.LiveFeedItemBinder;
 import com.music.amazon.mypoldi.dmtv.UniversalAdapter;
 import com.music.amazon.mypoldi.model.LiveFeedItemModel;
@@ -28,7 +26,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
-public class LiveFeedMainActivity extends Activity {
+public class DemoActivity extends Activity {
 
     //FIXME: get the number of concurrent live games from service
     private final int NUM_OF_LIVE_GAMES = 3;
@@ -117,12 +115,11 @@ public class LiveFeedMainActivity extends Activity {
     private void updateBackgroundView() {
         final int childId = viewFlipper.getDisplayedChild();
         final int viewLayoutId = viewLayoutIds.get(childId);
-        LiveFeedBackgroundModel model = DataProvider.createLiveFeedBackgroundModel(childId);
+        LiveFeedBackgroundModel model = DemoLiveFeedData.createLiveFeedBackgroundModel(childId);
         backgroundView = (LiveFeedBackgroundView) (viewFlipper.findViewById(viewLayoutId));
         liveFeedView = (LiveFeedView) (backgroundView.findViewById(R.id.live_feed_view));
         liveFeedBackgroundBinder.bind(backgroundView, model);
         universalAdapter = new UniversalAdapter(new LiveFeedItemBinder());
-       // liveFeedItemAdapter = new LiveFeedItemAdapter(this, new ArrayList<LiveFeedItemModel>());
         liveFeedView.liveFeedItemView.setAdapter(universalAdapter);
         liveFeedView.liveFeedItemView.setLayoutManager(new CustomLinearLayoutManager(this));
     }
@@ -130,10 +127,10 @@ public class LiveFeedMainActivity extends Activity {
     //DEMO purpose only, will be replaced by LiveFeedSubscriber logics
     private class UpdateEventRunnable implements Runnable {
         final LiveFeedBinder liveFeedBinder =
-                new LiveFeedBinder(LiveFeedMainActivity.this);
+                new LiveFeedBinder(DemoActivity.this);
 
         final LiveFeedModel liveFeedModel =
-                DataProvider.createLiveFeedModel();
+                DemoLiveFeedData.createLiveFeedModel();
 
 
         @Override
@@ -142,7 +139,7 @@ public class LiveFeedMainActivity extends Activity {
                 @Override
                 public void run() {
                     List<LiveFeedItemModel> added = new ArrayList<LiveFeedItemModel>();
-                    final LiveFeedItemModel eventModel = DataProvider.createLiveFeedItemModel();
+                    final LiveFeedItemModel eventModel = DemoLiveFeedData.createLiveFeedItemModel();
                     added.add(eventModel);
                     //DEMO purpose only
                     final Calendar now = Calendar.getInstance();

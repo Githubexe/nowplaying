@@ -5,21 +5,17 @@ import com.music.amazon.mypoldi.model.LiveFeedBackgroundModel;
 import com.music.amazon.mypoldi.model.LiveFeedModel;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
 
 /**
  * DEMO DATA ONLY
  */
-public final class DataProvider {
+public final class DemoLiveFeedData {
 
     private static int counter = -1;
 
     public static LiveFeedItemModel createLiveFeedItemModel() {
         final LiveFeedItemModel.Builder builder = LiveFeedItemModel.builder();
-
         counter++;
-        int minute = Calendar.getInstance().get(Calendar.MINUTE);
         if (counter % 7 == 0 || counter % 13 == 0 || counter % 17 == 0) {
             builder.withDescritpion("Home - " + counter);
             if (counter % 7 == 0 || counter % 17 == 0) {
