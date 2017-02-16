@@ -38,4 +38,9 @@ public class CustomLinearLayoutManager extends LinearLayoutManager {
         smoothScroller.setTargetPosition(position);
         startSmoothScroll(smoothScroller);
     }
+
+    @Override
+    public boolean supportsPredictiveItemAnimations() {
+        return true;
+    }
 }
