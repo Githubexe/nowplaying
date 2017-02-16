@@ -19,7 +19,6 @@ import org.apache.commons.lang3.StringUtils;
  * Created by yoyosu on 2/13/17.
  */
 public final class LiveFeedItemView extends LinearLayout {
-    private final int VISIBLE_ITEMS = 6;
 
     public TextView leftTimeTextView;
 
@@ -121,6 +120,7 @@ public final class LiveFeedItemView extends LinearLayout {
                     .into(rightSmallImageView);
             rightSmallImageView.setVisibility(View.VISIBLE);
         } else {
+            //Must null the imageview so that it can be recycled
             rightSmallImageView.setImageDrawable(null);
             rightSmallImageView.setVisibility(View.INVISIBLE);
         }
@@ -132,12 +132,14 @@ public final class LiveFeedItemView extends LinearLayout {
                     .into(rightLargeImageView);
             rightLargeImageView.setVisibility(View.VISIBLE);
         } else {
+            //Must null the imageview so that it can be recycled
             rightLargeImageView.setImageDrawable(null);
             rightLargeImageView.setVisibility(View.INVISIBLE);
         }
 
         leftTimeTextView.setText(null);
         leftDescriptionTextView.setText(null);
+        //Must null the imageviews so that they can be recycled
         leftSmallImageView.setImageDrawable(null);
         leftSmallImageView.setVisibility(View.INVISIBLE);
         leftLargeImageView.setImageDrawable(null);

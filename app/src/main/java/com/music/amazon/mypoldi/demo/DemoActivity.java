@@ -127,7 +127,7 @@ public class DemoActivity extends Activity {
     //DEMO purpose only, will be replaced by LiveFeedSubscriber logics
     private class UpdateEventRunnable implements Runnable {
         final LiveFeedBinder liveFeedBinder =
-                new LiveFeedBinder(DemoActivity.this);
+                new LiveFeedBinder();
 
         final LiveFeedModel liveFeedModel =
                 DemoLiveFeedData.createLiveFeedModel();

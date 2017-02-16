@@ -2,20 +2,23 @@ package com.music.amazon.mypoldi.binder;
 
 import android.content.Context;
 
+import com.music.amazon.mypoldi.dmtv.UniversalBinder;
 import com.music.amazon.mypoldi.model.LiveFeedModel;
 import com.music.amazon.mypoldi.view.LiveFeedView;
 
 /**
  * Created by yoyosu on 1/25/17.
  */
-public class LiveFeedBinder {
-    private Context context;
+public class LiveFeedBinder  implements
+        UniversalBinder<LiveFeedView, LiveFeedModel> {
 
-    public LiveFeedBinder(Context context) {
-        this.context = context;
+    @Override
+    public Class<LiveFeedModel> getModelClass() {
+        return LiveFeedModel.class;
     }
 
-    public LiveFeedView createView() {
+    @Override
+    public LiveFeedView createView(Context context) {
         return new LiveFeedView(context);
     }
 
@@ -35,6 +38,4 @@ public class LiveFeedBinder {
             view.secondsTextView.setText(time[1].trim());
         }
     }
-
-
 }
