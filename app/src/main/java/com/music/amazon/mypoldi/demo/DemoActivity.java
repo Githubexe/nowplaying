@@ -153,7 +153,7 @@ public class DemoActivity extends Activity {
                             liveFeedView,
                             liveFeedModel);
                     universalAdapter.addItems(added);
-                    liveFeedView.liveFeedItemView.scrollToPosition(
+                    liveFeedView.liveFeedItemView.smoothScrollToPosition(
                             universalAdapter.getItemCount() - 1);
                 }
             });
