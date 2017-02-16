@@ -59,7 +59,7 @@ public final class LiveFeedItemView extends LinearLayout {
 
         rightTimeTextView = (TextView)findViewById(R.id.right_time_text_view);
         rightDescriptionTextView = (TextView)findViewById(R.id.right_description_text_view);
-        rightSmallImageView = (ImageView)findViewById(R.id.right_event_image_view);
+        rightSmallImageView = (ImageView)findViewById(R.id.right_small_image_view);
         rightLargeImageView = (ImageView)findViewById(R.id.right_large_image_view);
     }
 
@@ -69,7 +69,6 @@ public final class LiveFeedItemView extends LinearLayout {
         } else {
             bindAwayView(liveFeedItemModel);
         }
-
         Animation animation = AnimationUtils.loadAnimation(getContext(),
                 R.anim.live_feed_item_up_from_bottom);
         startAnimation(animation);
@@ -83,17 +82,23 @@ public final class LiveFeedItemView extends LinearLayout {
         final Picasso picasso = Picasso.with(getContext());
         if (StringUtils.isEmpty(liveFeedItemModel.smallImage) == false) {
             picasso.load(liveFeedItemModel.smallImage)
-                    .placeholder(R.drawable.yellow_card)
-                    .error(R.drawable.yellow_card)
+                    .placeholder(R.drawable.rec_blue)
+                    .error(R.drawable.rec_blue)
                     .into(leftSmallImageView);
             leftSmallImageView.setVisibility(View.VISIBLE);
+        } else {
+            leftSmallImageView.setImageDrawable(null);
+            leftSmallImageView.setVisibility(View.INVISIBLE);
         }
         if (StringUtils.isEmpty(liveFeedItemModel.largeImage) == false) {
             picasso.load(liveFeedItemModel.largeImage)
-                    .placeholder(R.drawable.yellow_card)
-                    .error(R.drawable.yellow_card)
+                    .placeholder(R.drawable.rec_blue)
+                    .error(R.drawable.rec_blue)
                     .into(leftLargeImageView);
             leftLargeImageView.setVisibility(View.VISIBLE);
+        } else {
+            leftLargeImageView.setImageDrawable(null);
+            leftLargeImageView.setVisibility(View.INVISIBLE);
         }
         rightTimeTextView.setText(null);
         rightDescriptionTextView.setText(null);
@@ -111,19 +116,26 @@ public final class LiveFeedItemView extends LinearLayout {
         final Picasso picasso = Picasso.with(getContext());
         if (StringUtils.isEmpty(liveFeedItemModel.smallImage) == false) {
             picasso.load(liveFeedItemModel.smallImage)
-                    .placeholder(R.drawable.yellow_card)
-                    .error(R.drawable.yellow_card)
+                    .placeholder(R.drawable.rec_green)
+                    .error(R.drawable.rec_green)
                     .into(rightSmallImageView);
             rightSmallImageView.setVisibility(View.VISIBLE);
+        } else {
+            rightSmallImageView.setImageDrawable(null);
+            rightSmallImageView.setVisibility(View.INVISIBLE);
         }
 
         if (StringUtils.isEmpty(liveFeedItemModel.largeImage) == false) {
             picasso.load(liveFeedItemModel.largeImage)
-                    .placeholder(R.drawable.yellow_card)
-                    .error(R.drawable.yellow_card)
+                    .placeholder(R.drawable.rec_green)
+                    .error(R.drawable.rec_green)
                     .into(rightLargeImageView);
             rightLargeImageView.setVisibility(View.VISIBLE);
+        } else {
+            rightLargeImageView.setImageDrawable(null);
+            rightLargeImageView.setVisibility(View.INVISIBLE);
         }
+
         leftTimeTextView.setText(null);
         leftDescriptionTextView.setText(null);
         leftSmallImageView.setImageDrawable(null);

@@ -5,6 +5,7 @@ import com.music.amazon.mypoldi.model.LiveFeedBackgroundModel;
 import com.music.amazon.mypoldi.model.LiveFeedModel;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * DEMO DATA ONLY
@@ -16,21 +17,24 @@ public final class DemoLiveFeedData {
     public static LiveFeedItemModel createLiveFeedItemModel() {
         final LiveFeedItemModel.Builder builder = LiveFeedItemModel.builder();
         counter++;
+
+        final int minute = Calendar.getInstance().get(Calendar.MINUTE);
+
         if (counter % 7 == 0 || counter % 13 == 0 || counter % 17 == 0) {
             builder.withDescritpion("Home - " + counter);
-            if (counter % 7 == 0 || counter % 17 == 0) {
-//                builder.withTime(minute + "\'")
-//                        .withSmallImage("https://amazon.music.poldi/yellow_card_icon.png")
-//                        .withLargeImage("https://amazon.music.poldi/yellow_card_marker.png");
+            if (counter % 7 == 0) {
+                builder.withTime(minute + "\'")
+                        .withSmallImage("https://amazon.music.poldi/yellow_card_icon.png")
+                        .withLargeImage("https://amazon.music.poldi/yellow_card_marker.png");
             }
             return builder.buildHomeEvent();
         } else {
             builder.withDescritpion("Away - " + counter);
-//            if (counter % 6 == 0 || counter % 11 == 0) {
-//                builder.withTime(minute + "\'")
-//                        .withSmallImage("https://amazon.music.poldi/yellow_card_icon.png")
-//                        .withLargeImage("https://amazon.music.poldi/yellow_card_marker.png");
-//            }
+            if (counter % 5 == 0) {
+                builder.withTime(minute + "\'")
+                        .withSmallImage("https://amazon.music.poldi/yellow_card_icon.png")
+                        .withLargeImage("https://amazon.music.poldi/yellow_card_marker.png");
+            }
             return builder.buildAwayEvent();
         }
     }

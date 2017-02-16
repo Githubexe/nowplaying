@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="540dp"
+    android:layout_width="580dp"
     android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="horizontal">
@@ -64,7 +64,7 @@
             android:id="@+id/right_large_image_view"
             android:layout_width="10dp"
             android:layout_height="15dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="40dp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/timeline_bar_view"/>
     </RelativeLayout>
@@ -75,7 +75,7 @@
         android:layout_height="50dp">
 
         <ImageView
-            android:id="@+id/right_event_image_view"
+            android:id="@+id/right_small_image_view"
             android:layout_alignParentTop="true"
             android:layout_height="wrap_content"
             android:layout_width="10dp"
@@ -83,7 +83,7 @@
 
         <TextView
             android:id="@+id/right_description_text_view"
-            android:layout_toRightOf="@id/right_event_image_view"
+            android:layout_toRightOf="@id/right_small_image_view"
             android:layout_alignParentTop="true"
             android:layout_width="100dp"
             android:layout_height="60dp"
