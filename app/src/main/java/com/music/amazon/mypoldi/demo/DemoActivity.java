@@ -123,6 +123,7 @@ public class DemoActivity extends Activity {
         liveFeedView.liveFeedItemView.setAdapter(universalAdapter);
         final CustomLinearLayoutManager customLinearLayoutManager =
                 new CustomLinearLayoutManager(this);
+        customLinearLayoutManager.setStackFromEnd(true);
         liveFeedView.liveFeedItemView.setLayoutManager(customLinearLayoutManager);
     }
 

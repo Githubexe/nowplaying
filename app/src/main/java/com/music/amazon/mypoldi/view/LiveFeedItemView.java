@@ -68,9 +68,7 @@ public final class LiveFeedItemView extends LinearLayout {
         } else {
             bindAwayView(liveFeedItemModel);
         }
-        Animation animation = AnimationUtils.loadAnimation(getContext(),
-                R.anim.live_feed_item_up_from_bottom);
-        startAnimation(animation);
+
     }
 
     private void bindHomeView(final LiveFeedItemModel liveFeedItemModel) {
