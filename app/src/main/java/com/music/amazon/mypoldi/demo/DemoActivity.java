@@ -121,7 +121,9 @@ public class DemoActivity extends Activity {
         liveFeedBackgroundBinder.bind(backgroundView, model);
         universalAdapter = new UniversalAdapter(new LiveFeedItemBinder());
         liveFeedView.liveFeedItemView.setAdapter(universalAdapter);
-        liveFeedView.liveFeedItemView.setLayoutManager(new CustomLinearLayoutManager(this));
+        final CustomLinearLayoutManager customLinearLayoutManager =
+                new CustomLinearLayoutManager(this);
+        liveFeedView.liveFeedItemView.setLayoutManager(customLinearLayoutManager);
     }
 
     //DEMO purpose only, will be replaced by LiveFeedSubscriber logics
