@@ -130,4 +130,10 @@ public final class UniversalAdapter
             }
         });
     }
+
+    @Override
+    public void onViewDetachedFromWindow(UniversalViewHolder holder) {
+        super.onViewDetachedFromWindow(holder);
+        holder.itemView.clearAnimation();
+    }
 }

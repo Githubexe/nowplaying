@@ -3,6 +3,8 @@ package com.music.amazon.mypoldi.view;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,6 +19,8 @@ import org.apache.commons.lang3.StringUtils;
  * Created by yoyosu on 2/13/17.
  */
 public final class LiveFeedItemView extends LinearLayout {
+    private final int VISIBLE_ITEMS = 6;
+
     public TextView leftTimeTextView;
 
     public TextView leftDescriptionTextView;
@@ -65,6 +69,10 @@ public final class LiveFeedItemView extends LinearLayout {
         } else {
             bindAwayView(liveFeedItemModel);
         }
+
+        Animation animation = AnimationUtils.loadAnimation(getContext(),
+                R.anim.live_feed_item_up_from_bottom);
+        startAnimation(animation);
     }
 
     private void bindHomeView(final LiveFeedItemModel liveFeedItemModel) {

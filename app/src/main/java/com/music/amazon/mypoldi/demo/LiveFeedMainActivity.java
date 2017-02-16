@@ -2,6 +2,7 @@ package com.music.amazon.mypoldi.demo;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ViewFlipper;
@@ -43,8 +44,6 @@ public class LiveFeedMainActivity extends Activity {
     private List<Integer> viewLayoutIds = new ArrayList<Integer>();
 
     private UniversalAdapter universalAdapter;
-
-    private LiveFeedItemAdapter liveFeedItemAdapter;
 
     final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
@@ -111,7 +110,7 @@ public class LiveFeedMainActivity extends Activity {
         scheduledFuture = scheduler.scheduleAtFixedRate(
                 new UpdateEventRunnable(),
                 2, //initial delay
-                1, //interval
+                2, //interval
                 TimeUnit.SECONDS);
     }
 
@@ -128,16 +127,14 @@ public class LiveFeedMainActivity extends Activity {
         liveFeedView.liveFeedItemView.setLayoutManager(new CustomLinearLayoutManager(this));
     }
 
-
     //DEMO purpose only, will be replaced by LiveFeedSubscriber logics
     private class UpdateEventRunnable implements Runnable {
         final LiveFeedBinder liveFeedBinder =
                 new LiveFeedBinder(LiveFeedMainActivity.this);
 
-        final List<LiveFeedItemModel> events = new ArrayList<LiveFeedItemModel>();
-
         final LiveFeedModel liveFeedModel =
-                DataProvider.createLiveFeedModel(events);
+                DataProvider.createLiveFeedModel();
+
 
         @Override
         public void run() {
@@ -146,7 +143,6 @@ public class LiveFeedMainActivity extends Activity {
                 public void run() {
                     List<LiveFeedItemModel> added = new ArrayList<LiveFeedItemModel>();
                     final LiveFeedItemModel eventModel = DataProvider.createLiveFeedItemModel();
-                    events.add(eventModel);
                     added.add(eventModel);
                     //DEMO purpose only
                     final Calendar now = Calendar.getInstance();
@@ -157,9 +153,9 @@ public class LiveFeedMainActivity extends Activity {
                     liveFeedBinder.bind(
                             liveFeedView,
                             liveFeedModel);
-
                     universalAdapter.addItems(added);
-                    liveFeedView.liveFeedItemView.smoothScrollToPosition(universalAdapter.getItemCount() - 1);
+                    liveFeedView.liveFeedItemView.scrollToPosition(
+                            universalAdapter.getItemCount() - 1);
                 }
             });
         }

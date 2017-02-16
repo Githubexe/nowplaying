@@ -4,6 +4,7 @@ import com.music.amazon.mypoldi.model.LiveFeedItemModel;
 import com.music.amazon.mypoldi.model.LiveFeedBackgroundModel;
 import com.music.amazon.mypoldi.model.LiveFeedModel;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -12,19 +13,19 @@ import java.util.List;
  */
 public final class DataProvider {
 
-    private static int counter;
+    private static int counter = -1;
 
     public static LiveFeedItemModel createLiveFeedItemModel() {
         final LiveFeedItemModel.Builder builder = LiveFeedItemModel.builder();
-        counter++;
 
+        counter++;
         int minute = Calendar.getInstance().get(Calendar.MINUTE);
         if (counter % 7 == 0 || counter % 13 == 0 || counter % 17 == 0) {
             builder.withDescritpion("Home - " + counter);
             if (counter % 7 == 0 || counter % 17 == 0) {
-                builder.withTime(minute + "\'")
-                        .withSmallImage("https://amazon.music.poldi/yellow_card_icon.png")
-                        .withLargeImage("https://amazon.music.poldi/yellow_card_marker.png");
+//                builder.withTime(minute + "\'")
+//                        .withSmallImage("https://amazon.music.poldi/yellow_card_icon.png")
+//                        .withLargeImage("https://amazon.music.poldi/yellow_card_marker.png");
             }
             return builder.buildHomeEvent();
         } else {
@@ -38,15 +39,12 @@ public final class DataProvider {
         }
     }
 
-    public static LiveFeedModel createLiveFeedModel(final List<LiveFeedItemModel> events) {
-        LiveFeedItemModel eventModel = createLiveFeedItemModel();
-        events.add(eventModel);
-
+    public static LiveFeedModel createLiveFeedModel() {
         return LiveFeedModel.builder(
                 "test-uuid").
                 withTime("53 : 29").
                 withScore(3, 2).
-                withEvents(events).
+                withEvents(new ArrayList<LiveFeedItemModel>()).
                 build();
     }
 
