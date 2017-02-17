@@ -19,7 +19,7 @@
         layout="@layout/live_feed_background_host"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="182px"
+        android:layout_marginTop="88dp"
         android:layout_centerInParent="true"
         android:layout_alignParentLeft="true"/>
 
@@ -29,7 +29,7 @@
         android:layout_height="380dp"
         android:layout_toRightOf="@id/host_team_layout"
         android:layout_toLeftOf="@+id/away_team_layout"
-        android:layout_alignTop="@id/host_team_layout">
+        android:layout_marginTop="132dp">
 
         <com.music.amazon.mypoldi.view.LiveFeedView
             android:id="@+id/live_feed_view"
@@ -52,12 +52,12 @@
 
 
     <!-- Foot view -->
-    <include
-        android:id="@+id/included_live_feed_background_foot_view"
-        layout="@layout/live_feed_background_foot_view"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"/>
+    <!--<include-->
+        <!--android:id="@+id/included_live_feed_background_foot_view"-->
+        <!--layout="@layout/live_feed_background_foot_view"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_alignParentBottom="true"/>-->
 
 </RelativeLayout>
