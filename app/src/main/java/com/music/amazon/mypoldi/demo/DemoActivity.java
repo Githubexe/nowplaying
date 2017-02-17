@@ -111,7 +111,7 @@ public class DemoActivity extends Activity {
         scheduledFuture = scheduler.scheduleAtFixedRate(
                 new UpdateEventRunnable(),
                 2, //initial delay
-                2, //interval
+                1, //interval
                 TimeUnit.SECONDS);
     }
 
@@ -148,15 +148,15 @@ public class DemoActivity extends Activity {
                 @Override
                 public void run() {
                     DemoLiveFeedData.counter ++;
-
-                    if (DemoLiveFeedData.counter % 3 == 0) {
+                    if (DemoLiveFeedData.counter % 3 == 0 ||
+                            DemoLiveFeedData.counter % 7 == 0) {
                         final LeftLiveFeedItemModel eventModel = DemoLiveFeedData.createLeftLiveFeedItemModel();
                         List<LeftLiveFeedItemModel> added = new ArrayList<LeftLiveFeedItemModel>();
                         added.add(eventModel);
                         animationAdapter.addItems(added);
                         liveFeedView.liveFeedItemView.smoothScrollToPosition(
                                 animationAdapter.getItemCount() - 1);
-                    } else if (DemoLiveFeedData.counter % 5 == 0) {
+                    } else {
                         final RightLiveFeedItemModel eventModel = DemoLiveFeedData.createRightLiveFeedItemModel();
                         List<RightLiveFeedItemModel> added = new ArrayList<RightLiveFeedItemModel>();
                         added.add(eventModel);

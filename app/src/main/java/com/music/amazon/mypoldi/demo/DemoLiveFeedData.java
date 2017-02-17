@@ -31,7 +31,6 @@ public final class DemoLiveFeedData {
     public static RightLiveFeedItemModel createRightLiveFeedItemModel() {
         final int minute = Calendar.getInstance().get(Calendar.MINUTE);
 
-
         final RightLiveFeedItemModel.Builder builder = RightLiveFeedItemModel.builder();
         builder.withDescritpion("Away - " + counter);
         if (counter % 10 == 0) {
