@@ -15,12 +15,12 @@ public final class LeftLiveFeedItemBinder implements
     }
 
     @Override
-    public LeftLiveFeedItemView createView(Context context) {
+    public LeftLiveFeedItemView createView(final Context context) {
         return new LeftLiveFeedItemView(context);
     }
 
     @Override
-    public void bind(LeftLiveFeedItemView view, LeftLiveFeedItemModel model) {
+    public void bind(final LeftLiveFeedItemView view, final LeftLiveFeedItemModel model) {
         view.bind(model);
     }
 }

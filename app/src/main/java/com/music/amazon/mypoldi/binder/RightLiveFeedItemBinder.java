@@ -18,12 +18,13 @@ public final class RightLiveFeedItemBinder implements
     }
 
     @Override
-    public RightLiveFeedItemView createView(Context context) {
+    public RightLiveFeedItemView createView(final Context context) {
         return new RightLiveFeedItemView(context);
     }
 
     @Override
-    public void bind(RightLiveFeedItemView view, RightLiveFeedItemModel model) {
+    public void bind(final RightLiveFeedItemView view,
+                     final RightLiveFeedItemModel model) {
         view.bind(model);
     }
 }

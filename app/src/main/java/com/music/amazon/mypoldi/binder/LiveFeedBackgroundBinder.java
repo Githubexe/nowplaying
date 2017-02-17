@@ -20,13 +20,13 @@ public final class LiveFeedBackgroundBinder implements
     }
 
     @Override
-    public LiveFeedBackgroundView createView(Context context) {
+    public LiveFeedBackgroundView createView(final Context context) {
         return new LiveFeedBackgroundView(context);
     }
 
     @Override
     public void bind(final LiveFeedBackgroundView view,
-                      final LiveFeedBackgroundModel model){
+                     final LiveFeedBackgroundModel model){
         final Picasso picasso = Picasso.with(view.getContext());
         picasso.load(model.backgroundImage)
                 .placeholder(R.drawable.live_feed_background)

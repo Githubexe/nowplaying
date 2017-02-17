@@ -18,7 +18,7 @@ public class LiveFeedBinder  implements
     }
 
     @Override
-    public LiveFeedView createView(Context context) {
+    public LiveFeedView createView(final Context context) {
         return new LiveFeedView(context);
     }
 

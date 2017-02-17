@@ -27,22 +27,22 @@ public final class LeftLiveFeedItemModel {
 
         private String largeImage;
 
-        public Builder withTime(String time) {
+        public Builder withTime(final String time) {
             this.time = time;
             return this;
         }
 
-        public Builder withDescritpion(String description) {
+        public Builder withDescritpion(final String description) {
             this.description = description;
             return this;
         }
 
-        public Builder withSmallImage(String smallImage) {
+        public Builder withSmallImage(final String smallImage) {
             this.smallImage = smallImage;
             return this;
         }
 
-        public Builder withLargeImage(String largeImage) {
+        public Builder withLargeImage(final String largeImage) {
             this.largeImage = largeImage;
             return this;
         }

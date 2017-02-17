@@ -18,13 +18,13 @@ import org.apache.commons.lang3.StringUtils;
  */
 public final class LeftLiveFeedItemView extends LinearLayout {
 
-    public TextView leftTimeTextView;
+    public final TextView leftTimeTextView;
 
-    public TextView leftDescriptionTextView;
+    public final TextView leftDescriptionTextView;
 
-    public ImageView leftSmallImageView;
+    public final ImageView leftSmallImageView;
 
-    public ImageView leftLargeImageView;
+    public final ImageView leftLargeImageView;
 
     public LeftLiveFeedItemView(Context context) {
         this(context, null);
@@ -36,10 +36,6 @@ public final class LeftLiveFeedItemView extends LinearLayout {
 
     public LeftLiveFeedItemView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        inflate();
-    }
-
-    private void inflate() {
         inflate(getContext(), R.layout.live_feed_item_view, this);
         leftTimeTextView = (TextView)findViewById(R.id.left_time_text_view);
         leftDescriptionTextView = (TextView)findViewById(R.id.left_description_text_view);

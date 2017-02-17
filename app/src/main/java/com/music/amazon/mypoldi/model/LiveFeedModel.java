@@ -36,7 +36,7 @@ public final class LiveFeedModel {
         }
 
         public Builder withScore(final int homeScore,
-                                  final int awayScore) {
+                                 final int awayScore) {
             this.homeScore = homeScore;
             this.awayScore = awayScore;
             return this;
@@ -47,7 +47,7 @@ public final class LiveFeedModel {
             return this;
         }
 
-        public Builder withEvents(List<LeftLiveFeedItemModel> events) {
+        public Builder withEvents(final List<LeftLiveFeedItemModel> events) {
             this.events = events;
             return this;
         }

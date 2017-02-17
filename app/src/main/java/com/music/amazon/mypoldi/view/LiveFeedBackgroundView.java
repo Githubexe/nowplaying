@@ -13,15 +13,15 @@ import com.music.amazon.mypoldi.R;
  */
 public final class LiveFeedBackgroundView extends RelativeLayout {
 
-    public ImageView backgroundImageView;
+    public final ImageView backgroundImageView;
 
-    public TextView hostTextView;
+    public final TextView hostTextView;
 
-    public ImageView hostImageView;
+    public final ImageView hostImageView;
 
-    public TextView awayTextView;
+    public final TextView awayTextView;
 
-    public ImageView awayImageView;
+    public final ImageView awayImageView;
 
     public LiveFeedBackgroundView(Context context) {
         this(context, null);
@@ -33,10 +33,6 @@ public final class LiveFeedBackgroundView extends RelativeLayout {
 
     public LiveFeedBackgroundView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
-    }
-
-    private void init() {
         inflate(getContext(), R.layout.live_feed_background, this);
         backgroundImageView = (ImageView)findViewById(R.id.live_feed_background_image);
         hostTextView = (TextView)findViewById(R.id.host_text_view);
