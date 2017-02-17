@@ -66,13 +66,9 @@ public class AnimationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         return adapter.getItemViewType(position);
     }
 
-    public RecyclerView.Adapter<RecyclerView.ViewHolder> getWrappedAdapter() {
-        return adapter;
-    }
-
     @Override
     public long getItemId(int position) {
-        return getWrappedAdapter().getItemId(position);
+        return adapter.getItemId(position);
     }
 
     @Override
