@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ViewFlipper;
 
 import com.music.amazon.mypoldi.R;
-import com.music.amazon.mypoldi.animation.AnimationAdapter;
 import com.music.amazon.mypoldi.binder.CustomLinearLayoutManager;
 import com.music.amazon.mypoldi.binder.LiveFeedBackgroundBinder;
 import com.music.amazon.mypoldi.binder.LiveFeedBinder;
@@ -34,6 +33,8 @@ public class DemoActivity extends Activity {
     //FIXME: get the number of concurrent live games from service
     private final int NUM_OF_LIVE_GAMES = 3;
 
+    private UniversalAdapter universalAdapter;
+
     private LiveFeedBackgroundView backgroundView;
 
     private LiveFeedBackgroundBinder liveFeedBackgroundBinder;
@@ -43,8 +44,6 @@ public class DemoActivity extends Activity {
     private ViewFlipper viewFlipper;
 
     private List<Integer> viewLayoutIds = new ArrayList<Integer>();
-
-    private AnimationAdapter animationAdapter;
 
     final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
@@ -123,10 +122,10 @@ public class DemoActivity extends Activity {
         liveFeedView = (LiveFeedView) (backgroundView.findViewById(R.id.live_feed_view));
         liveFeedBackgroundBinder.bind(backgroundView, model);
 
-        animationAdapter = new AnimationAdapter(new UniversalAdapter(new LeftLiveFeedItemBinder(),
+        universalAdapter = (new UniversalAdapter(new LeftLiveFeedItemBinder(),
                 new RightLiveFeedItemBinder()));
 
-        liveFeedView.liveFeedItemView.setAdapter(animationAdapter);
+        liveFeedView.liveFeedItemView.setAdapter(universalAdapter);
         final CustomLinearLayoutManager customLinearLayoutManager =
                 new CustomLinearLayoutManager(this);
         customLinearLayoutManager.setStackFromEnd(true);
@@ -153,17 +152,17 @@ public class DemoActivity extends Activity {
                         final LeftLiveFeedItemModel eventModel = DemoLiveFeedData.createLeftLiveFeedItemModel();
                         List<LeftLiveFeedItemModel> added = new ArrayList<LeftLiveFeedItemModel>();
                         added.add(eventModel);
-                        animationAdapter.addItems(added);
-                        liveFeedView.liveFeedItemView.smoothScrollToPosition(
-                                animationAdapter.getItemCount() - 1);
+                        universalAdapter.addItems(added);
+
                     } else {
                         final RightLiveFeedItemModel eventModel = DemoLiveFeedData.createRightLiveFeedItemModel();
                         List<RightLiveFeedItemModel> added = new ArrayList<RightLiveFeedItemModel>();
                         added.add(eventModel);
-                        animationAdapter.addItems(added);
-                        liveFeedView.liveFeedItemView.smoothScrollToPosition(
-                                animationAdapter.getItemCount() - 1);
+                        universalAdapter.addItems(added);
                     }
+
+                    liveFeedView.liveFeedItemView.smoothScrollToPosition(
+                                universalAdapter.getItemCount() - 1);
 
                     //DEMO purpose only
                     final Calendar now = Calendar.getInstance();

@@ -5,12 +5,18 @@ import android.os.Looper;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.ScaleAnimation;
+
+import com.music.amazon.mypoldi.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * An Adapter capable of creating and binding any type of Views.
@@ -31,6 +37,8 @@ public final class UniversalAdapter
 
     private final List<OnFocusChangedListener> focusListeners =
             new ArrayList<>();
+
+    private int startPosition = -1;
 
     public UniversalAdapter(final UniversalBinder... binders) {
         buildBinders(Arrays.asList(binders));
@@ -107,6 +115,7 @@ public final class UniversalAdapter
             }
         });
     }
+
 
     @Override
     public int getItemCount() {
