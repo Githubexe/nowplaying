@@ -11,11 +11,13 @@ import com.music.amazon.mypoldi.animation.AnimationAdapter;
 import com.music.amazon.mypoldi.binder.CustomLinearLayoutManager;
 import com.music.amazon.mypoldi.binder.LiveFeedBackgroundBinder;
 import com.music.amazon.mypoldi.binder.LiveFeedBinder;
-import com.music.amazon.mypoldi.binder.LiveFeedItemBinder;
+import com.music.amazon.mypoldi.binder.LeftLiveFeedItemBinder;
+import com.music.amazon.mypoldi.binder.RightLiveFeedItemBinder;
 import com.music.amazon.mypoldi.dmtv.UniversalAdapter;
-import com.music.amazon.mypoldi.model.LiveFeedItemModel;
+import com.music.amazon.mypoldi.model.LeftLiveFeedItemModel;
 import com.music.amazon.mypoldi.model.LiveFeedBackgroundModel;
 import com.music.amazon.mypoldi.model.LiveFeedModel;
+import com.music.amazon.mypoldi.model.RightLiveFeedItemModel;
 import com.music.amazon.mypoldi.view.LiveFeedBackgroundView;
 import com.music.amazon.mypoldi.view.LiveFeedView;
 
@@ -120,7 +122,10 @@ public class DemoActivity extends Activity {
         backgroundView = (LiveFeedBackgroundView) (viewFlipper.findViewById(viewLayoutId));
         liveFeedView = (LiveFeedView) (backgroundView.findViewById(R.id.live_feed_view));
         liveFeedBackgroundBinder.bind(backgroundView, model);
-        animationAdapter = new AnimationAdapter(new UniversalAdapter(new LiveFeedItemBinder()));
+
+        animationAdapter = new AnimationAdapter(new UniversalAdapter(new LeftLiveFeedItemBinder(),
+                new RightLiveFeedItemBinder()));
+
         liveFeedView.liveFeedItemView.setAdapter(animationAdapter);
         final CustomLinearLayoutManager customLinearLayoutManager =
                 new CustomLinearLayoutManager(this);
@@ -142,9 +147,24 @@ public class DemoActivity extends Activity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    List<LiveFeedItemModel> added = new ArrayList<LiveFeedItemModel>();
-                    final LiveFeedItemModel eventModel = DemoLiveFeedData.createLiveFeedItemModel();
-                    added.add(eventModel);
+                    DemoLiveFeedData.counter ++;
+
+                    if (DemoLiveFeedData.counter % 3 == 0) {
+                        final LeftLiveFeedItemModel eventModel = DemoLiveFeedData.createLeftLiveFeedItemModel();
+                        List<LeftLiveFeedItemModel> added = new ArrayList<LeftLiveFeedItemModel>();
+                        added.add(eventModel);
+                        animationAdapter.addItems(added);
+                        liveFeedView.liveFeedItemView.smoothScrollToPosition(
+                                animationAdapter.getItemCount() - 1);
+                    } else if (DemoLiveFeedData.counter % 5 == 0) {
+                        final RightLiveFeedItemModel eventModel = DemoLiveFeedData.createRightLiveFeedItemModel();
+                        List<RightLiveFeedItemModel> added = new ArrayList<RightLiveFeedItemModel>();
+                        added.add(eventModel);
+                        animationAdapter.addItems(added);
+                        liveFeedView.liveFeedItemView.smoothScrollToPosition(
+                                animationAdapter.getItemCount() - 1);
+                    }
+
                     //DEMO purpose only
                     final Calendar now = Calendar.getInstance();
                     liveFeedModel.elapsedTime = now.get(Calendar.MINUTE) +
@@ -154,9 +174,7 @@ public class DemoActivity extends Activity {
                     liveFeedBinder.bind(
                             liveFeedView,
                             liveFeedModel);
-                    animationAdapter.addItems(added);
-                    liveFeedView.liveFeedItemView.smoothScrollToPosition(
-                            animationAdapter.getItemCount() - 1);
+
                 }
             });
         }

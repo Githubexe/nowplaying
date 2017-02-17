@@ -3,14 +3,12 @@ package com.music.amazon.mypoldi.view;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.music.amazon.mypoldi.R;
-import com.music.amazon.mypoldi.model.LiveFeedItemModel;
+import com.music.amazon.mypoldi.model.LeftLiveFeedItemModel;
 import com.squareup.picasso.Picasso;
 
 import org.apache.commons.lang3.StringUtils;
@@ -62,23 +60,23 @@ public final class LiveFeedItemView extends LinearLayout {
         rightLargeImageView = (ImageView)findViewById(R.id.right_large_image_view);
     }
 
-    public void bind(final LiveFeedItemModel liveFeedItemModel) {
-        if (liveFeedItemModel.isHome) {
-            bindHomeView(liveFeedItemModel);
-        } else {
-            bindAwayView(liveFeedItemModel);
-        }
+    public void bind(final LeftLiveFeedItemModel leftLiveFeedItemModel) {
+//        if (leftLiveFeedItemModel.isHome) {
+//            bindHomeView(leftLiveFeedItemModel);
+//        } else {
+//            bindAwayView(leftLiveFeedItemModel);
+//        }
 
     }
 
-    private void bindHomeView(final LiveFeedItemModel liveFeedItemModel) {
-        leftTimeTextView.setText(liveFeedItemModel.time);
-        leftDescriptionTextView.setText(liveFeedItemModel.description);
+    private void bindHomeView(final LeftLiveFeedItemModel leftLiveFeedItemModel) {
+        leftTimeTextView.setText(leftLiveFeedItemModel.time);
+        leftDescriptionTextView.setText(leftLiveFeedItemModel.description);
         leftDescriptionTextView.bringToFront();
 
         final Picasso picasso = Picasso.with(getContext());
-        if (StringUtils.isEmpty(liveFeedItemModel.smallImage) == false) {
-            picasso.load(liveFeedItemModel.smallImage)
+        if (StringUtils.isEmpty(leftLiveFeedItemModel.smallImage) == false) {
+            picasso.load(leftLiveFeedItemModel.smallImage)
                     .placeholder(R.drawable.rec_blue)
                     .error(R.drawable.rec_blue)
                     .into(leftSmallImageView);
@@ -87,8 +85,8 @@ public final class LiveFeedItemView extends LinearLayout {
             leftSmallImageView.setImageDrawable(null);
             leftSmallImageView.setVisibility(View.INVISIBLE);
         }
-        if (StringUtils.isEmpty(liveFeedItemModel.largeImage) == false) {
-            picasso.load(liveFeedItemModel.largeImage)
+        if (StringUtils.isEmpty(leftLiveFeedItemModel.largeImage) == false) {
+            picasso.load(leftLiveFeedItemModel.largeImage)
                     .placeholder(R.drawable.rec_blue)
                     .error(R.drawable.rec_blue)
                     .into(leftLargeImageView);
@@ -105,14 +103,14 @@ public final class LiveFeedItemView extends LinearLayout {
         rightLargeImageView.setVisibility(View.INVISIBLE);
     }
 
-    private void bindAwayView(final LiveFeedItemModel liveFeedItemModel) {
-        rightTimeTextView.setText(liveFeedItemModel.time);
-        rightDescriptionTextView.setText(liveFeedItemModel.description);
+    private void bindAwayView(final LeftLiveFeedItemModel leftLiveFeedItemModel) {
+        rightTimeTextView.setText(leftLiveFeedItemModel.time);
+        rightDescriptionTextView.setText(leftLiveFeedItemModel.description);
         rightDescriptionTextView.bringToFront();
 
         final Picasso picasso = Picasso.with(getContext());
-        if (StringUtils.isEmpty(liveFeedItemModel.smallImage) == false) {
-            picasso.load(liveFeedItemModel.smallImage)
+        if (StringUtils.isEmpty(leftLiveFeedItemModel.smallImage) == false) {
+            picasso.load(leftLiveFeedItemModel.smallImage)
                     .placeholder(R.drawable.rec_green)
                     .error(R.drawable.rec_green)
                     .into(rightSmallImageView);
@@ -123,8 +121,8 @@ public final class LiveFeedItemView extends LinearLayout {
             rightSmallImageView.setVisibility(View.INVISIBLE);
         }
 
-        if (StringUtils.isEmpty(liveFeedItemModel.largeImage) == false) {
-            picasso.load(liveFeedItemModel.largeImage)
+        if (StringUtils.isEmpty(leftLiveFeedItemModel.largeImage) == false) {
+            picasso.load(leftLiveFeedItemModel.largeImage)
                     .placeholder(R.drawable.rec_green)
                     .error(R.drawable.rec_green)
                     .into(rightLargeImageView);

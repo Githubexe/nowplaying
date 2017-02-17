@@ -1,10 +1,9 @@
 package com.music.amazon.mypoldi.model;
 
 /**
- * A pojo for game event
+ * Created by yoyosu on 2/16/17.
  */
-public final class LiveFeedItemModel {
-
+public final class RightLiveFeedItemModel {
     public String time;
 
     public String description;
@@ -12,8 +11,6 @@ public final class LiveFeedItemModel {
     public String smallImage;
 
     public String largeImage;
-
-    public boolean isHome;
 
     public static final Builder builder() {
         return new Builder();
@@ -49,37 +46,24 @@ public final class LiveFeedItemModel {
             return this;
         }
 
-        public LiveFeedItemModel buildHomeEvent() {
-            return new LiveFeedItemModel(
+        public RightLiveFeedItemModel build() {
+            return new RightLiveFeedItemModel(
                     time,
                     description,
                     smallImage,
-                    largeImage,
-                    true
-            );
-        }
-
-        public LiveFeedItemModel buildAwayEvent() {
-            return new LiveFeedItemModel(
-                    time,
-                    description,
-                    smallImage,
-                    largeImage,
-                    false
+                    largeImage
             );
         }
     }
 
-    private LiveFeedItemModel(final String time,
-                              final String description,
-                              final String smallImage,
-                              final String largeImage,
-                              final boolean isHome) {
+    private RightLiveFeedItemModel(final String time,
+                                  final String description,
+                                  final String smallImage,
+                                  final String largeImage) {
 
         this.time = time;
         this.description = description;
         this.smallImage = smallImage;
         this.largeImage = largeImage;
-        this.isHome = isHome;
     }
 }

@@ -13,7 +13,7 @@ public final class LiveFeedModel {
 
     public String elapsedTime;
 
-    public List<LiveFeedItemModel> events = new ArrayList<LiveFeedItemModel>();
+    public List<LeftLiveFeedItemModel> events = new ArrayList<LeftLiveFeedItemModel>();
 
     public static final Builder builder(final String uuid) {
         return new Builder(uuid);
@@ -29,7 +29,7 @@ public final class LiveFeedModel {
 
         private String elapsedTime;
 
-        private List<LiveFeedItemModel> events = new ArrayList<LiveFeedItemModel>();
+        private List<LeftLiveFeedItemModel> events = new ArrayList<LeftLiveFeedItemModel>();
 
         private Builder(final String uuid) {
             this.uuid = uuid;
@@ -47,7 +47,7 @@ public final class LiveFeedModel {
             return this;
         }
 
-        public Builder withEvents(List<LiveFeedItemModel> events) {
+        public Builder withEvents(List<LeftLiveFeedItemModel> events) {
             this.events = events;
             return this;
         }
@@ -65,7 +65,7 @@ public final class LiveFeedModel {
                           final int hostScore,
                           final int awayScore,
                           final String elapsedTime,
-                          final List<LiveFeedItemModel> events) {
+                          final List<LeftLiveFeedItemModel> events) {
         //super(uuid);
         this.hostScore = hostScore;
         this.awayScore = awayScore;
