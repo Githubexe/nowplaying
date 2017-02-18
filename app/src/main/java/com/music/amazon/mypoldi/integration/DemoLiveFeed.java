@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -20,13 +21,18 @@ public final class DemoLiveFeed {
 
     private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
+    private ScheduledFuture<?> future;
+
     private static final AtomicBoolean on = new AtomicBoolean(false);
 
     public void start() {
         final LiveFeedModel liveFeedModel =
                 DemoLiveFeedData.createLiveFeedModel("");
         if (on.getAndSet(true) == false) {
-            scheduler.scheduleAtFixedRate(
+            if (future != null) {
+                future.cancel(true);
+            }
+            future = scheduler.scheduleAtFixedRate(
                     new Runnable() {
                         @Override
                         public void run() {

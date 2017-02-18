@@ -55,10 +55,6 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener {
     }
 
     private void switchGame() {
-        if (currentLiveFeed != null) {
-            currentLiveFeed.stop();
-        }
-
         //update background
         final LiveFeedBackgroundModel model = DemoLiveFeedData.getLiveFeedBackgroundModel("");
         final LiveFeedBackgroundView backgroundView = (LiveFeedBackgroundView)
