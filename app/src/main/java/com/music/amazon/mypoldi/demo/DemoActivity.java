@@ -31,39 +31,32 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 public class DemoActivity extends Activity {
+
     private UniversalAdapter universalAdapter;
-
-    private LiveFeedBackgroundView backgroundView;
     private LiveFeedBackgroundBinder backgroundBinder;
-
-    private LiveFeedView liveFeedView;
-
-//    private LiveChannelBinder liveChannelBinder;
-//    private LiveChannelView liveChannelView;
-//    private LiveChannelModel liveChannelModel;
-
+    private LiveChannelBinder liveChannelBinder;
     private ViewFlipper viewFlipper;
 
     final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-
     ScheduledFuture<?> scheduledFuture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.live_feed_main_acitivty);
-
         init();
         updateLayout();
     }
 
+
     private void init() {
+        //get concurrent games from service
         final LiveChannelModel liveChannelModel = new LiveChannelModel
                 (DemoLiveFeedData.getLiveGames());
         final LiveChannelView liveChannelView = (LiveChannelView)findViewById(R.id.live_channel_view);
-        final LiveChannelBinder liveChannelBinder = new LiveChannelBinder();
-        liveChannelBinder.bind(liveChannelView,liveChannelModel);
-
+        liveChannelBinder = new LiveChannelBinder();
+        //Add concurrent live games to flipper
+        liveChannelBinder.bind(liveChannelView, liveChannelModel);
         viewFlipper = liveChannelView.viewFlipper;
         backgroundBinder = new LiveFeedBackgroundBinder();
     }
@@ -104,21 +97,13 @@ public class DemoActivity extends Activity {
         if (scheduledFuture != null) {
             scheduledFuture.cancel(true);
         }
-        updateBackgroundView();
-        scheduledFuture = scheduler.scheduleAtFixedRate(
-                new UpdateEventRunnable(),
-                2, //initial delay
-                1, //interval
-                TimeUnit.SECONDS);
-    }
 
-    private void updateBackgroundView() {
         final int childId = viewFlipper.getDisplayedChild();
 
-        LiveFeedBackgroundModel model = DemoLiveFeedData.createLiveFeedBackgroundModel(childId);
-        backgroundView = (LiveFeedBackgroundView) (viewFlipper.getCurrentView());
+        final LiveFeedBackgroundModel model = DemoLiveFeedData.createLiveFeedBackgroundModel(childId);
+        final LiveFeedBackgroundView backgroundView = (LiveFeedBackgroundView) (viewFlipper.getCurrentView());
 
-        liveFeedView = (LiveFeedView) (backgroundView.findViewById(R.id.live_feed_view));
+        final LiveFeedView liveFeedView = (LiveFeedView) (backgroundView.findViewById(R.id.live_feed_view));
         backgroundBinder.bind(backgroundView, model);
 
         universalAdapter = (new UniversalAdapter(new LeftLiveFeedItemBinder(),
@@ -130,10 +115,20 @@ public class DemoActivity extends Activity {
         liveFeedView.liveFeedItemView.setLayoutManager(customLinearLayoutManager);
 
        // liveFeedView.liveFeedItemView.setItemAnimator(new MyItemAnimator());
+
+        scheduledFuture = scheduler.scheduleAtFixedRate(
+                new UpdateEventRunnable(liveFeedView),
+                2, //initial delay
+                1, //interval
+                TimeUnit.SECONDS);
     }
 
     //DEMO purpose only, will be replaced by LiveFeedSubscriber logics
     private class UpdateEventRunnable implements Runnable {
+        private final LiveFeedView liveFeedView;
+        public UpdateEventRunnable(LiveFeedView view) {
+            this.liveFeedView = view;
+        }
         final LiveFeedBinder liveFeedBinder =
                 new LiveFeedBinder();
 
@@ -178,9 +173,5 @@ public class DemoActivity extends Activity {
             });
         }
     }
-
-
-
-
 
 }
