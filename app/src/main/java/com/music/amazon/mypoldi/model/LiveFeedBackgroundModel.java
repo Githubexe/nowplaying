@@ -15,23 +15,19 @@ public final class LiveFeedBackgroundModel {
 
     public final String awayLogo;
 
-    public final long kickoffTime;
-
     public static final Builder builder(final String uuid,
                                         final String backgroundImage,
                                         final String homeName,
                                         final String homeLogo,
                                         final String awayName,
-                                        final String awayLogo,
-                                        final long kickoffTime) {
+                                        final String awayLogo) {
         return new Builder(
                 uuid,
                 backgroundImage,
                 homeName,
                 homeLogo,
                 awayName,
-                awayLogo,
-                kickoffTime);
+                awayLogo);
     }
 
     public static final class Builder {
@@ -48,22 +44,18 @@ public final class LiveFeedBackgroundModel {
 
         private final String awayLogo;
 
-        private final long kickoffTime;
-
         private Builder(final String uuid,
                         final String backgroundImage,
                         final String homeName,
                         final String homeLogo,
                         final String awayName,
-                        final String awayLogo,
-                        final long kickoffTime) {
+                        final String awayLogo) {
             this.uuid = uuid;
             this.backgroundImage = backgroundImage;
             this.homeName = homeName;
             this.homeLogo = homeLogo;
             this.awayName = awayName;
             this.awayLogo = awayLogo;
-            this.kickoffTime = kickoffTime;
         }
 
         public LiveFeedBackgroundModel build() {
@@ -72,8 +64,7 @@ public final class LiveFeedBackgroundModel {
                     homeName,
                     homeLogo,
                     awayName,
-                    awayLogo,
-                    kickoffTime);
+                    awayLogo);
         }
     }
 
@@ -82,14 +73,12 @@ public final class LiveFeedBackgroundModel {
                                     final String homeName,
                                     final String homeLogo,
                                     final String awayName,
-                                    final String awayLogo,
-                                    final long kickoffTime) {
+                                    final String awayLogo) {
         //super(uuid);
         this.backgroundImage = backgroundImage;
         this.homeName = homeName;
         this.homeLogo = homeLogo;
         this.awayName = awayName;
         this.awayLogo = awayLogo;
-        this.kickoffTime = kickoffTime;
     }
 }

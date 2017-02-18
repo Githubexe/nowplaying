@@ -50,14 +50,4 @@
         android:layout_alignTop="@id/host_team_layout"
         android:layout_alignParentRight="true" />
 
-
-    <!-- Foot view -->
-    <!--<include-->
-        <!--android:id="@+id/included_live_feed_background_foot_view"-->
-        <!--layout="@layout/live_feed_background_foot_view"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="50dp"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_alignParentBottom="true"/>-->
-
 </RelativeLayout>

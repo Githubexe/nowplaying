@@ -5,11 +5,6 @@ import android.os.Looper;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.ScaleAnimation;
-
-import com.music.amazon.mypoldi.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,9 +40,11 @@ public final class UniversalAdapter
     }
 
     public void addItems(final List<?> items) {
+        startPosition = getItemCount();
         if (items != null && items.size() > 0) {
             this.items.addAll(items);
             notifyDataSetChangedOnUiThread();
+            //notifyItemRangeInsertedOnUiThread(items.size());
         }
     }
 
@@ -136,6 +133,15 @@ public final class UniversalAdapter
             @Override
             public void run() {
                 notifyDataSetChanged();
+            }
+        });
+    }
+
+    private void notifyItemRangeInsertedOnUiThread(final int range) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                notifyItemRangeInserted(startPosition, range);
             }
         });
     }

@@ -3,20 +3,22 @@ package com.music.amazon.mypoldi.demo;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.View;
 import android.widget.ViewFlipper;
 
 import com.music.amazon.mypoldi.R;
 import com.music.amazon.mypoldi.binder.CustomLinearLayoutManager;
+import com.music.amazon.mypoldi.binder.LiveChannelBinder;
 import com.music.amazon.mypoldi.binder.LiveFeedBackgroundBinder;
 import com.music.amazon.mypoldi.binder.LiveFeedBinder;
 import com.music.amazon.mypoldi.binder.LeftLiveFeedItemBinder;
 import com.music.amazon.mypoldi.binder.RightLiveFeedItemBinder;
 import com.music.amazon.mypoldi.dmtv.UniversalAdapter;
 import com.music.amazon.mypoldi.model.LeftLiveFeedItemModel;
+import com.music.amazon.mypoldi.model.LiveChannelModel;
 import com.music.amazon.mypoldi.model.LiveFeedBackgroundModel;
 import com.music.amazon.mypoldi.model.LiveFeedModel;
 import com.music.amazon.mypoldi.model.RightLiveFeedItemModel;
+import com.music.amazon.mypoldi.view.LiveChannelView;
 import com.music.amazon.mypoldi.view.LiveFeedBackgroundView;
 import com.music.amazon.mypoldi.view.LiveFeedView;
 
@@ -29,21 +31,18 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 public class DemoActivity extends Activity {
-
-    //FIXME: get the number of concurrent live games from service
-    private final int NUM_OF_LIVE_GAMES = 3;
-
     private UniversalAdapter universalAdapter;
 
     private LiveFeedBackgroundView backgroundView;
-
-    private LiveFeedBackgroundBinder liveFeedBackgroundBinder;
+    private LiveFeedBackgroundBinder backgroundBinder;
 
     private LiveFeedView liveFeedView;
 
-    private ViewFlipper viewFlipper;
+//    private LiveChannelBinder liveChannelBinder;
+//    private LiveChannelView liveChannelView;
+//    private LiveChannelModel liveChannelModel;
 
-    private List<Integer> viewLayoutIds = new ArrayList<Integer>();
+    private ViewFlipper viewFlipper;
 
     final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
@@ -52,11 +51,21 @@ public class DemoActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.live_feed_main_activity);
-        viewFlipper = (ViewFlipper) findViewById(R.id.live_feed_flipper);
-        liveFeedBackgroundBinder = new LiveFeedBackgroundBinder();
-        addNextView(0);
+        setContentView(R.layout.live_feed_main_acitivty);
+
+        init();
         updateLayout();
+    }
+
+    private void init() {
+        final LiveChannelModel liveChannelModel = new LiveChannelModel
+                (DemoLiveFeedData.getLiveGames());
+        final LiveChannelView liveChannelView = (LiveChannelView)findViewById(R.id.live_channel_view);
+        final LiveChannelBinder liveChannelBinder = new LiveChannelBinder();
+        liveChannelBinder.bind(liveChannelView,liveChannelModel);
+
+        viewFlipper = liveChannelView.viewFlipper;
+        backgroundBinder = new LiveFeedBackgroundBinder();
     }
 
     @Override
@@ -78,10 +87,7 @@ public class DemoActivity extends Activity {
                     return true;
                 }
             } else if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {
-                if (viewFlipper.getChildCount() < NUM_OF_LIVE_GAMES) {
-                    addNextView(viewFlipper.getDisplayedChild() + 1);
-                }
-                if (viewFlipper.getDisplayedChild() <= NUM_OF_LIVE_GAMES - 1) {
+                if (viewFlipper.getDisplayedChild() <= viewFlipper.getChildCount() - 1) {
                     viewFlipper.setInAnimation(this, R.anim.live_feed_flipper_in_from_right);
                     viewFlipper.setOutAnimation(this, R.anim.live_feed_flipper_out_to_left);
                     viewFlipper.showNext();
@@ -92,14 +98,6 @@ public class DemoActivity extends Activity {
             }
         }
         return super.onKeyDown(keyCode,event);
-    }
-
-    private void addNextView(int index) {
-        final LiveFeedBackgroundView view = new LiveFeedBackgroundView(this);
-        final int viewId = View.generateViewId();
-        viewLayoutIds.add(index, viewId);
-        view.setId(viewId);
-        viewFlipper.addView(view);
     }
 
     private void updateLayout() {
@@ -116,20 +114,22 @@ public class DemoActivity extends Activity {
 
     private void updateBackgroundView() {
         final int childId = viewFlipper.getDisplayedChild();
-        final int viewLayoutId = viewLayoutIds.get(childId);
+
         LiveFeedBackgroundModel model = DemoLiveFeedData.createLiveFeedBackgroundModel(childId);
-        backgroundView = (LiveFeedBackgroundView) (viewFlipper.findViewById(viewLayoutId));
+        backgroundView = (LiveFeedBackgroundView) (viewFlipper.getCurrentView());
+
         liveFeedView = (LiveFeedView) (backgroundView.findViewById(R.id.live_feed_view));
-        liveFeedBackgroundBinder.bind(backgroundView, model);
+        backgroundBinder.bind(backgroundView, model);
 
         universalAdapter = (new UniversalAdapter(new LeftLiveFeedItemBinder(),
                 new RightLiveFeedItemBinder()));
-
         liveFeedView.liveFeedItemView.setAdapter(universalAdapter);
         final CustomLinearLayoutManager customLinearLayoutManager =
                 new CustomLinearLayoutManager(this);
         customLinearLayoutManager.setStackFromEnd(true);
         liveFeedView.liveFeedItemView.setLayoutManager(customLinearLayoutManager);
+
+       // liveFeedView.liveFeedItemView.setItemAnimator(new MyItemAnimator());
     }
 
     //DEMO purpose only, will be replaced by LiveFeedSubscriber logics

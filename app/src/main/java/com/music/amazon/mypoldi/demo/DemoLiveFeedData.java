@@ -1,5 +1,6 @@
 package com.music.amazon.mypoldi.demo;
 
+import com.music.amazon.mypoldi.model.GameModel;
 import com.music.amazon.mypoldi.model.LeftLiveFeedItemModel;
 import com.music.amazon.mypoldi.model.LiveFeedBackgroundModel;
 import com.music.amazon.mypoldi.model.LiveFeedModel;
@@ -7,6 +8,8 @@ import com.music.amazon.mypoldi.model.RightLiveFeedItemModel;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * DEMO DATA ONLY
@@ -14,6 +17,15 @@ import java.util.Calendar;
 public final class DemoLiveFeedData {
 
     public static int counter = -1;
+
+    public static Set<GameModel> getLiveGames() {
+        Set<GameModel> games = new HashSet<>();
+        games.add(new GameModel("game1", "2017-02-21 10:30:00", true));
+        games.add(new GameModel("game2", "2017-02-26 12:00:00", true));
+        games.add(new GameModel("game3", "2017-03-13 18:15:00", true));
+        games.add(new GameModel("game4", "2017-05-11 9:15:00", true));
+        return games;
+    }
 
     public static LeftLiveFeedItemModel createLeftLiveFeedItemModel() {
         final int minute = Calendar.getInstance().get(Calendar.MINUTE);
@@ -58,8 +70,8 @@ public final class DemoLiveFeedData {
                 "FC BAYERN MÜNCHEN",
                 "https://amazon.music.poldi/hostteam.png", //host team logo url
                 "BORUSSIA DORTMUND",
-                "https://amazon.music.poldi/visitingteam.png", //visiting team logo url
-                System.currentTimeMillis()).build();
+                "https://amazon.music.poldi/visitingteam.png") //visiting team logo url
+                .build();
     }
 
 }
