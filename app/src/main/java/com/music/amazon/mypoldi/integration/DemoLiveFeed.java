@@ -25,7 +25,7 @@ public final class DemoLiveFeed {
     public void start() {
         final LiveFeedModel liveFeedModel =
                 DemoLiveFeedData.createLiveFeedModel("");
-        if (on.getAndSet(true) == false && liveFeedListeners.size() > 0) {
+        if (on.getAndSet(true) == false) {
             scheduler.scheduleAtFixedRate(
                     new Runnable() {
                         @Override
