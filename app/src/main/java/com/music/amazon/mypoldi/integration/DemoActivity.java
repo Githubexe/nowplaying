@@ -1,6 +1,7 @@
 package com.music.amazon.mypoldi.integration;
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.widget.ViewFlipper;
@@ -45,17 +46,30 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.live_feed_main_acitivty);
 
-        final LiveChannelModel liveChannelModel = new LiveChannelModel
-                (DemoLiveFeedData.getLiveGames());
-        games = liveChannelModel.games;
-        final LiveChannelView liveChannelView =
-                (LiveChannelView) findViewById(R.id.live_channel_view);
-        viewFlipper = liveChannelView.viewFlipper;
-        //Add concurrent live games to flipper
-        liveChannelBinder.bind(liveChannelView, liveChannelModel);
+        loadFirstGame();
+    }
 
-        currentLiveFeed.register(this);
-        switchGame();
+    private void loadFirstGame() {
+        new AsyncTask<Void, Void, LiveChannelModel>() {
+            @Override
+            protected LiveChannelModel doInBackground(Void... voids) {
+                //get the list of live games from service
+                return new LiveChannelModel
+                        (DemoLiveFeedData.getLiveGames());
+            }
+
+            @Override
+            protected void onPostExecute(LiveChannelModel liveChannelModel) {
+                games = liveChannelModel.games;
+                final LiveChannelView liveChannelView =
+                        (LiveChannelView) findViewById(R.id.live_channel_view);
+                viewFlipper = liveChannelView.viewFlipper;
+                //Add concurrent live games to flipper
+                liveChannelBinder.bind(liveChannelView, liveChannelModel);
+                currentLiveFeed.register(DemoActivity.this);
+                switchGame();
+            }
+        }.execute();
     }
 
     private void switchGame() {
