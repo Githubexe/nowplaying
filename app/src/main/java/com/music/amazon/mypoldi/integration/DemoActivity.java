@@ -13,6 +13,7 @@ import com.music.amazon.mypoldi.binder.LiveFeedBinder;
 import com.music.amazon.mypoldi.binder.LeftLiveFeedItemBinder;
 import com.music.amazon.mypoldi.binder.RightLiveFeedItemBinder;
 import com.music.amazon.mypoldi.dmtv.UniversalAdapter;
+import com.music.amazon.mypoldi.model.GameModel;
 import com.music.amazon.mypoldi.model.LeftLiveFeedItemModel;
 import com.music.amazon.mypoldi.model.LiveChannelModel;
 import com.music.amazon.mypoldi.model.LiveFeedBackgroundModel;
@@ -37,6 +38,8 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener {
     private LiveFeedView liveFeedView;
     private final DemoLiveFeed currentLiveFeed = new DemoLiveFeed();
 
+    private List<GameModel> games;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +47,7 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener {
 
         final LiveChannelModel liveChannelModel = new LiveChannelModel
                 (DemoLiveFeedData.getLiveGames());
+        games = liveChannelModel.games;
         final LiveChannelView liveChannelView =
                 (LiveChannelView) findViewById(R.id.live_channel_view);
         viewFlipper = liveChannelView.viewFlipper;
@@ -56,7 +60,8 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener {
 
     private void switchGame() {
         //update background
-        final LiveFeedBackgroundModel model = DemoLiveFeedData.getLiveFeedBackgroundModel("");
+        final int index = viewFlipper.getDisplayedChild();
+        final LiveFeedBackgroundModel model = DemoLiveFeedData.getLiveFeedBackgroundModel(games.get(index).gameId);
         final LiveFeedBackgroundView backgroundView = (LiveFeedBackgroundView)
                 (viewFlipper.getCurrentView());
         backgroundBinder.bind(backgroundView, model);

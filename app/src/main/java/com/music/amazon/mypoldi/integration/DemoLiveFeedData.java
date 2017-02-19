@@ -6,8 +6,11 @@ import com.music.amazon.mypoldi.model.LiveFeedBackgroundModel;
 import com.music.amazon.mypoldi.model.LiveFeedModel;
 import com.music.amazon.mypoldi.model.RightLiveFeedItemModel;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -17,11 +20,12 @@ public final class DemoLiveFeedData {
 
     public static int counter = -1;
 
-    public static Set<GameModel> getLiveGames() {
-        Set<GameModel> games = new HashSet<>();
-        games.add(new GameModel("game1", "2017-02-21 10:30:00", true));
-        games.add(new GameModel("game2", "2017-02-26 12:00:00", true));
-        games.add(new GameModel("game3", "2017-03-13 18:15:00", true));
+    public static List<GameModel> getLiveGames() {
+        List<GameModel> games = new ArrayList<>();
+        int index = 0;
+        games.add(index++, new GameModel("game1", "2017-02-21 10:30:00", true));
+        games.add(index++, new GameModel("game2", "2017-02-26 12:00:00", true));
+        games.add(index++, new GameModel("game3", "2017-03-13 18:15:00", true));
         return games;
     }
 
@@ -60,14 +64,33 @@ public final class DemoLiveFeedData {
     }
 
     public static LiveFeedBackgroundModel getLiveFeedBackgroundModel(String gameId) {
-        return LiveFeedBackgroundModel.builder(
-                "test-main-uuid",
-                "https://amazon.music.poldi/background.png", //background
-                "FC BAYERN MÜNCHEN",
-                "https://amazon.music.poldi/hostteam.png", //host team logo url
-                "BORUSSIA DORTMUND",
-                "https://amazon.music.poldi/visitingteam.png") //visiting team logo url
-                .build();
+        final LiveFeedBackgroundModel.Builder builder;
+        if ("game1".equalsIgnoreCase(gameId)) {
+            builder = LiveFeedBackgroundModel.builder(
+                    "test-main-uuid-1",
+                    "https://amazon.music.poldi/background.png", //background
+                    "FC BAYERN MÜNCHEN",
+                    "https://amazon.music.poldi/hostteam.png", //host team logo url
+                    "BORUSSIA DORTMUND",
+                    "https://amazon.music.poldi/visitingteam.png"); //visiting team logo url
+        } else if ("game2".equalsIgnoreCase(gameId)) {
+            builder = LiveFeedBackgroundModel.builder(
+                    "test-main-uuid-2",
+                    "https://amazon.music.poldi/background.png", //background
+                    "GAME2-HOME",
+                    "https://amazon.music.poldi/hostteam.png", //host team logo url
+                    "GAME2-AWAY",
+                    "https://amazon.music.poldi/visitingteam.png"); //visiting team logo url
+        } else {
+            builder = LiveFeedBackgroundModel.builder(
+                    "test-main-uuid-2",
+                    "https://amazon.music.poldi/background.png", //background
+                    "GAME3-HOME",
+                    "https://amazon.music.poldi/hostteam.png", //host team logo url
+                    "GAME3-AWAY",
+                    "https://amazon.music.poldi/visitingteam.png"); //visiting team logo url
+        }
+        return builder.build();
     }
 
 }

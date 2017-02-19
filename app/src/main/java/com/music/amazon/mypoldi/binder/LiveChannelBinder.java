@@ -8,6 +8,7 @@ import com.music.amazon.mypoldi.model.GameModel;
 import com.music.amazon.mypoldi.view.LiveChannelView;
 import com.music.amazon.mypoldi.view.LiveFeedBackgroundView;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -29,7 +30,7 @@ public final class LiveChannelBinder implements
     public void bind(LiveChannelView view, LiveChannelModel model) {
         view.viewFlipper.removeAllViews();
 
-        final Set<GameModel> games = model.games;
+        final List<GameModel> games = model.games;
         for (GameModel game : games) {
             if (game.live) {
                 final LiveFeedBackgroundView backgroundView =
