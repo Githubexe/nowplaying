@@ -98,7 +98,7 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener {
 
     @Override
     public void onUpdateLeftLiveItem(LeftLiveFeedItemModel data) {
-        List<LeftLiveFeedItemModel> added = new ArrayList<LeftLiveFeedItemModel>();
+        List<LeftLiveFeedItemModel> added = new ArrayList<>();
         added.add(data);
         universalAdapter.addItems(added);
         liveFeedView.liveFeedItemView.smoothScrollToPosition(
