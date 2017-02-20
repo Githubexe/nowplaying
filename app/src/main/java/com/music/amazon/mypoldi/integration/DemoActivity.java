@@ -10,7 +10,7 @@ import com.music.amazon.mypoldi.R;
 import com.music.amazon.mypoldi.binder.CustomLinearLayoutManager;
 import com.music.amazon.mypoldi.binder.LiveChannelBinder;
 import com.music.amazon.mypoldi.binder.LiveFeedBackgroundBinder;
-import com.music.amazon.mypoldi.binder.LiveFeedBinder;
+import com.music.amazon.mypoldi.binder.LiveFeedHeaderBinder;
 import com.music.amazon.mypoldi.binder.LeftLiveFeedItemBinder;
 import com.music.amazon.mypoldi.binder.RightLiveFeedItemBinder;
 import com.music.amazon.mypoldi.dmtv.UniversalAdapter;
@@ -18,11 +18,11 @@ import com.music.amazon.mypoldi.model.GameModel;
 import com.music.amazon.mypoldi.model.LeftLiveFeedItemModel;
 import com.music.amazon.mypoldi.model.LiveChannelModel;
 import com.music.amazon.mypoldi.model.LiveFeedBackgroundModel;
-import com.music.amazon.mypoldi.model.LiveFeedModel;
+import com.music.amazon.mypoldi.model.LiveFeedHeaderModel;
 import com.music.amazon.mypoldi.model.RightLiveFeedItemModel;
 import com.music.amazon.mypoldi.view.LiveChannelView;
 import com.music.amazon.mypoldi.view.LiveFeedBackgroundView;
-import com.music.amazon.mypoldi.view.LiveFeedView;
+import com.music.amazon.mypoldi.view.LiveFeedHeaderView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +36,7 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener {
 
     private ViewFlipper viewFlipper;
 
-    private LiveFeedView liveFeedView;
+    private LiveFeedHeaderView liveFeedHeaderView;
     private final DemoLiveFeed currentLiveFeed = new DemoLiveFeed();
 
     private List<GameModel> games;
@@ -81,14 +81,14 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener {
         backgroundBinder.bind(backgroundView, model);
 
         //update live feed
-        liveFeedView = (LiveFeedView) (backgroundView.findViewById(R.id.live_feed_view));
+        liveFeedHeaderView = (LiveFeedHeaderView) (backgroundView.findViewById(R.id.live_feed_view));
         universalAdapter = new UniversalAdapter(new LeftLiveFeedItemBinder(),
                 new RightLiveFeedItemBinder());
-        liveFeedView.liveFeedItemView.setAdapter(universalAdapter);
+        liveFeedHeaderView.liveFeedItemView.setAdapter(universalAdapter);
         final CustomLinearLayoutManager customLinearLayoutManager =
                 new CustomLinearLayoutManager(this);
         customLinearLayoutManager.setStackFromEnd(true);
-        liveFeedView.liveFeedItemView.setLayoutManager(customLinearLayoutManager);
+        liveFeedHeaderView.liveFeedItemView.setLayoutManager(customLinearLayoutManager);
         // liveFeedView.liveFeedItemView.setItemAnimator(new MyItemAnimator());
 
         if (currentLiveFeed != null) {
@@ -101,7 +101,7 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener {
         List<LeftLiveFeedItemModel> added = new ArrayList<>();
         added.add(data);
         universalAdapter.addItems(added);
-        liveFeedView.liveFeedItemView.smoothScrollToPosition(
+        liveFeedHeaderView.liveFeedItemView.smoothScrollToPosition(
                 universalAdapter.getItemCount() - 1);
     }
 
@@ -110,16 +110,16 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener {
         List<RightLiveFeedItemModel> added = new ArrayList<>();
         added.add(data);
         universalAdapter.addItems(added);
-        liveFeedView.liveFeedItemView.smoothScrollToPosition(
+        liveFeedHeaderView.liveFeedItemView.smoothScrollToPosition(
                 universalAdapter.getItemCount() - 1);
     }
 
     @Override
-    public void onUpdateLiveFeed(final LiveFeedModel liveFeedModel) {
+    public void onUpdateLiveFeed(final LiveFeedHeaderModel liveFeedHeaderModel) {
         DemoActivity.this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                new LiveFeedBinder().bind(liveFeedView, liveFeedModel);
+                new LiveFeedHeaderBinder().bind(liveFeedHeaderView, liveFeedHeaderModel);
             }
         });
     }

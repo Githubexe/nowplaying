@@ -1,7 +1,7 @@
 package com.music.amazon.mypoldi.integration;
 
 import com.music.amazon.mypoldi.model.LeftLiveFeedItemModel;
-import com.music.amazon.mypoldi.model.LiveFeedModel;
+import com.music.amazon.mypoldi.model.LiveFeedHeaderModel;
 import com.music.amazon.mypoldi.model.RightLiveFeedItemModel;
 
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public final class DemoLiveFeed {
     private static final AtomicBoolean on = new AtomicBoolean(false);
 
     public void start() {
-        final LiveFeedModel liveFeedModel =
+        final LiveFeedHeaderModel liveFeedHeaderModel =
                 DemoLiveFeedData.createLiveFeedModel("");
         if (on.getAndSet(true) == false) {
             if (future != null) {
@@ -38,11 +38,11 @@ public final class DemoLiveFeed {
                         public void run() {
                             if (on.get() == true) {
                                 final Calendar now = Calendar.getInstance();
-                                liveFeedModel.elapsedTime = now.get(Calendar.MINUTE) +
+                                liveFeedHeaderModel.elapsedTime = now.get(Calendar.MINUTE) +
                                         " : " + now.get(Calendar.SECOND);
                                 final Object data = DemoLiveFeedData.generateLiveFeedItemData();
                                 for (DemoLiveFeedListener liveFeedListener: liveFeedListeners) {
-                                    liveFeedListener.onUpdateLiveFeed(liveFeedModel);
+                                    liveFeedListener.onUpdateLiveFeed(liveFeedHeaderModel);
                                     if (data instanceof LeftLiveFeedItemModel) {
                                         liveFeedListener.onUpdateLeftLiveItem(
                                                 (LeftLiveFeedItemModel)data);

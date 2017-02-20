@@ -11,7 +11,7 @@ import com.music.amazon.mypoldi.R;
 /**
  * Created by yoyosu on 1/24/17.
  */
-public final class LiveFeedView extends RelativeLayout {
+public final class LiveFeedHeaderView extends RelativeLayout {
 
     public final RecyclerView liveFeedItemView;
 
@@ -27,17 +27,17 @@ public final class LiveFeedView extends RelativeLayout {
 
     public final TextView scoreSeparator;
 
-    public LiveFeedView(Context context) {
+    public LiveFeedHeaderView(Context context) {
         this(context, null);
     }
 
-    public LiveFeedView(Context context, AttributeSet attributeSet) {
+    public LiveFeedHeaderView(Context context, AttributeSet attributeSet) {
         this(context, attributeSet, 0);
     }
 
-    public LiveFeedView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public LiveFeedHeaderView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        inflate(getContext(), R.layout.live_feed_view, this);
+        inflate(getContext(), R.layout.live_feed_header_view, this);
         hostTeamScoreTextView = (TextView)findViewById(R.id.host_score_text_view);
         visitingTeamScoreTextView = (TextView)findViewById(R.id.away_score_text_view);
         scoreSeparator = (TextView)findViewById(R.id.score_separator_text_view);

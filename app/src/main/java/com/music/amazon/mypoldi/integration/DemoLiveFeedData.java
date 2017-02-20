@@ -3,15 +3,12 @@ package com.music.amazon.mypoldi.integration;
 import com.music.amazon.mypoldi.model.GameModel;
 import com.music.amazon.mypoldi.model.LeftLiveFeedItemModel;
 import com.music.amazon.mypoldi.model.LiveFeedBackgroundModel;
-import com.music.amazon.mypoldi.model.LiveFeedModel;
+import com.music.amazon.mypoldi.model.LiveFeedHeaderModel;
 import com.music.amazon.mypoldi.model.RightLiveFeedItemModel;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * DEMO DATA ONLY
@@ -55,8 +52,8 @@ public final class DemoLiveFeedData {
         }
     }
 
-    public static LiveFeedModel createLiveFeedModel(String gameId) {
-        return LiveFeedModel.builder(
+    public static LiveFeedHeaderModel createLiveFeedModel(String gameId) {
+        return LiveFeedHeaderModel.builder(
                 "test-uuid").
                 withTime("53 : 29").
                 withScore(3, 2).

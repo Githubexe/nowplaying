@@ -31,12 +31,12 @@
         android:layout_toLeftOf="@+id/away_team_layout"
         android:layout_marginTop="132dp">
 
-        <com.music.amazon.mypoldi.view.LiveFeedView
+        <com.music.amazon.mypoldi.view.LiveFeedHeaderView
             android:id="@+id/live_feed_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true">
-        </com.music.amazon.mypoldi.view.LiveFeedView>
+        </com.music.amazon.mypoldi.view.LiveFeedHeaderView>
     </FrameLayout>
 
 
