@@ -40,8 +40,11 @@ public final class DemoLiveFeed {
                                     sec = 0;
                                     min++;
                                 }
-                                liveFeedHeaderModel.elapsedTime = String.valueOf(min) +
-                                        " : " + String.valueOf(sec);
+                                liveFeedHeaderModel.elapsedTime =
+                                        ((min < 10) ?  String.valueOf("0" + min)
+                                                : String.valueOf(min)) + " : "
+                                        + ((sec < 10) ?  String.valueOf("0" + sec)
+                                                : String.valueOf(sec));
                                 final Object data = DemoLiveFeedData.generateLiveFeedItemData();
                                 for (DemoLiveFeedListener liveFeedListener: liveFeedListeners) {
                                     liveFeedListener.onUpdateLiveFeedHeader(liveFeedHeaderModel);
