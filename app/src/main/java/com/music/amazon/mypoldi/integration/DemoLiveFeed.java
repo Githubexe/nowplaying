@@ -5,7 +5,6 @@ import com.music.amazon.mypoldi.model.LiveFeedHeaderModel;
 import com.music.amazon.mypoldi.model.RightLiveFeedItemModel;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
@@ -25,24 +24,27 @@ public final class DemoLiveFeed {
 
     private static final AtomicBoolean on = new AtomicBoolean(false);
 
-    public void start() {
-        final LiveFeedHeaderModel liveFeedHeaderModel =
-                DemoLiveFeedData.createLiveFeedModel("");
+    public void start(String gameId) {
         if (on.getAndSet(true) == false) {
-            if (future != null) {
-                future.cancel(true);
-            }
+            final LiveFeedHeaderModel liveFeedHeaderModel =
+                    DemoLiveFeedData.generateLiveFeedHeaderModel(gameId);
             future = scheduler.scheduleAtFixedRate(
                     new Runnable() {
+                        final String[] times = liveFeedHeaderModel.elapsedTime.split(":");
+                        int min = Integer.parseInt(times[0].trim());
+                        int sec = Integer.parseInt(times[1].trim());
                         @Override
                         public void run() {
                             if (on.get() == true) {
-                                final Calendar now = Calendar.getInstance();
-                                liveFeedHeaderModel.elapsedTime = now.get(Calendar.MINUTE) +
-                                        " : " + now.get(Calendar.SECOND);
+                                if (sec++ >= 59) {
+                                    sec = 0;
+                                    min++;
+                                }
+                                liveFeedHeaderModel.elapsedTime = String.valueOf(min) +
+                                        " : " + String.valueOf(sec);
                                 final Object data = DemoLiveFeedData.generateLiveFeedItemData();
                                 for (DemoLiveFeedListener liveFeedListener: liveFeedListeners) {
-                                    liveFeedListener.onUpdateLiveFeed(liveFeedHeaderModel);
+                                    liveFeedListener.onUpdateLiveFeedHeader(liveFeedHeaderModel);
                                     if (data instanceof LeftLiveFeedItemModel) {
                                         liveFeedListener.onUpdateLeftLiveItem(
                                                 (LeftLiveFeedItemModel)data);
@@ -62,6 +64,14 @@ public final class DemoLiveFeed {
 
     public void stop() {
         if (on.getAndSet(false) == true) {
+            if (future != null) {
+                future.cancel(true);
+            }
+        }
+    }
+
+    public void shutdown() {
+        if (scheduler != null) {
             scheduler.shutdown();
         }
     }

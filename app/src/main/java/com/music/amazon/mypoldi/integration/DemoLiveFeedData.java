@@ -52,15 +52,24 @@ public final class DemoLiveFeedData {
         }
     }
 
-    public static LiveFeedHeaderModel createLiveFeedModel(String gameId) {
-        return LiveFeedHeaderModel.builder(
-                "test-uuid").
-                withTime("53 : 29").
-                withScore(3, 2).
-                build();
+    public static LiveFeedHeaderModel generateLiveFeedHeaderModel(String gameId) {
+        LiveFeedHeaderModel.Builder builder = LiveFeedHeaderModel.builder(
+                "test-uuid");
+        switch (gameId) {
+            case "game1":
+                builder = builder.withTime("34 : 23").withScore(0, 2);
+                break;
+            case "game2" :
+                builder = builder.withTime("53 : 29").withScore(3, 2);
+                break;
+            case "game3":
+                builder = builder.withTime("49 : 26").withScore(1, 1);
+                break;
+        }
+        return builder.build();
     }
 
-    public static LiveFeedBackgroundModel getLiveFeedBackgroundModel(String gameId) {
+    public static LiveFeedBackgroundModel generateLiveFeedBackgroundModel(String gameId) {
         final LiveFeedBackgroundModel.Builder builder;
         if ("game1".equalsIgnoreCase(gameId)) {
             builder = LiveFeedBackgroundModel.builder(

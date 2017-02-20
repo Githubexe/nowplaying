@@ -3,6 +3,7 @@ package com.music.amazon.mypoldi.integration;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.widget.ViewFlipper;
 
@@ -73,27 +74,30 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener {
     }
 
     private void switchGame() {
-        //update background
         final int index = viewFlipper.getDisplayedChild();
-        final LiveFeedBackgroundModel model = DemoLiveFeedData.getLiveFeedBackgroundModel(games.get(index).gameId);
+        final String newGameId = games.get(index).gameId;
+        if (currentLiveFeed != null) {
+            currentLiveFeed.stop();
+            currentLiveFeed.start(newGameId);
+        }
+
+        //update background
+        final LiveFeedBackgroundModel model = DemoLiveFeedData.generateLiveFeedBackgroundModel(newGameId);
         final LiveFeedBackgroundView backgroundView = (LiveFeedBackgroundView)
                 (viewFlipper.getCurrentView());
         backgroundBinder.bind(backgroundView, model);
 
         //update live feed
         liveFeedHeaderView = (LiveFeedHeaderView) (backgroundView.findViewById(R.id.live_feed_view));
+        final RecyclerView itemView = liveFeedHeaderView.liveFeedItemView;
         universalAdapter = new UniversalAdapter(new LeftLiveFeedItemBinder(),
                 new RightLiveFeedItemBinder());
-        liveFeedHeaderView.liveFeedItemView.setAdapter(universalAdapter);
+        itemView.setAdapter(universalAdapter);
         final CustomLinearLayoutManager customLinearLayoutManager =
                 new CustomLinearLayoutManager(this);
         customLinearLayoutManager.setStackFromEnd(true);
-        liveFeedHeaderView.liveFeedItemView.setLayoutManager(customLinearLayoutManager);
-        // liveFeedView.liveFeedItemView.setItemAnimator(new MyItemAnimator());
-
-        if (currentLiveFeed != null) {
-            currentLiveFeed.start();
-        }
+        itemView.setLayoutManager(customLinearLayoutManager);
+        // itemView.setItemAnimator(new MyItemAnimator());
     }
 
     @Override
@@ -115,7 +119,7 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener {
     }
 
     @Override
-    public void onUpdateLiveFeed(final LiveFeedHeaderModel liveFeedHeaderModel) {
+    public void onUpdateLiveFeedHeader(final LiveFeedHeaderModel liveFeedHeaderModel) {
         DemoActivity.this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -127,7 +131,7 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener {
     @Override
     protected void onDestroy() {
         currentLiveFeed.deregister(this);
-        currentLiveFeed.stop();
+        currentLiveFeed.shutdown();
         super.onDestroy();
     }
 
