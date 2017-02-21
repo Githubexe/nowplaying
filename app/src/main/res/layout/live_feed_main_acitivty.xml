@@ -4,11 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.music.amazon.mypoldi.view.LiveChannelView
+    <com.music.amazon.mypoldi.view.ChannelSwitcherView
         android:id="@+id/live_channel_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true">
-    </com.music.amazon.mypoldi.view.LiveChannelView>
+    </com.music.amazon.mypoldi.view.ChannelSwitcherView>
 
 </LinearLayout>

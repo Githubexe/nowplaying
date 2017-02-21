@@ -17,8 +17,8 @@ public final class DemoLiveFeedData {
 
     public static int counter = -1;
 
-    public static List<GameModel> getLiveGames() {
-        List<GameModel> games = new ArrayList<>();
+    public static List<Object> getLiveGames() {
+        List<Object> games = new ArrayList<>();
         int index = 0;
         games.add(index++, new GameModel("game1", "2017-02-21 10:30:00", true));
         games.add(index++, new GameModel("game2", "2017-02-26 12:00:00", true));
