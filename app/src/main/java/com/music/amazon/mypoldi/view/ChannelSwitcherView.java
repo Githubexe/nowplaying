@@ -2,6 +2,7 @@ package com.music.amazon.mypoldi.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.ViewFlipper;
 
@@ -27,6 +28,31 @@ public final class ChannelSwitcherView extends RelativeLayout{
         inflate(getContext(), R.layout.live_feed_channel, this);
         viewFlipper = (ViewFlipper) findViewById(R.id.live_feed_flipper);
     }
+
+    public View getCurrentView() {
+        return viewFlipper.getCurrentView();
+    }
+
+    public int showNext() {
+        if (viewFlipper.getDisplayedChild() <= viewFlipper.getChildCount() - 1) {
+            final Context context = getContext();
+            viewFlipper.setInAnimation(context, R.anim.live_feed_flipper_in_from_right);
+            viewFlipper.setOutAnimation(context, R.anim.live_feed_flipper_out_to_left);
+            viewFlipper.showNext();
+        }
+        return viewFlipper.getDisplayedChild();
+    }
+
+    public int showPrevious() {
+        if (viewFlipper.getDisplayedChild() >= 0) {
+            final Context context = getContext();
+            viewFlipper.setInAnimation(context, R.anim.live_feed_flipper_in_from_left);
+            viewFlipper.setOutAnimation(context, R.anim.live_feed_flipper_out_to_right);
+            viewFlipper.showPrevious();
+        }
+        return viewFlipper.getDisplayedChild();
+    }
+
 
 }
 

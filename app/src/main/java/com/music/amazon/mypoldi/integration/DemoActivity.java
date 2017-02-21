@@ -3,18 +3,12 @@ package com.music.amazon.mypoldi.integration;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
-import android.widget.ViewFlipper;
 
 import com.music.amazon.mypoldi.R;
-import com.music.amazon.mypoldi.binder.CustomLinearLayoutManager;
 import com.music.amazon.mypoldi.binder.ChannelSwitcherBinder;
 import com.music.amazon.mypoldi.binder.LiveFeedBackgroundBinder;
 import com.music.amazon.mypoldi.binder.LiveFeedHeaderBinder;
-import com.music.amazon.mypoldi.binder.LeftLiveFeedItemBinder;
-import com.music.amazon.mypoldi.binder.RightLiveFeedItemBinder;
-import com.music.amazon.mypoldi.dmtv.UniversalAdapter;
 import com.music.amazon.mypoldi.model.GameModel;
 import com.music.amazon.mypoldi.model.LeftLiveFeedItemModel;
 import com.music.amazon.mypoldi.model.ChannelSwitcherModel;
@@ -25,18 +19,15 @@ import com.music.amazon.mypoldi.view.ChannelSwitcherView;
 import com.music.amazon.mypoldi.view.LiveFeedBackgroundView;
 import com.music.amazon.mypoldi.view.LiveFeedHeaderView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DemoActivity extends Activity implements DemoLiveFeedListener {
 
-    private UniversalAdapter universalAdapter;
-
     private ChannelSwitcherBinder channelSwitcherBinder;
     private ChannelSwitcherModel channelSwitcherModel;
     private ChannelSwitcherView channelSwitcherView;
-    private LiveFeedBackgroundBinder backgroundBinder;
 
+    private LiveFeedBackgroundBinder backgroundBinder;
     private LiveFeedHeaderView liveFeedHeaderView;
     private final DemoLiveFeed currentLiveFeed = new DemoLiveFeed();
 
@@ -51,10 +42,11 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener {
         channelSwitcherBinder = new ChannelSwitcherBinder(backgroundBinder);
         channelSwitcherModel = new ChannelSwitcherModel(LiveFeedBackgroundModel.class);
         channelSwitcherView = (ChannelSwitcherView) findViewById(R.id.live_channel_view);
-        loadLiveGames();
+
+        addViews();
     }
 
-    private void loadLiveGames() {
+    private void addViews() {
         new AsyncTask<Void, Void, List<Object>>() {
             @Override
             protected List<Object> doInBackground(Void... voids) {
@@ -65,62 +57,41 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener {
 
             @Override
             protected void onPostExecute(List<Object> games) {
-                for (Object game : games) {
+                for (int i = 0; i < games.size(); i++) {
                     channelSwitcherBinder.bind(
                             channelSwitcherView,
                             channelSwitcherModel);
                 }
-
                 currentLiveFeed.register(DemoActivity.this);
-                switchGame();
+                switchGame(0);
             }
         }.execute();
     }
 
-    private void switchGame() {
-        final int index = channelSwitcherView.viewFlipper.getDisplayedChild();
-        final String newGameId = ((GameModel)games.get(index)).gameId;
-
+    private void switchGame(int viewIndex) {
+        final String newGameId = ((GameModel)games.get(viewIndex)).gameId;
         if (currentLiveFeed != null) {
             currentLiveFeed.stop();
             currentLiveFeed.start(newGameId);
         }
 
-        //update background
-        final LiveFeedBackgroundModel model = DemoLiveFeedData.generateLiveFeedBackgroundModel(newGameId);
+        final LiveFeedBackgroundModel model = DemoLiveFeedData.
+                generateLiveFeedBackgroundModel(newGameId);
         final LiveFeedBackgroundView backgroundView = (LiveFeedBackgroundView)
-                (channelSwitcherView.viewFlipper.getCurrentView());
+                (channelSwitcherView.getCurrentView());
         backgroundBinder.bind(backgroundView, model);
-
-        //update live feed
         liveFeedHeaderView = (LiveFeedHeaderView) (backgroundView.findViewById(R.id.live_feed_view));
-        final RecyclerView itemView = liveFeedHeaderView.liveFeedItemView;
-        universalAdapter = new UniversalAdapter(new LeftLiveFeedItemBinder(),
-                new RightLiveFeedItemBinder());
-        itemView.setAdapter(universalAdapter);
-        final CustomLinearLayoutManager customLinearLayoutManager =
-                new CustomLinearLayoutManager(this);
-        customLinearLayoutManager.setStackFromEnd(true);
-        itemView.setLayoutManager(customLinearLayoutManager);
         // itemView.setItemAnimator(new MyItemAnimator());
     }
 
     @Override
     public void onUpdateLeftLiveItem(LeftLiveFeedItemModel data) {
-        List<LeftLiveFeedItemModel> added = new ArrayList<>();
-        added.add(data);
-        universalAdapter.addItems(added);
-        liveFeedHeaderView.liveFeedItemView.smoothScrollToPosition(
-                universalAdapter.getItemCount() - 1);
+        liveFeedHeaderView.onUpdateLeftLiveItem(data);
     }
 
     @Override
     public void onUpdateRightLiveItem(RightLiveFeedItemModel data) {
-        List<RightLiveFeedItemModel> added = new ArrayList<>();
-        added.add(data);
-        universalAdapter.addItems(added);
-        liveFeedHeaderView.liveFeedItemView.smoothScrollToPosition(
-                universalAdapter.getItemCount() - 1);
+        liveFeedHeaderView.onUpdateRightLiveItem(data);
     }
 
     @Override
@@ -144,23 +115,13 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
             if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {
-                if (channelSwitcherView.viewFlipper.getDisplayedChild() >= 0) {
-                    channelSwitcherView.viewFlipper.setInAnimation(this, R.anim.live_feed_flipper_in_from_left);
-                    channelSwitcherView.viewFlipper.setOutAnimation(this, R.anim.live_feed_flipper_out_to_right);
-                    channelSwitcherView.viewFlipper.showPrevious();
-                    switchGame();
-                    event.startTracking();
-                    return true;
-                }
+                switchGame(channelSwitcherView.showPrevious());
+                event.startTracking();
+                return true;
             } else if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {
-                if (channelSwitcherView.viewFlipper.getDisplayedChild() <= channelSwitcherView.viewFlipper.getChildCount() - 1) {
-                    channelSwitcherView.viewFlipper.setInAnimation(this, R.anim.live_feed_flipper_in_from_right);
-                    channelSwitcherView.viewFlipper.setOutAnimation(this, R.anim.live_feed_flipper_out_to_left);
-                    channelSwitcherView.viewFlipper.showNext();
-                    switchGame();
-                    event.startTracking();
-                    return true;
-                }
+                switchGame(channelSwitcherView.showNext());
+                event.startTracking();
+                return true;
             }
         }
         return super.onKeyDown(keyCode, event);

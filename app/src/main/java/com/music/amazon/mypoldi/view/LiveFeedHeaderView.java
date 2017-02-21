@@ -7,6 +7,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.music.amazon.mypoldi.R;
+import com.music.amazon.mypoldi.binder.CustomLinearLayoutManager;
+import com.music.amazon.mypoldi.binder.LeftLiveFeedItemBinder;
+import com.music.amazon.mypoldi.binder.RightLiveFeedItemBinder;
+import com.music.amazon.mypoldi.dmtv.UniversalAdapter;
+import com.music.amazon.mypoldi.model.LeftLiveFeedItemModel;
+import com.music.amazon.mypoldi.model.RightLiveFeedItemModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by yoyosu on 1/24/17.
@@ -27,6 +36,8 @@ public final class LiveFeedHeaderView extends RelativeLayout {
 
     public final TextView scoreSeparator;
 
+    private final UniversalAdapter universalAdapter;
+
     public LiveFeedHeaderView(Context context) {
         this(context, null);
     }
@@ -44,6 +55,32 @@ public final class LiveFeedHeaderView extends RelativeLayout {
         minutesTextView = (TextView)findViewById(R.id.minute_text_view);
         secondsTextView = (TextView)findViewById(R.id.second_text_view);
         timeStampSeparator = (TextView)findViewById(R.id.minute_second_separator_text_view);
+
         liveFeedItemView = (RecyclerView) findViewById(R.id.live_feed_item_view);
+
+        universalAdapter = new UniversalAdapter(
+                new LeftLiveFeedItemBinder(),
+                new RightLiveFeedItemBinder());
+        liveFeedItemView.setAdapter(universalAdapter);
+        final CustomLinearLayoutManager customLinearLayoutManager =
+                new CustomLinearLayoutManager(context);
+        customLinearLayoutManager.setStackFromEnd(true);
+        liveFeedItemView.setLayoutManager(customLinearLayoutManager);
+    }
+
+    public void onUpdateLeftLiveItem(LeftLiveFeedItemModel data) {
+        List<LeftLiveFeedItemModel> added = new ArrayList<>();
+        added.add(data);
+        universalAdapter.addItems(added);
+        liveFeedItemView.smoothScrollToPosition(
+                universalAdapter.getItemCount() - 1);
+    }
+
+    public void onUpdateRightLiveItem(RightLiveFeedItemModel data) {
+        List<RightLiveFeedItemModel> added = new ArrayList<>();
+        added.add(data);
+        universalAdapter.addItems(added);
+        liveFeedItemView.smoothScrollToPosition(
+                universalAdapter.getItemCount() - 1);
     }
 }

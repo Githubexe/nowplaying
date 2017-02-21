@@ -37,10 +37,6 @@ public final class ChannelSwitcherBinder implements
     @Override
     public void bind(final ChannelSwitcherView view,
                      final ChannelSwitcherModel channelSwitcherModel) {
-//        if (view.getChildCount() > 0) {
-//            view.viewFlipper.removeAllViews();
-//        }
-
         for (Object model : channelSwitcherModel.models) {
             final UniversalBinder binder = binders.get(model);
             if (binder != null) {
@@ -49,5 +45,4 @@ public final class ChannelSwitcherBinder implements
             }
         }
     }
-
 }
