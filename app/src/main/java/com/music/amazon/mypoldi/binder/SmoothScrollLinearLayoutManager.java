@@ -7,12 +7,12 @@ import android.support.v7.widget.LinearSmoothScroller;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 
-public class CustomLinearLayoutManager extends LinearLayoutManager {
+public class SmoothScrollLinearLayoutManager extends LinearLayoutManager {
     private static final float MILLISECONDS_PER_INCH = 100f;
 
     private final Context context;
 
-    public CustomLinearLayoutManager(final Context context) {
+    public SmoothScrollLinearLayoutManager(final Context context) {
         super(context);
         this.context = context;
     }
@@ -24,7 +24,7 @@ public class CustomLinearLayoutManager extends LinearLayoutManager {
                 new LinearSmoothScroller(context) {
                     @Override
                     public PointF computeScrollVectorForPosition(int targetPosition) {
-                        return CustomLinearLayoutManager.this
+                        return SmoothScrollLinearLayoutManager.this
                                 .computeScrollVectorForPosition(targetPosition);
                     }
 

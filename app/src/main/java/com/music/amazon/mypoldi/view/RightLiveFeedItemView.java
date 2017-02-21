@@ -18,13 +18,13 @@ import org.apache.commons.lang3.StringUtils;
  */
 public final class RightLiveFeedItemView extends LinearLayout {
 
-    public final TextView rightTimeTextView;
+    public final TextView timeTextView;
 
-    public final TextView rightDescriptionTextView;
+    public final TextView commentTextView;
 
-    public final ImageView rightSmallImageView;
+    public final ImageView smallImageView;
 
-    public final ImageView rightLargeImageView;
+    public final ImageView largeImageView;
 
     public RightLiveFeedItemView(Context context) {
         this(context, null);
@@ -37,40 +37,40 @@ public final class RightLiveFeedItemView extends LinearLayout {
     public RightLiveFeedItemView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         inflate(getContext(), R.layout.live_feed_item_view, this);
-        rightTimeTextView = (TextView)findViewById(R.id.right_time_text_view);
-        rightDescriptionTextView = (TextView)findViewById(R.id.right_description_text_view);
-        rightSmallImageView = (ImageView)findViewById(R.id.right_small_image_view);
-        rightLargeImageView = (ImageView)findViewById(R.id.right_large_image_view);
+        timeTextView = (TextView)findViewById(R.id.right_time_text_view);
+        commentTextView = (TextView)findViewById(R.id.right_description_text_view);
+        smallImageView = (ImageView)findViewById(R.id.right_small_image_view);
+        largeImageView = (ImageView)findViewById(R.id.right_large_image_view);
     }
 
     public void bind(final RightLiveFeedItemModel rightLiveFeedItemModel) {
-        rightTimeTextView.setText(rightLiveFeedItemModel.time);
-        rightDescriptionTextView.setText(rightLiveFeedItemModel.description);
-        rightDescriptionTextView.bringToFront();
+        timeTextView.setText(rightLiveFeedItemModel.time);
+        commentTextView.setText(rightLiveFeedItemModel.description);
+        commentTextView.bringToFront();
 
         final Picasso picasso = Picasso.with(getContext());
         if (StringUtils.isEmpty(rightLiveFeedItemModel.smallImage) == false) {
             picasso.load(rightLiveFeedItemModel.smallImage)
                     .placeholder(R.drawable.rec_green)
                     .error(R.drawable.rec_green)
-                    .into(rightSmallImageView);
-            rightSmallImageView.setVisibility(View.VISIBLE);
+                    .into(smallImageView);
+            smallImageView.setVisibility(View.VISIBLE);
         } else {
             //Must null the imageview so that it can be recycled
-            rightSmallImageView.setImageDrawable(null);
-            rightSmallImageView.setVisibility(View.INVISIBLE);
+            smallImageView.setImageDrawable(null);
+            smallImageView.setVisibility(View.INVISIBLE);
         }
 
         if (StringUtils.isEmpty(rightLiveFeedItemModel.largeImage) == false) {
             picasso.load(rightLiveFeedItemModel.largeImage)
                     .placeholder(R.drawable.rec_green)
                     .error(R.drawable.rec_green)
-                    .into(rightLargeImageView);
-            rightLargeImageView.setVisibility(View.VISIBLE);
+                    .into(largeImageView);
+            largeImageView.setVisibility(View.VISIBLE);
         } else {
             //Must null the imageview so that it can be recycled
-            rightLargeImageView.setImageDrawable(null);
-            rightLargeImageView.setVisibility(View.INVISIBLE);
+            largeImageView.setImageDrawable(null);
+            largeImageView.setVisibility(View.INVISIBLE);
         }
     }
 }

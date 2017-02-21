@@ -7,7 +7,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.music.amazon.mypoldi.R;
-import com.music.amazon.mypoldi.binder.CustomLinearLayoutManager;
+import com.music.amazon.mypoldi.binder.SmoothScrollLinearLayoutManager;
 import com.music.amazon.mypoldi.binder.LeftLiveFeedItemBinder;
 import com.music.amazon.mypoldi.binder.RightLiveFeedItemBinder;
 import com.music.amazon.mypoldi.dmtv.UniversalAdapter;
@@ -62,10 +62,10 @@ public final class LiveFeedHeaderView extends RelativeLayout {
                 new LeftLiveFeedItemBinder(),
                 new RightLiveFeedItemBinder());
         liveFeedItemView.setAdapter(universalAdapter);
-        final CustomLinearLayoutManager customLinearLayoutManager =
-                new CustomLinearLayoutManager(context);
-        customLinearLayoutManager.setStackFromEnd(true);
-        liveFeedItemView.setLayoutManager(customLinearLayoutManager);
+        final SmoothScrollLinearLayoutManager smoothScrollLinearLayoutManager =
+                new SmoothScrollLinearLayoutManager(context);
+        smoothScrollLinearLayoutManager.setStackFromEnd(true);
+        liveFeedItemView.setLayoutManager(smoothScrollLinearLayoutManager);
     }
 
     public void onUpdateLeftLiveItem(LeftLiveFeedItemModel data) {
