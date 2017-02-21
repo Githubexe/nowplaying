@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * Created by yoyosu on 1/24/17.
  */
-public final class LiveFeedHeaderView extends RelativeLayout {
+public final class LiveFeedUpdateView extends RelativeLayout {
 
     public final RecyclerView liveFeedItemView;
 
@@ -38,17 +38,17 @@ public final class LiveFeedHeaderView extends RelativeLayout {
 
     private final UniversalAdapter universalAdapter;
 
-    public LiveFeedHeaderView(Context context) {
+    public LiveFeedUpdateView(Context context) {
         this(context, null);
     }
 
-    public LiveFeedHeaderView(Context context, AttributeSet attributeSet) {
+    public LiveFeedUpdateView(Context context, AttributeSet attributeSet) {
         this(context, attributeSet, 0);
     }
 
-    public LiveFeedHeaderView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public LiveFeedUpdateView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        inflate(getContext(), R.layout.live_feed_header_view, this);
+        inflate(getContext(), R.layout.live_feed_update_view, this);
         hostTeamScoreTextView = (TextView)findViewById(R.id.host_score_text_view);
         visitingTeamScoreTextView = (TextView)findViewById(R.id.away_score_text_view);
         scoreSeparator = (TextView)findViewById(R.id.score_separator_text_view);

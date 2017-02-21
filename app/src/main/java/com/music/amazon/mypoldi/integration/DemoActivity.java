@@ -8,16 +8,16 @@ import android.view.KeyEvent;
 import com.music.amazon.mypoldi.R;
 import com.music.amazon.mypoldi.binder.ChannelSwitcherBinder;
 import com.music.amazon.mypoldi.binder.LiveFeedBackgroundBinder;
-import com.music.amazon.mypoldi.binder.LiveFeedHeaderBinder;
-import com.music.amazon.mypoldi.model.GameModel;
+import com.music.amazon.mypoldi.binder.LiveFeedUpdateBinder;
+import com.music.amazon.mypoldi.model.ChannelModel;
 import com.music.amazon.mypoldi.model.LeftLiveFeedItemModel;
 import com.music.amazon.mypoldi.model.ChannelSwitcherModel;
 import com.music.amazon.mypoldi.model.LiveFeedBackgroundModel;
-import com.music.amazon.mypoldi.model.LiveFeedHeaderModel;
+import com.music.amazon.mypoldi.model.LiveFeedUpdateModel;
 import com.music.amazon.mypoldi.model.RightLiveFeedItemModel;
 import com.music.amazon.mypoldi.view.ChannelSwitcherView;
 import com.music.amazon.mypoldi.view.LiveFeedBackgroundView;
-import com.music.amazon.mypoldi.view.LiveFeedHeaderView;
+import com.music.amazon.mypoldi.view.LiveFeedUpdateView;
 
 import java.util.List;
 
@@ -28,78 +28,88 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener {
     private ChannelSwitcherView channelSwitcherView;
 
     private LiveFeedBackgroundBinder backgroundBinder;
-    private LiveFeedHeaderView liveFeedHeaderView;
+    private LiveFeedUpdateView liveFeedUpdateView;
     private final DemoLiveFeed currentLiveFeed = new DemoLiveFeed();
 
-    private List<Object> games;
+    private List<Object> channels;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.live_feed_main_acitivty);
+        channelSwitcherView = (ChannelSwitcherView)findViewById(R.id.live_channel_view);
 
         backgroundBinder = new LiveFeedBackgroundBinder();
         channelSwitcherBinder = new ChannelSwitcherBinder(backgroundBinder);
         channelSwitcherModel = new ChannelSwitcherModel(LiveFeedBackgroundModel.class);
-        channelSwitcherView = (ChannelSwitcherView) findViewById(R.id.live_channel_view);
 
-        addViews();
+        addLiveChannels();
     }
 
-    private void addViews() {
+    private void addLiveChannels() {
         new AsyncTask<Void, Void, List<Object>>() {
             @Override
             protected List<Object> doInBackground(Void... voids) {
-                //get the list of live games from service
-                games = DemoLiveFeedData.getLiveGames();
-                return games;
+                //get the list of live channels from service
+                channels = DemoLiveFeedData.getLiveChannels();
+                return channels;
             }
 
             @Override
-            protected void onPostExecute(List<Object> games) {
-                for (int i = 0; i < games.size(); i++) {
+            protected void onPostExecute(List<Object> channels) {
+                for (int i = 0; i < channels.size(); i++) {
                     channelSwitcherBinder.bind(
                             channelSwitcherView,
                             channelSwitcherModel);
                 }
                 currentLiveFeed.register(DemoActivity.this);
-                switchGame(0);
+                switchChannel(0);
             }
         }.execute();
     }
 
-    private void switchGame(int viewIndex) {
-        final String newGameId = ((GameModel)games.get(viewIndex)).gameId;
+    private void switchChannel(final int viewIndex) {
         if (currentLiveFeed != null) {
             currentLiveFeed.stop();
-            currentLiveFeed.start(newGameId);
         }
+        final String newChannelId = ((ChannelModel)channels.get(viewIndex)).channelId;
+        new AsyncTask<Void, Void, LiveFeedBackgroundModel>() {
+            @Override
+            protected LiveFeedBackgroundModel doInBackground(Void... voids) {
+                //get the background model from service
+                return DemoLiveFeedData.
+                        generateLiveFeedBackgroundModel(newChannelId);
+            }
 
-        final LiveFeedBackgroundModel model = DemoLiveFeedData.
-                generateLiveFeedBackgroundModel(newGameId);
-        final LiveFeedBackgroundView backgroundView = (LiveFeedBackgroundView)
-                (channelSwitcherView.getCurrentView());
-        backgroundBinder.bind(backgroundView, model);
-        liveFeedHeaderView = (LiveFeedHeaderView) (backgroundView.findViewById(R.id.live_feed_view));
-        // itemView.setItemAnimator(new MyItemAnimator());
+            @Override
+            protected void onPostExecute(LiveFeedBackgroundModel backgroundModel) {
+                final LiveFeedBackgroundView backgroundView = (LiveFeedBackgroundView)
+                        (channelSwitcherView.getCurrentView());
+                backgroundBinder.bind(backgroundView, backgroundModel);
+                liveFeedUpdateView = (LiveFeedUpdateView) (backgroundView.findViewById(R.id.live_feed_view));
+                if (currentLiveFeed != null) {
+                    currentLiveFeed.start(newChannelId);
+                }
+            }
+        }.execute();
     }
 
     @Override
     public void onUpdateLeftLiveItem(LeftLiveFeedItemModel data) {
-        liveFeedHeaderView.onUpdateLeftLiveItem(data);
+        liveFeedUpdateView.onUpdateLeftLiveItem(data);
     }
 
     @Override
     public void onUpdateRightLiveItem(RightLiveFeedItemModel data) {
-        liveFeedHeaderView.onUpdateRightLiveItem(data);
+        liveFeedUpdateView.onUpdateRightLiveItem(data);
     }
 
     @Override
-    public void onUpdateLiveFeedHeader(final LiveFeedHeaderModel liveFeedHeaderModel) {
+    public void onUpdateLiveFeedHeader(final LiveFeedUpdateModel liveFeedUpdateModel) {
         DemoActivity.this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                new LiveFeedHeaderBinder().bind(liveFeedHeaderView, liveFeedHeaderModel);
+                new LiveFeedUpdateBinder().bind(liveFeedUpdateView, liveFeedUpdateModel);
             }
         });
     }
@@ -115,11 +125,11 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
             if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {
-                switchGame(channelSwitcherView.showPrevious());
+                switchChannel(channelSwitcherView.showPrevious());
                 event.startTracking();
                 return true;
             } else if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {
-                switchGame(channelSwitcherView.showNext());
+                switchChannel(channelSwitcherView.showNext());
                 event.startTracking();
                 return true;
             }

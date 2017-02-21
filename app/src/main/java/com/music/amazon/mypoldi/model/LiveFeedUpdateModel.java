@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by yoyosu on 1/25/17.
  */
-public final class LiveFeedHeaderModel {
+public final class LiveFeedUpdateModel {
     public int hostScore;
 
     public int awayScore;
@@ -52,8 +52,8 @@ public final class LiveFeedHeaderModel {
             return this;
         }
 
-        public LiveFeedHeaderModel build() {
-            return new LiveFeedHeaderModel(uuid,
+        public LiveFeedUpdateModel build() {
+            return new LiveFeedUpdateModel(uuid,
                     homeScore,
                     awayScore,
                     elapsedTime,
@@ -61,7 +61,7 @@ public final class LiveFeedHeaderModel {
         }
     }
 
-    private LiveFeedHeaderModel(final String uuid,
+    private LiveFeedUpdateModel(final String uuid,
                                 final int hostScore,
                                 final int awayScore,
                                 final String elapsedTime,

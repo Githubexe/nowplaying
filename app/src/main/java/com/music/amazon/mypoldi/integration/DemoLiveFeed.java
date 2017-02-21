@@ -1,7 +1,7 @@
 package com.music.amazon.mypoldi.integration;
 
 import com.music.amazon.mypoldi.model.LeftLiveFeedItemModel;
-import com.music.amazon.mypoldi.model.LiveFeedHeaderModel;
+import com.music.amazon.mypoldi.model.LiveFeedUpdateModel;
 import com.music.amazon.mypoldi.model.RightLiveFeedItemModel;
 
 import java.util.ArrayList;
@@ -26,11 +26,11 @@ public final class DemoLiveFeed {
 
     public void start(String gameId) {
         if (on.getAndSet(true) == false) {
-            final LiveFeedHeaderModel liveFeedHeaderModel =
+            final LiveFeedUpdateModel liveFeedUpdateModel =
                     DemoLiveFeedData.generateLiveFeedHeaderModel(gameId);
             future = scheduler.scheduleAtFixedRate(
                     new Runnable() {
-                        final String[] times = liveFeedHeaderModel.elapsedTime.split(":");
+                        final String[] times = liveFeedUpdateModel.elapsedTime.split(":");
                         int min = Integer.parseInt(times[0].trim());
                         int sec = Integer.parseInt(times[1].trim());
                         @Override
@@ -40,14 +40,14 @@ public final class DemoLiveFeed {
                                     sec = 0;
                                     min++;
                                 }
-                                liveFeedHeaderModel.elapsedTime =
+                                liveFeedUpdateModel.elapsedTime =
                                         ((min < 10) ?  String.valueOf("0" + min)
                                                 : String.valueOf(min)) + " : "
                                         + ((sec < 10) ?  String.valueOf("0" + sec)
                                                 : String.valueOf(sec));
                                 final Object data = DemoLiveFeedData.generateLiveFeedItemData();
                                 for (DemoLiveFeedListener liveFeedListener: liveFeedListeners) {
-                                    liveFeedListener.onUpdateLiveFeedHeader(liveFeedHeaderModel);
+                                    liveFeedListener.onUpdateLiveFeedHeader(liveFeedUpdateModel);
                                     if (data instanceof LeftLiveFeedItemModel) {
                                         liveFeedListener.onUpdateLeftLiveItem(
                                                 (LeftLiveFeedItemModel)data);

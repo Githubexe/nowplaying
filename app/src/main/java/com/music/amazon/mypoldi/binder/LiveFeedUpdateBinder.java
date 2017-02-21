@@ -3,27 +3,27 @@ package com.music.amazon.mypoldi.binder;
 import android.content.Context;
 
 import com.music.amazon.mypoldi.dmtv.UniversalBinder;
-import com.music.amazon.mypoldi.model.LiveFeedHeaderModel;
-import com.music.amazon.mypoldi.view.LiveFeedHeaderView;
+import com.music.amazon.mypoldi.model.LiveFeedUpdateModel;
+import com.music.amazon.mypoldi.view.LiveFeedUpdateView;
 
 /**
  * Created by yoyosu on 1/25/17.
  */
-public class LiveFeedHeaderBinder implements
-        UniversalBinder<LiveFeedHeaderView, LiveFeedHeaderModel> {
+public class LiveFeedUpdateBinder implements
+        UniversalBinder<LiveFeedUpdateView, LiveFeedUpdateModel> {
 
     @Override
-    public Class<LiveFeedHeaderModel> getModelClass() {
-        return LiveFeedHeaderModel.class;
+    public Class<LiveFeedUpdateModel> getModelClass() {
+        return LiveFeedUpdateModel.class;
     }
 
     @Override
-    public LiveFeedHeaderView createView(final Context context) {
-        return new LiveFeedHeaderView(context);
+    public LiveFeedUpdateView createView(final Context context) {
+        return new LiveFeedUpdateView(context);
     }
 
-    public void bind(final LiveFeedHeaderView view,
-                     final LiveFeedHeaderModel model){
+    public void bind(final LiveFeedUpdateView view,
+                     final LiveFeedUpdateModel model){
         view.hostTeamScoreTextView.setText(Integer.toString(model.hostScore));
         view.visitingTeamScoreTextView.setText(Integer.toString(model.awayScore));
         view.scoreSeparator.setText("-");

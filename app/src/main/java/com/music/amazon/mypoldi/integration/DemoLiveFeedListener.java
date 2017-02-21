@@ -5,11 +5,11 @@ package com.music.amazon.mypoldi.integration;
  */
 
 import com.music.amazon.mypoldi.model.LeftLiveFeedItemModel;
-import com.music.amazon.mypoldi.model.LiveFeedHeaderModel;
+import com.music.amazon.mypoldi.model.LiveFeedUpdateModel;
 import com.music.amazon.mypoldi.model.RightLiveFeedItemModel;
 
 /** package **/ interface DemoLiveFeedListener {
-    void onUpdateLiveFeedHeader(LiveFeedHeaderModel liveFeed);
+    void onUpdateLiveFeedHeader(LiveFeedUpdateModel liveFeed);
     void onUpdateLeftLiveItem(LeftLiveFeedItemModel leftItem);
     void onUpdateRightLiveItem(RightLiveFeedItemModel rightItem);
 }

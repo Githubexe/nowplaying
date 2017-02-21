@@ -1,9 +1,9 @@
 package com.music.amazon.mypoldi.integration;
 
-import com.music.amazon.mypoldi.model.GameModel;
+import com.music.amazon.mypoldi.model.ChannelModel;
 import com.music.amazon.mypoldi.model.LeftLiveFeedItemModel;
 import com.music.amazon.mypoldi.model.LiveFeedBackgroundModel;
-import com.music.amazon.mypoldi.model.LiveFeedHeaderModel;
+import com.music.amazon.mypoldi.model.LiveFeedUpdateModel;
 import com.music.amazon.mypoldi.model.RightLiveFeedItemModel;
 
 import java.util.ArrayList;
@@ -17,12 +17,12 @@ public final class DemoLiveFeedData {
 
     public static int counter = -1;
 
-    public static List<Object> getLiveGames() {
+    public static List<Object> getLiveChannels() {
         List<Object> games = new ArrayList<>();
         int index = 0;
-        games.add(index++, new GameModel("game1", "2017-02-21 10:30:00", true));
-        games.add(index++, new GameModel("game2", "2017-02-26 12:00:00", true));
-        games.add(index++, new GameModel("game3", "2017-03-13 18:15:00", true));
+        games.add(index++, new ChannelModel("game1", "2017-02-21 10:30:00", true));
+        games.add(index++, new ChannelModel("game2", "2017-02-26 12:00:00", true));
+        games.add(index++, new ChannelModel("game3", "2017-03-13 18:15:00", true));
         return games;
     }
 
@@ -52,8 +52,8 @@ public final class DemoLiveFeedData {
         }
     }
 
-    public static LiveFeedHeaderModel generateLiveFeedHeaderModel(String gameId) {
-        LiveFeedHeaderModel.Builder builder = LiveFeedHeaderModel.builder(
+    public static LiveFeedUpdateModel generateLiveFeedHeaderModel(String gameId) {
+        LiveFeedUpdateModel.Builder builder = LiveFeedUpdateModel.builder(
                 "test-uuid");
         switch (gameId) {
             case "game1":
