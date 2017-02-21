@@ -59,7 +59,7 @@ public final class DemoLiveFeed {
                             }
                         }
                     },
-                    2, //initial delay
+                    0, //initial delay
                     1, //interval
                     TimeUnit.SECONDS);
         }

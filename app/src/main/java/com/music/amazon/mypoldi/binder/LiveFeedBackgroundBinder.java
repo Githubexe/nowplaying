@@ -29,8 +29,8 @@ public final class LiveFeedBackgroundBinder implements
                      final LiveFeedBackgroundModel model){
         final Picasso picasso = Picasso.with(view.getContext());
         picasso.load(model.backgroundImage)
-                .placeholder(R.drawable.live_feed_background)
-                .error(R.drawable.live_feed_background)
+                .placeholder(R.drawable.live_feed_background_small)
+                .error(R.drawable.live_feed_background_small)
                 .into(view.backgroundImageView);
 
         picasso.load(model.homeLogo)
