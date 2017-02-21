@@ -56,8 +56,7 @@ public final class LiveFeedUpdateView extends RelativeLayout {
         secondsTextView = (TextView)findViewById(R.id.second_text_view);
         timeStampSeparator = (TextView)findViewById(R.id.minute_second_separator_text_view);
 
-        liveFeedItemView = (RecyclerView) findViewById(R.id.live_feed_item_view);
-
+        liveFeedItemView = (RecyclerView)findViewById(R.id.live_feed_item_view);
         universalAdapter = new UniversalAdapter(
                 new LeftLiveFeedItemBinder(),
                 new RightLiveFeedItemBinder());
@@ -67,6 +66,7 @@ public final class LiveFeedUpdateView extends RelativeLayout {
         smoothScrollLinearLayoutManager.setStackFromEnd(true);
         liveFeedItemView.setLayoutManager(smoothScrollLinearLayoutManager);
     }
+
 
     public void onUpdateLeftLiveItem(LeftLiveFeedItemModel data) {
         List<LeftLiveFeedItemModel> added = new ArrayList<>();

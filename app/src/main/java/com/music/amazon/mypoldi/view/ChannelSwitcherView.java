@@ -27,7 +27,7 @@ public final class ChannelSwitcherView extends RelativeLayout{
         super(context, attrs, defStyleAttr);
         inflate(getContext(), R.layout.live_feed_channel, this);
 
-        viewFlipper = (ViewFlipper) findViewById(R.id.live_feed_flipper);
+        viewFlipper = (ViewFlipper)findViewById(R.id.live_feed_flipper);
         viewFlipper.setInAnimation(context, R.anim.live_feed_flipper_in_from_right);
         viewFlipper.setOutAnimation(context, R.anim.live_feed_flipper_out_to_left);
     }
