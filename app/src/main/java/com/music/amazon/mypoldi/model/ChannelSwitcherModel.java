@@ -1,7 +1,5 @@
 package com.music.amazon.mypoldi.model;
 
-import java.util.List;
-
 /**
  * Created by yoyosu on 2/17/17.
  */
