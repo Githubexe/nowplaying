@@ -118,7 +118,7 @@ public class UniversalAdapter
         int adapterPosition = holder.getAdapterPosition();
         if (adapterPosition > lastPosition) {
             for (Animator anim : getAnimators(holder.itemView)) {
-                anim.setDuration(300).start();
+                anim.setDuration(200).start();
                 anim.setInterpolator(interpolator);
             }
             lastPosition = adapterPosition;
@@ -129,7 +129,7 @@ public class UniversalAdapter
 
     private Animator[] getAnimators(View view) {
         return new Animator[]{
-                ObjectAnimator.ofFloat(view, "translationY", view.getMeasuredHeight(), 0)
+                ObjectAnimator.ofFloat(view, "translationY", 100, 0)
         };
     }
 
