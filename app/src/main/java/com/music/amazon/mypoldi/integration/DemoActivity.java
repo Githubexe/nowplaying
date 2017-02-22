@@ -3,6 +3,7 @@ package com.music.amazon.mypoldi.integration;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
+
 import com.music.amazon.mypoldi.R;
 import com.music.amazon.mypoldi.binder.ChannelSwitcherBinder;
 import com.music.amazon.mypoldi.binder.LeftLiveFeedItemBinder;
@@ -42,6 +43,7 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener {
     }
 
     private void addLiveChannels() {
+        //DMTVUISoccer > get the data model, RxChannel
         backgroundModels = DemoLiveFeedData.getLiveChannels();
         channelSwitcherModel = new ChannelSwitcherModel(backgroundModels.toArray());
         channelSwitcherBinder.bind(channelSwitcherView, channelSwitcherModel);

@@ -1,14 +1,14 @@
 package com.music.amazon.mypoldi.dmtv;
 
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-
-import com.music.amazon.mypoldi.R;
+import android.view.animation.LinearInterpolator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,7 +22,7 @@ import java.util.Map;
  *
  * Created by baptiste on 5/5/16.
  */
-public final class UniversalAdapter
+public class UniversalAdapter
         extends RecyclerView.Adapter<UniversalViewHolder> {
 
     private final Handler handler = new Handler(Looper.getMainLooper());
@@ -37,6 +37,8 @@ public final class UniversalAdapter
             new ArrayList<>();
 
     private int lastPosition = -1;
+
+    private LinearInterpolator interpolator = new LinearInterpolator();
 
     public UniversalAdapter(final UniversalBinder... binders) {
         buildBinders(Arrays.asList(binders));
@@ -113,13 +115,36 @@ public final class UniversalAdapter
             }
         });
 
-        //Animate the bound view if it wasn't previously displayed on screen
-        if (position >= lastPosition) {
-            Animation animation = AnimationUtils.loadAnimation(holder.itemView.getContext(),
-                    R.anim.up_from_bottom);
-            holder.itemView.startAnimation(animation);
-            lastPosition = position;
+        int adapterPosition = holder.getAdapterPosition();
+        if (adapterPosition > lastPosition) {
+            for (Animator anim : getAnimators(holder.itemView)) {
+                anim.setDuration(300).start();
+                anim.setInterpolator(interpolator);
+            }
+            lastPosition = adapterPosition;
+        } else {
+            clear(holder.itemView);
         }
+    }
+
+    private Animator[] getAnimators(View view) {
+        return new Animator[]{
+                ObjectAnimator.ofFloat(view, "translationY", view.getMeasuredHeight(), 0)
+        };
+    }
+
+    private void clear(View v) {
+        ViewCompat.setAlpha(v, 1);
+        ViewCompat.setScaleY(v, 1);
+        ViewCompat.setScaleX(v, 1);
+        ViewCompat.setTranslationY(v, 0);
+        ViewCompat.setTranslationX(v, 0);
+        ViewCompat.setRotation(v, 0);
+        ViewCompat.setRotationY(v, 0);
+        ViewCompat.setRotationX(v, 0);
+        ViewCompat.setPivotY(v, v.getMeasuredHeight() / 2);
+        ViewCompat.setPivotX(v, v.getMeasuredWidth() / 2);
+        ViewCompat.animate(v).setInterpolator(null).setStartDelay(0);
     }
 
 
