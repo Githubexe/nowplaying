@@ -114,13 +114,11 @@ public final class UniversalAdapter
         });
 
         //Animate the bound view if it wasn't previously displayed on screen
-        if (position > lastPosition) {
+        if (position >= lastPosition) {
             Animation animation = AnimationUtils.loadAnimation(holder.itemView.getContext(),
                     R.anim.up_from_bottom);
             holder.itemView.startAnimation(animation);
             lastPosition = position;
-        } else {
-            holder.itemView.clearAnimation();
         }
     }
 
