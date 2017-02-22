@@ -57,6 +57,7 @@ public final class LiveFeedUpdateView extends RelativeLayout {
         timeStampSeparator = (TextView)findViewById(R.id.minute_second_separator_text_view);
 
         liveFeedItemView = (RecyclerView)findViewById(R.id.live_feed_item_view);
+
         universalAdapter = new UniversalAdapter(
                 new LeftLiveFeedItemBinder(),
                 new RightLiveFeedItemBinder());

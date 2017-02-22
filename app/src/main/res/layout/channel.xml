@@ -4,7 +4,7 @@
     android:orientation="vertical" >
 
     <ViewFlipper
-        android:id="@+id/live_feed_flipper"
+        android:id="@+id/channel_flipper"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:flipInterval="5000">
