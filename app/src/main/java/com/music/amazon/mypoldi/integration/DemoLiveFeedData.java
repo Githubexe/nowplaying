@@ -17,36 +17,6 @@ public final class DemoLiveFeedData {
 
     public static int counter = -1;
 
-    public static LiveFeedBackgroundModel generateLiveFeedBackgroundModel(String gameId) {
-        final LiveFeedBackgroundModel.Builder builder;
-        if ("game1".equalsIgnoreCase(gameId)) {
-            builder = LiveFeedBackgroundModel.builder(
-                    "test-main-uuid-1",
-                    "https://amazon.music.poldi/background.png", //background
-                    "FC BAYERN MÜNCHEN",
-                    "https://amazon.music.poldi/hostteam.png", //host team logo url
-                    "BORUSSIA DORTMUND",
-                    "https://amazon.music.poldi/visitingteam.png"); //visiting team logo url
-        } else if ("game2".equalsIgnoreCase(gameId)) {
-            builder = LiveFeedBackgroundModel.builder(
-                    "test-main-uuid-2",
-                    "https://amazon.music.poldi/background.png", //background
-                    "GAME2-HOME",
-                    "https://amazon.music.poldi/hostteam.png", //host team logo url
-                    "GAME2-AWAY",
-                    "https://amazon.music.poldi/visitingteam.png"); //visiting team logo url
-        } else {
-            builder = LiveFeedBackgroundModel.builder(
-                    "test-main-uuid-2",
-                    "https://amazon.music.poldi/background.png", //background
-                    "GAME3-HOME",
-                    "https://amazon.music.poldi/hostteam.png", //host team logo url
-                    "GAME3-AWAY",
-                    "https://amazon.music.poldi/visitingteam.png"); //visiting team logo url
-        }
-        return builder.build();
-    }
-
     public static List<LiveFeedBackgroundModel> getLiveChannels() {
         List<LiveFeedBackgroundModel> channels = new ArrayList<>();
         LiveFeedBackgroundModel.Builder builder = LiveFeedBackgroundModel.builder(
@@ -85,20 +55,22 @@ public final class DemoLiveFeedData {
         final LeftLiveFeedItemModel.Builder leftItemBuilder = LeftLiveFeedItemModel.builder();
         final RightLiveFeedItemModel.Builder rightItemBuilder = RightLiveFeedItemModel.builder();
 
+        final int minute = Calendar.getInstance().get(Calendar.MINUTE);
+
         if (counter % 7 == 0 || counter % 11 == 0 || counter % 13 == 0) {
             leftItemBuilder.withDescritpion("Home - " + counter);
             if (counter % 7 == 0) {
-                //leftItemBuilder.withTime(minute + "\'");
+                leftItemBuilder.withTime(minute + "\'")
                         //.withSmallImage("https://amazon.music.poldi/yellow_card_icon.png")
-                        //.withLargeImage("https://amazon.music.poldi/yellow_card_marker.png");
+                        .withLargeImage("https://amazon.music.poldi/yellow_card_marker.png");
             }
             return leftItemBuilder.build();
         } else {
             rightItemBuilder.withDescritpion("Away - " + counter);
             if (counter % 5 == 0) {
-                //rightItemBuilder.withTime(minute + "\'");
+                rightItemBuilder.withTime(minute + "\'")
                         //.withSmallImage("https://amazon.music.poldi/yellow_card_icon.png")
-                        //.withLargeImage("https://amazon.music.poldi/yellow_card_marker.png");
+                        .withLargeImage("https://amazon.music.poldi/yellow_card_marker.png");
             }
             return rightItemBuilder.build();
         }

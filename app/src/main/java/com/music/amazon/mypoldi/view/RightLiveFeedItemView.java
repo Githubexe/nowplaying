@@ -51,8 +51,8 @@ public final class RightLiveFeedItemView extends LinearLayout {
         final Picasso picasso = Picasso.with(getContext());
         if (StringUtils.isEmpty(rightLiveFeedItemModel.smallImage) == false) {
             picasso.load(rightLiveFeedItemModel.smallImage)
-                    .placeholder(R.drawable.rec_green)
-                    .error(R.drawable.rec_green)
+                    .placeholder(R.drawable.ic_goal_r)
+                    .error(R.drawable.ic_goal_r)
                     .into(smallImageView);
             smallImageView.setVisibility(View.VISIBLE);
         } else {
@@ -63,8 +63,8 @@ public final class RightLiveFeedItemView extends LinearLayout {
 
         if (StringUtils.isEmpty(rightLiveFeedItemModel.largeImage) == false) {
             picasso.load(rightLiveFeedItemModel.largeImage)
-                    .placeholder(R.drawable.rec_green)
-                    .error(R.drawable.rec_green)
+                    .placeholder(R.drawable.ic_goal_r)
+                    .error(R.drawable.ic_goal_r)
                     .into(largeImageView);
             largeImageView.setVisibility(View.VISIBLE);
         } else {
