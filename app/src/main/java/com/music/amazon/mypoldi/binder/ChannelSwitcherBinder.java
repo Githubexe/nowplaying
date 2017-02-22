@@ -38,7 +38,7 @@ public final class ChannelSwitcherBinder implements
     public void bind(final ChannelSwitcherView view,
                      final ChannelSwitcherModel channelSwitcherModel) {
         for (Object model : channelSwitcherModel.models) {
-            final UniversalBinder binder = binders.get(model);
+            final UniversalBinder binder = binders.get(model.getClass());
             if (binder != null) {
                 final View newView = binder.createView(view.getContext());
                 view.viewFlipper.addView(newView);

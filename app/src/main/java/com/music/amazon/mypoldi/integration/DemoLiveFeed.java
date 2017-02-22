@@ -24,10 +24,11 @@ public final class DemoLiveFeed {
 
     private static final AtomicBoolean on = new AtomicBoolean(false);
 
-    public void start(String gameId) {
+    public void start(int channelIndex) {
         if (on.getAndSet(true) == false) {
             final LiveFeedUpdateModel liveFeedUpdateModel =
-                    DemoLiveFeedData.generateLiveFeedHeaderModel(gameId);
+                    DemoLiveFeedData.generateLiveFeedHeaderModel(channelIndex);
+
             future = scheduler.scheduleAtFixedRate(
                     new Runnable() {
                         final String[] times = liveFeedUpdateModel.elapsedTime.split(":");
