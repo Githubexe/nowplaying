@@ -61,7 +61,6 @@ public final class DemoLiveFeedData {
             leftItemBuilder.withDescritpion("Home - " + counter);
             if (counter % 7 == 0) {
                 leftItemBuilder.withTime(minute + "\'")
-                        //.withSmallImage("https://amazon.music.poldi/yellow_card_icon.png")
                         .withLargeImage("https://amazon.music.poldi/yellow_card_marker.png");
             }
             return leftItemBuilder.build();
@@ -69,7 +68,6 @@ public final class DemoLiveFeedData {
             rightItemBuilder.withDescritpion("Away - " + counter);
             if (counter % 5 == 0) {
                 rightItemBuilder.withTime(minute + "\'")
-                        //.withSmallImage("https://amazon.music.poldi/yellow_card_icon.png")
                         .withLargeImage("https://amazon.music.poldi/yellow_card_marker.png");
             }
             return rightItemBuilder.build();
