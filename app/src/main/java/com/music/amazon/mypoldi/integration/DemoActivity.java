@@ -3,11 +3,13 @@ package com.music.amazon.mypoldi.integration;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
-
 import com.music.amazon.mypoldi.R;
 import com.music.amazon.mypoldi.binder.ChannelSwitcherBinder;
+import com.music.amazon.mypoldi.binder.LeftLiveFeedItemBinder;
 import com.music.amazon.mypoldi.binder.LiveFeedBackgroundBinder;
 import com.music.amazon.mypoldi.binder.LiveFeedUpdateBinder;
+import com.music.amazon.mypoldi.binder.RightLiveFeedItemBinder;
+import com.music.amazon.mypoldi.dmtv.UniversalAdapter;
 import com.music.amazon.mypoldi.model.LeftLiveFeedItemModel;
 import com.music.amazon.mypoldi.model.ChannelSwitcherModel;
 import com.music.amazon.mypoldi.model.LiveFeedBackgroundModel;
@@ -25,7 +27,6 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener {
     private ChannelSwitcherModel channelSwitcherModel;
     private ChannelSwitcherView channelSwitcherView;
 
-    private LiveFeedBackgroundBinder backgroundBinder;
     private LiveFeedUpdateView liveFeedUpdateView;
     private final DemoLiveFeed currentLiveFeed = new DemoLiveFeed();
 
@@ -36,9 +37,7 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.live_feed_main_acitivty);
         channelSwitcherView = (ChannelSwitcherView)findViewById(R.id.live_channel_view);
-
-        backgroundBinder = new LiveFeedBackgroundBinder();
-        channelSwitcherBinder = new ChannelSwitcherBinder(backgroundBinder);
+        channelSwitcherBinder = new ChannelSwitcherBinder(new LiveFeedBackgroundBinder());
         addLiveChannels();
     }
 
@@ -55,12 +54,18 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener {
         if (currentLiveFeed != null) {
             currentLiveFeed.stop();
         }
-        final LiveFeedBackgroundModel backgroundModel = backgroundModels.get(channelIndex);
+
+        channelSwitcherBinder.switchChannel(channelSwitcherView,
+                backgroundModels.get(channelIndex));
+
         final LiveFeedBackgroundView backgroundView = (LiveFeedBackgroundView)
                 (channelSwitcherView.getCurrentView());
-        backgroundBinder.bind(backgroundView, backgroundModel);
-
         liveFeedUpdateView = (LiveFeedUpdateView) (backgroundView.findViewById(R.id.live_feed_view));
+        final UniversalAdapter adapter = new UniversalAdapter(
+                new LeftLiveFeedItemBinder(),
+                new RightLiveFeedItemBinder());
+        liveFeedUpdateView.setAdapter(adapter);
+
         if (currentLiveFeed != null) {
             currentLiveFeed.start(channelIndex);
         }

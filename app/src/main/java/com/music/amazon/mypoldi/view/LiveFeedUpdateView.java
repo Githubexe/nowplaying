@@ -8,8 +8,6 @@ import android.widget.TextView;
 
 import com.music.amazon.mypoldi.R;
 import com.music.amazon.mypoldi.binder.SmoothScrollLinearLayoutManager;
-import com.music.amazon.mypoldi.binder.LeftLiveFeedItemBinder;
-import com.music.amazon.mypoldi.binder.RightLiveFeedItemBinder;
 import com.music.amazon.mypoldi.dmtv.UniversalAdapter;
 import com.music.amazon.mypoldi.model.LeftLiveFeedItemModel;
 import com.music.amazon.mypoldi.model.RightLiveFeedItemModel;
@@ -36,8 +34,6 @@ public final class LiveFeedUpdateView extends RelativeLayout {
 
     public final TextView scoreSeparator;
 
-    private final UniversalAdapter universalAdapter;
-
     public LiveFeedUpdateView(Context context) {
         this(context, null);
     }
@@ -57,31 +53,34 @@ public final class LiveFeedUpdateView extends RelativeLayout {
         timeStampSeparator = (TextView)findViewById(R.id.minute_second_separator_text_view);
 
         liveFeedItemView = (RecyclerView)findViewById(R.id.live_feed_item_view);
-
-        universalAdapter = new UniversalAdapter(
-                new LeftLiveFeedItemBinder(),
-                new RightLiveFeedItemBinder());
-        liveFeedItemView.setAdapter(universalAdapter);
         final SmoothScrollLinearLayoutManager smoothScrollLinearLayoutManager =
                 new SmoothScrollLinearLayoutManager(context);
         smoothScrollLinearLayoutManager.setStackFromEnd(true);
         liveFeedItemView.setLayoutManager(smoothScrollLinearLayoutManager);
     }
 
+    public void setAdapter(UniversalAdapter adapter) {
+        liveFeedItemView.setAdapter(adapter);
+    }
 
     public void onUpdateLeftLiveItem(LeftLiveFeedItemModel data) {
-        List<LeftLiveFeedItemModel> added = new ArrayList<>();
+        final List<LeftLiveFeedItemModel> added = new ArrayList<>();
         added.add(data);
-        universalAdapter.addItems(added);
-        liveFeedItemView.smoothScrollToPosition(
-                universalAdapter.getItemCount() - 1);
+        updateAdapter(added);
     }
 
     public void onUpdateRightLiveItem(RightLiveFeedItemModel data) {
-        List<RightLiveFeedItemModel> added = new ArrayList<>();
+        final List<RightLiveFeedItemModel> added = new ArrayList<>();
         added.add(data);
-        universalAdapter.addItems(added);
+        updateAdapter(added);
+    }
+
+    private void updateAdapter(List<?> data) {
+        final RecyclerView.Adapter adapter = liveFeedItemView.getAdapter();
+        if (adapter instanceof UniversalAdapter) {
+            ( (UniversalAdapter)adapter).addItems(data);
+        }
         liveFeedItemView.smoothScrollToPosition(
-                universalAdapter.getItemCount() - 1);
+                adapter.getItemCount() - 1);
     }
 }
