@@ -81,7 +81,6 @@ public final class DemoLiveFeedData {
 
     public static Object generateLiveFeedItemData() {
         counter++;
-        final int minute = Calendar.getInstance().get(Calendar.MINUTE);
 
         final LeftLiveFeedItemModel.Builder leftItemBuilder = LeftLiveFeedItemModel.builder();
         final RightLiveFeedItemModel.Builder rightItemBuilder = RightLiveFeedItemModel.builder();
