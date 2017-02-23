@@ -12,7 +12,7 @@ import com.music.amazon.mypoldi.R;
 /**
  * Created by yoyosu on 2/17/17.
  */
-public final class ChannelSwitcherView extends RelativeLayout{
+public final class ChannelSwitcherView extends RelativeLayout {
 
     private ChannelSwitchListener channelSwitchListener;
 
@@ -22,16 +22,16 @@ public final class ChannelSwitcherView extends RelativeLayout{
         this(context, null);
     }
 
-    public ChannelSwitcherView(Context context, AttributeSet attributeSet) {
+    public ChannelSwitcherView(final Context context, final AttributeSet attributeSet) {
         this(context, attributeSet, 0);
     }
 
-    public ChannelSwitcherView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ChannelSwitcherView(final Context context, final AttributeSet attrs, final int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         inflate(getContext(), R.layout.channel, this);
         setFocusable(true);
 
-        viewFlipper = (ViewFlipper)findViewById(R.id.channel_flipper);
+        viewFlipper = (ViewFlipper) findViewById(R.id.channel_flipper);
         viewFlipper.setInAnimation(context, R.anim.in_from_right);
         viewFlipper.setOutAnimation(context, R.anim.out_to_left);
     }
@@ -48,25 +48,20 @@ public final class ChannelSwitcherView extends RelativeLayout{
         viewFlipper.addView(view);
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    @Override public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
             if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {
                 viewFlipper.showPrevious();
                 event.startTracking();
                 if (channelSwitchListener != null) {
-                    channelSwitchListener.onChannelSwitched(
-                            viewFlipper.getDisplayedChild(),
-                            viewFlipper.getCurrentView());
+                    channelSwitchListener.onChannelSwitched(viewFlipper.getDisplayedChild(), viewFlipper.getCurrentView());
                 }
                 return true;
             } else if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {
                 viewFlipper.showNext();
                 event.startTracking();
                 if (channelSwitchListener != null) {
-                    channelSwitchListener.onChannelSwitched(
-                            viewFlipper.getDisplayedChild(),
-                            viewFlipper.getCurrentView());
+                    channelSwitchListener.onChannelSwitched(viewFlipper.getDisplayedChild(), viewFlipper.getCurrentView());
                 }
                 return true;
             }
@@ -74,4 +69,5 @@ public final class ChannelSwitcherView extends RelativeLayout{
         return super.onKeyDown(keyCode, event);
     }
 }
+
 
