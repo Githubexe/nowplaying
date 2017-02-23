@@ -2,6 +2,7 @@ package com.music.amazon.mypoldi.integration;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 
 import com.music.amazon.mypoldi.R;
 import com.music.amazon.mypoldi.view.ChannelSwitchListener;
@@ -14,7 +15,6 @@ import com.music.amazon.mypoldi.model.LiveFeedBackgroundModel;
 import com.music.amazon.mypoldi.model.LiveFeedUpdateModel;
 import com.music.amazon.mypoldi.model.RightLiveFeedItemModel;
 import com.music.amazon.mypoldi.view.ChannelSwitcherView;
-import com.music.amazon.mypoldi.view.LiveFeedBackgroundView;
 import com.music.amazon.mypoldi.view.LiveFeedUpdateView;
 
 import java.util.List;
@@ -24,9 +24,9 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener, Chan
     private ChannelSwitcherBinder channelSwitcherBinder;
     private ChannelSwitcherModel channelSwitcherModel;
     private ChannelSwitcherView channelSwitcherView;
+    private View currentView;
+
     private final DemoLiveFeed currentLiveFeed = new DemoLiveFeed();
-
-
     private List<LiveFeedBackgroundModel> backgroundModels;
 
     @Override
@@ -49,6 +49,7 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener, Chan
     }
 
     private void switchChannel(final int channelIndex) {
+        currentView = channelSwitcherView.getCurrentView();
         if (currentLiveFeed != null) {
             currentLiveFeed.stop();
         }
@@ -62,13 +63,12 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener, Chan
     }
 
     private LiveFeedUpdateView getLiveFeedUpdateView() {
-        final LiveFeedBackgroundView backgroundView =
-                (LiveFeedBackgroundView) (channelSwitcherView.getCurrentView());
-        return (LiveFeedUpdateView) (backgroundView.findViewById(R.id.live_feed_view));
+        return (LiveFeedUpdateView) (currentView.findViewById(R.id.live_feed_view));
     }
 
     @Override
-    public void onChannelSwitched(int viewId) {
+    public void onChannelSwitched(final int viewId, final View newView) {
+        this.currentView = newView;
         switchChannel(viewId);
     }
 

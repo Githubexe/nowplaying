@@ -16,7 +16,7 @@ public final class ChannelSwitcherView extends RelativeLayout{
 
     private ChannelSwitchListener channelSwitchListener;
 
-    public final ViewFlipper viewFlipper;
+    private final ViewFlipper viewFlipper;
 
     public ChannelSwitcherView(final Context context) {
         this(context, null);
@@ -36,12 +36,16 @@ public final class ChannelSwitcherView extends RelativeLayout{
         viewFlipper.setOutAnimation(context, R.anim.out_to_left);
     }
 
+    public void register(final ChannelSwitchListener listener) {
+        channelSwitchListener = listener;
+    }
+
     public View getCurrentView() {
         return viewFlipper.getCurrentView();
     }
 
-    public void register(final ChannelSwitchListener listener) {
-        channelSwitchListener = listener;
+    public void addView(final View view) {
+        viewFlipper.addView(view);
     }
 
     @Override
@@ -52,7 +56,8 @@ public final class ChannelSwitcherView extends RelativeLayout{
                 event.startTracking();
                 if (channelSwitchListener != null) {
                     channelSwitchListener.onChannelSwitched(
-                            viewFlipper.getDisplayedChild());
+                            viewFlipper.getDisplayedChild(),
+                            viewFlipper.getCurrentView());
                 }
                 return true;
             } else if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {
@@ -60,7 +65,8 @@ public final class ChannelSwitcherView extends RelativeLayout{
                 event.startTracking();
                 if (channelSwitchListener != null) {
                     channelSwitchListener.onChannelSwitched(
-                            viewFlipper.getDisplayedChild());
+                            viewFlipper.getDisplayedChild(),
+                            viewFlipper.getCurrentView());
                 }
                 return true;
             }

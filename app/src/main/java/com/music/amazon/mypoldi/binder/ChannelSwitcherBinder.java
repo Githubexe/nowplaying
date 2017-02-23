@@ -41,7 +41,7 @@ public final class ChannelSwitcherBinder implements
             final UniversalBinder binder = binders.get(model.getClass());
             if (binder != null) {
                 final View content = binder.createView(view.getContext());
-                view.viewFlipper.addView(content);
+                view.addView(content);
             }
         }
     }
@@ -50,7 +50,7 @@ public final class ChannelSwitcherBinder implements
                             final Object dataModel) {
         final UniversalBinder binder = binders.get(dataModel.getClass());
         if (binder != null) {
-            binder.bind(view.viewFlipper.getCurrentView(), dataModel);
+            binder.bind(view.getCurrentView(), dataModel);
         }
     }
 }
