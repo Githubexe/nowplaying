@@ -8,7 +8,6 @@ import android.widget.RelativeLayout;
 import android.widget.ViewFlipper;
 
 import com.music.amazon.mypoldi.R;
-import com.music.amazon.mypoldi.binder.ChannelSwitchListener;
 
 /**
  * Created by yoyosu on 2/17/17.

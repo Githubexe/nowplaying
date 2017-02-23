@@ -1,4 +1,4 @@
-package com.music.amazon.mypoldi.binder;
+package com.music.amazon.mypoldi.view;
 
 /**
  * Created by yoyosu on 2/22/17.

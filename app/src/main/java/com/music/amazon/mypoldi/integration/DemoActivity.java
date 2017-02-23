@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import com.music.amazon.mypoldi.R;
-import com.music.amazon.mypoldi.binder.ChannelSwitchListener;
+import com.music.amazon.mypoldi.view.ChannelSwitchListener;
 import com.music.amazon.mypoldi.binder.ChannelSwitcherBinder;
 import com.music.amazon.mypoldi.binder.LiveFeedBackgroundBinder;
 import com.music.amazon.mypoldi.binder.LiveFeedUpdateBinder;
