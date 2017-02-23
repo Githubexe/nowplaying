@@ -2,15 +2,12 @@ package com.music.amazon.mypoldi.integration;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.KeyEvent;
 
 import com.music.amazon.mypoldi.R;
+import com.music.amazon.mypoldi.binder.ChannelSwitchListener;
 import com.music.amazon.mypoldi.binder.ChannelSwitcherBinder;
-import com.music.amazon.mypoldi.binder.LeftLiveFeedItemBinder;
 import com.music.amazon.mypoldi.binder.LiveFeedBackgroundBinder;
 import com.music.amazon.mypoldi.binder.LiveFeedUpdateBinder;
-import com.music.amazon.mypoldi.binder.RightLiveFeedItemBinder;
-import com.music.amazon.mypoldi.dmtv.UniversalAdapter;
 import com.music.amazon.mypoldi.model.LeftLiveFeedItemModel;
 import com.music.amazon.mypoldi.model.ChannelSwitcherModel;
 import com.music.amazon.mypoldi.model.LiveFeedBackgroundModel;
@@ -22,14 +19,13 @@ import com.music.amazon.mypoldi.view.LiveFeedUpdateView;
 
 import java.util.List;
 
-public class DemoActivity extends Activity implements DemoLiveFeedListener {
+public class DemoActivity extends Activity implements DemoLiveFeedListener, ChannelSwitchListener {
 
     private ChannelSwitcherBinder channelSwitcherBinder;
     private ChannelSwitcherModel channelSwitcherModel;
     private ChannelSwitcherView channelSwitcherView;
-
-    private LiveFeedUpdateView liveFeedUpdateView;
     private final DemoLiveFeed currentLiveFeed = new DemoLiveFeed();
+
 
     private List<LiveFeedBackgroundModel> backgroundModels;
 
@@ -47,7 +43,7 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener {
         backgroundModels = DemoLiveFeedData.getLiveChannels();
         channelSwitcherModel = new ChannelSwitcherModel(backgroundModels.toArray());
         channelSwitcherBinder.bind(channelSwitcherView, channelSwitcherModel);
-
+        channelSwitcherView.register(DemoActivity.this);
         currentLiveFeed.register(DemoActivity.this);
         switchChannel(0);
     }
@@ -60,27 +56,30 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener {
         channelSwitcherBinder.switchChannel(channelSwitcherView,
                 backgroundModels.get(channelIndex));
 
-        final LiveFeedBackgroundView backgroundView = (LiveFeedBackgroundView)
-                (channelSwitcherView.getCurrentView());
-        liveFeedUpdateView = (LiveFeedUpdateView) (backgroundView.findViewById(R.id.live_feed_view));
-        final UniversalAdapter adapter = new UniversalAdapter(
-                new LeftLiveFeedItemBinder(),
-                new RightLiveFeedItemBinder());
-        liveFeedUpdateView.setAdapter(adapter);
-
         if (currentLiveFeed != null) {
             currentLiveFeed.start(channelIndex);
         }
     }
 
+    private LiveFeedUpdateView getLiveFeedUpdateView() {
+        final LiveFeedBackgroundView backgroundView =
+                (LiveFeedBackgroundView) (channelSwitcherView.getCurrentView());
+        return (LiveFeedUpdateView) (backgroundView.findViewById(R.id.live_feed_view));
+    }
+
+    @Override
+    public void onChannelSwitched(int viewId) {
+        switchChannel(viewId);
+    }
+
     @Override
     public void onUpdateLeftLiveItem(LeftLiveFeedItemModel data) {
-        liveFeedUpdateView.onUpdateLeftLiveItem(data);
+        getLiveFeedUpdateView().onUpdateLeftLiveItem(data);
     }
 
     @Override
     public void onUpdateRightLiveItem(RightLiveFeedItemModel data) {
-        liveFeedUpdateView.onUpdateRightLiveItem(data);
+        getLiveFeedUpdateView().onUpdateRightLiveItem(data);
     }
 
     @Override
@@ -88,7 +87,7 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener {
         DemoActivity.this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                new LiveFeedUpdateBinder().bind(liveFeedUpdateView, liveFeedUpdateModel);
+                new LiveFeedUpdateBinder().bind(getLiveFeedUpdateView(), liveFeedUpdateModel);
             }
         });
     }
@@ -96,23 +95,9 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener {
     @Override
     protected void onDestroy() {
         currentLiveFeed.deregister(this);
+        currentLiveFeed.stop();
         currentLiveFeed.shutdown();
         super.onDestroy();
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (event.getAction() == KeyEvent.ACTION_DOWN) {
-            if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {
-                switchChannel(channelSwitcherView.showPrevious());
-                event.startTracking();
-                return true;
-            } else if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {
-                switchChannel(channelSwitcherView.showNext());
-                event.startTracking();
-                return true;
-            }
-        }
-        return super.onKeyDown(keyCode, event);
-    }
 }
