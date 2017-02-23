@@ -7,16 +7,48 @@ import java.util.List;
  * Created by yoyosu on 1/25/17.
  */
 public final class LiveFeedUpdateModel {
-    public int hostScore;
+    private int hostScore;
 
-    public int awayScore;
+    private int awayScore;
 
-    public String elapsedTime;
+    private String elapsedTime;
 
-    public List<LeftLiveFeedItemModel> events = new ArrayList<LeftLiveFeedItemModel>();
+    private List<LiveFeedItemModel> items = new ArrayList<LiveFeedItemModel>();
 
     public static final Builder builder(final String uuid) {
         return new Builder(uuid);
+    }
+
+    public int getHostScore() {
+        return hostScore;
+    }
+
+    public void setHostScore(final int hostScore) {
+        this.hostScore = hostScore;
+    }
+
+    public int getAwayScore() {
+        return awayScore;
+    }
+
+    public void setAwayScore(final int awayScore) {
+        this.awayScore = awayScore;
+    }
+
+    public String getElapsedTime() {
+        return elapsedTime;
+    }
+
+    public void setElapsedTime(final String elapsedTime) {
+        this.elapsedTime = elapsedTime;
+    }
+
+    public void addItem(final LiveFeedItemModel model) {
+        items.add(model);
+    }
+
+    public void addItems(final List<LiveFeedItemModel> models) {
+        items.addAll(models);
     }
 
     public static final class Builder {
@@ -47,29 +79,21 @@ public final class LiveFeedUpdateModel {
             return this;
         }
 
-        public Builder withEvents(final List<LeftLiveFeedItemModel> events) {
-            this.events = events;
-            return this;
-        }
-
         public LiveFeedUpdateModel build() {
             return new LiveFeedUpdateModel(uuid,
                     homeScore,
                     awayScore,
-                    elapsedTime,
-                    events);
+                    elapsedTime);
         }
     }
 
     private LiveFeedUpdateModel(final String uuid,
                                 final int hostScore,
                                 final int awayScore,
-                                final String elapsedTime,
-                                final List<LeftLiveFeedItemModel> events) {
+                                final String elapsedTime) {
         //super(uuid);
-        this.hostScore = hostScore;
-        this.awayScore = awayScore;
-        this.elapsedTime = elapsedTime;
-        this.events = events;
+        this.setHostScore(hostScore);
+        this.setAwayScore(awayScore);
+        this.setElapsedTime(elapsedTime);
     }
 }

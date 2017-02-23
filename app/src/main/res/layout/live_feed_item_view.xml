@@ -6,42 +6,11 @@
     android:gravity="center"
     android:orientation="horizontal">
 
-    <RelativeLayout
-        android:id="@+id/leftLiveFeedItemLayout"
+    <include
+        android:id="@+id/left_live_feed_item"
+        layout="@layout/left_live_feed_item_view"
         android:layout_width="150dp"
-        android:layout_height="50dp">
-
-        <TextView
-            android:id="@+id/left_time_text_view"
-            android:layout_alignParentTop="true"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center|right"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textColor="#ff9e9e9e"
-            android:textSize="32sp"/>
-
-        <TextView
-            android:id="@+id/left_description_text_view"
-            android:layout_alignParentTop="true"
-            android:layout_width="100dp"
-            android:layout_height="60dp"
-            android:layout_toRightOf="@id/left_time_text_view"
-            android:layout_marginLeft="-35dp"
-            android:layout_gravity="left"
-            android:textSize="12sp"
-            android:gravity="center"/>
-
-        <ImageView
-            android:id="@+id/left_small_image_view"
-            android:layout_toRightOf="@id/left_description_text_view"
-            android:layout_alignParentTop="true"
-            android:layout_height="wrap_content"
-            android:layout_width="10dp"
-            android:layout_gravity="left"/>
-    </RelativeLayout>
-
+        android:layout_height="50dp" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -70,41 +39,10 @@
             android:layout_toRightOf="@id/timeline_bar_view"/>
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/right_live_feed_item_layout"
+    <include
+        android:id="@+id/right_live_feed_item"
+        layout="@layout/right_live_feed_item_view"
         android:layout_width="150dp"
-        android:layout_height="50dp">
-
-        <ImageView
-            android:id="@+id/right_small_image_view"
-            android:layout_alignParentTop="true"
-            android:layout_height="wrap_content"
-            android:layout_width="10dp"
-            android:layout_gravity="left"/>
-
-        <TextView
-            android:id="@+id/right_description_text_view"
-            android:layout_toRightOf="@id/right_small_image_view"
-            android:layout_alignParentTop="true"
-            android:layout_width="100dp"
-            android:layout_height="60dp"
-            android:layout_marginRight="-38dp"
-            android:layout_gravity="left"
-            android:textSize="12sp"
-            android:gravity="center"/>
-
-        <TextView
-            android:id="@+id/right_time_text_view"
-            android:layout_toRightOf="@id/right_description_text_view"
-            android:layout_alignParentTop="true"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center|right"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textColor="#ff9e9e9e"
-            android:textSize="32sp"/>
-
-    </RelativeLayout>
+        android:layout_height="50dp" />
 
 </LinearLayout>

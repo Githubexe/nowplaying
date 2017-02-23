@@ -13,18 +13,18 @@ import com.music.amazon.mypoldi.dmtv.UniversalAdapter;
 /**
  * Created by yoyosu on 2/22/17.
  */
-public final class LiveFeedItemView extends RecyclerView {
+public final class LiveFeedItemRecyclerView extends RecyclerView {
     private final UniversalAdapter adapter;
 
-    public LiveFeedItemView(Context context) {
+    public LiveFeedItemRecyclerView(final Context context) {
         this(context, null);
     }
 
-    public LiveFeedItemView(Context context, @Nullable AttributeSet attrs) {
+    public LiveFeedItemRecyclerView(final Context context, @Nullable final AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public LiveFeedItemView(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public LiveFeedItemRecyclerView(final Context context, @Nullable final AttributeSet attrs, final int defStyle) {
         super(context, attrs, defStyle);
 
         final SmoothScrollLinearLayoutManager smoothScrollLinearLayoutManager =

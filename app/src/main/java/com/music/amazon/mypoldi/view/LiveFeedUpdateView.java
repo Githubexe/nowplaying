@@ -19,7 +19,7 @@ import java.util.List;
  */
 public final class LiveFeedUpdateView extends RelativeLayout {
 
-    public final LiveFeedItemView liveFeedItemView;
+    public final LiveFeedItemRecyclerView liveFeedItemRecyclerView;
 
     public final TextView hostTeamScoreTextView;
 
@@ -51,7 +51,7 @@ public final class LiveFeedUpdateView extends RelativeLayout {
         secondsTextView = (TextView)findViewById(R.id.second_text_view);
         timeStampSeparator = (TextView)findViewById(R.id.minute_second_separator_text_view);
 
-        liveFeedItemView = (LiveFeedItemView)findViewById(R.id.live_feed_item_view);
+        liveFeedItemRecyclerView = (LiveFeedItemRecyclerView)findViewById(R.id.live_feed_item_view);
     }
 
     public void addLeft(LeftLiveFeedItemModel data) {
@@ -67,11 +67,11 @@ public final class LiveFeedUpdateView extends RelativeLayout {
     }
 
     private void addToAdapter(List<?> data) {
-        final RecyclerView.Adapter adapter = liveFeedItemView.getAdapter();
+        final RecyclerView.Adapter adapter = liveFeedItemRecyclerView.getAdapter();
         if (adapter instanceof UniversalAdapter) {
             ( (UniversalAdapter)adapter).addItems(data);
         }
-        liveFeedItemView.smoothScrollToPosition(
+        liveFeedItemRecyclerView.smoothScrollToPosition(
                 adapter.getItemCount() - 1);
     }
 }

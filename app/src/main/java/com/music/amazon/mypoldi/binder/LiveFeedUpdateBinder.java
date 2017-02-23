@@ -24,12 +24,12 @@ public class LiveFeedUpdateBinder implements
 
     public void bind(final LiveFeedUpdateView view,
                      final LiveFeedUpdateModel model){
-        view.hostTeamScoreTextView.setText(Integer.toString(model.hostScore));
-        view.visitingTeamScoreTextView.setText(Integer.toString(model.awayScore));
+        view.hostTeamScoreTextView.setText(Integer.toString(model.getHostScore()));
+        view.visitingTeamScoreTextView.setText(Integer.toString(model.getAwayScore()));
         view.scoreSeparator.setText("-");
 
         //Assume the time is in the format of "minutes : seconds"
-        final String[] time = model.elapsedTime.split(":");
+        final String[] time = model.getElapsedTime().split(":");
         if (time.length >= 1) {
             view.minutesTextView.setText(time[0].trim());
         }
