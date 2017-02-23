@@ -28,7 +28,7 @@
             android:layout_width="100dp"
             android:layout_height="60dp"
             android:layout_toRightOf="@id/left_time_text_view"
-            android:layout_marginLeft="-50dp"
+            android:layout_marginLeft="-35dp"
             android:layout_gravity="left"
             android:textSize="12sp"
             android:gravity="center"/>
@@ -49,9 +49,9 @@
 
         <ImageView
             android:id="@+id/left_large_image_view"
-            android:layout_width="10dp"
-            android:layout_height="15dp"
-            android:layout_marginLeft="20dp"
+            android:layout_width="14dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="30dp"
             android:layout_centerVertical="true" />
 
         <View
@@ -63,9 +63,9 @@
 
         <ImageView
             android:id="@+id/right_large_image_view"
-            android:layout_width="10dp"
-            android:layout_height="15dp"
-            android:layout_marginRight="40dp"
+            android:layout_width="14dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="50dp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/timeline_bar_view"/>
     </RelativeLayout>
@@ -88,7 +88,7 @@
             android:layout_alignParentTop="true"
             android:layout_width="100dp"
             android:layout_height="60dp"
-            android:layout_marginRight="-50dp"
+            android:layout_marginRight="-38dp"
             android:layout_gravity="left"
             android:textSize="12sp"
             android:gravity="center"/>

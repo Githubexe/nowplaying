@@ -7,7 +7,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.music.amazon.mypoldi.R;
-import com.music.amazon.mypoldi.binder.SmoothScrollLinearLayoutManager;
 import com.music.amazon.mypoldi.dmtv.UniversalAdapter;
 import com.music.amazon.mypoldi.model.LeftLiveFeedItemModel;
 import com.music.amazon.mypoldi.model.RightLiveFeedItemModel;
@@ -55,19 +54,19 @@ public final class LiveFeedUpdateView extends RelativeLayout {
         liveFeedItemView = (LiveFeedItemView)findViewById(R.id.live_feed_item_view);
     }
 
-    public void onUpdateLeftLiveItem(LeftLiveFeedItemModel data) {
+    public void addLeft(LeftLiveFeedItemModel data) {
         final List<LeftLiveFeedItemModel> added = new ArrayList<>();
         added.add(data);
-        updateAdapter(added);
+        addToAdapter(added);
     }
 
-    public void onUpdateRightLiveItem(RightLiveFeedItemModel data) {
+    public void addRight(RightLiveFeedItemModel data) {
         final List<RightLiveFeedItemModel> added = new ArrayList<>();
         added.add(data);
-        updateAdapter(added);
+        addToAdapter(added);
     }
 
-    private void updateAdapter(List<?> data) {
+    private void addToAdapter(List<?> data) {
         final RecyclerView.Adapter adapter = liveFeedItemView.getAdapter();
         if (adapter instanceof UniversalAdapter) {
             ( (UniversalAdapter)adapter).addItems(data);

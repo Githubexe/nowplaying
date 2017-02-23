@@ -8,7 +8,7 @@ import com.music.amazon.mypoldi.model.LeftLiveFeedItemModel;
 import com.music.amazon.mypoldi.model.LiveFeedUpdateModel;
 import com.music.amazon.mypoldi.model.RightLiveFeedItemModel;
 
-/** package **/ interface DemoLiveFeedListener {
+public interface DemoLiveFeedListener {
     void onUpdateLiveFeedHeader(LiveFeedUpdateModel liveFeed);
     void onUpdateLeftLiveItem(LeftLiveFeedItemModel leftItem);
     void onUpdateRightLiveItem(RightLiveFeedItemModel rightItem);

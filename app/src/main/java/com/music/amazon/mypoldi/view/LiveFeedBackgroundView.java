@@ -40,4 +40,8 @@ public final class LiveFeedBackgroundView extends RelativeLayout {
         awayImageView = (ImageView)findViewById(R.id.away_image_view);
         awayTextView = (TextView)findViewById(R.id.away_text_view);
     }
+
+    public LiveFeedUpdateView getLiveFeedUpdateView() {
+        return (LiveFeedUpdateView)findViewById(R.id.live_feed_view);
+    }
 }

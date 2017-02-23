@@ -15,6 +15,7 @@ import com.music.amazon.mypoldi.model.LiveFeedBackgroundModel;
 import com.music.amazon.mypoldi.model.LiveFeedUpdateModel;
 import com.music.amazon.mypoldi.model.RightLiveFeedItemModel;
 import com.music.amazon.mypoldi.view.ChannelSwitcherView;
+import com.music.amazon.mypoldi.view.LiveFeedBackgroundView;
 import com.music.amazon.mypoldi.view.LiveFeedUpdateView;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener, Chan
     private ChannelSwitcherBinder channelSwitcherBinder;
     private ChannelSwitcherModel channelSwitcherModel;
     private ChannelSwitcherView channelSwitcherView;
-    private View currentView;
+    private LiveFeedBackgroundView currentView;
 
     private final DemoLiveFeed currentLiveFeed = new DemoLiveFeed();
     private List<LiveFeedBackgroundModel> backgroundModels;
@@ -49,7 +50,7 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener, Chan
     }
 
     private void switchChannel(final int channelIndex) {
-        currentView = channelSwitcherView.getCurrentView();
+        currentView = (LiveFeedBackgroundView)channelSwitcherView.getCurrentView();
         if (currentLiveFeed != null) {
             currentLiveFeed.stop();
         }
@@ -63,23 +64,23 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener, Chan
     }
 
     private LiveFeedUpdateView getLiveFeedUpdateView() {
-        return (LiveFeedUpdateView) (currentView.findViewById(R.id.live_feed_view));
+        return currentView.getLiveFeedUpdateView();
     }
 
     @Override
     public void onChannelSwitched(final int viewId, final View newView) {
-        this.currentView = newView;
+        this.currentView = (LiveFeedBackgroundView)newView;
         switchChannel(viewId);
     }
 
     @Override
-    public void onUpdateLeftLiveItem(LeftLiveFeedItemModel data) {
-        getLiveFeedUpdateView().onUpdateLeftLiveItem(data);
+    public void onUpdateLeftLiveItem(LeftLiveFeedItemModel model) {
+        getLiveFeedUpdateView().addLeft(model);
     }
 
     @Override
-    public void onUpdateRightLiveItem(RightLiveFeedItemModel data) {
-        getLiveFeedUpdateView().onUpdateRightLiveItem(data);
+    public void onUpdateRightLiveItem(RightLiveFeedItemModel model) {
+        getLiveFeedUpdateView().addRight(model);
     }
 
     @Override
