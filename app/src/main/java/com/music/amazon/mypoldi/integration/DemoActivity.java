@@ -28,7 +28,7 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener, Chan
     private LiveFeedBackgroundView currentView;
 
     private final DemoLiveFeed currentLiveFeed = new DemoLiveFeed();
-    private List<LiveFeedBackgroundModel> backgroundModels;
+    private List<Object> backgroundModels;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener, Chan
     private void addLiveChannels() {
         //DMTVUISoccer > get the data model, RxChannel
         backgroundModels = DemoLiveFeedData.getLiveChannels();
-        channelSwitcherModel = new ChannelSwitcherModel(backgroundModels.toArray());
+        channelSwitcherModel = new ChannelSwitcherModel("uuid", backgroundModels);
         channelSwitcherBinder.bind(channelSwitcherView, channelSwitcherModel);
         channelSwitcherView.register(DemoActivity.this);
         currentLiveFeed.register(DemoActivity.this);

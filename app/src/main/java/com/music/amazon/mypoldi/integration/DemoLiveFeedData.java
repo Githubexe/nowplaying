@@ -17,8 +17,8 @@ public final class DemoLiveFeedData {
 
     public static int counter = -1;
 
-    public static List<LiveFeedBackgroundModel> getLiveChannels() {
-        List<LiveFeedBackgroundModel> channels = new ArrayList<>();
+    public static List<Object> getLiveChannels() {
+        List<Object> channels = new ArrayList<>();
         LiveFeedBackgroundModel.Builder builder = LiveFeedBackgroundModel.builder(
                 "test-main-uuid-1",
                 "https://amazon.music.poldi/background.png", //background
