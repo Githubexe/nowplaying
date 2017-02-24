@@ -1,34 +1,49 @@
 package com.music.amazon.mypoldi.model;
 
+import com.music.amazon.mypoldi.dmtv.Optional;
+
 /**
  * Created by yoyosu on 2/23/17.
+ *
+ * A pojo for live feed update
  */
 public abstract class LiveFeedItemModel {
 
-    public final String time;
+    public final Optional<String> time;
 
-    public final String description;
+    public final Optional<String> comment;
 
-    public final String smallImage;
+    /**
+     * The icon next to the playername
+     */
+    public final Optional<String> smallImage;
 
-    public final String largeImage;
+    /**
+     * The icon on the timeline bar
+     */
+    public final Optional<String> largeImage;
 
-
+    /**
+     * Used for home team live feed updates
+     */
     public static final class LeftLiveFeedItemModel extends LiveFeedItemModel {
         private LeftLiveFeedItemModel(final String time,
-                                      final String description,
+                                      final String comment,
                                       final String smallImage,
                                       final String largeImage) {
-            super(time, description, smallImage, largeImage);
+            super(time, comment, smallImage, largeImage);
         }
     }
 
+    /**
+     * used for away team feed updates
+     */
     public static final class RightLiveFeedItemModel extends LiveFeedItemModel {
         private RightLiveFeedItemModel(final String time,
-                                       final String description,
+                                       final String comment,
                                        final String smallImage,
                                        final String largeImage) {
-            super(time, description, smallImage, largeImage);
+            super(time, comment, smallImage, largeImage);
         }
     }
 
@@ -40,7 +55,7 @@ public abstract class LiveFeedItemModel {
 
         private String time;
 
-        private String description;
+        private String comment;
 
         private String smallImage;
 
@@ -51,8 +66,8 @@ public abstract class LiveFeedItemModel {
             return this;
         }
 
-        public Builder withDescritpion(final String description) {
-            this.description = description;
+        public Builder withComment(final String comment) {
+            this.comment = comment;
             return this;
         }
 
@@ -69,7 +84,7 @@ public abstract class LiveFeedItemModel {
         public LeftLiveFeedItemModel buildHome() {
             return new LeftLiveFeedItemModel(
                     time,
-                    description,
+                    comment,
                     smallImage,
                     largeImage
             );
@@ -78,7 +93,7 @@ public abstract class LiveFeedItemModel {
         public RightLiveFeedItemModel buildAway() {
             return new RightLiveFeedItemModel(
                     time,
-                    description,
+                    comment,
                     smallImage,
                     largeImage
             );
@@ -86,13 +101,13 @@ public abstract class LiveFeedItemModel {
     }
 
     private LiveFeedItemModel(final String time,
-                              final String description,
+                              final String comment,
                               final String smallImage,
                               final String largeImage) {
 
-        this.time = time;
-        this.description = description;
-        this.smallImage = smallImage;
-        this.largeImage = largeImage;
+        this.time = Optional.ofNullable(time);
+        this.comment = Optional.ofNullable(comment);
+        this.smallImage = Optional.ofNullable(smallImage);
+        this.largeImage = Optional.ofNullable(largeImage);
     }
 }

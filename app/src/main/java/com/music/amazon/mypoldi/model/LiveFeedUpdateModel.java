@@ -1,5 +1,7 @@
 package com.music.amazon.mypoldi.model;
 
+import com.music.amazon.mypoldi.dmtv.Optional;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,24 +9,24 @@ import java.util.List;
  * Created by yoyosu on 1/25/17.
  */
 public final class LiveFeedUpdateModel {
-    private int hostScore;
+    private int homeScore;
 
     private int awayScore;
 
-    private String elapsedTime;
+    private Optional<String> elapsedTime;
 
-    private List<LiveFeedItemModel> items = new ArrayList<LiveFeedItemModel>();
+    private List<LiveFeedItemModel> items = new ArrayList<>();
 
     public static final Builder builder(final String uuid) {
         return new Builder(uuid);
     }
 
-    public int getHostScore() {
-        return hostScore;
+    public int getHomeScore() {
+        return homeScore;
     }
 
-    public void setHostScore(final int hostScore) {
-        this.hostScore = hostScore;
+    public void setHomeScore(final int homeScore) {
+        this.homeScore = homeScore;
     }
 
     public int getAwayScore() {
@@ -35,12 +37,12 @@ public final class LiveFeedUpdateModel {
         this.awayScore = awayScore;
     }
 
-    public String getElapsedTime() {
+    public Optional<String> getElapsedTime() {
         return elapsedTime;
     }
 
     public void setElapsedTime(final String elapsedTime) {
-        this.elapsedTime = elapsedTime;
+        this.elapsedTime = Optional.ofNullable(elapsedTime);
     }
 
     public void addItem(final LiveFeedItemModel model) {
@@ -86,11 +88,11 @@ public final class LiveFeedUpdateModel {
     }
 
     private LiveFeedUpdateModel(final String uuid,
-                                final int hostScore,
+                                final int homeScore,
                                 final int awayScore,
                                 final String elapsedTime) {
         //super(uuid);
-        this.setHostScore(hostScore);
+        this.setHomeScore(homeScore);
         this.setAwayScore(awayScore);
         this.setElapsedTime(elapsedTime);
     }

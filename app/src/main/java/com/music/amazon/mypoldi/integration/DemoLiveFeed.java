@@ -30,7 +30,7 @@ public final class DemoLiveFeed {
 
             future = scheduler.scheduleAtFixedRate(
                     new Runnable() {
-                        final String[] times = liveFeedUpdateModel.getElapsedTime().split(":");
+                        final String[] times = liveFeedUpdateModel.getElapsedTime().get().split(":");
                         int min = Integer.parseInt(times[0].trim());
                         int sec = Integer.parseInt(times[1].trim());
                         @Override

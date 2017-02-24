@@ -55,14 +55,14 @@ public final class DemoLiveFeedData {
         final int minute = Calendar.getInstance().get(Calendar.MINUTE);
 
         if (counter % 7 == 0 || counter % 11 == 0 || counter % 13 == 0) {
-            builder.withDescritpion("Home - " + counter);
+            builder.withComment("Home - " + counter);
             if (counter % 7 == 0) {
                 builder.withTime(minute + "\'")
                         .withLargeImage("https://amazon.music.poldi/yellow_card_marker.png");
             }
             return builder.buildHome();
         } else {
-            builder.withDescritpion("Away - " + counter);
+            builder.withComment("Away - " + counter);
             if (counter % 5 == 0) {
                 builder.withTime(minute + "\'")
                         .withLargeImage("https://amazon.music.poldi/yellow_card_marker.png");
