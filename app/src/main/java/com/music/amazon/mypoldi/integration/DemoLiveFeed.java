@@ -1,8 +1,7 @@
 package com.music.amazon.mypoldi.integration;
 
-import com.music.amazon.mypoldi.model.LeftLiveFeedItemModel;
+import com.music.amazon.mypoldi.model.LiveFeedItemModel;
 import com.music.amazon.mypoldi.model.LiveFeedUpdateModel;
-import com.music.amazon.mypoldi.model.RightLiveFeedItemModel;
 
 import java.util.ArrayList;
 import java.util.concurrent.Executors;
@@ -45,16 +44,10 @@ public final class DemoLiveFeed {
                                         : String.valueOf(min)) + " : "
                                 + ((sec < 10) ?  String.valueOf("0" + sec)
                                         : String.valueOf(sec)));
-                                final Object data = DemoLiveFeedData.generateLiveFeedItemData();
+                                final LiveFeedItemModel data = DemoLiveFeedData.generateLiveFeedItemData();
                                 for (DemoLiveFeedListener liveFeedListener: liveFeedListeners) {
                                     liveFeedListener.onUpdateLiveFeedHeader(liveFeedUpdateModel);
-                                    if (data instanceof LeftLiveFeedItemModel) {
-                                        liveFeedListener.onUpdateLeftLiveItem(
-                                                (LeftLiveFeedItemModel)data);
-                                    } else if (data instanceof RightLiveFeedItemModel){
-                                        liveFeedListener.onUpdateRightLiveItem(
-                                                (RightLiveFeedItemModel)data);
-                                    }
+                                    liveFeedListener.onUpdateLiveItem(data);
                                 }
                             }
                         }

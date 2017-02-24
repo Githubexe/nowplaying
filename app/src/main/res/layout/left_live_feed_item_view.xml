@@ -16,7 +16,7 @@
         android:textSize="32sp"/>
 
     <TextView
-        android:id="@+id/left_description_text_view"
+        android:id="@+id/left_comment_text_view"
         android:layout_alignParentTop="true"
         android:layout_width="100dp"
         android:layout_height="60dp"
@@ -28,7 +28,7 @@
 
     <ImageView
         android:id="@+id/left_small_image_view"
-        android:layout_toRightOf="@id/left_description_text_view"
+        android:layout_toRightOf="@id/left_comment_text_view"
         android:layout_alignParentTop="true"
         android:layout_height="wrap_content"
         android:layout_width="10dp"

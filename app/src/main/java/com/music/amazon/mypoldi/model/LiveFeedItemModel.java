@@ -3,7 +3,8 @@ package com.music.amazon.mypoldi.model;
 /**
  * Created by yoyosu on 2/23/17.
  */
-public final class LiveFeedItemModel {
+public abstract class LiveFeedItemModel {
+
     public final String time;
 
     public final String description;
@@ -11,8 +12,6 @@ public final class LiveFeedItemModel {
     public final String smallImage;
 
     public final String largeImage;
-
-    public final boolean isHome;
 
     public static final Builder builder() {
         return new Builder();
@@ -48,23 +47,21 @@ public final class LiveFeedItemModel {
             return this;
         }
 
-        public LiveFeedItemModel buildHome() {
-            return new LiveFeedItemModel(
+        public LeftLiveFeedItemModel buildHome() {
+            return new LeftLiveFeedItemModel(
                     time,
                     description,
                     smallImage,
-                    largeImage,
-                    true
+                    largeImage
             );
         }
 
-        public LiveFeedItemModel buildAway() {
-            return new LiveFeedItemModel(
+        public RightLiveFeedItemModel buildAway() {
+            return new RightLiveFeedItemModel(
                     time,
                     description,
                     smallImage,
-                    largeImage,
-                    false
+                    largeImage
             );
         }
     }
@@ -72,13 +69,29 @@ public final class LiveFeedItemModel {
     private LiveFeedItemModel(final String time,
                               final String description,
                               final String smallImage,
-                              final String largeImage,
-                              final boolean isHome) {
+                              final String largeImage) {
 
         this.time = time;
         this.description = description;
         this.smallImage = smallImage;
         this.largeImage = largeImage;
-        this.isHome = isHome;
+    }
+
+    public static final class LeftLiveFeedItemModel extends LiveFeedItemModel {
+        private LeftLiveFeedItemModel(final String time,
+                                      final String description,
+                                      final String smallImage,
+                                      final String largeImage) {
+            super(time, description, smallImage, largeImage);
+        }
+    }
+
+    public static final class RightLiveFeedItemModel extends LiveFeedItemModel {
+        private RightLiveFeedItemModel(final String time,
+                                       final String description,
+                                       final String smallImage,
+                                       final String largeImage) {
+            super(time, description, smallImage, largeImage);
+        }
     }
 }

@@ -1,10 +1,8 @@
 package com.music.amazon.mypoldi.integration;
 
-import com.music.amazon.mypoldi.model.ChannelModel;
-import com.music.amazon.mypoldi.model.LeftLiveFeedItemModel;
 import com.music.amazon.mypoldi.model.LiveFeedBackgroundModel;
+import com.music.amazon.mypoldi.model.LiveFeedItemModel;
 import com.music.amazon.mypoldi.model.LiveFeedUpdateModel;
-import com.music.amazon.mypoldi.model.RightLiveFeedItemModel;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -49,28 +47,27 @@ public final class DemoLiveFeedData {
         return channels;
     }
 
-    public static Object generateLiveFeedItemData() {
+    public static LiveFeedItemModel generateLiveFeedItemData() {
         counter++;
 
-        final LeftLiveFeedItemModel.Builder leftItemBuilder = LeftLiveFeedItemModel.builder();
-        final RightLiveFeedItemModel.Builder rightItemBuilder = RightLiveFeedItemModel.builder();
+        final LiveFeedItemModel.Builder builder = LiveFeedItemModel.builder();
 
         final int minute = Calendar.getInstance().get(Calendar.MINUTE);
 
         if (counter % 7 == 0 || counter % 11 == 0 || counter % 13 == 0) {
-            leftItemBuilder.withDescritpion("Home - " + counter);
+            builder.withDescritpion("Home - " + counter);
             if (counter % 7 == 0) {
-                leftItemBuilder.withTime(minute + "\'")
+                builder.withTime(minute + "\'")
                         .withLargeImage("https://amazon.music.poldi/yellow_card_marker.png");
             }
-            return leftItemBuilder.build();
+            return builder.buildHome();
         } else {
-            rightItemBuilder.withDescritpion("Away - " + counter);
+            builder.withDescritpion("Away - " + counter);
             if (counter % 5 == 0) {
-                rightItemBuilder.withTime(minute + "\'")
+                builder.withTime(minute + "\'")
                         .withLargeImage("https://amazon.music.poldi/yellow_card_marker.png");
             }
-            return rightItemBuilder.build();
+            return builder.buildAway();
         }
     }
 

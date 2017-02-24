@@ -3,7 +3,7 @@ package com.music.amazon.mypoldi.binder;
 import android.content.Context;
 
 import com.music.amazon.mypoldi.dmtv.UniversalBinder;
-import com.music.amazon.mypoldi.model.LeftLiveFeedItemModel;
+import com.music.amazon.mypoldi.model.LiveFeedItemModel.LeftLiveFeedItemModel;
 import com.music.amazon.mypoldi.view.LeftLiveFeedItemView;
 
 public final class LeftLiveFeedItemBinder implements

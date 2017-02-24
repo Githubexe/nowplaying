@@ -5,15 +5,13 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.music.amazon.mypoldi.R;
+import com.music.amazon.mypoldi.model.LiveFeedItemModel;
 import com.music.amazon.mypoldi.view.ChannelSwitchListener;
 import com.music.amazon.mypoldi.binder.ChannelSwitcherBinder;
 import com.music.amazon.mypoldi.binder.LiveFeedBackgroundBinder;
 import com.music.amazon.mypoldi.binder.LiveFeedUpdateBinder;
-import com.music.amazon.mypoldi.model.LeftLiveFeedItemModel;
 import com.music.amazon.mypoldi.model.ChannelSwitcherModel;
-import com.music.amazon.mypoldi.model.LiveFeedBackgroundModel;
 import com.music.amazon.mypoldi.model.LiveFeedUpdateModel;
-import com.music.amazon.mypoldi.model.RightLiveFeedItemModel;
 import com.music.amazon.mypoldi.view.ChannelSwitcherView;
 import com.music.amazon.mypoldi.view.LiveFeedBackgroundView;
 import com.music.amazon.mypoldi.view.LiveFeedUpdateView;
@@ -74,13 +72,8 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener, Chan
     }
 
     @Override
-    public void onUpdateLeftLiveItem(LeftLiveFeedItemModel model) {
-        getLiveFeedUpdateView().addLeft(model);
-    }
-
-    @Override
-    public void onUpdateRightLiveItem(RightLiveFeedItemModel model) {
-        getLiveFeedUpdateView().addRight(model);
+    public void onUpdateLiveItem(LiveFeedItemModel model) {
+        getLiveFeedUpdateView().addItem(model);
     }
 
     @Override

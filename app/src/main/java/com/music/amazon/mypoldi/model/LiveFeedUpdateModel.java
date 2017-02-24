@@ -61,8 +61,6 @@ public final class LiveFeedUpdateModel {
 
         private String elapsedTime;
 
-        private List<LeftLiveFeedItemModel> events = new ArrayList<LeftLiveFeedItemModel>();
-
         private Builder(final String uuid) {
             this.uuid = uuid;
         }

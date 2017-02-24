@@ -8,8 +8,7 @@ import android.widget.TextView;
 
 import com.music.amazon.mypoldi.R;
 import com.music.amazon.mypoldi.dmtv.UniversalAdapter;
-import com.music.amazon.mypoldi.model.LeftLiveFeedItemModel;
-import com.music.amazon.mypoldi.model.RightLiveFeedItemModel;
+import com.music.amazon.mypoldi.model.LiveFeedItemModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,14 +53,8 @@ public final class LiveFeedUpdateView extends RelativeLayout {
         liveFeedItemRecyclerView = (LiveFeedItemRecyclerView)findViewById(R.id.live_feed_item_view);
     }
 
-    public void addLeft(LeftLiveFeedItemModel data) {
-        final List<LeftLiveFeedItemModel> added = new ArrayList<>();
-        added.add(data);
-        addToAdapter(added);
-    }
-
-    public void addRight(RightLiveFeedItemModel data) {
-        final List<RightLiveFeedItemModel> added = new ArrayList<>();
+    public void addItem(LiveFeedItemModel data) {
+        final List<LiveFeedItemModel> added = new ArrayList<>();
         added.add(data);
         addToAdapter(added);
     }
