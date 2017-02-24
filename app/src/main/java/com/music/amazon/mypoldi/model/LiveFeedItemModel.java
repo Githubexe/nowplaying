@@ -13,6 +13,25 @@ public abstract class LiveFeedItemModel {
 
     public final String largeImage;
 
+
+    public static final class LeftLiveFeedItemModel extends LiveFeedItemModel {
+        private LeftLiveFeedItemModel(final String time,
+                                      final String description,
+                                      final String smallImage,
+                                      final String largeImage) {
+            super(time, description, smallImage, largeImage);
+        }
+    }
+
+    public static final class RightLiveFeedItemModel extends LiveFeedItemModel {
+        private RightLiveFeedItemModel(final String time,
+                                       final String description,
+                                       final String smallImage,
+                                       final String largeImage) {
+            super(time, description, smallImage, largeImage);
+        }
+    }
+
     public static final Builder builder() {
         return new Builder();
     }
@@ -75,23 +94,5 @@ public abstract class LiveFeedItemModel {
         this.description = description;
         this.smallImage = smallImage;
         this.largeImage = largeImage;
-    }
-
-    public static final class LeftLiveFeedItemModel extends LiveFeedItemModel {
-        private LeftLiveFeedItemModel(final String time,
-                                      final String description,
-                                      final String smallImage,
-                                      final String largeImage) {
-            super(time, description, smallImage, largeImage);
-        }
-    }
-
-    public static final class RightLiveFeedItemModel extends LiveFeedItemModel {
-        private RightLiveFeedItemModel(final String time,
-                                       final String description,
-                                       final String smallImage,
-                                       final String largeImage) {
-            super(time, description, smallImage, largeImage);
-        }
     }
 }
