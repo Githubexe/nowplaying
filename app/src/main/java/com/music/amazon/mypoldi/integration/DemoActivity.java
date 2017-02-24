@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.music.amazon.mypoldi.R;
+import com.music.amazon.mypoldi.binder.LeftLiveFeedItemBinder;
+import com.music.amazon.mypoldi.binder.RightLiveFeedItemBinder;
+import com.music.amazon.mypoldi.dmtv.UniversalAdapter;
 import com.music.amazon.mypoldi.model.LiveFeedItemModel;
 import com.music.amazon.mypoldi.view.ChannelSwitchListener;
 import com.music.amazon.mypoldi.binder.ChannelSwitcherBinder;
@@ -24,6 +27,7 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener, Chan
     private ChannelSwitcherModel channelSwitcherModel;
     private ChannelSwitcherView channelSwitcherView;
     private LiveFeedBackgroundView currentView;
+    private LiveFeedUpdateView liveFeedUpdateView;
 
     private final DemoLiveFeed currentLiveFeed = new DemoLiveFeed();
     private List<Object> backgroundModels;
@@ -49,6 +53,10 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener, Chan
 
     private void switchChannel(final int channelIndex) {
         currentView = (LiveFeedBackgroundView)channelSwitcherView.getCurrentView();
+        liveFeedUpdateView = currentView.getLiveFeedUpdateView();
+        liveFeedUpdateView.setAdapter(new UniversalAdapter(
+                new LeftLiveFeedItemBinder(),
+                new RightLiveFeedItemBinder()));
         if (currentLiveFeed != null) {
             currentLiveFeed.stop();
         }
@@ -61,10 +69,6 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener, Chan
         }
     }
 
-    private LiveFeedUpdateView getLiveFeedUpdateView() {
-        return currentView.getLiveFeedUpdateView();
-    }
-
     @Override
     public void onChannelSwitched(final int viewId, final View newView) {
         this.currentView = (LiveFeedBackgroundView)newView;
@@ -73,7 +77,7 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener, Chan
 
     @Override
     public void onUpdateLiveItem(LiveFeedItemModel model) {
-        getLiveFeedUpdateView().addItem(model);
+        liveFeedUpdateView.addItem(model);
     }
 
     @Override
@@ -81,7 +85,7 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener, Chan
         DemoActivity.this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                new LiveFeedUpdateBinder().bind(getLiveFeedUpdateView(), liveFeedUpdateModel);
+                new LiveFeedUpdateBinder().bind(liveFeedUpdateView, liveFeedUpdateModel);
             }
         });
     }

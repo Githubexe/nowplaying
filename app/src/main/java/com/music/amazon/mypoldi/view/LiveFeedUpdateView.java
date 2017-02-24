@@ -7,6 +7,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.music.amazon.mypoldi.R;
+import com.music.amazon.mypoldi.binder.SmoothScrollLinearLayoutManager;
 import com.music.amazon.mypoldi.dmtv.UniversalAdapter;
 import com.music.amazon.mypoldi.model.LiveFeedItemModel;
 
@@ -18,7 +19,7 @@ import java.util.List;
  */
 public final class LiveFeedUpdateView extends RelativeLayout {
 
-    public final LiveFeedItemRecyclerView liveFeedItemRecyclerView;
+    public final RecyclerView liveFeedItemRecyclerView;
 
     public final TextView hostTeamScoreTextView;
 
@@ -50,7 +51,15 @@ public final class LiveFeedUpdateView extends RelativeLayout {
         secondsTextView = (TextView)findViewById(R.id.second_text_view);
         timeStampSeparator = (TextView)findViewById(R.id.minute_second_separator_text_view);
 
-        liveFeedItemRecyclerView = (LiveFeedItemRecyclerView)findViewById(R.id.live_feed_item_view);
+        liveFeedItemRecyclerView = (RecyclerView)findViewById(R.id.live_feed_item_view);
+        final SmoothScrollLinearLayoutManager smoothScrollLinearLayoutManager =
+                new SmoothScrollLinearLayoutManager(context);
+        smoothScrollLinearLayoutManager.setStackFromEnd(true);
+        liveFeedItemRecyclerView.setLayoutManager(smoothScrollLinearLayoutManager);
+    }
+
+    public void setAdapter(final UniversalAdapter adapter) {
+        liveFeedItemRecyclerView.setAdapter(adapter);
     }
 
     public void addItem(LiveFeedItemModel data) {
