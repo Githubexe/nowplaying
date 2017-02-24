@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.music.amazon.mypoldi.R;
-import com.music.amazon.mypoldi.model.LeftLiveFeedItemModel;
+import com.music.amazon.mypoldi.model.LiveFeedItemModel;
 import com.squareup.picasso.Picasso;
 
 import org.apache.commons.lang3.StringUtils;
@@ -18,13 +18,13 @@ import org.apache.commons.lang3.StringUtils;
  */
 public abstract class LiveFeedItemView extends LinearLayout {
 
-    public final TextView timeTextView;
+    public TextView timeTextView;
 
-    public final TextView commentTextView;
+    public TextView commentTextView;
 
-    public final ImageView smallImageView;
+    public ImageView smallImageView;
 
-    public final ImageView largeImageView;
+    public ImageView largeImageView;
 
     public LiveFeedItemView(Context context) {
         this(context, null);
@@ -37,20 +37,16 @@ public abstract class LiveFeedItemView extends LinearLayout {
     public LiveFeedItemView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         inflate(getContext(), R.layout.live_feed_item_view, this);
-        timeTextView = (TextView)findViewById(R.id.time_text_view);
-        commentTextView = (TextView)findViewById(R.id.description_text_view);
-        smallImageView = (ImageView)findViewById(R.id.small_image_view);
-        largeImageView = (ImageView)findViewById(R.id.left_large_image_view);
     }
 
-    public void bind(final LeftLiveFeedItemModel leftLiveFeedItemModel) {
-        timeTextView.setText(leftLiveFeedItemModel.time);
-        commentTextView.setText(leftLiveFeedItemModel.description);
+    public void bind(final LiveFeedItemModel liveFeedItemModel) {
+        timeTextView.setText(liveFeedItemModel.time);
+        commentTextView.setText(liveFeedItemModel.description);
         commentTextView.bringToFront();
 
         final Picasso picasso = Picasso.with(getContext());
-        if (StringUtils.isEmpty(leftLiveFeedItemModel.smallImage) == false) {
-            picasso.load(leftLiveFeedItemModel.smallImage)
+        if (StringUtils.isEmpty(liveFeedItemModel.smallImage) == false) {
+            picasso.load(liveFeedItemModel.smallImage)
                     .placeholder(R.drawable.ic_goal_l)
                     .error(R.drawable.ic_goal_l)
                     .into(smallImageView);
@@ -59,8 +55,8 @@ public abstract class LiveFeedItemView extends LinearLayout {
             smallImageView.setImageDrawable(null);
             smallImageView.setVisibility(View.INVISIBLE);
         }
-        if (StringUtils.isEmpty(leftLiveFeedItemModel.largeImage) == false) {
-            picasso.load(leftLiveFeedItemModel.largeImage)
+        if (StringUtils.isEmpty(liveFeedItemModel.largeImage) == false) {
+            picasso.load(liveFeedItemModel.largeImage)
                     .placeholder(R.drawable.ic_goal_l)
                     .error(R.drawable.ic_goal_l)
                     .into(largeImageView);
