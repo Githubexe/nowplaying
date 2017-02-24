@@ -51,28 +51,24 @@ public abstract class LiveFeedItemView extends LinearLayout {
 
         final Picasso picasso = Picasso.with(getContext());
         if (liveFeedItemModel.smallImage.isPresent()) {
-            if (StringUtils.isEmpty(liveFeedItemModel.smallImage.get()) == false) {
                 picasso.load(liveFeedItemModel.smallImage.get())
                         .placeholder(R.drawable.ic_goal_l)
                         .error(R.drawable.ic_goal_l)
                         .into(smallImageView);
                 smallImageView.setVisibility(View.VISIBLE);
-            } else {
-                smallImageView.setImageDrawable(null);
-                smallImageView.setVisibility(View.INVISIBLE);
-            }
+        } else {
+            smallImageView.setImageDrawable(null);
+            smallImageView.setVisibility(View.INVISIBLE);
         }
         if (liveFeedItemModel.largeImage.isPresent()) {
-            if (StringUtils.isEmpty(liveFeedItemModel.largeImage.get()) == false) {
                 picasso.load(liveFeedItemModel.largeImage.get())
                         .placeholder(R.drawable.ic_goal_l)
                         .error(R.drawable.ic_goal_l)
                         .into(largeImageView);
                 largeImageView.setVisibility(View.VISIBLE);
-            } else {
-                largeImageView.setImageDrawable(null);
-                largeImageView.setVisibility(View.INVISIBLE);
-            }
+        } else {
+            largeImageView.setImageDrawable(null);
+            largeImageView.setVisibility(View.INVISIBLE);
         }
     }
 }
