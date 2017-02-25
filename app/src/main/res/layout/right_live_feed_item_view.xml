@@ -2,7 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="150dp"
-    android:layout_height="50dp">
+    android:layout_height="40dp">
 
     <ImageView
         android:id="@+id/right_small_image_view"
@@ -16,8 +16,8 @@
         android:layout_toRightOf="@id/right_small_image_view"
         android:layout_alignParentTop="true"
         android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:layout_marginRight="-38dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="-26dp"
         android:layout_gravity="left"
         android:textSize="12sp"
         android:gravity="center"/>
@@ -27,7 +27,7 @@
         android:layout_toRightOf="@id/right_comment_text_view"
         android:layout_alignParentTop="true"
         android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_height="45dp"
         android:layout_gravity="center|right"
         android:gravity="center"
         android:textStyle="bold"
