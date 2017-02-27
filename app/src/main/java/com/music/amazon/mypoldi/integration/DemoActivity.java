@@ -70,9 +70,9 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener, Chan
     }
 
     @Override
-    public void onChannelSwitched(final int viewId, final View newView) {
+    public void onChannelSwitched(final int channelIndex, final View newView) {
         this.currentView = (LiveFeedBackgroundView)newView;
-        switchChannel(viewId);
+        switchChannel(channelIndex);
     }
 
     @Override
