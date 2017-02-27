@@ -7,17 +7,17 @@ import android.widget.TextView;
 
 import com.music.amazon.mypoldi.R;
 
-public final class RightLiveFeedItemView extends LiveFeedItemView {
+public final class AwayLiveFeedItemView extends LiveFeedItemView {
 
-    public RightLiveFeedItemView(Context context) {
+    public AwayLiveFeedItemView(Context context) {
         this(context, null);
     }
 
-    public RightLiveFeedItemView(Context context, AttributeSet attributeSet) {
+    public AwayLiveFeedItemView(Context context, AttributeSet attributeSet) {
         this(context, attributeSet, 0);
     }
 
-    public RightLiveFeedItemView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public AwayLiveFeedItemView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         timeTextView = (TextView)findViewById(R.id.right_time_text_view);
         commentTextView = (TextView)findViewById(R.id.right_comment_text_view);

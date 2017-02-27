@@ -28,21 +28,21 @@ public final class LiveFeedBackgroundBinder implements
     public void bind(final LiveFeedBackgroundView view,
                      final LiveFeedBackgroundModel model){
         final Picasso picasso = Picasso.with(view.getContext());
-        picasso.load(model.backgroundImage)
+        picasso.load(model.backgroundImage.get())
                 .placeholder(R.drawable.background1_640)
                 .error(R.drawable.background1_640)
                 .into(view.backgroundImageView);
 
-        picasso.load(model.homeLogo)
+        picasso.load(model.homeLogo.get())
                 .placeholder(R.drawable.home_logo_1)
                 .error(R.drawable.home_logo_1)
                 .into(view.hostImageView);
-        view.hostTextView.setText(model.homeName);
+        view.hostTextView.setText(model.homeName.get());
 
-        picasso.load(model.awayLogo)
+        picasso.load(model.awayLogo.get())
                 .placeholder(R.drawable.away_logo_1)
                 .error(R.drawable.away_logo_1)
                 .into(view.awayImageView);
-        view.awayTextView.setText(model.awayName);
+        view.awayTextView.setText(model.awayName.get());
     }
 }

@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by yoyosu on 1/25/17.
  */
-public final class LiveFeedUpdateModel {
+public final class LiveFeedModel {
     private int homeScore;
 
     private int awayScore;
@@ -79,18 +79,18 @@ public final class LiveFeedUpdateModel {
             return this;
         }
 
-        public LiveFeedUpdateModel build() {
-            return new LiveFeedUpdateModel(uuid,
+        public LiveFeedModel build() {
+            return new LiveFeedModel(uuid,
                     homeScore,
                     awayScore,
                     elapsedTime);
         }
     }
 
-    private LiveFeedUpdateModel(final String uuid,
-                                final int homeScore,
-                                final int awayScore,
-                                final String elapsedTime) {
+    private LiveFeedModel(final String uuid,
+                          final int homeScore,
+                          final int awayScore,
+                          final String elapsedTime) {
         //super(uuid);
         this.setHomeScore(homeScore);
         this.setAwayScore(awayScore);

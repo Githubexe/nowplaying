@@ -1,33 +1,41 @@
 package com.music.amazon.mypoldi.model;
 
+import com.music.amazon.mypoldi.dmtv.Optional;
+
 /**
  * Created by yoyosu on 1/16/17.
  */
 public final class LiveFeedBackgroundModel {
 
-    public final String backgroundImage;
 
-    public final String homeName;
+    public final Optional<String> backgroundImage;
 
-    public final String homeLogo;
+    public final Optional<String> homeName;
 
-    public final String awayName;
+    public final Optional<String> homeLogo;
 
-    public final String awayLogo;
+    public final Optional<String> awayName;
 
-    public static final Builder builder(final String uuid,
-                                        final String backgroundImage,
-                                        final String homeName,
-                                        final String homeLogo,
-                                        final String awayName,
-                                        final String awayLogo) {
+    public final Optional<String> awayLogo;
+
+    public Optional<LiveFeedModel> liveFeedModel;
+
+    public static final Builder builder(
+            final String uuid,
+            final String backgroundImage,
+            final String homeName,
+            final String homeLogo,
+            final String awayName,
+            final String awayLogo,
+            final LiveFeedModel liveFeedModel) {
         return new Builder(
                 uuid,
                 backgroundImage,
                 homeName,
                 homeLogo,
                 awayName,
-                awayLogo);
+                awayLogo,
+                liveFeedModel);
     }
 
     public static final class Builder {
@@ -44,18 +52,22 @@ public final class LiveFeedBackgroundModel {
 
         private final String awayLogo;
 
+        private LiveFeedModel liveFeedModel;
+
         private Builder(final String uuid,
                         final String backgroundImage,
                         final String homeName,
                         final String homeLogo,
                         final String awayName,
-                        final String awayLogo) {
+                        final String awayLogo,
+                        final LiveFeedModel liveFeedModel) {
             this.uuid = uuid;
             this.backgroundImage = backgroundImage;
             this.homeName = homeName;
             this.homeLogo = homeLogo;
             this.awayName = awayName;
             this.awayLogo = awayLogo;
+            this.liveFeedModel = liveFeedModel;
         }
 
         public LiveFeedBackgroundModel build() {
@@ -64,7 +76,13 @@ public final class LiveFeedBackgroundModel {
                     homeName,
                     homeLogo,
                     awayName,
-                    awayLogo);
+                    awayLogo,
+                    liveFeedModel);
+        }
+
+        public Builder withLiveFeed(final LiveFeedModel liveFeedModel) {
+            this.liveFeedModel = liveFeedModel;
+            return this;
         }
     }
 
@@ -73,12 +91,14 @@ public final class LiveFeedBackgroundModel {
                                     final String homeName,
                                     final String homeLogo,
                                     final String awayName,
-                                    final String awayLogo) {
+                                    final String awayLogo,
+                                    final LiveFeedModel liveFeedModel) {
         //super(uuid);
-        this.backgroundImage = backgroundImage;
-        this.homeName = homeName;
-        this.homeLogo = homeLogo;
-        this.awayName = awayName;
-        this.awayLogo = awayLogo;
+        this.backgroundImage = Optional.ofNullable(backgroundImage);
+        this.homeName = Optional.ofNullable(homeName);
+        this.homeLogo = Optional.ofNullable(homeLogo);
+        this.awayName = Optional.ofNullable(awayName);
+        this.awayLogo = Optional.ofNullable(awayLogo);
+        this.liveFeedModel = Optional.ofNullable(liveFeedModel);
     }
 }

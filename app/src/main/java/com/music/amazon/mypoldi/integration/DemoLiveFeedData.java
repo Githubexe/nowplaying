@@ -2,7 +2,7 @@ package com.music.amazon.mypoldi.integration;
 
 import com.music.amazon.mypoldi.model.LiveFeedBackgroundModel;
 import com.music.amazon.mypoldi.model.LiveFeedItemModel;
-import com.music.amazon.mypoldi.model.LiveFeedUpdateModel;
+import com.music.amazon.mypoldi.model.LiveFeedModel;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -23,7 +23,8 @@ public final class DemoLiveFeedData {
                 "FC BAYERN MÜNCHEN",
                 "https://amazon.music.poldi/hostteam.png", //host team logo url
                 "BORUSSIA DORTMUND",
-                "https://amazon.music.poldi/visitingteam.png"); //visiting team logo url
+                "https://amazon.music.poldi/visitingteam.png",
+                null); //visiting team logo url
         channels.add(0, builder.build());
 
         builder = LiveFeedBackgroundModel.builder(
@@ -32,7 +33,8 @@ public final class DemoLiveFeedData {
                 "GAME2-HOME",
                 "https://amazon.music.poldi/hostteam.png", //host team logo url
                 "GAME2-AWAY",
-                "https://amazon.music.poldi/visitingteam.png"); //visiting team logo url
+                "https://amazon.music.poldi/visitingteam.png",
+                null); //visiting team logo url
         channels.add(1, builder.build());
 
         builder = LiveFeedBackgroundModel.builder(
@@ -41,7 +43,8 @@ public final class DemoLiveFeedData {
                 "GAME3-HOME",
                 "https://amazon.music.poldi/hostteam.png", //host team logo url
                 "GAME3-AWAY",
-                "https://amazon.music.poldi/visitingteam.png"); //visiting team logo url
+                "https://amazon.music.poldi/visitingteam.png",
+                null); //visiting team logo url
         channels.add(2, builder.build());
 
         return channels;
@@ -50,7 +53,7 @@ public final class DemoLiveFeedData {
     public static LiveFeedItemModel generateLiveFeedItemData() {
         counter++;
 
-        final LiveFeedItemModel.Builder builder = LiveFeedItemModel.builder();
+        final LiveFeedItemModel.Builder builder = LiveFeedItemModel.builder("");
 
         final int minute = Calendar.getInstance().get(Calendar.MINUTE);
 
@@ -71,8 +74,8 @@ public final class DemoLiveFeedData {
         }
     }
 
-    public static LiveFeedUpdateModel generateLiveFeedHeaderModel(int channelIndex) {
-        LiveFeedUpdateModel.Builder builder = LiveFeedUpdateModel.builder(
+    public static LiveFeedModel generateLiveFeedModel(int channelIndex) {
+        LiveFeedModel.Builder builder = LiveFeedModel.builder(
                 "test-uuid");
         switch (channelIndex) {
             case 0:

@@ -5,9 +5,9 @@ package com.music.amazon.mypoldi.integration;
  */
 
 import com.music.amazon.mypoldi.model.LiveFeedItemModel;
-import com.music.amazon.mypoldi.model.LiveFeedUpdateModel;
+import com.music.amazon.mypoldi.model.LiveFeedModel;
 
 public interface DemoLiveFeedListener {
-    void onUpdateLiveFeedHeader(LiveFeedUpdateModel liveFeed);
+    void onUpdateLiveFeedHeader(LiveFeedModel liveFeed);
     void onUpdateLiveItem(LiveFeedItemModel leftItem);
 }

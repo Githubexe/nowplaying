@@ -52,9 +52,9 @@ public abstract class LiveFeedItemView extends LinearLayout {
         final Picasso picasso = Picasso.with(getContext());
         if (liveFeedItemModel.smallImage.isPresent()) {
                 picasso.load(liveFeedItemModel.smallImage.get())
-                        .placeholder(liveFeedItemModel instanceof LiveFeedItemModel.LeftLiveFeedItemModel ?
+                        .placeholder(liveFeedItemModel instanceof LiveFeedItemModel.HomeLiveFeedItemModel ?
                                 R.drawable.ic_goal_l : R.drawable.ic_goal_r)
-                        .error(liveFeedItemModel instanceof LiveFeedItemModel.LeftLiveFeedItemModel ?
+                        .error(liveFeedItemModel instanceof LiveFeedItemModel.HomeLiveFeedItemModel ?
                                 R.drawable.ic_goal_l : R.drawable.ic_goal_r)
                         .into(smallImageView);
                 smallImageView.setVisibility(View.VISIBLE);
@@ -64,9 +64,9 @@ public abstract class LiveFeedItemView extends LinearLayout {
         }
         if (liveFeedItemModel.largeImage.isPresent()) {
                 picasso.load(liveFeedItemModel.largeImage.get())
-                        .placeholder(liveFeedItemModel instanceof LiveFeedItemModel.LeftLiveFeedItemModel ?
+                        .placeholder(liveFeedItemModel instanceof LiveFeedItemModel.HomeLiveFeedItemModel ?
                                 R.drawable.ic_goal_l : R.drawable.ic_goal_r)
-                        .error(liveFeedItemModel instanceof LiveFeedItemModel.LeftLiveFeedItemModel ?
+                        .error(liveFeedItemModel instanceof LiveFeedItemModel.HomeLiveFeedItemModel ?
                                 R.drawable.ic_goal_l : R.drawable.ic_goal_r)
                         .into(largeImageView);
                 largeImageView.setVisibility(View.VISIBLE);

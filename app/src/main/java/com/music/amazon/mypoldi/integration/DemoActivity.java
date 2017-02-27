@@ -5,19 +5,19 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.music.amazon.mypoldi.R;
-import com.music.amazon.mypoldi.binder.LeftLiveFeedItemBinder;
-import com.music.amazon.mypoldi.binder.RightLiveFeedItemBinder;
+import com.music.amazon.mypoldi.binder.HomeLiveFeedItemBinder;
+import com.music.amazon.mypoldi.binder.AwayLiveFeedItemBinder;
 import com.music.amazon.mypoldi.dmtv.UniversalAdapter;
 import com.music.amazon.mypoldi.model.LiveFeedItemModel;
 import com.music.amazon.mypoldi.view.ChannelSwitchListener;
 import com.music.amazon.mypoldi.binder.ChannelSwitcherBinder;
 import com.music.amazon.mypoldi.binder.LiveFeedBackgroundBinder;
-import com.music.amazon.mypoldi.binder.LiveFeedUpdateBinder;
+import com.music.amazon.mypoldi.binder.LiveFeedBinder;
 import com.music.amazon.mypoldi.model.ChannelSwitcherModel;
-import com.music.amazon.mypoldi.model.LiveFeedUpdateModel;
+import com.music.amazon.mypoldi.model.LiveFeedModel;
 import com.music.amazon.mypoldi.view.ChannelSwitcherView;
 import com.music.amazon.mypoldi.view.LiveFeedBackgroundView;
-import com.music.amazon.mypoldi.view.LiveFeedUpdateView;
+import com.music.amazon.mypoldi.view.LiveFeedView;
 
 import java.util.List;
 
@@ -27,7 +27,7 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener, Chan
     private ChannelSwitcherModel channelSwitcherModel;
     private ChannelSwitcherView channelSwitcherView;
     private LiveFeedBackgroundView currentView;
-    private LiveFeedUpdateView liveFeedUpdateView;
+    private LiveFeedView liveFeedView;
 
     private final DemoLiveFeed currentLiveFeed = new DemoLiveFeed();
     private List<Object> backgroundModels;
@@ -53,10 +53,10 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener, Chan
 
     private void switchChannel(final int channelIndex) {
         currentView = (LiveFeedBackgroundView)channelSwitcherView.getCurrentView();
-        liveFeedUpdateView = currentView.getLiveFeedUpdateView();
-        liveFeedUpdateView.setAdapter(new UniversalAdapter(
-                new LeftLiveFeedItemBinder(),
-                new RightLiveFeedItemBinder()));
+        liveFeedView = currentView.getLiveFeedUpdateView();
+        liveFeedView.setAdapter(new UniversalAdapter(
+                new HomeLiveFeedItemBinder(),
+                new AwayLiveFeedItemBinder()));
         if (currentLiveFeed != null) {
             currentLiveFeed.stop();
         }
@@ -77,15 +77,15 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener, Chan
 
     @Override
     public void onUpdateLiveItem(LiveFeedItemModel model) {
-        liveFeedUpdateView.addItem(model);
+        liveFeedView.addItem(model);
     }
 
     @Override
-    public void onUpdateLiveFeedHeader(final LiveFeedUpdateModel liveFeedUpdateModel) {
+    public void onUpdateLiveFeedHeader(final LiveFeedModel liveFeedModel) {
         DemoActivity.this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                new LiveFeedUpdateBinder().bind(liveFeedUpdateView, liveFeedUpdateModel);
+                new LiveFeedBinder().bind(liveFeedView, liveFeedModel);
             }
         });
     }
