@@ -7,7 +7,6 @@ import com.music.amazon.mypoldi.dmtv.Optional;
  */
 public final class LiveFeedBackgroundModel {
 
-
     public final Optional<String> backgroundImage;
 
     public final Optional<String> homeName;
@@ -26,16 +25,14 @@ public final class LiveFeedBackgroundModel {
             final String homeName,
             final String homeLogo,
             final String awayName,
-            final String awayLogo,
-            final LiveFeedModel liveFeedModel) {
+            final String awayLogo) {
         return new Builder(
                 uuid,
                 backgroundImage,
                 homeName,
                 homeLogo,
                 awayName,
-                awayLogo,
-                liveFeedModel);
+                awayLogo);
     }
 
     public static final class Builder {
@@ -59,15 +56,13 @@ public final class LiveFeedBackgroundModel {
                         final String homeName,
                         final String homeLogo,
                         final String awayName,
-                        final String awayLogo,
-                        final LiveFeedModel liveFeedModel) {
+                        final String awayLogo) {
             this.uuid = uuid;
             this.backgroundImage = backgroundImage;
             this.homeName = homeName;
             this.homeLogo = homeLogo;
             this.awayName = awayName;
-            this.awayLogo = awayLogo;
-            this.liveFeedModel = liveFeedModel;
+            this.awayLogo = awayLogo;;
         }
 
         public LiveFeedBackgroundModel build() {

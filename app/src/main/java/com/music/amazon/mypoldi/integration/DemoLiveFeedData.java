@@ -23,8 +23,7 @@ public final class DemoLiveFeedData {
                 "FC BAYERN MÜNCHEN",
                 "https://amazon.music.poldi/hostteam.png", //host team logo url
                 "BORUSSIA DORTMUND",
-                "https://amazon.music.poldi/visitingteam.png",
-                null); //visiting team logo url
+                "https://amazon.music.poldi/visitingteam.png"); //visiting team logo url
         channels.add(0, builder.build());
 
         builder = LiveFeedBackgroundModel.builder(
@@ -33,8 +32,7 @@ public final class DemoLiveFeedData {
                 "GAME2-HOME",
                 "https://amazon.music.poldi/hostteam.png", //host team logo url
                 "GAME2-AWAY",
-                "https://amazon.music.poldi/visitingteam.png",
-                null); //visiting team logo url
+                "https://amazon.music.poldi/visitingteam.png"); //visiting team logo url
         channels.add(1, builder.build());
 
         builder = LiveFeedBackgroundModel.builder(
@@ -43,8 +41,7 @@ public final class DemoLiveFeedData {
                 "GAME3-HOME",
                 "https://amazon.music.poldi/hostteam.png", //host team logo url
                 "GAME3-AWAY",
-                "https://amazon.music.poldi/visitingteam.png",
-                null); //visiting team logo url
+                "https://amazon.music.poldi/visitingteam.png"); //visiting team logo url
         channels.add(2, builder.build());
 
         return channels;
