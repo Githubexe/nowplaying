@@ -1,11 +1,11 @@
 package com.music.amazon.mypoldi.view;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.music.amazon.mypoldi.R;
 import com.music.amazon.mypoldi.dmtv.UniversalAdapter;
 import com.music.amazon.mypoldi.model.LiveFeedItemModel;
@@ -32,15 +32,18 @@ public final class LiveFeedView extends RelativeLayout {
 
     public final TextView scoreSeparator;
 
-    public LiveFeedView(Context context) {
+    public LiveFeedView(final Context context) {
         this(context, null);
     }
 
-    public LiveFeedView(Context context, AttributeSet attributeSet) {
+    public LiveFeedView(final Context context,
+                        final AttributeSet attributeSet) {
         this(context, attributeSet, 0);
     }
 
-    public LiveFeedView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public LiveFeedView(final Context context,
+                        final AttributeSet attrs,
+                        final int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         inflate(getContext(), R.layout.live_feed_view, this);
         homeScoreTextView = (TextView)findViewById(R.id.home_score_text_view);
@@ -61,18 +64,24 @@ public final class LiveFeedView extends RelativeLayout {
         liveFeedItemRecyclerView.setAdapter(adapter);
     }
 
-    public void addItem(LiveFeedItemModel data) {
+    public void addItem(final LiveFeedItemModel data) {
         final List<LiveFeedItemModel> added = new ArrayList<>();
         added.add(data);
         addToAdapter(added);
     }
 
-    private void addToAdapter(List<?> data) {
+    private void addToAdapter(final List<?> data) {
         final RecyclerView.Adapter adapter = liveFeedItemRecyclerView.getAdapter();
         if (adapter instanceof UniversalAdapter) {
             ( (UniversalAdapter)adapter).addItems(data);
+            final Resources resources = getResources();
+            final float dimenInDp = resources.getDimension(R.dimen.live_feed_height)/
+                    resources.getDisplayMetrics().density;
+            if (liveFeedItemRecyclerView.getHeight() >= dimenInDp) {
+                liveFeedItemRecyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
+            }
+        } else {
+            throw new RuntimeException("Not using UniversalAdapter");
         }
-        liveFeedItemRecyclerView.smoothScrollToPosition(
-                adapter.getItemCount() - 1);
     }
 }

@@ -4,4 +4,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <integer name="now_playing_timeline_event_vertical_space">2</integer>
+
+    <dimen name="live_feed_height">380dp</dimen>
 </resources>
