@@ -42,7 +42,7 @@ public final class LiveFeedView extends RelativeLayout {
 
     public LiveFeedView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        inflate(getContext(), R.layout.live_feed_update_view, this);
+        inflate(getContext(), R.layout.live_feed_view, this);
         homeScoreTextView = (TextView)findViewById(R.id.host_score_text_view);
         awayScoreTextView = (TextView)findViewById(R.id.away_score_text_view);
         scoreSeparator = (TextView)findViewById(R.id.score_separator_text_view);
