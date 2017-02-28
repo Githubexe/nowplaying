@@ -3,7 +3,7 @@
     android:id="@+id/away_team_layout"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_alignTop="@id/host_team_layout"
+    android:layout_alignTop="@id/home_team_layout"
     android:orientation="vertical">
 
     <ImageView

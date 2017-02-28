@@ -7,8 +7,8 @@
     android:orientation="horizontal">
 
     <include
-        android:id="@+id/left_live_feed_item"
-        layout="@layout/left_live_feed_item_view"
+        android:id="@+id/live_feed_item_home"
+        layout="@layout/live_feed_item_home"
         android:layout_width="150dp"
         android:layout_height="40dp" />
 
@@ -40,8 +40,8 @@
     </RelativeLayout>
 
     <include
-        android:id="@+id/right_live_feed_item"
-        layout="@layout/right_live_feed_item_view"
+        android:id="@+id/live_feed_item_away"
+        layout="@layout/live_feed_item_away"
         android:layout_width="150dp"
         android:layout_height="40dp" />
 

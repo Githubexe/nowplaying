@@ -13,10 +13,10 @@
         android:scaleType="centerCrop"
         android:focusable="false"/>
 
-    <!-- Host Team -->
+    <!-- Home Team -->
     <include
-        android:id="@+id/host_team_layout"
-        layout="@layout/live_feed_background_host"
+        android:id="@+id/home_team_layout"
+        layout="@layout/live_feed_background_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
@@ -27,7 +27,7 @@
         android:id="@+id/live_feed_layout"
         android:layout_width="wrap_content"
         android:layout_height="380dp"
-        android:layout_toRightOf="@id/host_team_layout"
+        android:layout_toRightOf="@id/home_team_layout"
         android:layout_toLeftOf="@+id/away_team_layout"
         android:layout_marginTop="132dp">
 
@@ -47,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_alignTop="@id/host_team_layout"
+        android:layout_alignTop="@id/home_team_layout"
         android:layout_alignParentRight="true" />
 
 </RelativeLayout>

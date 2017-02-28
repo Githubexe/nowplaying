@@ -17,7 +17,6 @@ import com.music.amazon.mypoldi.model.ChannelSwitcherModel;
 import com.music.amazon.mypoldi.model.LiveFeedModel;
 import com.music.amazon.mypoldi.view.ChannelSwitcherView;
 import com.music.amazon.mypoldi.view.LiveFeedBackgroundView;
-import com.music.amazon.mypoldi.view.LiveFeedView;
 
 import java.util.List;
 
@@ -27,7 +26,6 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener, Chan
     private ChannelSwitcherModel channelSwitcherModel;
     private ChannelSwitcherView channelSwitcherView;
     private LiveFeedBackgroundView currentView;
-    private LiveFeedView liveFeedView;
 
     private final DemoLiveFeed currentLiveFeed = new DemoLiveFeed();
     private List<Object> backgroundModels;
@@ -53,8 +51,7 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener, Chan
 
     private void switchChannel(final int channelIndex) {
         currentView = (LiveFeedBackgroundView)channelSwitcherView.getCurrentView();
-        liveFeedView = currentView.getLiveFeedUpdateView();
-        liveFeedView.setAdapter(new UniversalAdapter(
+        currentView.liveFeedView.setAdapter(new UniversalAdapter(
                 new HomeLiveFeedItemBinder(),
                 new AwayLiveFeedItemBinder()));
         if (currentLiveFeed != null) {
@@ -77,7 +74,7 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener, Chan
 
     @Override
     public void onUpdateLiveItem(LiveFeedItemModel model) {
-        liveFeedView.addItem(model);
+        currentView.liveFeedView.addItem(model);
     }
 
     @Override
@@ -85,7 +82,7 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener, Chan
         DemoActivity.this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                new LiveFeedBinder().bind(liveFeedView, liveFeedModel);
+                new LiveFeedBinder().bind(currentView.liveFeedView, liveFeedModel);
             }
         });
     }

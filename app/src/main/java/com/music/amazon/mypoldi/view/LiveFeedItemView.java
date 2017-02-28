@@ -9,9 +9,9 @@ import android.widget.TextView;
 
 import com.music.amazon.mypoldi.R;
 import com.music.amazon.mypoldi.model.LiveFeedItemModel;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * Created by yoyosu on 2/13/17.
@@ -26,15 +26,18 @@ public abstract class LiveFeedItemView extends LinearLayout {
 
     public ImageView largeImageView;
 
-    public LiveFeedItemView(Context context) {
+    public LiveFeedItemView(final Context context) {
         this(context, null);
     }
 
-    public LiveFeedItemView(Context context, AttributeSet attributeSet) {
+    public LiveFeedItemView(final Context context,
+                            final AttributeSet attributeSet) {
         this(context, attributeSet, 0);
     }
 
-    public LiveFeedItemView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public LiveFeedItemView(final Context context,
+                            final AttributeSet attrs,
+                            final int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         inflate(getContext(), R.layout.live_feed_item_view, this);
     }
@@ -49,27 +52,43 @@ public abstract class LiveFeedItemView extends LinearLayout {
             commentTextView.bringToFront();
         }
 
+        loadSmallImage(liveFeedItemModel);
+
+        loadLargeImage(liveFeedItemModel);
+    }
+
+    private void loadSmallImage(final LiveFeedItemModel liveFeedItemModel) {
         final Picasso picasso = Picasso.with(getContext());
         if (liveFeedItemModel.smallImage.isPresent()) {
-                picasso.load(liveFeedItemModel.smallImage.get())
-                        .placeholder(liveFeedItemModel instanceof LiveFeedItemModel.HomeLiveFeedItemModel ?
-                                R.drawable.ic_goal_l : R.drawable.ic_goal_r)
-                        .error(liveFeedItemModel instanceof LiveFeedItemModel.HomeLiveFeedItemModel ?
-                                R.drawable.ic_goal_l : R.drawable.ic_goal_r)
-                        .into(smallImageView);
-                smallImageView.setVisibility(View.VISIBLE);
+            picasso.load(liveFeedItemModel.smallImage.get())
+                    .into(smallImageView, new Callback() {
+                @Override public void onSuccess() {
+                    smallImageView.setVisibility(View.VISIBLE);
+                }
+                @Override public void onError() {
+                    smallImageView.setImageDrawable(null);
+                    smallImageView.setVisibility(View.INVISIBLE);
+                }
+            });
         } else {
             smallImageView.setImageDrawable(null);
             smallImageView.setVisibility(View.INVISIBLE);
         }
+    }
+
+    private void loadLargeImage(final LiveFeedItemModel liveFeedItemModel) {
+        final Picasso picasso = Picasso.with(getContext());
         if (liveFeedItemModel.largeImage.isPresent()) {
-                picasso.load(liveFeedItemModel.largeImage.get())
-                        .placeholder(liveFeedItemModel instanceof LiveFeedItemModel.HomeLiveFeedItemModel ?
-                                R.drawable.ic_goal_l : R.drawable.ic_goal_r)
-                        .error(liveFeedItemModel instanceof LiveFeedItemModel.HomeLiveFeedItemModel ?
-                                R.drawable.ic_goal_l : R.drawable.ic_goal_r)
-                        .into(largeImageView);
-                largeImageView.setVisibility(View.VISIBLE);
+            picasso.load(liveFeedItemModel.largeImage.get())
+                    .into(largeImageView, new Callback() {
+                @Override public void onSuccess() {
+                    largeImageView.setVisibility(View.VISIBLE);
+                }
+                @Override public void onError() {
+                    largeImageView.setImageDrawable(null);
+                    largeImageView.setVisibility(View.INVISIBLE);
+                }
+            });
         } else {
             largeImageView.setImageDrawable(null);
             largeImageView.setVisibility(View.INVISIBLE);
