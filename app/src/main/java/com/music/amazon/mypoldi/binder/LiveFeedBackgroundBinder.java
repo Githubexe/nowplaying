@@ -1,11 +1,12 @@
 package com.music.amazon.mypoldi.binder;
 
 import android.content.Context;
+import android.view.View;
 
-import com.music.amazon.mypoldi.R;
 import com.music.amazon.mypoldi.dmtv.UniversalBinder;
 import com.music.amazon.mypoldi.model.LiveFeedBackgroundModel;
 import com.music.amazon.mypoldi.view.LiveFeedBackgroundView;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -27,6 +28,38 @@ public final class LiveFeedBackgroundBinder implements
     @Override
     public void bind(final LiveFeedBackgroundView view,
                      final LiveFeedBackgroundModel model){
-       view.bind(model);
+        final Picasso picasso = Picasso.with(view.getContext());
+        if (model.backgroundImage.isPresent()) {
+            picasso.load(model.backgroundImage.get())
+                    .into(view.backgroundImageView);
+        }
+
+        if (model.homeLogo.isPresent()) {
+            picasso.load(model.homeLogo.get())
+                    .into(view.homeImageView, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                            view.homeImageView.setVisibility(View.VISIBLE);
+                        }
+                        @Override
+                        public void onError() {
+                            view.homeImageView.setImageDrawable(null);
+                            view.homeImageView.setVisibility(View.INVISIBLE);
+                        }
+                    });
+        }
+
+        if (model.homeName.isPresent()) {
+            view.homeTextView.setText(model.homeName.get());
+        }
+
+        if (model.awayLogo.isPresent()) {
+            picasso.load(model.awayLogo.get())
+                    .into(view.awayImageView);
+        }
+
+        if (model.awayName.isPresent()) {
+            view.awayTextView.setText(model.awayName.get());
+        }
     }
 }

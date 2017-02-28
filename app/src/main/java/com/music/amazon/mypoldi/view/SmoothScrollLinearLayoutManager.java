@@ -18,8 +18,9 @@ public class SmoothScrollLinearLayoutManager extends LinearLayoutManager {
     }
 
     @Override
-    public void smoothScrollToPosition(RecyclerView recyclerView,
-                                       RecyclerView.State state, final int position) {
+    public void smoothScrollToPosition(final RecyclerView recyclerView,
+                                       final RecyclerView.State state,
+                                       final int position) {
         LinearSmoothScroller smoothScroller =
                 new LinearSmoothScroller(context) {
                     @Override

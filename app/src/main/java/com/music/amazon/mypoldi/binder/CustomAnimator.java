@@ -3,10 +3,10 @@ package com.music.amazon.mypoldi.binder;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.support.v4.view.ViewCompat;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 
-import com.music.amazon.mypoldi.dmtv.UniversalViewHolder;
 
 /**
  * Created by yoyosu on 2/27/17.
@@ -21,7 +21,7 @@ public final class CustomAnimator {
     }
 
     public static void animate(View view) {
-        final UniversalViewHolder holder = (UniversalViewHolder) view.getTag();
+        final RecyclerView.ViewHolder holder = (RecyclerView.ViewHolder) view.getTag();
         int adapterPosition = holder.getAdapterPosition();
         if(adapterPosition > lastPosition)      {
             for (Animator anim : getAnimators(holder.itemView)) {

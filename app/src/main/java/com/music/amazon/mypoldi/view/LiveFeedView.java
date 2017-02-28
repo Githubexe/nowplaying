@@ -9,7 +9,6 @@ import android.widget.TextView;
 import com.music.amazon.mypoldi.R;
 import com.music.amazon.mypoldi.dmtv.UniversalAdapter;
 import com.music.amazon.mypoldi.model.LiveFeedItemModel;
-import com.music.amazon.mypoldi.model.LiveFeedModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,21 +74,5 @@ public final class LiveFeedView extends RelativeLayout {
         }
         liveFeedItemRecyclerView.smoothScrollToPosition(
                 adapter.getItemCount() - 1);
-    }
-
-    public void bind(LiveFeedModel model) {
-        homeScoreTextView.setText(Integer.toString(model.getHomeScore()));
-        awayScoreTextView.setText(Integer.toString(model.getAwayScore()));
-        scoreSeparator.setText("-");
-
-        //Assume the time is in the format of "minutes : seconds"
-        final String[] time = model.getElapsedTime().get().split(":");
-        if (time.length >= 1) {
-            minutesTextView.setText(time[0].trim());
-        }
-        if (time.length == 2) {
-            timeStampSeparator.setText(":");
-            secondsTextView.setText(time[1].trim());
-        }
     }
 }
