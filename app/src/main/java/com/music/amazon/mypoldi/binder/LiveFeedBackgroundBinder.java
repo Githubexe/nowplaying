@@ -1,12 +1,9 @@
 package com.music.amazon.mypoldi.binder;
 
 import android.content.Context;
-import android.view.View;
-
 import com.music.amazon.mypoldi.dmtv.UniversalBinder;
 import com.music.amazon.mypoldi.model.LiveFeedBackgroundModel;
 import com.music.amazon.mypoldi.view.LiveFeedBackgroundView;
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 /**

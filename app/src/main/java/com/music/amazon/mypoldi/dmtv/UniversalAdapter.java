@@ -18,7 +18,7 @@ import java.util.Map;
  *
  * Created by baptiste on 5/5/16.
  */
-public class UniversalAdapter
+public final class UniversalAdapter
         extends RecyclerView.Adapter<UniversalViewHolder> {
 
     private final Handler handler = new Handler(Looper.getMainLooper());
@@ -95,13 +95,14 @@ public class UniversalAdapter
         if (model == holder.getModel()) {
             return;
         }
-        holder.itemView.setTag(holder);
+
         holder.setModel(model);
+        holder.itemView.setTag(holder);
         binder.bind(holder.itemView, model);
         holder.itemView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(final View view, final boolean hasFocus) {
-                for (OnFocusChangedListener listener : focusListeners) {
+                for (OnFocusChangedListener listener: focusListeners) {
                     listener.onFocusChanged(view, model, hasFocus);
                 }
             }
@@ -130,7 +131,4 @@ public class UniversalAdapter
             }
         });
     }
-
-
-
 }

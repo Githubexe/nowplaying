@@ -3,6 +3,7 @@ package com.music.amazon.mypoldi.binder;
 import android.content.Context;
 import android.view.View;
 
+import com.music.amazon.mypoldi.R;
 import com.music.amazon.mypoldi.dmtv.UniversalBinder;
 import com.music.amazon.mypoldi.model.LiveFeedItemModel.AwayLiveFeedItemModel;
 import com.music.amazon.mypoldi.view.AwayLiveFeedItemView;
@@ -30,11 +31,18 @@ public final class AwayLiveFeedItemBinder implements
         CustomAnimator.animate(view);
         if (model.time.isPresent()) {
             view.timeTextView.setText(model.time.get());
+            view.timeTextView.setVisibility(View.VISIBLE);
+        } else {
+            view.timeTextView.setText(null);
+            view.timeTextView.setVisibility(View.INVISIBLE);
         }
 
         if (model.comment.isPresent()) {
             view.commentTextView.setText(model.comment.get());
-            view.commentTextView.bringToFront();
+            view.commentTextView.setVisibility(View.VISIBLE);
+        } else {
+            view.commentTextView.setText(null);
+            view.commentTextView.setVisibility(View.INVISIBLE);
         }
 
         final Picasso picasso = Picasso.with(view.getContext());
@@ -49,6 +57,8 @@ public final class AwayLiveFeedItemBinder implements
 
         if (model.largeImage.isPresent()) {
             picasso.load(model.largeImage.get())
+                    .placeholder(R.drawable.ic_goal_r)
+                    .error(R.drawable.ic_goal_r)
                     .into(view.largeImageView);
             view.largeImageView.setVisibility(View.VISIBLE);
         } else {
