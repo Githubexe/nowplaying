@@ -36,17 +36,7 @@ public final class LiveFeedBackgroundBinder implements
 
         if (model.homeLogo.isPresent()) {
             picasso.load(model.homeLogo.get())
-                    .into(view.homeImageView, new Callback() {
-                        @Override
-                        public void onSuccess() {
-                            view.homeImageView.setVisibility(View.VISIBLE);
-                        }
-                        @Override
-                        public void onError() {
-                            view.homeImageView.setImageDrawable(null);
-                            view.homeImageView.setVisibility(View.INVISIBLE);
-                        }
-                    });
+                    .into(view.homeImageView);
         }
 
         if (model.homeName.isPresent()) {

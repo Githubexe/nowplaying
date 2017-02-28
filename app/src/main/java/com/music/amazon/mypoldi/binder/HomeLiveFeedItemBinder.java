@@ -37,6 +37,7 @@ public final class HomeLiveFeedItemBinder implements
         if (model.smallImage.isPresent()) {
             picasso.load(model.smallImage.get())
                     .into(view.smallImageView);
+            view.smallImageView.setVisibility(View.VISIBLE);
         } else {
             view.smallImageView.setImageDrawable(null);
             view.smallImageView.setVisibility(View.INVISIBLE);
@@ -45,6 +46,7 @@ public final class HomeLiveFeedItemBinder implements
         if (model.largeImage.isPresent()) {
             picasso.load(model.largeImage.get())
                     .into(view.largeImageView);
+            view.largeImageView.setVisibility(View.VISIBLE);
         } else {
             view.largeImageView.setImageDrawable(null);
             view.largeImageView.setVisibility(View.INVISIBLE);
