@@ -10,7 +10,7 @@
         android:gravity="center_horizontal">
 
         <TextView
-            android:id="@+id/host_score_text_view"
+            android:id="@+id/home_score_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -24,7 +24,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:gravity="center"
-            android:layout_toRightOf="@id/host_score_text_view"
+            android:layout_toRightOf="@id/home_score_text_view"
             android:textStyle="bold"
             android:textSize="99sp"/>
 
@@ -54,7 +54,7 @@
             android:textSize="29sp"/>
 
         <TextView
-            android:id="@+id/minute_second_separator_text_view"
+            android:id="@+id/min_sec_separator_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -68,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_toRightOf="@id/minute_second_separator_text_view"
+            android:layout_toRightOf="@id/min_sec_separator_text_view"
             android:textSize="29sp"/>
     </RelativeLayout>
 

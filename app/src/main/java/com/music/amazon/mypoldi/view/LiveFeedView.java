@@ -43,12 +43,12 @@ public final class LiveFeedView extends RelativeLayout {
     public LiveFeedView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         inflate(getContext(), R.layout.live_feed_view, this);
-        homeScoreTextView = (TextView)findViewById(R.id.host_score_text_view);
+        homeScoreTextView = (TextView)findViewById(R.id.home_score_text_view);
         awayScoreTextView = (TextView)findViewById(R.id.away_score_text_view);
         scoreSeparator = (TextView)findViewById(R.id.score_separator_text_view);
         minutesTextView = (TextView)findViewById(R.id.minute_text_view);
         secondsTextView = (TextView)findViewById(R.id.second_text_view);
-        timeStampSeparator = (TextView)findViewById(R.id.minute_second_separator_text_view);
+        timeStampSeparator = (TextView)findViewById(R.id.min_sec_separator_text_view);
 
         liveFeedItemRecyclerView = (RecyclerView)findViewById(R.id.live_feed_item_view);
         final SmoothScrollLinearLayoutManager smoothScrollLinearLayoutManager =
