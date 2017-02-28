@@ -17,15 +17,18 @@ public final class AwayLiveFeedItemView extends LinearLayout {
 
     public ImageView largeImageView;
 
-    public AwayLiveFeedItemView(Context context) {
+    public AwayLiveFeedItemView(final Context context) {
         this(context, null);
     }
 
-    public AwayLiveFeedItemView(Context context, AttributeSet attributeSet) {
+    public AwayLiveFeedItemView(final Context context,
+                                final AttributeSet attributeSet) {
         this(context, attributeSet, 0);
     }
 
-    public AwayLiveFeedItemView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public AwayLiveFeedItemView(final Context context,
+                                final AttributeSet attrs,
+                                final int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         inflate(getContext(), R.layout.live_feed_item_view, this);
 

@@ -17,15 +17,18 @@ public final class HomeLiveFeedItemView extends LinearLayout {
 
     public ImageView largeImageView;
 
-    public HomeLiveFeedItemView(Context context) {
+    public HomeLiveFeedItemView(final Context context) {
         this(context, null);
     }
 
-    public HomeLiveFeedItemView(Context context, AttributeSet attributeSet) {
+    public HomeLiveFeedItemView(final Context context,
+                                final AttributeSet attributeSet) {
         this(context, attributeSet, 0);
     }
 
-    public HomeLiveFeedItemView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public HomeLiveFeedItemView(final Context context,
+                                final AttributeSet attrs,
+                                final int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         inflate(getContext(), R.layout.live_feed_item_view, this);
 
