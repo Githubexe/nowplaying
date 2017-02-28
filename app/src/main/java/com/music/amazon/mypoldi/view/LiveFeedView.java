@@ -7,7 +7,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.music.amazon.mypoldi.R;
-import com.music.amazon.mypoldi.binder.SmoothScrollLinearLayoutManager;
 import com.music.amazon.mypoldi.dmtv.UniversalAdapter;
 import com.music.amazon.mypoldi.model.LiveFeedItemModel;
 import com.music.amazon.mypoldi.model.LiveFeedModel;

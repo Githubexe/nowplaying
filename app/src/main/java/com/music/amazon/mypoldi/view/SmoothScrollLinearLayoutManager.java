@@ -1,4 +1,4 @@
-package com.music.amazon.mypoldi.binder;
+package com.music.amazon.mypoldi.view;
 
 import android.content.Context;
 import android.graphics.PointF;
