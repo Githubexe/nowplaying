@@ -29,9 +29,9 @@ public final class HomeLiveFeedItemView extends LinearLayout {
         super(context, attrs, defStyleAttr);
         inflate(getContext(), R.layout.live_feed_item_view, this);
 
-        timeTextView = (TextView)findViewById(R.id.left_time_text_view);
-        commentTextView = (TextView)findViewById(R.id.left_comment_text_view);
-        smallImageView = (ImageView)findViewById(R.id.left_small_image_view);
-        largeImageView = (ImageView)findViewById(R.id.left_large_image_view);
+        timeTextView = (TextView)findViewById(R.id.home_time_text_view);
+        commentTextView = (TextView)findViewById(R.id.home_comment_text_view);
+        smallImageView = (ImageView)findViewById(R.id.home_small_image_view);
+        largeImageView = (ImageView)findViewById(R.id.home_large_image_view);
     }
 }

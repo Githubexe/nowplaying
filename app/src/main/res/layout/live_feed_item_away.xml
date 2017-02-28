@@ -5,15 +5,15 @@
     android:layout_height="40dp">
 
     <ImageView
-        android:id="@+id/right_small_image_view"
+        android:id="@+id/away_small_image_view"
         android:layout_alignParentTop="true"
         android:layout_height="wrap_content"
         android:layout_width="10dp"
         android:layout_gravity="left"/>
 
     <TextView
-        android:id="@+id/right_comment_text_view"
-        android:layout_toRightOf="@id/right_small_image_view"
+        android:id="@+id/away_comment_text_view"
+        android:layout_toRightOf="@id/away_small_image_view"
         android:layout_alignParentTop="true"
         android:layout_width="100dp"
         android:layout_height="40dp"
@@ -23,8 +23,8 @@
         android:gravity="center"/>
 
     <TextView
-        android:id="@+id/right_time_text_view"
-        android:layout_toRightOf="@id/right_comment_text_view"
+        android:id="@+id/away_time_text_view"
+        android:layout_toRightOf="@id/away_comment_text_view"
         android:layout_alignParentTop="true"
         android:layout_width="60dp"
         android:layout_height="45dp"

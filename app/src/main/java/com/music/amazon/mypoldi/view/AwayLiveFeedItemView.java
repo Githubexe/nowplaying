@@ -29,9 +29,9 @@ public final class AwayLiveFeedItemView extends LinearLayout {
         super(context, attrs, defStyleAttr);
         inflate(getContext(), R.layout.live_feed_item_view, this);
 
-        timeTextView = (TextView)findViewById(R.id.right_time_text_view);
-        commentTextView = (TextView)findViewById(R.id.right_comment_text_view);
-        smallImageView = (ImageView)findViewById(R.id.right_small_image_view);
-        largeImageView = (ImageView)findViewById(R.id.right_large_image_view);
+        timeTextView = (TextView)findViewById(R.id.away_time_text_view);
+        commentTextView = (TextView)findViewById(R.id.away_comment_text_view);
+        smallImageView = (ImageView)findViewById(R.id.away_small_image_view);
+        largeImageView = (ImageView)findViewById(R.id.away_large_image_view);
     }
 }

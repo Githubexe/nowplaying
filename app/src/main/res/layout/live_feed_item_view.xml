@@ -17,7 +17,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/left_large_image_view"
+            android:id="@+id/home_large_image_view"
             android:layout_width="14dp"
             android:layout_height="25dp"
             android:layout_marginLeft="30dp"
@@ -27,11 +27,11 @@
             android:id="@+id/timeline_bar_view"
             android:layout_width="5dp"
             android:layout_height="30dp"
-            android:layout_toRightOf="@id/left_large_image_view"
+            android:layout_toRightOf="@id/home_large_image_view"
             android:background="@android:color/white" />
 
         <ImageView
-            android:id="@+id/right_large_image_view"
+            android:id="@+id/away_large_image_view"
             android:layout_width="14dp"
             android:layout_height="25dp"
             android:layout_marginRight="50dp"
