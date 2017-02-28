@@ -25,6 +25,7 @@ public final class AwayLiveFeedItemBinder implements
     @Override
     public void bind(final AwayLiveFeedItemView view,
                      final AwayLiveFeedItemModel model) {
+        CustomAnimator.animate(view);
         view.bind(model);
     }
 }

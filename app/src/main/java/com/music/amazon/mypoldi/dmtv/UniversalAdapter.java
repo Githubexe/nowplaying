@@ -1,14 +1,10 @@
 package com.music.amazon.mypoldi.dmtv;
 
-import android.animation.Animator;
-import android.animation.ObjectAnimator;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.LinearInterpolator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,10 +31,6 @@ public class UniversalAdapter
 
     private final List<OnFocusChangedListener> focusListeners =
             new ArrayList<>();
-
-    private int lastPosition = -1;
-
-    private LinearInterpolator interpolator = new LinearInterpolator();
 
     public UniversalAdapter(final UniversalBinder... binders) {
         buildBinders(Arrays.asList(binders));
@@ -103,50 +95,18 @@ public class UniversalAdapter
         if (model == holder.getModel()) {
             return;
         }
-
+        holder.itemView.setTag(holder);
         holder.setModel(model);
         binder.bind(holder.itemView, model);
         holder.itemView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(final View view, final boolean hasFocus) {
-                for (OnFocusChangedListener listener: focusListeners) {
+                for (OnFocusChangedListener listener : focusListeners) {
                     listener.onFocusChanged(view, model, hasFocus);
                 }
             }
         });
-
-        int adapterPosition = holder.getAdapterPosition();
-        if (adapterPosition > lastPosition) {
-            for (Animator anim : getAnimators(holder.itemView)) {
-                anim.setDuration(200).start();
-                anim.setInterpolator(interpolator);
-            }
-            lastPosition = adapterPosition;
-        } else {
-            clear(holder.itemView);
-        }
     }
-
-    private Animator[] getAnimators(View view) {
-        return new Animator[]{
-                ObjectAnimator.ofFloat(view, "translationY", 100, 0)
-        };
-    }
-
-    private void clear(View v) {
-        ViewCompat.setAlpha(v, 1);
-        ViewCompat.setScaleY(v, 1);
-        ViewCompat.setScaleX(v, 1);
-        ViewCompat.setTranslationY(v, 0);
-        ViewCompat.setTranslationX(v, 0);
-        ViewCompat.setRotation(v, 0);
-        ViewCompat.setRotationY(v, 0);
-        ViewCompat.setRotationX(v, 0);
-        ViewCompat.setPivotY(v, v.getMeasuredHeight() / 2);
-        ViewCompat.setPivotX(v, v.getMeasuredWidth() / 2);
-        ViewCompat.animate(v).setInterpolator(null).setStartDelay(0);
-    }
-
 
     @Override
     public int getItemCount() {
@@ -171,10 +131,6 @@ public class UniversalAdapter
         });
     }
 
-    @Override
-    public void onViewDetachedFromWindow(final UniversalViewHolder holder)
-    {
-        holder.itemView.clearAnimation();
-    }
+
 
 }

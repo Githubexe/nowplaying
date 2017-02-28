@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.music.amazon.mypoldi.R;
+import com.music.amazon.mypoldi.binder.CustomAnimator;
 import com.music.amazon.mypoldi.binder.HomeLiveFeedItemBinder;
 import com.music.amazon.mypoldi.binder.AwayLiveFeedItemBinder;
 import com.music.amazon.mypoldi.dmtv.UniversalAdapter;
@@ -51,6 +52,7 @@ public class DemoActivity extends Activity implements DemoLiveFeedListener, Chan
 
     private void switchChannel(final int channelIndex) {
         currentView = (LiveFeedBackgroundView)channelSwitcherView.getCurrentView();
+        CustomAnimator.resetPosition();
         currentView.liveFeedView.setAdapter(new UniversalAdapter(
                 new HomeLiveFeedItemBinder(),
                 new AwayLiveFeedItemBinder()));

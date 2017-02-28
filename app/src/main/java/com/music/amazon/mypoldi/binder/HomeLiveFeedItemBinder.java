@@ -21,6 +21,7 @@ public final class HomeLiveFeedItemBinder implements
 
     @Override
     public void bind(final HomeLiveFeedItemView view, final HomeLiveFeedItemModel model) {
+        CustomAnimator.animate(view);
         view.bind(model);
     }
 }
