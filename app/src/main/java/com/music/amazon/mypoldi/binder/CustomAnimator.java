@@ -20,27 +20,27 @@ public final class CustomAnimator {
         lastPosition = - 1;
     }
 
-    public static void animate(View view) {
+    public static void animate(final View view) {
         final RecyclerView.ViewHolder holder = (RecyclerView.ViewHolder) view.getTag();
-        int adapterPosition = holder.getAdapterPosition();
-        if(adapterPosition > lastPosition)      {
+        final int position = holder.getPosition();
+        if(position > lastPosition)      {
             for (Animator anim : getAnimators(holder.itemView)) {
                 anim.setDuration(200).start();
                 anim.setInterpolator(interpolator);
             }
-            lastPosition = adapterPosition;
+            lastPosition = position;
         } else {
             clear(holder.itemView);
         }
     }
 
-    private static Animator[] getAnimators(View view) {
+    private static Animator[] getAnimators(final View view) {
         return new Animator[]{
                 ObjectAnimator.ofFloat(view, "translationY", 100, 0)
         };
     }
 
-    private static void clear(View v) {
+    private static void clear(final View v) {
         ViewCompat.setAlpha(v, 1);
         ViewCompat.setScaleY(v, 1);
         ViewCompat.setScaleX(v, 1);

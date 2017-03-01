@@ -53,7 +53,7 @@ public final class DemoLiveFeed {
                         }
                     },
                     0, //initial delay
-                    1, //interval
+                    2, //interval
                     TimeUnit.SECONDS);
         }
     }
