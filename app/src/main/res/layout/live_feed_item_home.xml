@@ -4,29 +4,35 @@
     android:layout_width="wrap_content"
     android:layout_height="40dp"
     android:orientation="horizontal"
-    android:layout_marginLeft="12dp"
+    android:layout_marginLeft="56dp"
     android:layout_gravity="right">
 
     <!--time | player or event title | small icon | large icon | timeline bar-->
-    <TextView
-        android:id="@+id/home_time_text_view"
-        android:layout_alignParentTop="true"
-        android:layout_width="48dp"
-        android:layout_height="45dp"
-        android:layout_gravity="center|right"
-        android:gravity="right"
-        android:textStyle="bold"
-        android:textColor="#ff9e9e9e"
-        android:textSize="32sp"/>
+    <RelativeLayout
+        android:layout_width="130dp"
+        android:layout_height="30dp">
 
-    <TextView
-        android:id="@+id/home_comment_text_view"
-        android:layout_alignParentTop="true"
-        android:layout_width="126dp"
-        android:layout_height="40dp"
-        android:layout_gravity="right"
-        android:gravity="left|center_vertical"
-        android:textSize="12sp"/>
+        <TextView
+            android:id="@+id/home_comment_text_view"
+            android:layout_alignParentTop="true"
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:layout_gravity="right"
+            android:gravity="right"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/home_time_text_view"
+            android:layout_below="@id/home_comment_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_gravity="right"
+            android:gravity="right"
+            android:textColor="#ff9e9e9e"
+            android:alpha="0.72"
+            android:textSize="9sp"/>
+    </RelativeLayout>
+
 
     <ImageView
         android:id="@+id/home_small_image_view"
