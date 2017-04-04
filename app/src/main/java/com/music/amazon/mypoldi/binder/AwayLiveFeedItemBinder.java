@@ -5,7 +5,7 @@ import android.view.View;
 
 import com.music.amazon.mypoldi.R;
 import com.music.amazon.mypoldi.dmtv.UniversalBinder;
-import com.music.amazon.mypoldi.model.LiveFeedItemModel.AwayLiveFeedItemModel;
+import com.music.amazon.mypoldi.model.LiveFeedItemModel;
 import com.music.amazon.mypoldi.view.AwayLiveFeedItemView;
 import com.squareup.picasso.Picasso;
 
@@ -13,11 +13,11 @@ import com.squareup.picasso.Picasso;
  * Created by yoyosu on 2/16/17.
  */
 public final class AwayLiveFeedItemBinder implements
-        UniversalBinder<AwayLiveFeedItemView, AwayLiveFeedItemModel> {
+        UniversalBinder<AwayLiveFeedItemView, LiveFeedItemModel.AwayLiveFeedItemModel> {
 
     @Override
-    public Class<AwayLiveFeedItemModel> getModelClass() {
-        return AwayLiveFeedItemModel.class;
+    public Class<LiveFeedItemModel.AwayLiveFeedItemModel> getModelClass() {
+        return LiveFeedItemModel.AwayLiveFeedItemModel.class;
     }
 
     @Override
@@ -27,43 +27,58 @@ public final class AwayLiveFeedItemBinder implements
 
     @Override
     public void bind(final AwayLiveFeedItemView view,
-                     final AwayLiveFeedItemModel model) {
+                     final LiveFeedItemModel.AwayLiveFeedItemModel model) {
         CustomAnimator.animate(view);
-        if (model.time.isPresent()) {
-            view.timeTextView.setText(model.time.get());
-            view.timeTextView.setVisibility(View.VISIBLE);
+        if (model.subText.isPresent()) {
+            view.subTextView.setText(model.subText.get());
+            view.subTextView.setVisibility(View.VISIBLE);
         } else {
-            view.timeTextView.setText(null);
-            view.timeTextView.setVisibility(View.INVISIBLE);
+            view.subTextView.setText(null);
+            view.subTextView.setVisibility(View.INVISIBLE);
         }
 
-        if (model.comment.isPresent()) {
-            view.commentTextView.setText(model.comment.get());
-            view.commentTextView.setVisibility(View.VISIBLE);
+        if (model.mainText.isPresent()) {
+            view.mainTextView.setText(model.mainText.get());
+            view.mainTextView.setVisibility(View.VISIBLE);
         } else {
-            view.commentTextView.setText(null);
-            view.commentTextView.setVisibility(View.INVISIBLE);
+            view.mainTextView.setText(null);
+            view.mainTextView.setVisibility(View.INVISIBLE);
+        }
+
+        if (model.imageType1.isPresent()) {
+            final LiveFeedItemModel.ICON_TYPE type = model.imageType1.get();
+            if (LiveFeedItemModel.ICON_TYPE.GOAL.equals(type)) {
+                view.imageView1.setImageResource(R.drawable.ic_fusball_right_largest);
+                view.imageView1.setVisibility(View.VISIBLE);
+            } else if (LiveFeedItemModel.ICON_TYPE.RED_CARD.equals(type)) {
+                view.imageView1.setImageResource(R.drawable.ic_fusball_red_right_largest);
+                view.imageView1.setVisibility(View.VISIBLE);
+            } else if (LiveFeedItemModel.ICON_TYPE.YELLOW_CARD.equals(type)) {
+                view.imageView1.setImageResource(R.drawable.ic_fusball_yellow_right_largest);
+                view.imageView1.setVisibility(View.VISIBLE);
+            } else if (LiveFeedItemModel.ICON_TYPE.YELLOW_RED_CARD.equals(type)) {
+                view.imageView1.setImageResource(R.drawable.ic_fusball_yellowred_right_largest);
+                view.imageView1.setVisibility(View.VISIBLE);
+            } else if (LiveFeedItemModel.ICON_TYPE.YELLOW_RED_CARD.equals(type)) {
+                view.imageView1.setImageResource(R.drawable.ic_fusball_yellowred_right_largest);
+                view.imageView1.setVisibility(View.VISIBLE);
+            } else if (LiveFeedItemModel.ICON_TYPE.SUBSTITUTION.equals(type)) {
+                view.imageView1.setImageResource(R.drawable.ic_fusball_substitution_largest);
+                view.imageView1.setVisibility(View.VISIBLE);
+            }
+        } else {
+            view.imageView1.setImageDrawable(null);
+            view.imageView1.setVisibility(View.INVISIBLE);
         }
 
         final Picasso picasso = Picasso.with(view.getContext());
-        if (model.smallImage.isPresent()) {
-            picasso.load(model.smallImage.get())
-                    .into(view.smallImageView);
-            view.smallImageView.setVisibility(View.VISIBLE);
+        if (model.image2.isPresent()) {
+            picasso.load(model.image2.get())
+                    .into(view.imageView2);
+            view.imageView2.setVisibility(View.VISIBLE);
         } else {
-            view.smallImageView.setImageDrawable(null);
-            view.smallImageView.setVisibility(View.INVISIBLE);
-        }
-
-        if (model.largeImage.isPresent()) {
-            picasso.load(model.largeImage.get())
-                    .placeholder(R.drawable.ic_goal_r)
-                    .error(R.drawable.ic_goal_r)
-                    .into(view.largeImageView);
-            view.largeImageView.setVisibility(View.VISIBLE);
-        } else {
-            view.largeImageView.setImageDrawable(null);
-            view.largeImageView.setVisibility(View.INVISIBLE);
+            view.imageView2.setImageDrawable(null);
+            view.imageView2.setVisibility(View.INVISIBLE);
         }
     }
 }

@@ -5,7 +5,7 @@ import com.music.amazon.mypoldi.dmtv.Optional;
 /**
  * Created by yoyosu on 1/16/17.
  */
-public final class LiveFeedBackgroundModel {
+public final class LiveFeedBackgroundModel{
 
     public final Optional<String> backgroundImage;
 
@@ -17,15 +17,15 @@ public final class LiveFeedBackgroundModel {
 
     public final Optional<String> awayLogo;
 
-    public Optional<LiveFeedModel> liveFeedModel;
+    public Optional<com.music.amazon.mypoldi.model.LiveFeedModel> liveFeedModel;
 
     public static final Builder builder(
-            final String uuid,
-            final String backgroundImage,
-            final String homeName,
-            final String homeLogo,
-            final String awayName,
-            final String awayLogo) {
+                  final String uuid,
+                  final String backgroundImage,
+                  final String homeName,
+                  final String homeLogo,
+                  final String awayName,
+                  final String awayLogo) {
         return new Builder(
                 uuid,
                 backgroundImage,
@@ -49,7 +49,7 @@ public final class LiveFeedBackgroundModel {
 
         private final String awayLogo;
 
-        private LiveFeedModel liveFeedModel;
+        private com.music.amazon.mypoldi.model.LiveFeedModel liveFeedModel;
 
         private Builder(final String uuid,
                         final String backgroundImage,
@@ -66,7 +66,7 @@ public final class LiveFeedBackgroundModel {
         }
 
         public LiveFeedBackgroundModel build() {
-            return new LiveFeedBackgroundModel(uuid,
+            return new LiveFeedBackgroundModel(
                     backgroundImage,
                     homeName,
                     homeLogo,
@@ -75,20 +75,18 @@ public final class LiveFeedBackgroundModel {
                     liveFeedModel);
         }
 
-        public Builder withLiveFeed(final LiveFeedModel liveFeedModel) {
+        public Builder withLiveFeed(final com.music.amazon.mypoldi.model.LiveFeedModel liveFeedModel) {
             this.liveFeedModel = liveFeedModel;
             return this;
         }
     }
 
-    private LiveFeedBackgroundModel(final String uuid,
-                                    final String backgroundImage,
+    private LiveFeedBackgroundModel(final String backgroundImage,
                                     final String homeName,
                                     final String homeLogo,
                                     final String awayName,
                                     final String awayLogo,
-                                    final LiveFeedModel liveFeedModel) {
-        //super(uuid);
+                                    final com.music.amazon.mypoldi.model.LiveFeedModel liveFeedModel) {
         this.backgroundImage = Optional.ofNullable(backgroundImage);
         this.homeName = Optional.ofNullable(homeName);
         this.homeLogo = Optional.ofNullable(homeLogo);

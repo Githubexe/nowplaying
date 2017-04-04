@@ -9,13 +9,13 @@ import android.widget.TextView;
 import com.music.amazon.mypoldi.R;
 
 public final class AwayLiveFeedItemView extends LinearLayout {
-    public final TextView timeTextView;
+    public final TextView mainTextView;
 
-    public final TextView commentTextView;
+    public final TextView subTextView;
 
-    public final ImageView smallImageView;
+    public final ImageView imageView1;
 
-    public final ImageView largeImageView;
+    public final ImageView imageView2;
 
     public AwayLiveFeedItemView(final Context context) {
         this(context, null);
@@ -32,9 +32,9 @@ public final class AwayLiveFeedItemView extends LinearLayout {
         super(context, attrs, defStyleAttr);
         inflate(getContext(), R.layout.live_feed_item_away, this);
 
-        timeTextView = (TextView)findViewById(R.id.away_time_text_view);
-        commentTextView = (TextView)findViewById(R.id.away_comment_text_view);
-        smallImageView = (ImageView)findViewById(R.id.away_small_image_view);
-        largeImageView = (ImageView)findViewById(R.id.away_large_image_view);
+        mainTextView = (TextView)findViewById(R.id.away_main_text_view);
+        subTextView = (TextView)findViewById(R.id.away_sub_text_view);
+        imageView1 = (ImageView)findViewById(R.id.away_image_view1);
+        imageView2 = (ImageView)findViewById(R.id.away_image_view2);
     }
 }

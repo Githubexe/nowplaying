@@ -55,17 +55,17 @@ public final class DemoLiveFeedData {
         final int minute = Calendar.getInstance().get(Calendar.MINUTE);
 
         if (counter % 7 == 0 || counter % 11 == 0 || counter % 13 == 0) {
-            builder.withComment("Home - " + counter);
+            builder.withMainText("Home - " + counter);
             if (counter % 7 == 0) {
-                builder.withTime(minute + "\'")
-                        .withLargeImage("https://amazon.music.poldi/yellow_card_marker.png");
+                builder.withSubText(minute + "\'")
+                .withImage1("https://amazon.music.poldi/yellow_card_marker.png");
             }
             return builder.buildHome();
         } else {
-            builder.withComment("Away - " + counter);
+            builder.withMainText("Away - " + counter);
             if (counter % 5 == 0) {
-                builder.withTime(minute + "\'")
-                        .withLargeImage("https://amazon.music.poldi/yellow_card_marker.png");
+                builder.withSubText(minute + "\'")
+                        .withImage1("https://amazon.music.poldi/yellow_card_marker.png");
             }
             return builder.buildAway();
         }
@@ -76,13 +76,13 @@ public final class DemoLiveFeedData {
                 "test-uuid");
         switch (channelIndex) {
             case 0:
-                builder = builder.withTime("34 : 23").withScore(0, 2);
+                builder = builder.withGameClock("34").withScore("0", "2");
                 break;
             case 1 :
-                builder = builder.withTime("53 : 29").withScore(3, 2);
+                builder = builder.withGameClock("53 : 29").withScore("3", "2");
                 break;
             case 2:
-                builder = builder.withTime("49 : 26").withScore(1, 1);
+                builder = builder.withGameClock("49 : 26").withScore("1", "1");
                 break;
         }
         return builder.build();

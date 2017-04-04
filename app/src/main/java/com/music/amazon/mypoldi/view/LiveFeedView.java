@@ -10,9 +10,6 @@ import com.music.amazon.mypoldi.R;
 import com.music.amazon.mypoldi.dmtv.UniversalAdapter;
 import com.music.amazon.mypoldi.model.LiveFeedItemModel;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by yoyosu on 1/24/17.
  */
@@ -25,10 +22,6 @@ public final class LiveFeedView extends RelativeLayout {
     public final TextView awayScoreTextView;
 
     public final TextView minutesTextView;
-
-    public final TextView secondsTextView;
-
-    public final TextView timeStampSeparator;
 
     public final TextView scoreSeparator;
 
@@ -50,8 +43,6 @@ public final class LiveFeedView extends RelativeLayout {
         awayScoreTextView = (TextView)findViewById(R.id.away_score_text_view);
         scoreSeparator = (TextView)findViewById(R.id.score_separator_text_view);
         minutesTextView = (TextView)findViewById(R.id.minute_text_view);
-        secondsTextView = (TextView)findViewById(R.id.second_text_view);
-        timeStampSeparator = (TextView)findViewById(R.id.min_sec_separator_text_view);
 
         liveFeedItemRecyclerView = (RecyclerView)findViewById(R.id.live_feed_item_view);
         final SmoothScrollLinearLayoutManager smoothScrollLinearLayoutManager =
@@ -65,15 +56,9 @@ public final class LiveFeedView extends RelativeLayout {
     }
 
     public void addItem(final LiveFeedItemModel data) {
-        final List<LiveFeedItemModel> added = new ArrayList<>();
-        added.add(data);
-        addToAdapter(added);
-    }
-
-    private void addToAdapter(final List<?> data) {
         final RecyclerView.Adapter adapter = liveFeedItemRecyclerView.getAdapter();
         if (adapter instanceof UniversalAdapter) {
-            ( (UniversalAdapter)adapter).addItems(data);
+            ((UniversalAdapter)adapter).addItem(data);
             final Resources resources = getResources();
             final float dimenInDp = resources.getDimension(R.dimen.live_feed_height)/
                     resources.getDisplayMetrics().density;
@@ -84,4 +69,5 @@ public final class LiveFeedView extends RelativeLayout {
             throw new RuntimeException("Not using UniversalAdapter");
         }
     }
+
 }

@@ -9,13 +9,14 @@ import android.widget.TextView;
 import com.music.amazon.mypoldi.R;
 
 public final class HomeLiveFeedItemView extends LinearLayout {
-    public final TextView timeTextView;
+    public final TextView mainTextView;
 
-    public final TextView commentTextView;
+    public final TextView subTextView;
 
-    public final ImageView smallImageView;
+    public final ImageView imageView1;
 
-    public final ImageView largeImageView;
+    public final ImageView imageView2;
+
 
     public HomeLiveFeedItemView(final Context context) {
         this(context, null);
@@ -31,10 +32,11 @@ public final class HomeLiveFeedItemView extends LinearLayout {
                                 final int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         inflate(getContext(), R.layout.live_feed_item_home, this);
+        mainTextView = (TextView)findViewById(R.id.home_main_text_view);
+        subTextView = (TextView)findViewById(R.id.home_sub_text_view);
+        imageView1 = (ImageView)findViewById(R.id.home_image_view1);
+        imageView2 = (ImageView)findViewById(R.id.home_image_view2);
 
-        timeTextView = (TextView)findViewById(R.id.home_time_text_view);
-        commentTextView = (TextView)findViewById(R.id.home_comment_text_view);
-        smallImageView = (ImageView)findViewById(R.id.home_small_image_view);
-        largeImageView = (ImageView)findViewById(R.id.home_large_image_view);
     }
 }
+

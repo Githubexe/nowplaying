@@ -1,5 +1,4 @@
 package com.music.amazon.mypoldi.model;
-
 import com.music.amazon.mypoldi.dmtv.Optional;
 
 import java.util.ArrayList;
@@ -9,11 +8,15 @@ import java.util.List;
  * Created by yoyosu on 1/25/17.
  */
 public final class LiveFeedModel {
-    private int homeScore;
+    private String homeScore;
 
-    private int awayScore;
+    private String awayScore;
 
-    private Optional<String> elapsedTime;
+    private Optional<String> gameClock;
+
+    private Optional<String> matchDate;
+
+    private Optional<String> matchTime;
 
     private List<LiveFeedItemModel> items = new ArrayList<>();
 
@@ -21,28 +24,48 @@ public final class LiveFeedModel {
         return new Builder(uuid);
     }
 
-    public int getHomeScore() {
+    public String getHomeScore() {
         return homeScore;
     }
 
-    public void setHomeScore(final int homeScore) {
+    public void setHomeScore(final String homeScore) {
         this.homeScore = homeScore;
     }
 
-    public int getAwayScore() {
+    public String getAwayScore() {
         return awayScore;
     }
 
-    public void setAwayScore(final int awayScore) {
+    public List<LiveFeedItemModel> getLiveFeedItems() {
+        return items;
+    }
+
+    public void setAwayScore(final String awayScore) {
         this.awayScore = awayScore;
     }
 
-    public Optional<String> getElapsedTime() {
-        return elapsedTime;
+    public Optional<String> getGameClock() {
+        return gameClock;
     }
 
-    public void setElapsedTime(final String elapsedTime) {
-        this.elapsedTime = Optional.ofNullable(elapsedTime);
+    public Optional<String> getMatchDate() {
+        return matchDate;
+    }
+
+    public Optional<String> getMatchTime() {
+        return matchTime;
+    }
+
+    public void setGameClock(final String gameClock) {
+        this.gameClock = Optional.ofNullable(gameClock);
+    }
+
+    public void setMatchDate(final String matchDate) {
+        this.matchDate = Optional.ofNullable(matchDate);
+    }
+
+    public void setMatchTime(final String matchTime) {
+        this.matchTime = Optional.ofNullable(matchTime);
     }
 
     public void addItem(final LiveFeedItemModel model) {
@@ -57,43 +80,63 @@ public final class LiveFeedModel {
 
         private final String uuid;
 
-        private int homeScore;
+        private String homeScore;
 
-        private int awayScore;
+        private String awayScore;
 
-        private String elapsedTime;
+        private String gameClock;
+
+        private String matchDate;
+
+        private String matchTime;
 
         private Builder(final String uuid) {
             this.uuid = uuid;
         }
 
-        public Builder withScore(final int homeScore,
-                                 final int awayScore) {
+        public Builder withScore(
+                final String homeScore,
+                final String awayScore) {
             this.homeScore = homeScore;
             this.awayScore = awayScore;
             return this;
         }
 
-        public Builder withTime(final String elapsedTime) {
-            this.elapsedTime = elapsedTime;
+        public Builder withGameClock(final String gameClock) {
+            this.gameClock = gameClock;
+            return this;
+        }
+
+        public Builder withMatchDate(final String matchDate) {
+            this.matchDate = matchDate;
+            return this;
+        }
+
+        public Builder withMatchTime(final String matchTime) {
+            this.matchTime = matchTime;
             return this;
         }
 
         public LiveFeedModel build() {
-            return new LiveFeedModel(uuid,
+            return new LiveFeedModel(
                     homeScore,
                     awayScore,
-                    elapsedTime);
+                    gameClock,
+                    matchDate,
+                    matchTime);
         }
     }
 
-    private LiveFeedModel(final String uuid,
-                          final int homeScore,
-                          final int awayScore,
-                          final String elapsedTime) {
-        //super(uuid);
+    private LiveFeedModel(
+                          final String homeScore,
+                          final String awayScore,
+                          final String gameClock,
+                          final String matchDate,
+                          final String matchTime) {
         this.setHomeScore(homeScore);
         this.setAwayScore(awayScore);
-        this.setElapsedTime(elapsedTime);
+        this.setGameClock(gameClock);
+        this.setMatchDate(matchDate);
+        this.setMatchTime(matchTime);
     }
 }

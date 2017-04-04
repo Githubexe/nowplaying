@@ -30,20 +30,16 @@ public final class DemoLiveFeed {
 
             future = scheduler.scheduleAtFixedRate(
                     new Runnable() {
-                        final String[] times = liveFeedModel.getElapsedTime().get().split(":");
-                        int min = Integer.parseInt(times[0].trim());
-                        int sec = Integer.parseInt(times[1].trim());
+                        final String clock = liveFeedModel.getGameClock().get();
+                        int min = Integer.parseInt(clock);
+                        int sec = 0;
                         @Override
                         public void run() {
                             if (on.get() == true) {
                                 if (sec++ >= 59) {
-                                    sec = 0;
                                     min++;
                                 }
-                                liveFeedModel.setElapsedTime(((min < 10) ?  String.valueOf("0" + min)
-                                        : String.valueOf(min)) + " : "
-                                + ((sec < 10) ?  String.valueOf("0" + sec)
-                                        : String.valueOf(sec)));
+                                liveFeedModel.setGameClock(Integer.toString(min));
                                 final LiveFeedItemModel data = DemoLiveFeedData.generateLiveFeedItemData();
                                 for (DemoLiveFeedListener liveFeedListener: liveFeedListeners) {
                                     liveFeedListener.onUpdateLiveFeedHeader(liveFeedModel);

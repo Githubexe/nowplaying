@@ -52,24 +52,6 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textSize="29sp"/>
-
-        <TextView
-            android:id="@+id/min_sec_separator_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:gravity="center"
-            android:layout_toRightOf="@id/minute_text_view"
-            android:textSize="29sp"/>
-
-        <TextView
-            android:id="@+id/second_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_toRightOf="@id/min_sec_separator_text_view"
-            android:textSize="29sp"/>
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView

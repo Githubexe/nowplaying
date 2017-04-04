@@ -3,25 +3,32 @@ package com.music.amazon.mypoldi.model;
 import com.music.amazon.mypoldi.dmtv.Optional;
 
 /**
- * Created by yoyosu on 2/23/17.
- *
  * A pojo for live feed update
  */
-public abstract class LiveFeedItemModel {
+public abstract class LiveFeedItemModel{
+    public enum ICON_TYPE {
+        RED_CARD,
+        YELLOW_CARD,
+        YELLOW_RED_CARD,
+        GOAL,
+        SUBSTITUTION
+    }
 
-    public final Optional<String> time;
+    public final Optional<String> mainText;
 
-    public final Optional<String> comment;
+    public final Optional<String> subText;
+
+    public final Optional<ICON_TYPE> imageType1;
 
     /**
      * The icon next to the player name
      */
-    public final Optional<String> smallImage;
+    public final Optional<String> image1;
 
     /**
      * The icon on the timeline bar
      */
-    public final Optional<String> largeImage;
+    public final Optional<String> image2;
 
     /**
      * Used for home team live feed updates
@@ -29,11 +36,12 @@ public abstract class LiveFeedItemModel {
     public static final class HomeLiveFeedItemModel extends LiveFeedItemModel {
         private HomeLiveFeedItemModel(
                 final String uuid,
-                final String time,
-                final String comment,
-                final String smallImage,
-                final String largeImage) {
-            super(uuid, time, comment, smallImage, largeImage);
+                final String mainText,
+                final String subText,
+                final String image1,
+                final String image2,
+                final ICON_TYPE imageType1) {
+            super(uuid, mainText, subText, image1, image2, imageType1);
         }
     }
 
@@ -43,11 +51,12 @@ public abstract class LiveFeedItemModel {
     public static final class AwayLiveFeedItemModel extends LiveFeedItemModel {
         private AwayLiveFeedItemModel(
                 final String uuid,
-                final String time,
-                final String comment,
-                final String smallImage,
-                final String largeImage) {
-            super(uuid, time, comment, smallImage, largeImage);
+                final String mainText,
+                final String subText,
+                final String image1,
+                final String image2,
+                final ICON_TYPE imageType1) {
+            super(uuid, mainText, subText, image1, image2, imageType1);
         }
     }
 
@@ -59,69 +68,79 @@ public abstract class LiveFeedItemModel {
 
         private String uuid;
 
-        private String time;
+        private String mainText;
 
-        private String comment;
+        private String subText;
 
-        private String smallImage;
+        private String image1;
 
-        private String largeImage;
+        private String image2;
+
+        private ICON_TYPE imageType1;
 
         private Builder (String uuid) {
             this.uuid = uuid;
         }
 
-        public Builder withTime(final String time) {
-            this.time = time;
+        public Builder withMainText(final String mainText) {
+            this.mainText = mainText;
             return this;
         }
 
-        public Builder withComment(final String comment) {
-            this.comment = comment;
+        public Builder withSubText(final String subText) {
+            this.subText = subText;
             return this;
         }
 
-        public Builder withSmallImage(final String smallImage) {
-            this.smallImage = smallImage;
+        public Builder withImage1(final String image1) {
+            this.image1 = image1;
             return this;
         }
 
-        public Builder withLargeImage(final String largeImage) {
-            this.largeImage = largeImage;
+        public Builder withImage2(final String image2) {
+            this.image2 = image2;
+            return this;
+        }
+
+        public Builder withImageType1(final ICON_TYPE imageType1) {
+            this.imageType1 = imageType1;
             return this;
         }
 
         public HomeLiveFeedItemModel buildHome() {
             return new HomeLiveFeedItemModel(
                     uuid,
-                    time,
-                    comment,
-                    smallImage,
-                    largeImage
+                    mainText,
+                    subText,
+                    image1,
+                    image2,
+                    imageType1
             );
         }
 
         public AwayLiveFeedItemModel buildAway() {
             return new AwayLiveFeedItemModel(
                     uuid,
-                    time,
-                    comment,
-                    smallImage,
-                    largeImage
+                    mainText,
+                    subText,
+                    image1,
+                    image2,
+                    imageType1
             );
         }
     }
 
     private LiveFeedItemModel(
             final String uuid,
-            final String time,
-            final String comment,
-            final String smallImage,
-            final String largeImage) {
-        //super(uuid);
-        this.time = Optional.ofNullable(time);
-        this.comment = Optional.ofNullable(comment);
-        this.smallImage = Optional.ofNullable(smallImage);
-        this.largeImage = Optional.ofNullable(largeImage);
+            final String mainText,
+            final String subText,
+            final String image1,
+            final String image2,
+            final ICON_TYPE imageType1) {
+        this.mainText = Optional.ofNullable(mainText);
+        this.subText = Optional.ofNullable(subText);
+        this.image1 = Optional.ofNullable(image1);
+        this.image2 = Optional.ofNullable(image2);
+        this.imageType1 = Optional.ofNullable(imageType1);
     }
 }

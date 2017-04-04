@@ -43,6 +43,12 @@ public final class UniversalAdapter
         }
     }
 
+    public void addItem(final Object item) {
+        if (item != null) {
+            this.items.add(item);
+            notifyDataSetChangedOnUiThread();
+        }
+    }
     public void addOnItemFocusedListener(
             final OnFocusChangedListener listener) {
         if (listener != null) {
